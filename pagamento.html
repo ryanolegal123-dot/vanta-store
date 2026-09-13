@@ -6,136 +6,125 @@
 <title>Pagamento | VANTA</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-color:#111;
+  background:#0b0b0b;
+  color:#fff;
 }
 
 header{
-height:70px;
-background:#000;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 6%;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid #222;
 }
 
 .logo{
-font-size:25px;
-font-weight:bold;
-letter-spacing:4px;
-}
-
-header a{
-color:#fff;
-text-decoration:none;
-font-size:22px;
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
 .container{
-max-width:700px;
-margin:40px auto;
-padding:20px;
-}
-
-.box{
-background:#fff;
-padding:25px;
-border-radius:10px;
-margin-bottom:20px;
+  max-width:600px;
+  margin:40px auto;
+  padding:20px;
 }
 
 h1{
-margin-top:0;
-font-size:30px;
+  font-size:30px;
+  margin-bottom:25px;
+}
+
+.box{
+  background:#111;
+  border:1px solid #222;
+  border-radius:12px;
+  padding:22px;
+  margin-bottom:20px;
 }
 
 h2{
-font-size:20px;
+  font-size:18px;
+  margin-bottom:18px;
 }
 
-.metodo{
-display:block;
-border:2px solid #ddd;
-padding:18px;
-border-radius:8px;
-margin:12px 0;
-cursor:pointer;
-transition:.2s;
-}
-
-.metodo:hover{
-border-color:#000;
-}
-
-.metodo input{
-margin-right:10px;
-}
-
-.metodo.ativo{
-border-color:#000;
-background:#fafafa;
-}
-
-.resumo{
-border-top:1px solid #ddd;
-margin-top:20px;
-padding-top:20px;
+.pedido{
+  color:#bbb;
+  line-height:1.8;
 }
 
 .total{
-font-size:25px;
-font-weight:bold;
-margin:20px 0;
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+  margin-top:10px;
 }
 
-.pagar{
-width:100%;
-padding:17px;
-background:#000;
-color:#fff;
-border:0;
-border-radius:6px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+.metodos{
+  display:grid;
+  gap:12px;
 }
 
-.pix,
-.cartao{
-display:none;
-background:#f5f5f5;
-padding:20px;
-margin-top:15px;
-border-radius:8px;
-text-align:center;
+.metodo{
+  border:1px solid #333;
+  background:#181818;
+  padding:18px;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-.pix strong,
-.cartao strong{
-font-size:18px;
+.metodo:hover{
+  border-color:#777;
 }
 
-@media(max-width:700px){
-
-.container{
-margin:20px auto;
-padding:15px;
+.metodo.selecionado{
+  border-color:#fff;
+  background:#222;
 }
 
-.box{
-padding:20px;
+.metodo strong{
+  display:block;
+  font-size:17px;
+  margin-bottom:5px;
 }
 
-h1{
-font-size:26px;
+.metodo span{
+  color:#999;
+  font-size:13px;
 }
 
+.info{
+  margin-top:15px;
+  padding:15px;
+  background:#181818;
+  border-radius:8px;
+  color:#aaa;
+  font-size:14px;
+  line-height:1.5;
+}
+
+button{
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ddd;
 }
 </style>
 </head>
@@ -143,168 +132,148 @@ font-size:26px;
 <body>
 
 <header>
-
-<div class="logo">VANTA</div>
-
-<a href="checkout.html">←</a>
-
+  <div class="logo">VANTA</div>
 </header>
 
 <div class="container">
 
-<div class="box">
-
 <h1>Pagamento</h1>
 
-<p>Escolha uma forma de pagamento:</p>
+<div class="box">
 
-<label class="metodo" id="opcaoPix">
+<h2>Resumo</h2>
 
-<input
-type="radio"
-name="pagamento"
-value="pix"
-onclick="selecionar('pix')">
-
-<strong>PIX</strong>
-
-<br>
-
-Pagamento rápido e seguro
-
-</label>
-
-<div id="pix" class="pix">
-
-<strong>PIX</strong>
-
-<p>
-O pagamento via PIX será gerado automaticamente
-quando o sistema de pagamento estiver conectado.
-</p>
-
-</div>
-
-<label class="metodo" id="opcaoCartao">
-
-<input
-type="radio"
-name="pagamento"
-value="cartao"
-onclick="selecionar('cartao')">
-
-<strong>CARTÃO</strong>
-
-<br>
-
-Crédito ou débito
-
-</label>
-
-<div id="cartao" class="cartao">
-
-<strong>CARTÃO</strong>
-
-<p>
-Você será direcionado para o pagamento seguro
-quando o gateway estiver conectado.
-</p>
-
+<div id="pedido" class="pedido">
+Carregando...
 </div>
 
 </div>
 
 <div class="box">
 
-<h2>Resumo do pedido</h2>
+<h2>Forma de pagamento</h2>
 
-<div id="resumo"></div>
+<div class="metodos">
 
-<button class="pagar" onclick="pagar()">
+<div class="metodo" id="pix" onclick="selecionar('PIX')">
+<strong>PIX</strong>
+<span>Pagamento instantâneo</span>
+</div>
+
+<div class="metodo" id="cartao" onclick="selecionar('Cartão')">
+<strong>Cartão</strong>
+<span>Crédito ou débito</span>
+</div>
+
+</div>
+
+<div id="info" class="info">
+Escolha uma forma de pagamento.
+</div>
+
+</div>
+
+<button onclick="pagar()">
 PAGAR PEDIDO
 </button>
 
 </div>
 
-</div>
-
 <script>
 
-let produto=JSON.parse(
-localStorage.getItem("vantaCarrinho")
+let pedido = JSON.parse(
+  localStorage.getItem("vantaPedidoAtual")
 );
 
-let resumo=document.getElementById("resumo");
+let metodoSelecionado = "";
 
-if(!produto){
+let area = document.getElementById("pedido");
 
-resumo.innerHTML="<p>Carrinho vazio.</p>";
+if(!pedido){
+
+  area.innerHTML = "Nenhum pedido encontrado.";
 
 }else{
 
-let total=
-produto.preco*produto.quantidade;
-
-resumo.innerHTML=`
-
-<p><strong>${produto.nome}</strong></p>
-
-<p>Tamanho: ${produto.tamanho}</p>
-
-<p>Quantidade: ${produto.quantidade}</p>
-
-<div class="total">
-Total: R$ ${total.toFixed(2).replace(".",",")}
-</div>
-
-`;
-
+  area.innerHTML = `
+    <div><strong>${pedido.produto}</strong></div>
+    <div>Tamanho: ${pedido.tamanho}</div>
+    <div>Quantidade: ${pedido.quantidade}</div>
+    <div>Cliente: ${pedido.nome}</div>
+    <div class="total">
+      Total: R$ ${pedido.total.toFixed(2).replace(".",",")}
+    </div>
+  `;
 }
 
-let metodo="";
+function selecionar(metodo){
 
-function selecionar(tipo){
+  metodoSelecionado = metodo;
 
-metodo=tipo;
+  document.getElementById("pix")
+    .classList.remove("selecionado");
 
-document.getElementById("pix").style.display="none";
-document.getElementById("cartao").style.display="none";
+  document.getElementById("cartao")
+    .classList.remove("selecionado");
 
-document.getElementById("opcaoPix").classList.remove("ativo");
-document.getElementById("opcaoCartao").classList.remove("ativo");
+  if(metodo === "PIX"){
 
-if(tipo==="pix"){
+    document.getElementById("pix")
+      .classList.add("selecionado");
 
-document.getElementById("pix").style.display="block";
-document.getElementById("opcaoPix").classList.add("ativo");
+    document.getElementById("info").innerHTML =
+      "Você será direcionado para o pagamento PIX.";
 
-}
+  }
 
-if(tipo==="cartao"){
+  if(metodo === "Cartão"){
 
-document.getElementById("cartao").style.display="block";
-document.getElementById("opcaoCartao").classList.add("ativo");
+    document.getElementById("cartao")
+      .classList.add("selecionado");
 
-}
+    document.getElementById("info").innerHTML =
+      "Você será direcionado para o pagamento com cartão.";
 
+  }
 }
 
 function pagar(){
 
-if(!metodo){
+  if(!pedido){
 
-alert("Escolha uma forma de pagamento.");
+    alert("Nenhum pedido encontrado.");
+    return;
 
-return;
+  }
 
-}
+  if(!metodoSelecionado){
 
-alert(
-"Pagamento selecionado: "+
-metodo.toUpperCase()+
-"."
-);
+    alert("Escolha uma forma de pagamento.");
+    return;
 
+  }
+
+  pedido.pagamento = metodoSelecionado;
+  pedido.status = "Pagamento iniciado";
+
+  let pedidos =
+    JSON.parse(localStorage.getItem("vantaPedidos")) || [];
+
+  pedidos.push(pedido);
+
+  localStorage.setItem(
+    "vantaPedidos",
+    JSON.stringify(pedidos)
+  );
+
+  localStorage.removeItem("vantaPedidoAtual");
+  localStorage.removeItem("vantaCarrinho");
+
+  alert(
+    "Pedido registrado! O pagamento será conectado em breve."
+  );
+
+  window.location.href = "pedidos.html";
 }
 
 </script>
