@@ -3,53 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Oversized Essential Black</title>
+<title>Oversized Essential Black | VANTA</title>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#111}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#0b0b0b;
+  color:#fff;
+}
+
 header{
-height:70px;background:#000;color:#fff;
-display:flex;align-items:center;justify-content:space-between;
-padding:0 6%
+  height:70px;
+  border-bottom:1px solid #222;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
 }
-.logo{font-size:25px;font-weight:bold;letter-spacing:4px}
-header a{color:#fff;text-decoration:none;font-size:22px}
+
+.logo{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+.cart{
+  color:#fff;
+  text-decoration:none;
+}
+
 .container{
-max-width:1100px;margin:50px auto;padding:20px;
-display:grid;grid-template-columns:1fr 1fr;gap:50px
+  max-width:1000px;
+  margin:40px auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
 }
-.product-img{
-width:100%;height:600px;object-fit:cover;border-radius:10px
+
+.produto-img{
+  width:100%;
+  border-radius:12px;
 }
-h1{font-size:36px}
-.price{font-size:28px;font-weight:bold}
-.old{
-text-decoration:line-through;color:#888;
-font-size:17px;margin-left:10px
+
+h1{
+  font-size:32px;
+  margin-bottom:15px;
 }
-.installment{color:#555;margin:10px 0 25px}
-.desc{line-height:1.6;color:#444}
-.sizes{display:flex;gap:10px;margin:25px 0}
-.size{
-border:1px solid #111;background:#fff;
-padding:12px 20px;cursor:pointer
+
+.preco{
+  font-size:25px;
+  font-weight:bold;
+  margin:15px 0;
 }
-.size.selected{background:#000;color:#fff}
-.qty{display:flex;align-items:center;gap:15px;margin:20px 0}
-.qty button{
-width:35px;height:35px;border:1px solid #ccc;
-background:#fff;font-size:20px
+
+.antigo{
+  color:#777;
+  text-decoration:line-through;
+  font-size:16px;
 }
-.add{
-width:100%;padding:17px;background:#000;
-color:#fff;border:0;font-size:16px;
-font-weight:bold;cursor:pointer
+
+.parcela{
+  color:#aaa;
+  margin-bottom:25px;
 }
+
+label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:bold;
+}
+
+select,input{
+  width:100%;
+  padding:14px;
+  background:#181818;
+  border:1px solid #333;
+  color:#fff;
+  border-radius:8px;
+  margin-bottom:18px;
+}
+
+button{
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ddd;
+}
+
 @media(max-width:700px){
-.container{grid-template-columns:1fr;margin:20px auto;gap:25px}
-.product-img{height:450px}
-h1{font-size:28px}
+  .container{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -57,87 +116,116 @@ h1{font-size:28px}
 <body>
 
 <header>
+
 <div class="logo">VANTA</div>
-<a href="carrinho.html">🛒</a>
+
+<a href="carrinho.html" class="cart">
+🛒 Carrinho
+</a>
+
 </header>
 
 <div class="container">
 
 <div>
-<img class="product-img"
-src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90">
+<img
+class="produto-img"
+src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+alt="Oversized Essential Black">
 </div>
 
 <div>
 
 <h1>Oversized Essential Black</h1>
 
-<div>
-<span class="price">R$ 89,90</span>
-<span class="old">R$ 119,90</span>
+<div class="antigo">
+R$ 119,90
 </div>
 
-<div class="installment">
-ou 3x de R$ 29,97 sem juros
+<div class="preco">
+R$ 89,90
 </div>
 
-<p class="desc">
-Camiseta oversized preta VANTA. Visual minimalista,
-caimento amplo e estilo urbano para usar no dia a dia.
-</p>
-
-<h3>Tamanho</h3>
-
-<div class="sizes">
-<button class="size" onclick="selecionar(this)">P</button>
-<button class="size selected" onclick="selecionar(this)">M</button>
-<button class="size" onclick="selecionar(this)">G</button>
-<button class="size" onclick="selecionar(this)">GG</button>
+<div class="parcela">
+ou 3x de R$ 29,97
 </div>
 
-<div class="qty">
-<button onclick="alterar(-1)">−</button>
-<span id="qtd">1</span>
-<button onclick="alterar(1)">+</button>
-</div>
+<label for="tamanho">Tamanho</label>
 
-<button class="add" onclick="adicionar()">
+<select id="tamanho">
+<option value="P">P</option>
+<option value="M" selected>M</option>
+<option value="G">G</option>
+<option value="GG">GG</option>
+</select>
+
+<label for="quantidade">Quantidade</label>
+
+<input
+id="quantidade"
+type="number"
+value="1"
+min="1">
+
+<button onclick="adicionarCarrinho()">
 ADICIONAR AO CARRINHO
 </button>
 
 </div>
+
 </div>
 
 <script>
 
-let tamanho="M";
-let qtd=1;
+function adicionarCarrinho(){
 
-function selecionar(botao){
-document.querySelectorAll(".size").forEach(b=>b.classList.remove("selected"));
-botao.classList.add("selected");
-tamanho=botao.innerText;
-}
+  let carrinho =
+    JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
 
-function alterar(valor){
-qtd+=valor;
-if(qtd<1) qtd=1;
-document.getElementById("qtd").innerText=qtd;
-}
+  if(!Array.isArray(carrinho)){
+    carrinho = [carrinho];
+  }
 
-function adicionar(){
+  let tamanho =
+    document.getElementById("tamanho").value;
 
-let produto={
-nome:"Oversized Essential Black",
-preco:89.90,
-tamanho:tamanho,
-quantidade:qtd,
-imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
-};
+  let quantidade =
+    Number(document.getElementById("quantidade").value);
 
-localStorage.setItem("vantaCarrinho",JSON.stringify(produto));
+  let produtoExistente = carrinho.find(p =>
+    p.nome === "Oversized Essential Black" &&
+    p.tamanho === tamanho
+  );
 
-window.location.href="carrinho.html";
+  if(produtoExistente){
+
+    produtoExistente.quantidade += quantidade;
+
+  }else{
+
+    carrinho.push({
+
+      nome:"Oversized Essential Black",
+
+      preco:89.90,
+
+      tamanho:tamanho,
+
+      quantidade:quantidade,
+
+      imagem:
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+
+    });
+
+  }
+
+  localStorage.setItem(
+    "vantaCarrinho",
+    JSON.stringify(carrinho)
+  );
+
+  window.location.href="carrinho.html";
 
 }
 
