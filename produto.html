@@ -1,19 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Oversized Essential Black | VANTA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VANTA</title>
 
 <style>
 
 *{
-box-sizing:border-box;
 margin:0;
 padding:0;
-font-family:Arial,sans-serif;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
@@ -34,11 +34,14 @@ padding:0 25px;
 font-size:26px;
 font-weight:900;
 letter-spacing:4px;
-}
-
-.cart{
 color:#fff;
 text-decoration:none;
+}
+
+.back{
+color:#aaa;
+text-decoration:none;
+font-size:13px;
 }
 
 .container{
@@ -53,6 +56,7 @@ gap:40px;
 .produto-img{
 width:100%;
 border-radius:12px;
+display:block;
 }
 
 h1{
@@ -83,7 +87,8 @@ margin-bottom:8px;
 font-weight:bold;
 }
 
-select,input{
+select,
+input{
 width:100%;
 padding:14px;
 background:#181818;
@@ -108,36 +113,61 @@ button:hover{
 background:#ddd;
 }
 
-#aviso{
+/* CARRINHO FLUTUANTE */
+
+.carrinho-flutuante{
 position:fixed;
-bottom:25px;
-left:50%;
-transform:translateX(-50%);
+right:20px;
+bottom:20px;
+width:58px;
+height:58px;
+border-radius:50%;
 background:#fff;
 color:#000;
-padding:15px 22px;
-border-radius:8px;
-font-weight:bold;
-font-size:14px;
-box-shadow:0 10px 30px rgba(0,0,0,.5);
-opacity:0;
-pointer-events:none;
-transition:.3s;
-z-index:9999;
+display:none;
+align-items:center;
+justify-content:center;
+font-size:24px;
+text-decoration:none;
+box-shadow:0 5px 25px rgba(0,0,0,.5);
+z-index:100;
 }
 
-#aviso.mostrar{
-opacity:1;
+.carrinho-flutuante.ativo{
+display:flex;
+}
+
+.contador{
+position:absolute;
+top:-5px;
+right:-5px;
+background:#000;
+color:#fff;
+width:22px;
+height:22px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:11px;
+font-weight:bold;
+border:2px solid #fff;
 }
 
 @media(max-width:700px){
 
 .container{
 grid-template-columns:1fr;
+margin:20px auto;
+padding:15px;
+gap:25px;
+}
+
+h1{
+font-size:27px;
 }
 
 }
-
 </style>
 
 </head>
@@ -146,50 +176,29 @@ grid-template-columns:1fr;
 
 <header>
 
-<div class="logo">
-VANTA
-</div>
+<a href="index.html" class="logo">VANTA</a>
 
-<a href="carrinho.html" class="cart">
-🛒 Carrinho
-</a>
+<a href="catalogo.html" class="back">← Catálogo</a>
 
 </header>
-
 
 <div class="container">
 
 <div>
 
-<img
-class="produto-img"
-src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
-alt="Oversized Essential Black">
+<img id="produtoImagem" class="produto-img" src="" alt="Produto VANTA">
 
 </div>
-
 
 <div>
 
-<h1>
-Oversized Essential Black
-</h1>
+<h1 id="produtoNome"></h1>
 
+<div id="produtoAntigo" class="antigo"></div>
 
-<div class="antigo">
-R$ 119,90
-</div>
+<div id="produtoPreco" class="preco"></div>
 
-
-<div class="preco">
-R$ 89,90
-</div>
-
-
-<div class="parcela">
-ou 3x de R$ 29,97
-</div>
-
+<div id="produtoParcela" class="parcela"></div>
 
 <label for="tamanho">
 Tamanho
@@ -197,24 +206,12 @@ Tamanho
 
 <select id="tamanho">
 
-<option value="P">
-P
-</option>
-
-<option value="M" selected>
-M
-</option>
-
-<option value="G">
-G
-</option>
-
-<option value="GG">
-GG
-</option>
+<option value="P">P</option>
+<option value="M" selected>M</option>
+<option value="G">G</option>
+<option value="GG">GG</option>
 
 </select>
-
 
 <label for="quantidade">
 Quantidade
@@ -226,7 +223,6 @@ type="number"
 value="1"
 min="1">
 
-
 <button onclick="adicionarCarrinho()">
 ADICIONAR AO CARRINHO
 </button>
@@ -235,41 +231,145 @@ ADICIONAR AO CARRINHO
 
 </div>
 
+<a href="carrinho.html" id="carrinhoFlutuante" class="carrinho-flutuante">
 
-<div id="aviso">
-Produto adicionado ✓
-</div>
+🛒
 
+<span id="contador" class="contador">0</span>
+
+</a>
 
 <script>
 
-function adicionarCarrinho(){
+const produtos = {
+
+oversized:{
+nome:"Oversized Essential Black",
+preco:89.90,
+antigo:119.90,
+imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+},
+
+boxy:{
+nome:"Boxy Premium White",
+preco:79.90,
+antigo:109.90,
+imagem:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90"
+},
+
+cargo:{
+nome:"Cargo Urban Black",
+preco:129.90,
+antigo:null,
+imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90"
+},
+
+moletom:{
+nome:"VANTA Essential Hoodie",
+preco:149.90,
+antigo:189.90,
+imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90"
+}
+
+};
+
+
+const parametros = new URLSearchParams(window.location.search);
+
+const id = parametros.get("id") || "oversized";
+
+const produto = produtos[id] || produtos.oversized;
+
+
+document.title = produto.nome + " | VANTA";
+
+document.getElementById("produtoNome").textContent = produto.nome;
+
+document.getElementById("produtoImagem").src = produto.imagem;
+
+document.getElementById("produtoImagem").alt = produto.nome;
+
+document.getElementById("produtoPreco").textContent =
+"R$ " + produto.preco.toFixed(2).replace(".",",");
+
+
+if(produto.antigo){
+
+document.getElementById("produtoAntigo").textContent =
+"R$ " + produto.antigo.toFixed(2).replace(".",",");
+
+}else{
+
+document.getElementById("produtoAntigo").style.display="none";
+
+}
+
+
+const parcela = produto.preco / 3;
+
+document.getElementById("produtoParcela").textContent =
+"ou 3x de R$ " + parcela.toFixed(2).replace(".",",");
+
+
+function pegarCarrinho(){
 
 let carrinho =
 JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
 
-
 if(!Array.isArray(carrinho)){
-carrinho = [carrinho];
+carrinho=[];
+}
+
+return carrinho;
+
 }
 
 
-let tamanho =
+function atualizarCarrinho(){
+
+const carrinho = pegarCarrinho();
+
+const total = carrinho.reduce(
+(soma,item) => soma + (Number(item.quantidade) || 0),
+0
+);
+
+document.getElementById("contador").textContent = total;
+
+const botao = document.getElementById("carrinhoFlutuante");
+
+if(total > 0){
+
+botao.classList.add("ativo");
+
+}else{
+
+botao.classList.remove("ativo");
+
+}
+
+}
+
+
+function adicionarCarrinho(){
+
+let carrinho = pegarCarrinho();
+
+const tamanho =
 document.getElementById("tamanho").value;
 
-
-let quantidade =
-Number(document.getElementById("quantidade").value);
-
-
-if(quantidade < 1){
-quantidade = 1;
-}
+const quantidade =
+Math.max(
+1,
+Number(document.getElementById("quantidade").value) || 1
+);
 
 
-let produtoExistente = carrinho.find(p =>
-p.nome === "Oversized Essential Black" &&
-p.tamanho === tamanho
+const produtoExistente = carrinho.find(item =>
+
+item.nome === produto.nome &&
+item.tamanho === tamanho
+
 );
 
 
@@ -281,16 +381,15 @@ produtoExistente.quantidade += quantidade;
 
 carrinho.push({
 
-nome:"Oversized Essential Black",
+nome:produto.nome,
 
-preco:89.90,
+preco:produto.preco,
 
 tamanho:tamanho,
 
 quantidade:quantidade,
 
-imagem:
-"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+imagem:produto.imagem
 
 });
 
@@ -303,30 +402,16 @@ JSON.stringify(carrinho)
 );
 
 
-mostrarAviso();
+/* VOLTA PARA O CATÁLOGO */
+
+window.location.href = "catalogo.html";
 
 }
 
 
-function mostrarAviso(){
-
-const aviso =
-document.getElementById("aviso");
-
-
-aviso.classList.add("mostrar");
-
-
-setTimeout(function(){
-
-aviso.classList.remove("mostrar");
-
-},1800);
-
-}
+atualizarCarrinho();
 
 </script>
-
 
 </body>
 
