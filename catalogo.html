@@ -1,394 +1,398 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo | VANTA</title>
 
-  <title>Catálogo | VANTA</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+body{
+background:#0a0a0a;
+color:#fff;
+}
 
-    body {
-      background: #0a0a0a;
-      color: #fff;
-    }
+header{
+height:72px;
+padding:0 6%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #222;
+position:sticky;
+top:0;
+background:rgba(10,10,10,.95);
+backdrop-filter:blur(10px);
+z-index:10;
+}
 
-    header {
-      height: 72px;
-      padding: 0 6%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #222;
-      position: sticky;
-      top: 0;
-      background: rgba(10,10,10,.95);
-      backdrop-filter: blur(10px);
-      z-index: 10;
-    }
+.logo{
+color:#fff;
+text-decoration:none;
+font-size:25px;
+font-weight:900;
+letter-spacing:5px;
+}
 
-    .logo {
-      color: #fff;
-      text-decoration: none;
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: 5px;
-    }
+nav{
+display:flex;
+gap:24px;
+align-items:center;
+}
 
-    nav {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
+nav a{
+color:#aaa;
+text-decoration:none;
+font-size:13px;
+transition:.2s;
+}
 
-    nav a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 13px;
-      transition: .2s;
-    }
+nav a:hover{
+color:#fff;
+}
 
-    nav a:hover {
-      color: #fff;
-    }
+.cart{
+color:#fff;
+text-decoration:none;
+border:1px solid #333;
+padding:9px 13px;
+border-radius:5px;
+}
 
-    .cart {
-      color: #fff;
-      text-decoration: none;
-      border: 1px solid #333;
-      padding: 9px 13px;
-      border-radius: 5px;
-    }
+.cart span{
+color:#999;
+margin-left:4px;
+}
 
-    .cart span {
-      color: #999;
-      margin-left: 4px;
-    }
+.top{
+padding:65px 6% 35px;
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:20px;
+}
 
-    .top {
-      padding: 65px 6% 35px;
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-    }
+.top h1{
+font-size:clamp(42px,9vw,82px);
+line-height:.9;
+letter-spacing:-4px;
+}
 
-    .top h1 {
-      font-size: clamp(42px, 9vw, 82px);
-      line-height: .9;
-      letter-spacing: -4px;
-    }
+.top p{
+color:#777;
+margin-top:18px;
+font-size:14px;
+}
 
-    .top p {
-      color: #777;
-      margin-top: 18px;
-      font-size: 14px;
-    }
+.filter{
+background:#111;
+border:1px solid #333;
+color:#fff;
+padding:13px 15px;
+border-radius:5px;
+outline:none;
+cursor:pointer;
+}
 
-    .filter {
-      background: #111;
-      border: 1px solid #333;
-      color: #fff;
-      padding: 13px 15px;
-      border-radius: 5px;
-      outline: none;
-      cursor: pointer;
-    }
+.products{
+padding:20px 6% 90px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:22px;
+}
 
-    .products {
-      padding: 20px 6% 90px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
+.product{
+position:relative;
+}
 
-    .product {
-      position: relative;
-    }
+.image{
+width:100%;
+aspect-ratio:4/5;
+overflow:hidden;
+background:#111;
+margin-bottom:15px;
+}
 
-    .image {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      background: #111;
-      margin-bottom: 15px;
-    }
+.image img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.4s;
+}
 
-    .image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: .4s;
-    }
+.product:hover img{
+transform:scale(1.04);
+}
 
-    .product:hover img {
-      transform: scale(1.04);
-    }
+.tag{
+position:absolute;
+top:12px;
+left:12px;
+background:#fff;
+color:#000;
+padding:6px 9px;
+font-size:10px;
+font-weight:bold;
+letter-spacing:1px;
+}
 
-    .tag {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: #fff;
-      color: #000;
-      padding: 6px 9px;
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+.product h2{
+font-size:16px;
+margin-bottom:7px;
+}
 
-    .product h2 {
-      font-size: 16px;
-      margin-bottom: 7px;
-    }
+.price{
+display:flex;
+gap:8px;
+align-items:center;
+}
 
-    .price {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
+.price strong{
+font-size:17px;
+}
 
-    .price strong {
-      font-size: 17px;
-    }
+.old{
+color:#555;
+text-decoration:line-through;
+font-size:13px;
+}
 
-    .old {
-      color: #555;
-      text-decoration: line-through;
-      font-size: 13px;
-    }
+.button{
+display:block;
+width:100%;
+margin-top:13px;
+padding:13px;
+background:#fff;
+color:#000;
+text-align:center;
+text-decoration:none;
+font-size:12px;
+font-weight:bold;
+letter-spacing:1px;
+border-radius:4px;
+transition:.2s;
+}
 
-    .button {
-      display: block;
-      width: 100%;
-      margin-top: 13px;
-      padding: 13px;
-      background: #fff;
-      color: #000;
-      text-align: center;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      border-radius: 4px;
-      transition: .2s;
-    }
+.button:hover{
+background:#ccc;
+}
 
-    .button:hover {
-      background: #ccc;
-    }
+footer{
+border-top:1px solid #222;
+padding:35px 6%;
+color:#555;
+font-size:12px;
+}
 
-    footer {
-      border-top: 1px solid #222;
-      padding: 35px 6%;
-      color: #555;
-      font-size: 12px;
-    }
+@media(max-width:650px){
 
-    #toast {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #fff;
-      color: #000;
-      padding: 14px 20px;
-      border-radius: 5px;
-      font-size: 13px;
-      font-weight: bold;
-      transition: .3s;
-      z-index: 100;
-    }
+header{
+padding:0 5%;
+}
 
-    #toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
+nav a:not(.cart){
+display:none;
+}
 
-    @media (max-width: 650px) {
-      header {
-        padding: 0 5%;
-      }
+.top{
+padding:50px 5% 25px;
+display:block;
+}
 
-      nav a:not(.cart) {
-        display: none;
-      }
+.top h1{
+font-size:55px;
+}
 
-      .top {
-        padding: 50px 5% 25px;
-        display: block;
-      }
+.filter{
+margin-top:25px;
+width:100%;
+}
 
-      .top h1 {
-        font-size: 55px;
-      }
+.products{
+padding:15px 5% 70px;
+gap:12px;
+}
 
-      .filter {
-        margin-top: 25px;
-        width: 100%;
-      }
+.product h2{
+font-size:14px;
+}
 
-      .products {
-        padding: 15px 5% 70px;
-        gap: 12px;
-      }
+.price strong{
+font-size:15px;
+}
 
-      .product h2 {
-        font-size: 14px;
-      }
+}
+</style>
 
-      .price strong {
-        font-size: 15px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
 <header>
-  <a href="index.html" class="logo">VANTA</a>
 
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="catalogo.html">Catálogo</a>
-    <a href="carrinho.html" class="cart">
-      Carrinho <span id="cartCount">0</span>
-    </a>
-  </nav>
+<a href="index.html" class="logo">VANTA</a>
+
+<nav>
+<a href="index.html">Início</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="carrinho.html" class="cart">
+Carrinho <span id="cartCount">0</span>
+</a>
+</nav>
+
 </header>
 
 <section class="top">
-  <div>
-    <h1>CATÁLOGO</h1>
-    <p>Peças essenciais para quem não passa despercebido.</p>
-  </div>
 
-  <select id="sort" class="filter">
-    <option value="normal">Ordenar produtos</option>
-    <option value="menor">Menor preço</option>
-    <option value="maior">Maior preço</option>
-  </select>
+<div>
+<h1>CATÁLOGO</h1>
+<p>Peças essenciais para quem não passa despercebido.</p>
+</div>
+
+<select id="sort" class="filter">
+<option value="normal">Ordenar produtos</option>
+<option value="menor">Menor preço</option>
+<option value="maior">Maior preço</option>
+</select>
+
 </section>
 
 <main class="products" id="products">
 
-  <article class="product" data-price="89.90">
-    <div class="image">
-      <span class="tag">VANTA ESSENTIAL</span>
-      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85">
-    </div>
+<article class="product" data-price="89.90">
 
-    <h2>Oversized Essential Black</h2>
+<div class="image">
+<span class="tag">VANTA ESSENTIAL</span>
 
-    <div class="price">
-      <strong>R$ 89,90</strong>
-      <span class="old">R$ 119,90</span>
-    </div>
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90">
 
-    <a href="produto.html" class="button">VER PRODUTO</a>
-  </article>
+</div>
 
+<h2>Oversized Essential Black</h2>
 
-  <article class="product" data-price="79.90">
-    <div class="image">
-      <span class="tag">BEST SELLER</span>
-      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85">
-    </div>
+<div class="price">
+<strong>R$ 89,90</strong>
+<span class="old">R$ 119,90</span>
+</div>
 
-    <h2>Boxy Premium White</h2>
+<a href="produto.html" class="button">VER PRODUTO</a>
 
-    <div class="price">
-      <strong>R$ 79,90</strong>
-      <span class="old">R$ 109,90</span>
-    </div>
+</article>
 
-    <a href="produto-boxy.html" class="button">VER PRODUTO</a>
-  </article>
+<article class="product" data-price="79.90">
 
+<div class="image">
+<span class="tag">BEST SELLER</span>
 
-  <article class="product" data-price="129.90">
-    <div class="image">
-      <span class="tag">NEW</span>
-      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85">
-    </div>
+<img src="https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90">
 
-    <h2>Cargo Urban Black</h2>
+</div>
 
-    <div class="price">
-      <strong>R$ 129,90</strong>
-    </div>
+<h2>Boxy Premium White</h2>
 
-    <a href="produto-cargo.html" class="button">VER PRODUTO</a>
-  </article>
+<div class="price">
+<strong>R$ 79,90</strong>
+<span class="old">R$ 109,90</span>
+</div>
 
+<a href="produto-boxy.html" class="button">VER PRODUTO</a>
 
-  <article class="product" data-price="149.90">
-    <div class="image">
-      <span class="tag">VANTA HOODIE</span>
-      <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85">
-    </div>
+</article>
 
-    <h2>VANTA Essential Hoodie</h2>
+<article class="product" data-price="129.90">
 
-    <div class="price">
-      <strong>R$ 149,90</strong>
-      <span class="old">R$ 189,90</span>
-    </div>
+<div class="image">
+<span class="tag">NEW</span>
 
-    <a href="moletom.html" class="button">VER PRODUTO</a>
-  </article>
+<img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90">
+
+</div>
+
+<h2>Cargo Urban Black</h2>
+
+<div class="price">
+<strong>R$ 129,90</strong>
+</div>
+
+<a href="produto-cargo.html" class="button">VER PRODUTO</a>
+
+</article>
+
+<article class="product" data-price="149.90">
+
+<div class="image">
+<span class="tag">VANTA HOODIE</span>
+
+<img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90">
+
+</div>
+
+<h2>VANTA Essential Hoodie</h2>
+
+<div class="price">
+<strong>R$ 149,90</strong>
+<span class="old">R$ 189,90</span>
+</div>
+
+<a href="moletom.html" class="button">VER PRODUTO</a>
+
+</article>
 
 </main>
 
 <footer>
-  © 2026 VANTA — Vista sua presença.
+© 2026 VANTA — Vista sua presença.
 </footer>
 
-<div id="toast"></div>
-
 <script>
-  function atualizarCarrinho() {
-    const carrinho = JSON.parse(
-      localStorage.getItem("vantaCarrinho") || "[]"
-    );
 
-    const total = carrinho.reduce(
-      (soma, item) => soma + (Number(item.quantidade) || 0),
-      0
-    );
+function atualizarCarrinho(){
 
-    document.getElementById("cartCount").textContent = total;
-  }
+const carrinho=JSON.parse(
+localStorage.getItem("vantaCarrinho")||"[]"
+);
 
-  const sort = document.getElementById("sort");
-  const products = document.getElementById("products");
+const total=carrinho.reduce(
+(soma,item)=>soma+(Number(item.quantidade)||0),0
+);
 
-  sort.addEventListener("change", function () {
-    const cards = [...products.querySelectorAll(".product")];
+document.getElementById("cartCount").textContent=total;
 
-    if (this.value === "menor") {
-      cards.sort((a, b) =>
-        Number(a.dataset.price) - Number(b.dataset.price)
-      );
-    }
+}
 
-    if (this.value === "maior") {
-      cards.sort((a, b) =>
-        Number(b.dataset.price) - Number(a.dataset.price)
-      );
-    }
+const sort=document.getElementById("sort");
+const products=document.getElementById("products");
 
-    cards.forEach(card => products.appendChild(card));
-  });
+sort.addEventListener("change",function(){
 
-  atualizarCarrinho();
+const cards=[...products.querySelectorAll(".product")];
+
+if(this.value==="menor"){
+cards.sort((a,b)=>
+Number(a.dataset.price)-Number(b.dataset.price)
+);
+}
+
+if(this.value==="maior"){
+cards.sort((a,b)=>
+Number(b.dataset.price)-Number(a.dataset.price)
+);
+}
+
+cards.forEach(card=>products.appendChild(card));
+
+});
+
+atualizarCarrinho();
+
 </script>
 
 </body>
-  </html>
+</html>
