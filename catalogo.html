@@ -193,6 +193,47 @@ color:#555;
 font-size:12px;
 }
 
+/* CARRINHO FLUTUANTE */
+
+.carrinho-flutuante{
+position:fixed;
+right:20px;
+bottom:20px;
+width:58px;
+height:58px;
+border-radius:50%;
+background:#fff;
+color:#000;
+display:none;
+align-items:center;
+justify-content:center;
+font-size:24px;
+text-decoration:none;
+box-shadow:0 5px 25px rgba(0,0,0,.5);
+z-index:100;
+}
+
+.carrinho-flutuante.ativo{
+display:flex;
+}
+
+.contador{
+position:absolute;
+top:-5px;
+right:-5px;
+background:#000;
+color:#fff;
+width:22px;
+height:22px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:11px;
+font-weight:bold;
+border:2px solid #fff;
+}
+
 @media(max-width:650px){
 
 header{
@@ -243,11 +284,15 @@ font-size:15px;
 <a href="index.html" class="logo">VANTA</a>
 
 <nav>
+
 <a href="index.html">Início</a>
+
 <a href="catalogo.html">Catálogo</a>
+
 <a href="carrinho.html" class="cart">
 Carrinho <span id="cartCount">0</span>
 </a>
+
 </nav>
 
 </header>
@@ -255,14 +300,21 @@ Carrinho <span id="cartCount">0</span>
 <section class="top">
 
 <div>
+
 <h1>CATÁLOGO</h1>
+
 <p>Peças essenciais para quem não passa despercebido.</p>
+
 </div>
 
 <select id="sort" class="filter">
+
 <option value="normal">Ordenar produtos</option>
+
 <option value="menor">Menor preço</option>
+
 <option value="maior">Maior preço</option>
+
 </select>
 
 </section>
@@ -272,118 +324,187 @@ Carrinho <span id="cartCount">0</span>
 <article class="product" data-price="89.90">
 
 <div class="image">
+
 <span class="tag">VANTA ESSENTIAL</span>
+
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90">
+
 </div>
 
 <h2>Oversized Essential Black</h2>
 
 <div class="price">
+
 <strong>R$ 89,90</strong>
+
 <span class="old">R$ 119,90</span>
+
 </div>
 
-<a href="produto.html" class="button">VER PRODUTO</a>
+<a href="produto.html?id=oversized" class="button">
+VER PRODUTO
+</a>
 
 </article>
 
 <article class="product" data-price="79.90">
 
 <div class="image">
+
 <span class="tag">BEST SELLER</span>
+
 <img src="https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90">
+
 </div>
 
 <h2>Boxy Premium White</h2>
 
 <div class="price">
+
 <strong>R$ 79,90</strong>
+
 <span class="old">R$ 109,90</span>
+
 </div>
 
-<a href="produto-boxy.html" class="button">VER PRODUTO</a>
+<a href="produto.html?id=boxy" class="button">
+VER PRODUTO
+</a>
 
 </article>
 
 <article class="product" data-price="129.90">
 
 <div class="image">
+
 <span class="tag">NEW</span>
+
 <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90">
+
 </div>
 
 <h2>Cargo Urban Black</h2>
 
 <div class="price">
+
 <strong>R$ 129,90</strong>
+
 </div>
 
-<a href="produto-cargo.html" class="button">VER PRODUTO</a>
+<a href="produto.html?id=cargo" class="button">
+VER PRODUTO
+</a>
 
 </article>
 
 <article class="product" data-price="149.90">
 
 <div class="image">
+
 <span class="tag">VANTA HOODIE</span>
+
 <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90">
+
 </div>
 
 <h2>VANTA Essential Hoodie</h2>
 
 <div class="price">
+
 <strong>R$ 149,90</strong>
+
 <span class="old">R$ 189,90</span>
+
 </div>
 
-<a href="moletom.html" class="button">VER PRODUTO</a>
+<a href="produto.html?id=moletom" class="button">
+VER PRODUTO
+</a>
 
 </article>
 
 </main>
 
 <footer>
+
 © 2026 VANTA — Vista sua presença.
+
 </footer>
+
+<a href="carrinho.html" id="carrinhoFlutuante" class="carrinho-flutuante">
+
+🛒
+
+<span id="contador" class="contador">0</span>
+
+</a>
 
 <script>
 
 function atualizarCarrinho(){
 
-const carrinho=JSON.parse(
-localStorage.getItem("vantaCarrinho")||"[]"
+const carrinho =
+JSON.parse(localStorage.getItem("vantaCarrinho") || "[]");
+
+const total = carrinho.reduce(
+(soma,item) => soma + (Number(item.quantidade) || 0),
+0
 );
 
-const total=carrinho.reduce(
-(soma,item)=>soma+(Number(item.quantidade)||0),0
-);
+document.getElementById("cartCount").textContent = total;
 
-document.getElementById("cartCount").textContent=total;
+document.getElementById("contador").textContent = total;
+
+const botao =
+document.getElementById("carrinhoFlutuante");
+
+if(total > 0){
+
+botao.classList.add("ativo");
+
+}else{
+
+botao.classList.remove("ativo");
 
 }
 
-const sort=document.getElementById("sort");
-const products=document.getElementById("products");
+}
+
+
+const sort = document.getElementById("sort");
+
+const products = document.getElementById("products");
+
 
 sort.addEventListener("change",function(){
 
-const cards=[...products.querySelectorAll(".product")];
+const cards =
+[...products.querySelectorAll(".product")];
 
-if(this.value==="menor"){
-cards.sort((a,b)=>
-Number(a.dataset.price)-Number(b.dataset.price)
+if(this.value === "menor"){
+
+cards.sort((a,b) =>
+Number(a.dataset.price) -
+Number(b.dataset.price)
 );
+
 }
 
-if(this.value==="maior"){
-cards.sort((a,b)=>
-Number(b.dataset.price)-Number(a.dataset.price)
+if(this.value === "maior"){
+
+cards.sort((a,b) =>
+Number(b.dataset.price) -
+Number(a.dataset.price)
 );
+
 }
 
-cards.forEach(card=>products.appendChild(card));
+cards.forEach(card =>
+products.appendChild(card)
+);
 
 });
+
 
 atualizarCarrinho();
 
