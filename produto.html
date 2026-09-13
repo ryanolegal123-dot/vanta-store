@@ -56,10 +56,10 @@ gap:40px;
 
 .produto-img{
 width:100%;
-border-radius:12px;
-display:block;
 aspect-ratio:4/5;
 object-fit:cover;
+border-radius:12px;
+display:block;
 background:#151515;
 }
 
@@ -270,7 +270,7 @@ oversized:{
 nome:"Oversized Essential Black",
 preco:89.90,
 antigo:119.90,
-imagem:"https://images.unsplash.com/photo-1583743814966-8936f37f3840?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
 tag:"ESSENTIAL"
 },
 
@@ -461,14 +461,18 @@ produtos[id] || produtos.oversized;
 document.title =
 produto.nome + " | VANTA";
 
+
 document.getElementById("produtoNome")
 .textContent = produto.nome;
+
 
 document.getElementById("produtoImagem")
 .src = produto.imagem;
 
+
 document.getElementById("produtoImagem")
 .alt = produto.nome;
+
 
 document.getElementById("produtoPreco")
 .textContent =
@@ -497,6 +501,7 @@ document.getElementById("produtoAntigo")
 
 const parcela =
 produto.preco / 3;
+
 
 document.getElementById("produtoParcela")
 .textContent =
@@ -527,6 +532,7 @@ function atualizarCarrinho(){
 const carrinho =
 pegarCarrinho();
 
+
 const total =
 carrinho.reduce(
 (soma,item) =>
@@ -534,11 +540,14 @@ soma + (Number(item.quantidade) || 0),
 0
 );
 
+
 document.getElementById("contador")
 .textContent = total;
 
+
 const botao =
 document.getElementById("carrinhoFlutuante");
+
 
 if(total > 0){
 
@@ -558,9 +567,11 @@ function adicionarCarrinho(){
 let carrinho =
 pegarCarrinho();
 
+
 const tamanho =
 document.getElementById("tamanho")
 .value;
+
 
 const quantidade =
 Math.max(
