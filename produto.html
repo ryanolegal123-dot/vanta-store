@@ -1,354 +1,147 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Oversized Essential Black</title>
 
-  <title>Oversized Essential Black — VANTA</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #090909;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    header {
-      height: 68px;
-      padding: 0 6%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #222;
-      background: #090909;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: 5px;
-    }
-
-    .back {
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    .product-page {
-      max-width: 1100px;
-      margin: auto;
-      padding: 50px 6%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-    }
-
-    .product-image {
-      background: #181818;
-      overflow: hidden;
-    }
-
-    .product-image img {
-      width: 100%;
-      display: block;
-      aspect-ratio: 1 / 1.15;
-      object-fit: cover;
-    }
-
-    .product-info {
-      padding-top: 15px;
-    }
-
-    .tag {
-      color: #777;
-      font-size: 10px;
-      letter-spacing: 3px;
-    }
-
-    h1 {
-      font-size: 40px;
-      line-height: 1;
-      margin: 15px 0;
-      letter-spacing: -2px;
-    }
-
-    .price {
-      font-size: 23px;
-      font-weight: bold;
-      margin: 25px 0 8px;
-    }
-
-    .old-price {
-      color: #666;
-      font-size: 14px;
-      text-decoration: line-through;
-      margin-left: 8px;
-      font-weight: normal;
-    }
-
-    .installment {
-      color: #777;
-      font-size: 12px;
-      margin-bottom: 30px;
-    }
-
-    .description {
-      color: #999;
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
-
-    .label {
-      display: block;
-      font-size: 11px;
-      font-weight: bold;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-
-    .sizes {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 28px;
-    }
-
-    .size {
-      width: 50px;
-      height: 45px;
-      border: 1px solid #333;
-      background: #111;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .size:hover,
-    .size.selected {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-    }
-
-    .quantity {
-      display: flex;
-      align-items: center;
-      width: 130px;
-      height: 45px;
-      border: 1px solid #333;
-      margin-bottom: 15px;
-    }
-
-    .quantity button {
-      width: 40px;
-      height: 100%;
-      border: 0;
-      background: transparent;
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .quantity span {
-      flex: 1;
-      text-align: center;
-    }
-
-    .buy {
-      width: 100%;
-      height: 55px;
-      border: 0;
-      background: #fff;
-      color: #000;
-      font-weight: bold;
-      letter-spacing: 1px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .buy:hover {
-      background: #ddd;
-    }
-
-    .message {
-      margin-top: 15px;
-      text-align: center;
-      color: #777;
-      font-size: 12px;
-      display: none;
-    }
-
-    footer {
-      border-top: 1px solid #222;
-      padding: 40px 6%;
-      text-align: center;
-      color: #666;
-      font-size: 11px;
-    }
-
-    @media (max-width: 700px) {
-
-      .product-page {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 25px 5%;
-      }
-
-      .product-info {
-        padding-top: 0;
-      }
-
-      h1 {
-        font-size: 34px;
-      }
-
-      .back {
-        font-size: 11px;
-      }
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:#111}
+header{
+height:70px;background:#000;color:#fff;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 6%
+}
+.logo{font-size:25px;font-weight:bold;letter-spacing:4px}
+header a{color:#fff;text-decoration:none;font-size:22px}
+.container{
+max-width:1100px;margin:50px auto;padding:20px;
+display:grid;grid-template-columns:1fr 1fr;gap:50px
+}
+.product-img{
+width:100%;height:600px;object-fit:cover;border-radius:10px
+}
+h1{font-size:36px}
+.price{font-size:28px;font-weight:bold}
+.old{
+text-decoration:line-through;color:#888;
+font-size:17px;margin-left:10px
+}
+.installment{color:#555;margin:10px 0 25px}
+.desc{line-height:1.6;color:#444}
+.sizes{display:flex;gap:10px;margin:25px 0}
+.size{
+border:1px solid #111;background:#fff;
+padding:12px 20px;cursor:pointer
+}
+.size.selected{background:#000;color:#fff}
+.qty{display:flex;align-items:center;gap:15px;margin:20px 0}
+.qty button{
+width:35px;height:35px;border:1px solid #ccc;
+background:#fff;font-size:20px
+}
+.add{
+width:100%;padding:17px;background:#000;
+color:#fff;border:0;font-size:16px;
+font-weight:bold;cursor:pointer
+}
+@media(max-width:700px){
+.container{grid-template-columns:1fr;margin:20px auto;gap:25px}
+.product-img{height:450px}
+h1{font-size:28px}
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <a href="index.html" class="back">← VOLTAR</a>
+<header>
+<div class="logo">VANTA</div>
+<a href="carrinho.html">🛒</a>
+</header>
 
-    <a href="index.html" class="logo">VANTA</a>
-  </header>
+<div class="container">
 
+<div>
+<img class="product-img"
+src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90">
+</div>
 
-  <main class="product-page">
+<div>
 
-    <div class="product-image">
-      <img
-        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
-        alt="Oversized Essential Black"
-      >
-    </div>
+<h1>Oversized Essential Black</h1>
 
+<div>
+<span class="price">R$ 89,90</span>
+<span class="old">R$ 119,90</span>
+</div>
 
-    <div class="product-info">
+<div class="installment">
+ou 3x de R$ 29,97 sem juros
+</div>
 
-      <span class="tag">VANTA ESSENTIALS</span>
+<p class="desc">
+Camiseta oversized preta VANTA. Visual minimalista,
+caimento amplo e estilo urbano para usar no dia a dia.
+</p>
 
-      <h1>Oversized<br>Essential Black</h1>
+<h3>Tamanho</h3>
 
-      <div class="price">
-        R$ 89,90
-        <span class="old-price">R$ 119,90</span>
-      </div>
+<div class="sizes">
+<button class="size" onclick="selecionar(this)">P</button>
+<button class="size selected" onclick="selecionar(this)">M</button>
+<button class="size" onclick="selecionar(this)">G</button>
+<button class="size" onclick="selecionar(this)">GG</button>
+</div>
 
-      <div class="installment">
-        ou 3x de R$ 29,97 sem juros
-      </div>
+<div class="qty">
+<button onclick="alterar(-1)">−</button>
+<span id="qtd">1</span>
+<button onclick="alterar(1)">+</button>
+</div>
 
-      <p class="description">
-        Camiseta oversized masculina com caimento amplo,
-        visual minimalista e tecido confortável para o dia a dia.
-      </p>
+<button class="add" onclick="adicionar()">
+ADICIONAR AO CARRINHO
+</button>
 
+</div>
+</div>
 
-      <span class="label">TAMANHO</span>
+<script>
 
-      <div class="sizes">
-        <button class="size" onclick="selecionarTamanho(this)">P</button>
-        <button class="size" onclick="selecionarTamanho(this)">M</button>
-        <button class="size" onclick="selecionarTamanho(this)">G</button>
-        <button class="size" onclick="selecionarTamanho(this)">GG</button>
-      </div>
+let tamanho="M";
+let qtd=1;
 
+function selecionar(botao){
+document.querySelectorAll(".size").forEach(b=>b.classList.remove("selected"));
+botao.classList.add("selected");
+tamanho=botao.innerText;
+}
 
-      <span class="label">QUANTIDADE</span>
+function alterar(valor){
+qtd+=valor;
+if(qtd<1) qtd=1;
+document.getElementById("qtd").innerText=qtd;
+}
 
-      <div class="quantity">
-        <button onclick="alterarQuantidade(-1)">−</button>
-        <span id="quantidade">1</span>
-        <button onclick="alterarQuantidade(1)">+</button>
-      </div>
+function adicionar(){
 
+let produto={
+nome:"Oversized Essential Black",
+preco:89.90,
+tamanho:tamanho,
+quantidade:qtd,
+imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+};
 
-      <button class="buy" onclick="adicionarCarrinho()">
-        ADICIONAR AO CARRINHO
-      </button>
+localStorage.setItem("vantaCarrinho",JSON.stringify(produto));
 
-      <div class="message" id="message">
-        ✓ Produto adicionado ao carrinho
-      </div>
+window.location.href="carrinho.html";
 
-    </div>
+}
 
-  </main>
-
-
-  <footer>
-    © 2026 VANTA — Vista sua presença.
-  </footer>
-
-
-  <script>
-
-    let quantidade = 1;
-    let tamanhoSelecionado = null;
-
-
-    function alterarQuantidade(valor) {
-
-      quantidade += valor;
-
-      if (quantidade < 1) {
-        quantidade = 1;
-      }
-
-      document.getElementById("quantidade").textContent = quantidade;
-    }
-
-
-    function selecionarTamanho(botao) {
-
-      document.querySelectorAll(".size").forEach(function(item) {
-        item.classList.remove("selected");
-      });
-
-      botao.classList.add("selected");
-
-      tamanhoSelecionado = botao.textContent;
-    }
-
-
-    function adicionarCarrinho() {
-
-      if (!tamanhoSelecionado) {
-        alert("Selecione um tamanho.");
-        return;
-      }
-
-      const produto = {
-        nome: "Oversized Essential Black",
-        preco: 89.90,
-        tamanho: tamanhoSelecionado,
-        quantidade: quantidade
-      };
-
-      localStorage.setItem(
-        "vantaCarrinho",
-        JSON.stringify(produto)
-      );
-
-      document.getElementById("message").style.display = "block";
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
