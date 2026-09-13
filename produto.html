@@ -58,6 +58,9 @@ gap:40px;
 width:100%;
 border-radius:12px;
 display:block;
+aspect-ratio:4/5;
+object-fit:cover;
+background:#151515;
 }
 
 h1{
@@ -260,20 +263,18 @@ class="carrinho-flutuante"
 
 <script>
 
-/* ==================================================
-   20 PRODUTOS VANTA
-================================================== */
-
 const produtos = {
 
+/* 01 */
 oversized:{
 nome:"Oversized Essential Black",
 preco:89.90,
 antigo:119.90,
-imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://images.unsplash.com/photo-1583743814966-8936f37f3840?auto=format&fit=crop&w=1000&q=90",
 tag:"ESSENTIAL"
 },
 
+/* 02 */
 boxy:{
 nome:"Boxy Premium White",
 preco:79.90,
@@ -282,6 +283,7 @@ imagem:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format
 tag:"BEST SELLER"
 },
 
+/* 03 */
 cargo:{
 nome:"Cargo Urban Black",
 preco:129.90,
@@ -290,6 +292,7 @@ imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fi
 tag:"NEW"
 },
 
+/* 04 */
 moletom:{
 nome:"VANTA Essential Hoodie",
 preco:149.90,
@@ -298,6 +301,7 @@ imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fi
 tag:"HOODIE"
 },
 
+/* 05 */
 oversizedwhite:{
 nome:"Oversized Heavy White",
 preco:94.90,
@@ -306,6 +310,7 @@ imagem:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format
 tag:"NEW"
 },
 
+/* 06 */
 oversizedgray:{
 nome:"Oversized Urban Gray",
 preco:94.90,
@@ -314,6 +319,7 @@ imagem:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format
 tag:"URBAN"
 },
 
+/* 07 */
 streetblack:{
 nome:"Street Tee Black",
 preco:69.90,
@@ -322,6 +328,7 @@ imagem:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format
 tag:"STREET"
 },
 
+/* 08 */
 basicgray:{
 nome:"Basic Premium Gray",
 preco:64.90,
@@ -330,6 +337,7 @@ imagem:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format
 tag:"BASIC"
 },
 
+/* 09 */
 cargoolive:{
 nome:"Cargo Tactical Olive",
 preco:139.90,
@@ -338,6 +346,7 @@ imagem:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format
 tag:"TACTICAL"
 },
 
+/* 10 */
 cargojeans:{
 nome:"Cargo Denim Black",
 preco:149.90,
@@ -346,6 +355,7 @@ imagem:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fi
 tag:"DENIM"
 },
 
+/* 11 */
 joggerblack:{
 nome:"Jogger Essential Black",
 preco:119.90,
@@ -354,14 +364,16 @@ imagem:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fi
 tag:"ESSENTIAL"
 },
 
+/* 12 */
 joggergray:{
 nome:"Jogger Urban Gray",
 preco:119.90,
 antigo:149.90,
-imagem:"https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
 tag:"URBAN"
 },
 
+/* 13 */
 hoodieblack:{
 nome:"Heavy Hoodie Black",
 preco:169.90,
@@ -370,14 +382,16 @@ imagem:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format
 tag:"HEAVY"
 },
 
+/* 14 */
 hoodiegray:{
 nome:"Heavy Hoodie Gray",
 preco:169.90,
 antigo:209.90,
-imagem:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=90",
 tag:"HEAVY"
 },
 
+/* 15 */
 ziphoodie:{
 nome:"Zip Hoodie Black",
 preco:179.90,
@@ -386,6 +400,7 @@ imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fi
 tag:"ZIP"
 },
 
+/* 16 */
 jaqueta:{
 nome:"Urban Jacket Black",
 preco:199.90,
@@ -394,6 +409,7 @@ imagem:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fi
 tag:"JACKET"
 },
 
+/* 17 */
 camisa:{
 nome:"Overshirt Utility Black",
 preco:139.90,
@@ -402,14 +418,16 @@ imagem:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format
 tag:"UTILITY"
 },
 
+/* 18 */
 regata:{
 nome:"Regata Street Black",
 preco:59.90,
 antigo:79.90,
-imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
 tag:"STREET"
 },
 
+/* 19 */
 boneblack:{
 nome:"VANTA Cap Black",
 preco:49.90,
@@ -418,18 +436,17 @@ imagem:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format
 tag:"ACCESSORY"
 },
 
+/* 20 */
 bermuda:{
 nome:"Bermuda Cargo Black",
 preco:89.90,
 antigo:109.90,
 imagem:"https://images.unsplash.com/photo-1565084888279-aca607ecce0c?auto=format&fit=crop&w=1000&q=90",
 tag:"SUMMER"
+}
+
 };
 
-
-/* ==================================================
-   PRODUTO ATUAL
-================================================== */
 
 const parametros =
 new URLSearchParams(window.location.search);
@@ -444,18 +461,14 @@ produtos[id] || produtos.oversized;
 document.title =
 produto.nome + " | VANTA";
 
-
 document.getElementById("produtoNome")
 .textContent = produto.nome;
-
 
 document.getElementById("produtoImagem")
 .src = produto.imagem;
 
-
 document.getElementById("produtoImagem")
 .alt = produto.nome;
-
 
 document.getElementById("produtoPreco")
 .textContent =
@@ -485,7 +498,6 @@ document.getElementById("produtoAntigo")
 const parcela =
 produto.preco / 3;
 
-
 document.getElementById("produtoParcela")
 .textContent =
 "ou 3x de R$ " +
@@ -493,10 +505,6 @@ parcela
 .toFixed(2)
 .replace(".",",");
 
-
-/* ==================================================
-   CARRINHO
-================================================== */
 
 function pegarCarrinho(){
 
@@ -519,7 +527,6 @@ function atualizarCarrinho(){
 const carrinho =
 pegarCarrinho();
 
-
 const total =
 carrinho.reduce(
 (soma,item) =>
@@ -527,14 +534,11 @@ soma + (Number(item.quantidade) || 0),
 0
 );
 
-
 document.getElementById("contador")
 .textContent = total;
 
-
 const botao =
 document.getElementById("carrinhoFlutuante");
-
 
 if(total > 0){
 
@@ -554,11 +558,9 @@ function adicionarCarrinho(){
 let carrinho =
 pegarCarrinho();
 
-
 const tamanho =
 document.getElementById("tamanho")
 .value;
-
 
 const quantidade =
 Math.max(
