@@ -6,167 +6,166 @@
 <title>Carrinho | VANTA</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f7f7f7;
-color:#111;
+  background:#0b0b0b;
+  color:#fff;
 }
 
 header{
-height:70px;
-background:#000;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 6%;
+  height:70px;
+  border-bottom:1px solid #222;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .logo{
-font-size:25px;
-font-weight:bold;
-letter-spacing:4px;
-}
-
-header a{
-color:#fff;
-text-decoration:none;
-font-size:22px;
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
 .container{
-max-width:900px;
-margin:40px auto;
-padding:20px;
+  max-width:800px;
+  margin:40px auto;
+  padding:20px;
 }
 
 h1{
-font-size:32px;
-margin-bottom:30px;
+  font-size:30px;
+  margin-bottom:25px;
 }
 
 .item{
-background:#fff;
-padding:20px;
-border-radius:10px;
-display:flex;
-gap:20px;
-align-items:center;
-margin-bottom:20px;
+  display:flex;
+  gap:18px;
+  padding:18px;
+  margin-bottom:15px;
+  background:#111;
+  border:1px solid #222;
+  border-radius:12px;
 }
 
 .item img{
-width:130px;
-height:160px;
-object-fit:cover;
-border-radius:8px;
-background:#eee;
+  width:110px;
+  height:130px;
+  object-fit:cover;
+  border-radius:8px;
 }
 
 .info{
-flex:1;
+  flex:1;
 }
 
-.info h2{
-margin:0 0 10px;
-font-size:21px;
+.nome{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:8px;
 }
 
-.price{
-font-weight:bold;
-font-size:20px;
+.preco{
+  font-size:17px;
+  margin-bottom:8px;
 }
 
-.size{
-color:#666;
-margin:8px 0;
+.tamanho{
+  color:#aaa;
+  margin-bottom:12px;
 }
 
-.controls{
-display:flex;
-align-items:center;
-gap:10px;
-margin-top:12px;
+.controle{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.controls button{
-width:32px;
-height:32px;
-border:1px solid #ccc;
-background:#fff;
-font-size:18px;
-cursor:pointer;
+.controle button{
+  width:32px;
+  height:32px;
+  padding:0;
+  border:1px solid #444;
+  background:#1a1a1a;
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:18px;
 }
 
-.remove{
-margin-top:12px;
-border:0;
-background:none;
-color:#c00;
-cursor:pointer;
-padding:0;
+.remover{
+  margin-top:12px;
+  background:none;
+  border:0;
+  color:#888;
+  cursor:pointer;
+}
+
+.remover:hover{
+  color:#fff;
+}
+
+.resumo{
+  margin-top:25px;
+  padding:22px;
+  background:#111;
+  border:1px solid #222;
+  border-radius:12px;
 }
 
 .total{
-background:#fff;
-padding:25px;
-border-radius:10px;
-text-align:right;
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:18px;
 }
 
-.total h2{
-margin:0 0 20px;
+.finalizar{
+  display:block;
+  width:100%;
+  padding:17px;
+  background:#fff;
+  color:#000;
+  text-align:center;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
 }
 
-.checkout{
-display:block;
-width:100%;
-padding:17px;
-background:#000;
-color:#fff;
-text-decoration:none;
-text-align:center;
-font-weight:bold;
-border-radius:5px;
+.finalizar:hover{
+  background:#ddd;
 }
 
-.empty{
-background:#fff;
-padding:50px 20px;
-text-align:center;
-border-radius:10px;
+.vazio{
+  text-align:center;
+  padding:60px 20px;
+  background:#111;
+  border:1px solid #222;
+  border-radius:12px;
 }
 
-.empty a{
-display:inline-block;
-margin-top:20px;
-background:#000;
-color:#fff;
-padding:15px 25px;
-text-decoration:none;
+.vazio h2{
+  margin-bottom:10px;
+}
+
+.vazio p{
+  color:#888;
 }
 
 @media(max-width:600px){
 
-.item{
-align-items:flex-start;
-}
+  .item{
+    gap:12px;
+  }
 
-.item img{
-width:100px;
-height:130px;
-}
-
-.info h2{
-font-size:18px;
-}
-
-.container{
-padding:15px;
-}
+  .item img{
+    width:90px;
+    height:110px;
+  }
 
 }
 </style>
@@ -175,115 +174,195 @@ padding:15px;
 <body>
 
 <header>
-<div class="logo">VANTA</div>
-<a href="index.html">←</a>
+  <div class="logo">VANTA</div>
 </header>
 
 <div class="container">
 
 <h1>Seu carrinho</h1>
 
-<div id="carrinho"></div>
+<div id="lista"></div>
+
+<div id="resumo"></div>
 
 </div>
 
 <script>
 
-let produto=JSON.parse(localStorage.getItem("vantaCarrinho"));
-let area=document.getElementById("carrinho");
+let carrinho =
+  JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
+
+/*
+ Compatibilidade:
+ se o carrinho antigo ainda for um único objeto,
+ transformamos automaticamente em array.
+*/
+
+if(!Array.isArray(carrinho) && carrinho.nome){
+
+  carrinho = [carrinho];
+
+  localStorage.setItem(
+    "vantaCarrinho",
+    JSON.stringify(carrinho)
+  );
+}
+
+function salvar(){
+
+  localStorage.setItem(
+    "vantaCarrinho",
+    JSON.stringify(carrinho)
+  );
+
+}
+
+function dinheiro(valor){
+
+  return valor
+    .toFixed(2)
+    .replace(".",",");
+
+}
 
 function mostrar(){
 
-if(!produto){
+  let lista =
+    document.getElementById("lista");
 
-area.innerHTML=`
-<div class="empty">
-<h2>Seu carrinho está vazio</h2>
-<p>Adicione algum produto da VANTA.</p>
-<a href="index.html">VER PRODUTOS</a>
-</div>`;
+  let resumo =
+    document.getElementById("resumo");
 
-return;
+  if(carrinho.length === 0){
+
+    lista.innerHTML = `
+      <div class="vazio">
+        <h2>Carrinho vazio</h2>
+        <p>Adicione algum produto para continuar.</p>
+      </div>
+    `;
+
+    resumo.innerHTML = "";
+
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  let total = 0;
+
+  carrinho.forEach((produto,index)=>{
+
+    let subtotal =
+      produto.preco * produto.quantidade;
+
+    total += subtotal;
+
+    lista.innerHTML += `
+
+      <div class="item">
+
+        <img
+          src="${produto.imagem || ""}"
+          alt="${produto.nome}"
+        >
+
+        <div class="info">
+
+          <div class="nome">
+            ${produto.nome}
+          </div>
+
+          <div class="preco">
+            R$ ${dinheiro(produto.preco)}
+          </div>
+
+          <div class="tamanho">
+            Tamanho: ${produto.tamanho}
+          </div>
+
+          <div class="controle">
+
+            <button onclick="diminuir(${index})">
+              −
+            </button>
+
+            <span>
+              ${produto.quantidade}
+            </span>
+
+            <button onclick="aumentar(${index})">
+              +
+            </button>
+
+          </div>
+
+          <button
+            class="remover"
+            onclick="remover(${index})"
+          >
+            Remover
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+  resumo.innerHTML = `
+
+    <div class="resumo">
+
+      <div class="total">
+        Total: R$ ${dinheiro(total)}
+      </div>
+
+      <a
+        href="checkout.html"
+        class="finalizar"
+      >
+        FINALIZAR COMPRA
+      </a>
+
+    </div>
+
+  `;
+
 }
 
-let total=produto.preco*produto.quantidade;
+function aumentar(index){
 
-area.innerHTML=`
+  carrinho[index].quantidade++;
 
-<div class="item">
-
-<img src="${produto.imagem || ''}">
-
-<div class="info">
-
-<h2>${produto.nome}</h2>
-
-<div class="price">
-R$ ${produto.preco.toFixed(2).replace(".",",")}
-</div>
-
-<div class="size">
-Tamanho: ${produto.tamanho}
-</div>
-
-<div class="controls">
-
-<button onclick="alterar(-1)">−</button>
-
-<strong>${produto.quantidade}</strong>
-
-<button onclick="alterar(1)">+</button>
-
-</div>
-
-<button class="remove" onclick="remover()">
-Remover produto
-</button>
-
-</div>
-
-</div>
-
-<div class="total">
-
-<h2>
-Total: R$ ${total.toFixed(2).replace(".",",")}
-</h2>
-
-<a class="checkout" href="checkout.html">
-FINALIZAR COMPRA
-</a>
-
-</div>
-
-`;
+  salvar();
+  mostrar();
 
 }
 
-function alterar(valor){
+function diminuir(index){
 
-produto.quantidade+=valor;
+  carrinho[index].quantidade--;
 
-if(produto.quantidade<1){
-produto.quantidade=1;
-}
+  if(carrinho[index].quantidade <= 0){
 
-localStorage.setItem(
-"vantaCarrinho",
-JSON.stringify(produto)
-);
+    carrinho.splice(index,1);
 
-mostrar();
+  }
+
+  salvar();
+  mostrar();
 
 }
 
-function remover(){
+function remover(index){
 
-localStorage.removeItem("vantaCarrinho");
+  carrinho.splice(index,1);
 
-produto=null;
-
-mostrar();
+  salvar();
+  mostrar();
 
 }
 
