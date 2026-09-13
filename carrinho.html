@@ -195,12 +195,14 @@ let area=document.getElementById("carrinho");
 function mostrar(){
 
 if(!produto){
+
 area.innerHTML=`
 <div class="empty">
 <h2>Seu carrinho está vazio</h2>
 <p>Adicione algum produto da VANTA.</p>
 <a href="index.html">VER PRODUTOS</a>
 </div>`;
+
 return;
 }
 
@@ -248,7 +250,7 @@ Remover produto
 Total: R$ ${total.toFixed(2).replace(".",",")}
 </h2>
 
-<a class="checkout" href="#">
+<a class="checkout" href="checkout.html">
 FINALIZAR COMPRA
 </a>
 
