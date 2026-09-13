@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/index.html</loc>
+  </url>
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/catalogo.html</loc>
+  </url>
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/carrinho.html</loc>
+  </url>
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/produto.html?id=oversized</loc>
+  </url>
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/produto.html?id=boxy</loc>
+  </url>
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/produto.html?id=cargo</loc>
+  </url>
+
+  <url>
+    <loc>https://vanta-store-henna.vercel.app/produto.html?id=moletom</loc>
+  </url>
+
+</urlset>
