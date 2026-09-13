@@ -4,34 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cargo Urban Black — VANTA</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial}
 body{background:#f5f5f5;color:#111}
-header{height:70px;background:#0b0b0b;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6%}
+
+header{
+height:70px;background:#0b0b0b;color:#fff;
+display:flex;align-items:center;
+justify-content:space-between;padding:0 6%
+}
+
 .logo{font-size:28px;font-weight:900;letter-spacing:3px}
+
 nav{display:flex;gap:20px}
 nav a{color:#fff;text-decoration:none;font-size:14px}
+
 .container{max-width:1100px;margin:40px auto;padding:20px}
-.back{color:#111;text-decoration:none;display:block;margin-bottom:20px}
-.product{background:#fff;padding:25px;border-radius:12px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.product img{width:100%;height:520px;object-fit:cover;border-radius:8px}
+
+.back{
+color:#111;text-decoration:none;
+display:block;margin-bottom:20px
+}
+
+.product{
+background:#fff;padding:25px;border-radius:12px;
+display:grid;grid-template-columns:1fr 1fr;gap:40px
+}
+
+.product img{
+width:100%;height:520px;
+object-fit:cover;border-radius:8px
+}
+
 .info{padding:15px 0}
-.tag{font-size:12px;color:#777;font-weight:bold;letter-spacing:2px}
+
+.tag{
+font-size:12px;color:#777;
+font-weight:bold;letter-spacing:2px
+}
+
 h1{font-size:38px;margin:15px 0}
+
 .price{font-size:30px;font-weight:bold}
+
 .installment{color:#666;margin:8px 0 25px}
-.description{color:#555;line-height:1.6;margin-bottom:25px}
+
+.description{
+color:#555;line-height:1.6;
+margin-bottom:25px
+}
+
 .label{font-weight:bold;margin-bottom:10px}
-.sizes{display:flex;gap:10px;margin-bottom:25px}
-.size{width:50px;height:45px;background:#fff;border:1px solid #ccc}
-.size:hover{background:#111;color:#fff}
-.quantity{display:flex;gap:15px;align-items:center;margin-bottom:25px}
-.quantity button{width:35px;height:35px;background:#fff;border:1px solid #ccc}
-.cart{width:100%;padding:18px;background:#111;color:#fff;border:0;font-weight:bold}
+
+.sizes{
+display:flex;gap:10px;
+margin-bottom:25px
+}
+
+.size{
+width:50px;height:45px;
+background:#fff;border:1px solid #ccc
+}
+
+.size:hover{
+background:#111;color:#fff
+}
+
+.quantity{
+display:flex;gap:15px;
+align-items:center;margin-bottom:25px
+}
+
+.quantity button{
+width:35px;height:35px;
+background:#fff;border:1px solid #ccc
+}
+
+.cart{
+width:100%;padding:18px;
+background:#111;color:#fff;
+border:0;font-weight:bold
+}
+
 @media(max-width:700px){
-.product{grid-template-columns:1fr}
-.product img{height:430px}
-h1{font-size:30px}
+
+.product{
+grid-template-columns:1fr
+}
+
+.product img{
+height:430px
+}
+
+h1{
+font-size:30px
+}
+
 }
 </style>
 </head>
@@ -39,21 +108,29 @@ h1{font-size:30px}
 <body>
 
 <header>
+
 <div class="logo">VANTA</div>
+
 <nav>
 <a href="index.html">PRODUTOS</a>
 <a href="index.html">SOBRE</a>
-<a href="#">🛒</a>
+<a href="carrinho.html">🛒</a>
 </nav>
+
 </header>
 
 <div class="container">
 
-<a class="back" href="index.html">← Voltar para produtos</a>
+<a class="back" href="index.html">
+← Voltar para produtos
+</a>
 
 <div class="product">
 
-<img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90">
+<img
+src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90"
+alt="Cargo Urban Black"
+>
 
 <div class="info">
 
@@ -61,9 +138,13 @@ h1{font-size:30px}
 
 <h1>Cargo Urban Black</h1>
 
-<div class="price">R$ 129,90</div>
+<div class="price">
+R$ 129,90
+</div>
 
-<div class="installment">ou 3x de R$ 43,30 sem juros</div>
+<div class="installment">
+ou 3x de R$ 43,30 sem juros
+</div>
 
 <p class="description">
 Calça cargo masculina preta com estética urbana,
@@ -92,10 +173,12 @@ ADICIONAR AO CARRINHO
 </button>
 
 </div>
+
 </div>
 </div>
 
 <script>
+
 let qtd=1;
 
 function mais(){
@@ -111,16 +194,24 @@ document.getElementById("qtd").innerText=qtd;
 }
 
 function carrinho(){
+
 let produto={
 nome:"Cargo Urban Black",
 preco:129.90,
 tamanho:"M",
-quantidade:qtd
+quantidade:qtd,
+imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90"
 };
 
-localStorage.setItem("vantaCarrinho",JSON.stringify(produto));
+localStorage.setItem(
+"vantaCarrinho",
+JSON.stringify(produto)
+);
+
 alert("Produto adicionado ao carrinho!");
+
 }
+
 </script>
 
 </body>
