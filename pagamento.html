@@ -12,7 +12,7 @@ body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#f5f5f5;
-color:#111
+color:#111;
 }
 
 header{
@@ -22,90 +22,120 @@ color:#fff;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 6%
+padding:0 6%;
 }
 
 .logo{
 font-size:25px;
 font-weight:bold;
-letter-spacing:4px
+letter-spacing:4px;
 }
 
 header a{
 color:#fff;
 text-decoration:none;
-font-size:22px
+font-size:22px;
 }
 
 .container{
 max-width:700px;
 margin:40px auto;
-padding:20px
+padding:20px;
 }
 
 .box{
 background:#fff;
 padding:25px;
 border-radius:10px;
-margin-bottom:20px
+margin-bottom:20px;
 }
 
 h1{
 margin-top:0;
-font-size:30px
+font-size:30px;
+}
+
+h2{
+font-size:20px;
 }
 
 .metodo{
-border:1px solid #ddd;
+display:block;
+border:2px solid #ddd;
 padding:18px;
 border-radius:8px;
 margin:12px 0;
-cursor:pointer
+cursor:pointer;
+transition:.2s;
 }
 
 .metodo:hover{
-border-color:#000
+border-color:#000;
 }
 
 .metodo input{
-margin-right:10px
+margin-right:10px;
+}
+
+.metodo.ativo{
+border-color:#000;
+background:#fafafa;
 }
 
 .resumo{
 border-top:1px solid #ddd;
 margin-top:20px;
-padding-top:20px
+padding-top:20px;
 }
 
 .total{
 font-size:25px;
 font-weight:bold;
-margin:20px 0
+margin:20px 0;
 }
 
-button{
+.pagar{
 width:100%;
 padding:17px;
 background:#000;
 color:#fff;
 border:0;
-border-radius:5px;
+border-radius:6px;
 font-size:16px;
 font-weight:bold;
-cursor:pointer
+cursor:pointer;
 }
 
-.pix{
+.pix,
+.cartao{
 display:none;
 background:#f5f5f5;
 padding:20px;
 margin-top:15px;
 border-radius:8px;
-text-align:center
+text-align:center;
 }
 
-.pix strong{
-font-size:18px
+.pix strong,
+.cartao strong{
+font-size:18px;
+}
+
+@media(max-width:700px){
+
+.container{
+margin:20px auto;
+padding:15px;
+}
+
+.box{
+padding:20px;
+}
+
+h1{
+font-size:26px;
+}
+
 }
 </style>
 </head>
@@ -128,36 +158,56 @@ font-size:18px
 
 <p>Escolha uma forma de pagamento:</p>
 
-<label class="metodo">
-<input type="radio" name="pagamento" value="pix" onclick="mostrarPix()">
-<strong>PIX</strong><br>
-Pagamento rápido
-</label>
+<label class="metodo" id="opcaoPix">
 
-<label class="metodo">
-<input type="radio" name="pagamento" value="cartao" onclick="mostrarCartao()">
-<strong>Cartão</strong><br>
-Crédito ou débito
+<input
+type="radio"
+name="pagamento"
+value="pix"
+onclick="selecionar('pix')">
+
+<strong>PIX</strong>
+
+<br>
+
+Pagamento rápido e seguro
+
 </label>
 
 <div id="pix" class="pix">
 
-<strong>PIX selecionado</strong>
+<strong>PIX</strong>
 
 <p>
-O código PIX será gerado automaticamente
-quando o pagamento real estiver conectado.
+O pagamento via PIX será gerado automaticamente
+quando o sistema de pagamento estiver conectado.
 </p>
 
 </div>
 
-<div id="cartao" class="pix">
+<label class="metodo" id="opcaoCartao">
 
-<strong>Cartão selecionado</strong>
+<input
+type="radio"
+name="pagamento"
+value="cartao"
+onclick="selecionar('cartao')">
+
+<strong>CARTÃO</strong>
+
+<br>
+
+Crédito ou débito
+
+</label>
+
+<div id="cartao" class="cartao">
+
+<strong>CARTÃO</strong>
 
 <p>
-Os dados do cartão serão preenchidos
-na página segura do pagamento.
+Você será direcionado para o pagamento seguro
+quando o gateway estiver conectado.
 </p>
 
 </div>
@@ -166,11 +216,11 @@ na página segura do pagamento.
 
 <div class="box">
 
-<h2>Resumo</h2>
+<h2>Resumo do pedido</h2>
 
 <div id="resumo"></div>
 
-<button onclick="pagar()">
+<button class="pagar" onclick="pagar()">
 PAGAR PEDIDO
 </button>
 
@@ -180,7 +230,9 @@ PAGAR PEDIDO
 
 <script>
 
-let produto=JSON.parse(localStorage.getItem("vantaCarrinho"));
+let produto=JSON.parse(
+localStorage.getItem("vantaCarrinho")
+);
 
 let resumo=document.getElementById("resumo");
 
@@ -190,7 +242,8 @@ resumo.innerHTML="<p>Carrinho vazio.</p>";
 
 }else{
 
-let total=produto.preco*produto.quantidade;
+let total=
+produto.preco*produto.quantidade;
 
 resumo.innerHTML=`
 
@@ -208,27 +261,37 @@ Total: R$ ${total.toFixed(2).replace(".",",")}
 
 }
 
-function mostrarPix(){
+let metodo="";
+
+function selecionar(tipo){
+
+metodo=tipo;
+
+document.getElementById("pix").style.display="none";
+document.getElementById("cartao").style.display="none";
+
+document.getElementById("opcaoPix").classList.remove("ativo");
+document.getElementById("opcaoCartao").classList.remove("ativo");
+
+if(tipo==="pix"){
 
 document.getElementById("pix").style.display="block";
-document.getElementById("cartao").style.display="none";
+document.getElementById("opcaoPix").classList.add("ativo");
 
 }
 
-function mostrarCartao(){
+if(tipo==="cartao"){
 
 document.getElementById("cartao").style.display="block";
-document.getElementById("pix").style.display="none";
+document.getElementById("opcaoCartao").classList.add("ativo");
+
+}
 
 }
 
 function pagar(){
 
-let selecionado=document.querySelector(
-'input[name="pagamento"]:checked'
-);
-
-if(!selecionado){
+if(!metodo){
 
 alert("Escolha uma forma de pagamento.");
 
@@ -237,9 +300,9 @@ return;
 }
 
 alert(
-"Forma de pagamento selecionada: "+
-selecionado.value.toUpperCase()+
-". Na próxima etapa vamos conectar o pagamento real."
+"Pagamento selecionado: "+
+metodo.toUpperCase()+
+"."
 );
 
 }
