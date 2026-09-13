@@ -225,12 +225,12 @@ grid-template-columns:1fr
 
 <br>
 
-<button onclick="finalizar()">
+<button onclick="continuar()">
 CONTINUAR PARA PAGAMENTO
 </button>
 
 <p class="aviso">
-Seus dados serão utilizados somente para processar o pedido e realizar a entrega.
+Seus dados serão utilizados para processar o pedido e realizar a entrega.
 </p>
 
 </div>
@@ -287,7 +287,9 @@ if(cep.length!==8)return;
 
 try{
 
-let resposta=await fetch("https://viacep.com.br/ws/"+cep+"/json/");
+let resposta=await fetch(
+"https://viacep.com.br/ws/"+cep+"/json/"
+);
 
 let dados=await resposta.json();
 
@@ -310,7 +312,7 @@ alert("Não foi possível consultar o CEP.");
 
 }
 
-function finalizar(){
+function continuar(){
 
 let campos=[
 "nome",
@@ -335,7 +337,7 @@ return;
 
 }
 
-alert("Dados preenchidos com sucesso! Próxima etapa: pagamento.");
+window.location.href="pagamento.html";
 
 }
 
