@@ -114,8 +114,6 @@ button:hover{
 background:#ddd;
 }
 
-/* CARRINHO */
-
 .carrinho-flutuante{
 position:fixed;
 right:20px;
@@ -262,25 +260,9 @@ class="carrinho-flutuante"
 
 <script>
 
-/*
-==================================================
-CADASTRO DOS PRODUTOS
-==================================================
-
-PARA ADICIONAR UM NOVO PRODUTO,
-É SÓ ADICIONAR OUTRO BLOCO AQUI.
-
-EXEMPLO:
-
-camisetaNova:{
-nome:"Nome do produto",
-preco:99.90,
-antigo:129.90,
-imagem:"URL DA IMAGEM",
-tag:"NEW"
-}
-
-*/
+/* ==================================================
+   20 PRODUTOS VANTA
+================================================== */
 
 const produtos = {
 
@@ -289,7 +271,7 @@ nome:"Oversized Essential Black",
 preco:89.90,
 antigo:119.90,
 imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
-tag:"VANTA ESSENTIAL"
+tag:"ESSENTIAL"
 },
 
 boxy:{
@@ -303,7 +285,7 @@ tag:"BEST SELLER"
 cargo:{
 nome:"Cargo Urban Black",
 preco:129.90,
-antigo:null,
+antigo:159.90,
 imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
 tag:"NEW"
 },
@@ -313,35 +295,143 @@ nome:"VANTA Essential Hoodie",
 preco:149.90,
 antigo:189.90,
 imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
-tag:"VANTA HOODIE"
+tag:"HOODIE"
+},
+
+oversizedwhite:{
+nome:"Oversized Heavy White",
+preco:94.90,
+antigo:124.90,
+imagem:"https://images.unsplash.com/photo-1583743814966-8936f37f3840?auto=format&fit=crop&w=1000&q=90",
+tag:"NEW"
+},
+
+oversizedgray:{
+nome:"Oversized Urban Gray",
+preco:94.90,
+antigo:124.90,
+imagem:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=90",
+tag:"URBAN"
+},
+
+streetblack:{
+nome:"Street Tee Black",
+preco:69.90,
+antigo:89.90,
+imagem:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=90",
+tag:"STREET"
+},
+
+basicgray:{
+nome:"Basic Premium Gray",
+preco:64.90,
+antigo:84.90,
+imagem:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=90",
+tag:"BASIC"
+},
+
+cargoolive:{
+nome:"Cargo Tactical Olive",
+preco:139.90,
+antigo:169.90,
+imagem:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=90",
+tag:"TACTICAL"
+},
+
+cargojeans:{
+nome:"Cargo Denim Black",
+preco:149.90,
+antigo:179.90,
+imagem:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=1000&q=90",
+tag:"DENIM"
+},
+
+joggerblack:{
+nome:"Jogger Essential Black",
+preco:119.90,
+antigo:149.90,
+imagem:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1000&q=90",
+tag:"ESSENTIAL"
+},
+
+joggergray:{
+nome:"Jogger Urban Gray",
+preco:119.90,
+antigo:149.90,
+imagem:"https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1000&q=90",
+tag:"URBAN"
+},
+
+hoodieblack:{
+nome:"Heavy Hoodie Black",
+preco:169.90,
+antigo:209.90,
+imagem:"https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1000&q=90",
+tag:"HEAVY"
+},
+
+hoodiegray:{
+nome:"Heavy Hoodie Gray",
+preco:169.90,
+antigo:209.90,
+imagem:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=90",
+tag:"HEAVY"
+},
+
+ziphoodie:{
+nome:"Zip Hoodie Black",
+preco:179.90,
+antigo:219.90,
+imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
+tag:"ZIP"
+},
+
+jaqueta:{
+nome:"Urban Jacket Black",
+preco:199.90,
+antigo:249.90,
+imagem:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=90",
+tag:"JACKET"
+},
+
+camisa:{
+nome:"Overshirt Utility Black",
+preco:139.90,
+antigo:169.90,
+imagem:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=90",
+tag:"UTILITY"
+},
+
+regata:{
+nome:"Regata Street Black",
+preco:59.90,
+antigo:79.90,
+imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
+tag:"STREET"
+},
+
+boneblack:{
+nome:"VANTA Cap Black",
+preco:49.90,
+antigo:69.90,
+imagem:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=1000&q=90",
+tag:"ACCESSORY"
+},
+
+bermuda:{
+nome:"Bermuda Cargo Black",
+preco:89.90,
+antigo:109.90,
+imagem:"https://images.unsplash.com/photo-1565084888279-aca607ecce0c?auto=format&fit=crop&w=1000&q=90",
+tag:"SUMMER"
 }
 
 };
 
 
-/*
-==================================================
-DADOS PARA O CATÁLOGO
-==================================================
-*/
-
-const dadosCatalogo =
-document.createElement("script");
-
-dadosCatalogo.type = "application/json";
-dadosCatalogo.id = "dadosProdutos";
-
-dadosCatalogo.textContent =
-JSON.stringify(produtos);
-
-document.head.appendChild(dadosCatalogo);
-
-
-/*
-==================================================
-PRODUTO ATUAL
-==================================================
-*/
+/* ==================================================
+   PRODUTO ATUAL
+================================================== */
 
 const parametros =
 new URLSearchParams(window.location.search);
@@ -406,11 +496,9 @@ parcela
 .replace(".",",");
 
 
-/*
-==================================================
-CARRINHO
-==================================================
-*/
+/* ==================================================
+   CARRINHO
+================================================== */
 
 function pegarCarrinho(){
 
