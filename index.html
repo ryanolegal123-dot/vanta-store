@@ -6,216 +6,273 @@
 <title>VANTA | Vista sua presença</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#fff;
-color:#111;
+  background:#0b0b0b;
+  color:#fff;
 }
 
 header{
-height:70px;
-background:#000;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 6%;
+  height:70px;
+  border-bottom:1px solid #222;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 30px;
+  position:sticky;
+  top:0;
+  background:#0b0b0bf2;
+  z-index:10;
 }
 
 .logo{
-font-size:25px;
-font-weight:bold;
-letter-spacing:4px;
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
 nav{
-display:flex;
-gap:25px;
-align-items:center;
+  display:flex;
+  gap:25px;
 }
 
 nav a{
-color:#fff;
-text-decoration:none;
-font-size:13px;
-font-weight:bold;
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+}
+
+nav a:hover{
+  color:#fff;
 }
 
 .cart{
-font-size:22px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
 }
 
 .hero{
-min-height:520px;
-background:#111;
-color:#fff;
-display:flex;
-align-items:center;
-padding:60px 8%;
-}
-
-.hero-content{
-max-width:600px;
+  min-height:600px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+  background:
+    linear-gradient(#0009,#0009),
+    url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=90")
+    center/cover;
 }
 
 .hero h1{
-font-size:58px;
-margin:0 0 15px;
-letter-spacing:2px;
+  font-size:clamp(45px,9vw,90px);
+  font-weight:900;
+  letter-spacing:-3px;
+  margin-bottom:20px;
 }
 
 .hero p{
-font-size:18px;
-color:#ccc;
-margin-bottom:30px;
+  color:#ccc;
+  font-size:18px;
+  margin-bottom:30px;
 }
 
 .btn{
-display:inline-block;
-background:#fff;
-color:#000;
-padding:16px 28px;
-text-decoration:none;
-font-weight:bold;
+  display:inline-block;
+  padding:16px 30px;
+  background:#fff;
+  color:#000;
+  text-decoration:none;
+  border-radius:7px;
+  font-weight:bold;
 }
 
-.section{
-max-width:1150px;
-margin:60px auto;
-padding:0 20px;
+.btn:hover{
+  background:#ddd;
 }
 
-.section h2{
-font-size:30px;
-margin-bottom:30px;
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:70px 20px;
 }
 
-.categories{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
+.titulo{
+  font-size:30px;
+  margin-bottom:30px;
 }
 
-.category{
-height:150px;
-background:#111;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-text-decoration:none;
-font-size:18px;
-font-weight:bold;
-letter-spacing:1px;
+.categorias{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
-.products{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
+.categoria{
+  height:180px;
+  background:#151515;
+  border:1px solid #252525;
+  border-radius:10px;
+  display:flex;
+  align-items:end;
+  padding:20px;
+  color:#fff;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:bold;
 }
 
-.product{
-text-decoration:none;
-color:#111;
+.categoria:hover{
+  background:#202020;
 }
 
-.product img{
-width:100%;
-height:350px;
-object-fit:cover;
-display:block;
-border-radius:6px;
+.produtos{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
 
-.product h3{
-margin:12px 0 6px;
-font-size:17px;
+.card{
+  background:#111;
+  border:1px solid #222;
+  border-radius:10px;
+  overflow:hidden;
+  transition:.2s;
 }
 
-.price{
-font-weight:bold;
-font-size:18px;
+.card:hover{
+  transform:translateY(-4px);
 }
 
-.old{
-color:#888;
-text-decoration:line-through;
-font-size:14px;
-margin-left:5px;
+.card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
 }
 
-.benefits{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-text-align:center;
+.card-info{
+  padding:17px;
 }
 
-.benefit{
-padding:30px 15px;
-background:#f5f5f5;
+.card h3{
+  font-size:16px;
+  margin-bottom:10px;
 }
 
-.benefit h3{
-margin-top:0;
+.preco{
+  font-size:19px;
+  font-weight:bold;
 }
 
-.about{
-background:#111;
-color:#fff;
-padding:60px 8%;
-text-align:center;
+.antigo{
+  color:#666;
+  text-decoration:line-through;
+  font-size:13px;
+  margin-bottom:4px;
 }
 
-.about p{
-max-width:700px;
-margin:auto;
-line-height:1.7;
-color:#ccc;
+.card a{
+  display:block;
+  margin-top:15px;
+  padding:12px;
+  text-align:center;
+  background:#fff;
+  color:#000;
+  text-decoration:none;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.beneficios{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.beneficio{
+  background:#111;
+  border:1px solid #222;
+  border-radius:10px;
+  padding:25px;
+}
+
+.beneficio h3{
+  margin-bottom:10px;
+}
+
+.beneficio p{
+  color:#888;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.sobre{
+  text-align:center;
+  max-width:750px;
+}
+
+.sobre p{
+  color:#999;
+  line-height:1.7;
 }
 
 footer{
-background:#000;
-color:#777;
-text-align:center;
-padding:30px;
-font-size:13px;
+  border-top:1px solid #222;
+  padding:40px 20px;
+  text-align:center;
+  color:#666;
+  font-size:13px;
 }
 
 @media(max-width:800px){
 
-nav a:not(.cart){
-display:none;
+  header{
+    padding:0 15px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .categorias{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .produtos{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .beneficios{
+    grid-template-columns:1fr;
+  }
+
+  .card img{
+    height:240px;
+  }
+
 }
 
-.hero{
-min-height:450px;
-padding:50px 7%;
-}
+@media(max-width:450px){
 
-.hero h1{
-font-size:42px;
-}
+  .produtos{
+    grid-template-columns:1fr;
+  }
 
-.categories{
-grid-template-columns:repeat(2,1fr);
-}
-
-.products{
-grid-template-columns:repeat(2,1fr);
-}
-
-.product img{
-height:260px;
-}
-
-.benefits{
-grid-template-columns:1fr;
-}
+  .card img{
+    height:350px;
+  }
 
 }
 </style>
@@ -228,25 +285,28 @@ grid-template-columns:1fr;
 <div class="logo">VANTA</div>
 
 <nav>
-<a href="#categorias">CATEGORIAS</a>
-<a href="#produtos">PRODUTOS</a>
-<a href="#sobre">SOBRE</a>
-<a class="cart" href="carrinho.html">🛒</a>
+<a href="#categorias">Categorias</a>
+<a href="#produtos">Produtos</a>
+<a href="#sobre">Sobre</a>
 </nav>
+
+<a href="carrinho.html" class="cart">
+🛒 Carrinho
+</a>
 
 </header>
 
 <section class="hero">
 
-<div class="hero-content">
+<div>
 
-<h1>VISTA SUA PRESENÇA.</h1>
+<h1>VISTA SUA<br>PRESENÇA.</h1>
 
 <p>
 Streetwear masculino. Visual forte. Sem exagero.
 </p>
 
-<a class="btn" href="#produtos">
+<a href="#produtos" class="btn">
 VER PRODUTOS
 </a>
 
@@ -254,119 +314,216 @@ VER PRODUTOS
 
 </section>
 
-<section class="section" id="categorias">
+<section id="categorias">
 
-<h2>Categorias</h2>
+<h2 class="titulo">
+Categorias
+</h2>
 
-<div class="categories">
+<div class="categorias">
 
-<a class="category" href="#produtos">CAMISETAS</a>
-<a class="category" href="#produtos">CALÇAS</a>
-<a class="category" href="#produtos">MOLETONS</a>
-<a class="category" href="#produtos">ACESSÓRIOS</a>
+<a href="#produtos" class="categoria">
+CAMISETAS
+</a>
+
+<a href="#produtos" class="categoria">
+CALÇAS
+</a>
+
+<a href="#produtos" class="categoria">
+MOLETONS
+</a>
+
+<a href="#produtos" class="categoria">
+ACESSÓRIOS
+</a>
 
 </div>
 
 </section>
 
-<section class="section" id="produtos">
+<section id="produtos">
 
-<h2>Mais vendidos</h2>
+<h2 class="titulo">
+Mais vendidos
+</h2>
 
-<div class="products">
+<div class="produtos">
 
-<a class="product" href="produto.html">
+<div class="card">
 
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=90">
+<img
+src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=90"
+alt="Oversized Essential Black">
 
-<h3>Oversized Essential Black</h3>
+<div class="card-info">
 
-<div class="price">
+<h3>
+Oversized Essential Black
+</h3>
+
+<div class="antigo">
+R$ 119,90
+</div>
+
+<div class="preco">
 R$ 89,90
-<span class="old">R$ 119,90</span>
 </div>
 
+<a href="produto.html">
+VER PRODUTO
 </a>
 
-<a class="product" href="produto-boxy.html">
+</div>
 
-<img src="https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=800&q=90">
+</div>
 
-<h3>Boxy Premium White</h3>
+<div class="card">
 
-<div class="price">
+<img
+src="https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=800&q=90"
+alt="Boxy Premium White">
+
+<div class="card-info">
+
+<h3>
+Boxy Premium White
+</h3>
+
+<div class="antigo">
+R$ 109,90
+</div>
+
+<div class="preco">
 R$ 79,90
-<span class="old">R$ 109,90</span>
 </div>
 
+<a href="produto-boxy.html">
+VER PRODUTO
 </a>
 
-<a class="product" href="produto-cargo.html">
+</div>
 
-<img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=90">
+</div>
 
-<h3>Cargo Urban Black</h3>
+<div class="card">
 
-<div class="price">
+<img
+src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=90"
+alt="Cargo Urban Black">
+
+<div class="card-info">
+
+<h3>
+Cargo Urban Black
+</h3>
+
+<div class="preco">
 R$ 129,90
 </div>
 
+<a href="produto-cargo.html">
+VER PRODUTO
 </a>
 
-<a class="product" href="moletom.html">
+</div>
 
-<img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=90">
+</div>
 
-<h3>VANTA Essential Hoodie</h3>
+<div class="card">
 
-<div class="price">
+<img
+src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=90"
+alt="VANTA Essential Hoodie">
+
+<div class="card-info">
+
+<h3>
+VANTA Essential Hoodie
+</h3>
+
+<div class="antigo">
+R$ 189,90
+</div>
+
+<div class="preco">
 R$ 149,90
-<span class="old">R$ 189,90</span>
 </div>
 
+<a href="moletom.html">
+VER PRODUTO
 </a>
 
 </div>
 
-</section>
-
-<section class="section">
-
-<div class="benefits">
-
-<div class="benefit">
-<h3>🚚 ENVIO</h3>
-<p>Enviamos para todo o Brasil.</p>
-</div>
-
-<div class="benefit">
-<h3>🔒 SEGURO</h3>
-<p>Compra protegida e segura.</p>
-</div>
-
-<div class="benefit">
-<h3>⚡ VANTA</h3>
-<p>Estilo forte para quem tem presença.</p>
 </div>
 
 </div>
 
 </section>
 
-<section class="about" id="sobre">
+<section>
 
-<h2>SOBRE A VANTA</h2>
+<div class="beneficios">
+
+<div class="beneficio">
+
+<h3>
+🚚 Envio
+</h3>
 
 <p>
-A VANTA nasceu para quem não precisa chamar atenção
-para ser notado. Peças urbanas, visual minimalista e
-atitude em cada detalhe. Vista sua presença.
+Receba seu pedido no conforto da sua casa.
+</p>
+
+</div>
+
+<div class="beneficio">
+
+<h3>
+🔒 Compra segura
+</h3>
+
+<p>
+Seu pedido será processado com segurança.
+</p>
+
+</div>
+
+<div class="beneficio">
+
+<h3>
+⚡ VANTA
+</h3>
+
+<p>
+Peças essenciais para um visual forte e autêntico.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="sobre" class="sobre">
+
+<h2 class="titulo">
+Sobre a VANTA
+</h2>
+
+<p>
+A VANTA nasceu para quem não precisa exagerar
+para ser notado. Streetwear masculino com
+design minimalista, presença e atitude.
 </p>
 
 </section>
 
 <footer>
-© 2026 VANTA — Vista sua presença.
+
+VANTA © 2026 — Vista sua presença.
+
 </footer>
 
 </body>
