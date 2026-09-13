@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>VANTA</title>
 
 <style>
@@ -113,7 +114,7 @@ button:hover{
 background:#ddd;
 }
 
-/* CARRINHO FLUTUANTE */
+/* CARRINHO */
 
 .carrinho-flutuante{
 position:fixed;
@@ -168,6 +169,7 @@ font-size:27px;
 }
 
 }
+
 </style>
 
 </head>
@@ -182,13 +184,20 @@ font-size:27px;
 
 </header>
 
+
 <div class="container">
 
 <div>
 
-<img id="produtoImagem" class="produto-img" src="" alt="Produto VANTA">
+<img
+id="produtoImagem"
+class="produto-img"
+src=""
+alt="Produto VANTA"
+>
 
 </div>
+
 
 <div>
 
@@ -199,6 +208,7 @@ font-size:27px;
 <div id="produtoPreco" class="preco"></div>
 
 <div id="produtoParcela" class="parcela"></div>
+
 
 <label for="tamanho">
 Tamanho
@@ -213,6 +223,7 @@ Tamanho
 
 </select>
 
+
 <label for="quantidade">
 Quantidade
 </label>
@@ -221,7 +232,9 @@ Quantidade
 id="quantidade"
 type="number"
 value="1"
-min="1">
+min="1"
+>
+
 
 <button onclick="adicionarCarrinho()">
 ADICIONAR AO CARRINHO
@@ -231,15 +244,43 @@ ADICIONAR AO CARRINHO
 
 </div>
 
-<a href="carrinho.html" id="carrinhoFlutuante" class="carrinho-flutuante">
+
+<a
+href="carrinho.html"
+id="carrinhoFlutuante"
+class="carrinho-flutuante"
+>
 
 🛒
 
-<span id="contador" class="contador">0</span>
+<span id="contador" class="contador">
+0
+</span>
 
 </a>
 
+
 <script>
+
+/*
+==================================================
+CADASTRO DOS PRODUTOS
+==================================================
+
+PARA ADICIONAR UM NOVO PRODUTO,
+É SÓ ADICIONAR OUTRO BLOCO AQUI.
+
+EXEMPLO:
+
+camisetaNova:{
+nome:"Nome do produto",
+preco:99.90,
+antigo:129.90,
+imagem:"URL DA IMAGEM",
+tag:"NEW"
+}
+
+*/
 
 const produtos = {
 
@@ -247,74 +288,136 @@ oversized:{
 nome:"Oversized Essential Black",
 preco:89.90,
 antigo:119.90,
-imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90"
+imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
+tag:"VANTA ESSENTIAL"
 },
 
 boxy:{
 nome:"Boxy Premium White",
 preco:79.90,
 antigo:109.90,
-imagem:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90"
+imagem:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90",
+tag:"BEST SELLER"
 },
 
 cargo:{
 nome:"Cargo Urban Black",
 preco:129.90,
 antigo:null,
-imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90"
+imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
+tag:"NEW"
 },
 
 moletom:{
 nome:"VANTA Essential Hoodie",
 preco:149.90,
 antigo:189.90,
-imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90"
+imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
+tag:"VANTA HOODIE"
 }
 
 };
 
 
-const parametros = new URLSearchParams(window.location.search);
+/*
+==================================================
+DADOS PARA O CATÁLOGO
+==================================================
+*/
 
-const id = parametros.get("id") || "oversized";
+const dadosCatalogo =
+document.createElement("script");
 
-const produto = produtos[id] || produtos.oversized;
+dadosCatalogo.type = "application/json";
+dadosCatalogo.id = "dadosProdutos";
+
+dadosCatalogo.textContent =
+JSON.stringify(produtos);
+
+document.head.appendChild(dadosCatalogo);
 
 
-document.title = produto.nome + " | VANTA";
+/*
+==================================================
+PRODUTO ATUAL
+==================================================
+*/
 
-document.getElementById("produtoNome").textContent = produto.nome;
+const parametros =
+new URLSearchParams(window.location.search);
 
-document.getElementById("produtoImagem").src = produto.imagem;
+const id =
+parametros.get("id") || "oversized";
 
-document.getElementById("produtoImagem").alt = produto.nome;
+const produto =
+produtos[id] || produtos.oversized;
 
-document.getElementById("produtoPreco").textContent =
-"R$ " + produto.preco.toFixed(2).replace(".",",");
+
+document.title =
+produto.nome + " | VANTA";
+
+
+document.getElementById("produtoNome")
+.textContent = produto.nome;
+
+
+document.getElementById("produtoImagem")
+.src = produto.imagem;
+
+
+document.getElementById("produtoImagem")
+.alt = produto.nome;
+
+
+document.getElementById("produtoPreco")
+.textContent =
+"R$ " +
+produto.preco
+.toFixed(2)
+.replace(".",",");
 
 
 if(produto.antigo){
 
-document.getElementById("produtoAntigo").textContent =
-"R$ " + produto.antigo.toFixed(2).replace(".",",");
+document.getElementById("produtoAntigo")
+.textContent =
+"R$ " +
+produto.antigo
+.toFixed(2)
+.replace(".",",");
 
 }else{
 
-document.getElementById("produtoAntigo").style.display="none";
+document.getElementById("produtoAntigo")
+.style.display="none";
 
 }
 
 
-const parcela = produto.preco / 3;
+const parcela =
+produto.preco / 3;
 
-document.getElementById("produtoParcela").textContent =
-"ou 3x de R$ " + parcela.toFixed(2).replace(".",",");
 
+document.getElementById("produtoParcela")
+.textContent =
+"ou 3x de R$ " +
+parcela
+.toFixed(2)
+.replace(".",",");
+
+
+/*
+==================================================
+CARRINHO
+==================================================
+*/
 
 function pegarCarrinho(){
 
 let carrinho =
-JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
+JSON.parse(
+localStorage.getItem("vantaCarrinho")
+) || [];
 
 if(!Array.isArray(carrinho)){
 carrinho=[];
@@ -327,16 +430,25 @@ return carrinho;
 
 function atualizarCarrinho(){
 
-const carrinho = pegarCarrinho();
+const carrinho =
+pegarCarrinho();
 
-const total = carrinho.reduce(
-(soma,item) => soma + (Number(item.quantidade) || 0),
+
+const total =
+carrinho.reduce(
+(soma,item) =>
+soma + (Number(item.quantidade) || 0),
 0
 );
 
-document.getElementById("contador").textContent = total;
 
-const botao = document.getElementById("carrinhoFlutuante");
+document.getElementById("contador")
+.textContent = total;
+
+
+const botao =
+document.getElementById("carrinhoFlutuante");
+
 
 if(total > 0){
 
@@ -353,23 +465,28 @@ botao.classList.remove("ativo");
 
 function adicionarCarrinho(){
 
-let carrinho = pegarCarrinho();
+let carrinho =
+pegarCarrinho();
+
 
 const tamanho =
-document.getElementById("tamanho").value;
+document.getElementById("tamanho")
+.value;
+
 
 const quantidade =
 Math.max(
 1,
-Number(document.getElementById("quantidade").value) || 1
+Number(
+document.getElementById("quantidade").value
+) || 1
 );
 
 
-const produtoExistente = carrinho.find(item =>
-
+const produtoExistente =
+carrinho.find(item =>
 item.nome === produto.nome &&
 item.tamanho === tamanho
-
 );
 
 
@@ -402,9 +519,8 @@ JSON.stringify(carrinho)
 );
 
 
-/* VOLTA PARA O CATÁLOGO */
-
-window.location.href = "catalogo.html";
+window.location.href =
+"catalogo.html";
 
 }
 
