@@ -1,129 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>Boxy Premium White | VANTA</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
 }
 
 body{
-  background:#0b0b0b;
-  color:#fff;
+background:#0b0b0b;
+color:#fff;
 }
 
 header{
-  height:70px;
-  border-bottom:1px solid #222;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 25px;
+height:70px;
+border-bottom:1px solid #222;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 25px;
 }
 
 .logo{
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:4px;
+font-size:26px;
+font-weight:900;
+letter-spacing:4px;
 }
 
 .cart{
-  color:#fff;
-  text-decoration:none;
+color:#fff;
+text-decoration:none;
 }
 
 .container{
-  max-width:1000px;
-  margin:40px auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
+max-width:1000px;
+margin:40px auto;
+padding:20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
 }
 
 .produto-img{
-  width:100%;
-  border-radius:12px;
+width:100%;
+border-radius:12px;
 }
 
 h1{
-  font-size:32px;
-  margin-bottom:15px;
+font-size:32px;
+margin-bottom:15px;
 }
 
 .preco{
-  font-size:25px;
-  font-weight:bold;
-  margin:15px 0;
+font-size:25px;
+font-weight:bold;
+margin:15px 0;
 }
 
 .antigo{
-  color:#777;
-  text-decoration:line-through;
-  font-size:16px;
+color:#777;
+text-decoration:line-through;
+font-size:16px;
 }
 
 .parcela{
-  color:#aaa;
-  margin-bottom:25px;
+color:#aaa;
+margin-bottom:25px;
 }
 
 label{
-  display:block;
-  margin-bottom:8px;
-  font-weight:bold;
+display:block;
+margin-bottom:8px;
+font-weight:bold;
 }
 
 select,input{
-  width:100%;
-  padding:14px;
-  background:#181818;
-  border:1px solid #333;
-  color:#fff;
-  border-radius:8px;
-  margin-bottom:18px;
+width:100%;
+padding:14px;
+background:#181818;
+border:1px solid #333;
+color:#fff;
+border-radius:8px;
+margin-bottom:18px;
 }
 
 button{
-  width:100%;
-  padding:17px;
-  border:0;
-  border-radius:8px;
-  background:#fff;
-  color:#000;
-  font-weight:bold;
-  cursor:pointer;
+width:100%;
+padding:17px;
+border:0;
+border-radius:8px;
+background:#fff;
+color:#000;
+font-weight:bold;
+cursor:pointer;
 }
 
 button:hover{
-  background:#ddd;
+background:#ddd;
+}
+
+#aviso{
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translateX(-50%);
+background:#fff;
+color:#000;
+padding:15px 22px;
+border-radius:8px;
+font-weight:bold;
+font-size:14px;
+box-shadow:0 10px 30px rgba(0,0,0,.5);
+opacity:0;
+pointer-events:none;
+transition:.3s;
+z-index:9999;
+}
+
+#aviso.mostrar{
+opacity:1;
 }
 
 @media(max-width:700px){
-  .container{
-    grid-template-columns:1fr;
-  }
+
+.container{
+grid-template-columns:1fr;
 }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">VANTA</div>
+<div class="logo">
+VANTA
+</div>
 
 <a href="carrinho.html" class="cart">
 🛒 Carrinho
 </a>
 
 </header>
+
 
 <div class="container">
 
@@ -136,21 +168,28 @@ alt="Boxy Premium White">
 
 </div>
 
+
 <div>
 
-<h1>Boxy Premium White</h1>
+<h1>
+Boxy Premium White
+</h1>
+
 
 <div class="antigo">
 R$ 109,90
 </div>
 
+
 <div class="preco">
 R$ 79,90
 </div>
 
+
 <div class="parcela">
 ou 3x de R$ 26,63
 </div>
+
 
 <label for="tamanho">
 Tamanho
@@ -176,6 +215,7 @@ GG
 
 </select>
 
+
 <label for="quantidade">
 Quantidade
 </label>
@@ -186,6 +226,7 @@ type="number"
 value="1"
 min="1">
 
+
 <button onclick="adicionarCarrinho()">
 ADICIONAR AO CARRINHO
 </button>
@@ -194,61 +235,99 @@ ADICIONAR AO CARRINHO
 
 </div>
 
+
+<div id="aviso">
+Produto adicionado ✓
+</div>
+
+
 <script>
 
 function adicionarCarrinho(){
 
-  let carrinho =
-    JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
+let carrinho =
+JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
 
-  if(!Array.isArray(carrinho)){
-    carrinho = [carrinho];
-  }
 
-  let tamanho =
-    document.getElementById("tamanho").value;
+if(!Array.isArray(carrinho)){
+carrinho = [carrinho];
+}
 
-  let quantidade =
-    Number(document.getElementById("quantidade").value);
 
-  let produtoExistente = carrinho.find(p =>
-    p.nome === "Boxy Premium White" &&
-    p.tamanho === tamanho
-  );
+let tamanho =
+document.getElementById("tamanho").value;
 
-  if(produtoExistente){
 
-    produtoExistente.quantidade += quantidade;
+let quantidade =
+Number(document.getElementById("quantidade").value);
 
-  }else{
 
-    carrinho.push({
+if(quantidade < 1){
+quantidade = 1;
+}
 
-      nome:"Boxy Premium White",
 
-      preco:79.90,
+let produtoExistente = carrinho.find(p =>
+p.nome === "Boxy Premium White" &&
+p.tamanho === tamanho
+);
 
-      tamanho:tamanho,
 
-      quantidade:quantidade,
+if(produtoExistente){
 
-      imagem:
-      "https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90"
+produtoExistente.quantidade += quantidade;
 
-    });
+}else{
 
-  }
+carrinho.push({
 
-  localStorage.setItem(
-    "vantaCarrinho",
-    JSON.stringify(carrinho)
-  );
+nome:"Boxy Premium White",
 
-  window.location.href="carrinho.html";
+preco:79.90,
+
+tamanho:tamanho,
+
+quantidade:quantidade,
+
+imagem:
+"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90"
+
+});
+
+}
+
+
+localStorage.setItem(
+"vantaCarrinho",
+JSON.stringify(carrinho)
+);
+
+
+mostrarAviso();
+
+}
+
+
+function mostrarAviso(){
+
+const aviso =
+document.getElementById("aviso");
+
+
+aviso.classList.add("mostrar");
+
+
+setTimeout(function(){
+
+aviso.classList.remove("mostrar");
+
+},1800);
 
 }
 
 </script>
 
+
 </body>
+
 </html>
