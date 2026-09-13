@@ -72,10 +72,12 @@ margin-bottom:25px
 }
 
 .item img{
-width:120px;
-height:140px;
-object-fit:cover;
-border-radius:8px
+width:130px;
+height:160px;
+object-fit:contain;
+background:#f1f1f1;
+border-radius:8px;
+display:block
 }
 
 .item-info{
@@ -94,7 +96,8 @@ font-size:20px
 
 .quantity{
 margin-top:12px;
-color:#666
+color:#666;
+line-height:1.7
 }
 
 .total{
@@ -132,13 +135,18 @@ text-decoration:none
 }
 
 @media(max-width:600px){
+
 .item{
 align-items:flex-start
 }
 
 .item img{
-width:100px;
-height:120px
+width:110px;
+height:140px
+}
+
+.item-info h2{
+font-size:17px
 }
 }
 </style>
@@ -178,7 +186,9 @@ if(!produto){
 carrinho.innerHTML = `
 <div class="empty">
 <h2>Seu carrinho está vazio.</h2>
-<p style="margin-top:10px">Escolha um produto para começar.</p>
+<p style="margin-top:10px">
+Escolha um produto para começar.
+</p>
 </div>
 `;
 
@@ -190,7 +200,7 @@ carrinho.innerHTML = `
 
 <div class="item">
 
-<img src="${produto.imagem || ''}">
+<img src="${produto.imagem || ''}" alt="${produto.nome}">
 
 <div class="item-info">
 
