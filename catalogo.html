@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Catálogo | VANTA</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -110,6 +115,8 @@ gap:22px;
 
 .product{
 position:relative;
+display:flex;
+flex-direction:column;
 }
 
 .image{
@@ -146,12 +153,14 @@ letter-spacing:1px;
 .product h2{
 font-size:16px;
 margin-bottom:7px;
+min-height:19px;
 }
 
 .price{
 display:flex;
 gap:8px;
 align-items:center;
+min-height:20px;
 }
 
 .price strong{
@@ -222,6 +231,7 @@ gap:12px;
 
 .product h2{
 font-size:14px;
+min-height:34px;
 }
 
 .price strong{
@@ -229,6 +239,7 @@ font-size:15px;
 }
 
 }
+
 </style>
 
 </head>
@@ -240,11 +251,15 @@ font-size:15px;
 <a href="index.html" class="logo">VANTA</a>
 
 <nav>
+
 <a href="index.html">Início</a>
+
 <a href="catalogo.html">Catálogo</a>
+
 <a href="carrinho.html" class="cart">
 Carrinho <span id="cartCount">0</span>
 </a>
+
 </nav>
 
 </header>
@@ -252,14 +267,21 @@ Carrinho <span id="cartCount">0</span>
 <section class="top">
 
 <div>
+
 <h1>CATÁLOGO</h1>
+
 <p>Peças essenciais para quem não passa despercebido.</p>
+
 </div>
 
 <select id="sort" class="filter">
+
 <option value="normal">Ordenar produtos</option>
+
 <option value="menor">Menor preço</option>
+
 <option value="maior">Maior preço</option>
+
 </select>
 
 </section>
@@ -269,6 +291,7 @@ Carrinho <span id="cartCount">0</span>
 <article class="product" data-price="89.90">
 
 <div class="image">
+
 <span class="tag">VANTA ESSENTIAL</span>
 
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90">
@@ -278,8 +301,11 @@ Carrinho <span id="cartCount">0</span>
 <h2>Oversized Essential Black</h2>
 
 <div class="price">
+
 <strong>R$ 89,90</strong>
+
 <span class="old">R$ 119,90</span>
+
 </div>
 
 <a href="produto.html" class="button">VER PRODUTO</a>
@@ -289,6 +315,7 @@ Carrinho <span id="cartCount">0</span>
 <article class="product" data-price="79.90">
 
 <div class="image">
+
 <span class="tag">BEST SELLER</span>
 
 <img src="https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90">
@@ -298,8 +325,11 @@ Carrinho <span id="cartCount">0</span>
 <h2>Boxy Premium White</h2>
 
 <div class="price">
+
 <strong>R$ 79,90</strong>
+
 <span class="old">R$ 109,90</span>
+
 </div>
 
 <a href="produto-boxy.html" class="button">VER PRODUTO</a>
@@ -309,16 +339,19 @@ Carrinho <span id="cartCount">0</span>
 <article class="product" data-price="129.90">
 
 <div class="image">
+
 <span class="tag">NEW</span>
 
-<img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90">
+<img src="https://images.unsplash.com/photo-1551488831-00ddcb6cbd3?auto=format&fit=crop&w=1000&q=90">
 
 </div>
 
 <h2>Cargo Urban Black</h2>
 
 <div class="price">
+
 <strong>R$ 129,90</strong>
+
 </div>
 
 <a href="produto-cargo.html" class="button">VER PRODUTO</a>
@@ -328,6 +361,7 @@ Carrinho <span id="cartCount">0</span>
 <article class="product" data-price="149.90">
 
 <div class="image">
+
 <span class="tag">VANTA HOODIE</span>
 
 <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90">
@@ -337,8 +371,11 @@ Carrinho <span id="cartCount">0</span>
 <h2>VANTA Essential Hoodie</h2>
 
 <div class="price">
+
 <strong>R$ 149,90</strong>
+
 <span class="old">R$ 189,90</span>
+
 </div>
 
 <a href="moletom.html" class="button">VER PRODUTO</a>
@@ -348,7 +385,9 @@ Carrinho <span id="cartCount">0</span>
 </main>
 
 <footer>
+
 © 2026 VANTA — Vista sua presença.
+
 </footer>
 
 <script>
@@ -368,6 +407,7 @@ document.getElementById("cartCount").textContent=total;
 }
 
 const sort=document.getElementById("sort");
+
 const products=document.getElementById("products");
 
 sort.addEventListener("change",function(){
@@ -375,15 +415,19 @@ sort.addEventListener("change",function(){
 const cards=[...products.querySelectorAll(".product")];
 
 if(this.value==="menor"){
+
 cards.sort((a,b)=>
 Number(a.dataset.price)-Number(b.dataset.price)
 );
+
 }
 
 if(this.value==="maior"){
+
 cards.sort((a,b)=>
 Number(b.dataset.price)-Number(a.dataset.price)
 );
+
 }
 
 cards.forEach(card=>products.appendChild(card));
@@ -395,4 +439,5 @@ atualizarCarrinho();
 </script>
 
 </body>
+
 </html>
