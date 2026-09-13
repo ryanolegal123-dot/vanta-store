@@ -6,38 +6,343 @@
 <title>Checkout | VANTA</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#0b0b0b;
-color:#fff;
+  background:#0b0b0b;
+  color:#fff;
 }
 
 header{
-height:70px;
-display:flex;
-align-items:center;
-padding:0 20px;
-border-bottom:1px solid #222;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid #222;
 }
 
 .logo{
-font-size:28px;
-font-weight:900;
-letter-spacing:4px;
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
 .container{
-max-width:900px;
-margin:30px auto;
-padding:20px;
+  max-width:700px;
+  margin:40px auto;
+  padding:20px;
+}
+
+h1{
+  font-size:30px;
+  margin-bottom:25px;
 }
 
 .box{
-background:#111;
-border:1px solid #292929;
-border-radius:14px;
-padding:22px;
-margin-bottom
+  background:#111;
+  border:1px solid #222;
+  padding:22px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+h2{
+  font-size:18px;
+  margin-bottom:18px;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  background:#181818;
+  border:1px solid #333;
+  border-radius:8px;
+  color:#fff;
+  outline:none;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.resumo{
+  color:#bbb;
+  line-height:1.8;
+}
+
+.total{
+  font-size:22px;
+  font-weight:bold;
+  color:#fff;
+  margin-top:10px;
+}
+
+button{
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ddd;
+}
+
+.erro{
+  color:#ff5555;
+  margin-bottom:15px;
+  display:none;
+}
+
+@media(max-width:600px){
+  .row{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">VANTA</div>
+</header>
+
+<div class="container">
+
+<h1>Finalizar compra</h1>
+
+<div class="box">
+<h2>Seus dados</h2>
+
+<div id="erro" class="erro">
+Preencha todos os campos obrigatórios.
+</div>
+
+<input id="nome" type="text" placeholder="Nome completo">
+
+<input id="whatsapp" type="tel" placeholder="WhatsApp">
+
+<input id="cpf" type="text" placeholder="CPF">
+
+<input id="cep" type="text" placeholder="CEP" onblur="buscarCEP()">
+
+<input id="rua" type="text" placeholder="Rua">
+
+<div class="row">
+<input id="numero" type="text" placeholder="Número">
+<input id="complemento" type="text" placeholder="Complemento">
+</div>
+
+<input id="cidade" type="text" placeholder="Cidade">
+
+<select id="estado">
+<option value="">Estado</option>
+<option>AC</option>
+<option>AL</option>
+<option>AP</option>
+<option>AM</option>
+<option>BA</option>
+<option>CE</option>
+<option>DF</option>
+<option>ES</option>
+<option>GO</option>
+<option>MA</option>
+<option>MT</option>
+<option>MS</option>
+<option>MG</option>
+<option>PA</option>
+<option>PB</option>
+<option>PR</option>
+<option>PE</option>
+<option>PI</option>
+<option>RJ</option>
+<option>RN</option>
+<option>RS</option>
+<option>RO</option>
+<option>RR</option>
+<option>SC</option>
+<option>SP</option>
+<option>SE</option>
+<option>TO</option>
+</select>
+
+</div>
+
+<div class="box">
+<h2>Resumo do pedido</h2>
+
+<div id="resumo" class="resumo">
+Carregando...
+</div>
+
+</div>
+
+<button onclick="continuarPagamento()">
+CONTINUAR PARA PAGAMENTO
+</button>
+
+</div>
+
+<script>
+
+let produto = JSON.parse(localStorage.getItem("vantaCarrinho"));
+
+let resumo = document.getElementById("resumo");
+
+if(!produto){
+
+  resumo.innerHTML = "Seu carrinho está vazio.";
+
+}else{
+
+  let subtotal = produto.preco * produto.quantidade;
+
+  resumo.innerHTML = `
+    <div><strong>${produto.nome}</strong></div>
+    <div>Tamanho: ${produto.tamanho}</div>
+    <div>Quantidade: ${produto.quantidade}</div>
+    <div>Preço: R$ ${produto.preco.toFixed(2).replace(".",",")}</div>
+    <div class="total">
+      Total: R$ ${subtotal.toFixed(2).replace(".",",")}
+    </div>
+  `;
+}
+
+async function buscarCEP(){
+
+  let cep = document.getElementById("cep").value
+    .replace(/\D/g,"");
+
+  if(cep.length !== 8) return;
+
+  try{
+
+    let resposta = await fetch(
+      "https://viacep.com.br/ws/" + cep + "/json/"
+    );
+
+    let dados = await resposta.json();
+
+    if(dados.erro){
+      return;
+    }
+
+    document.getElementById("rua").value =
+      dados.logradouro || "";
+
+    document.getElementById("cidade").value =
+      dados.localidade || "";
+
+    document.getElementById("estado").value =
+      dados.uf || "";
+
+  }catch(e){
+
+    console.log("Erro ao buscar CEP");
+
+  }
+}
+
+function continuarPagamento(){
+
+  let nome = document.getElementById("nome").value.trim();
+  let whatsapp = document.getElementById("whatsapp").value.trim();
+  let cpf = document.getElementById("cpf").value.trim();
+  let cep = document.getElementById("cep").value.trim();
+  let rua = document.getElementById("rua").value.trim();
+  let numero = document.getElementById("numero").value.trim();
+  let cidade = document.getElementById("cidade").value.trim();
+  let estado = document.getElementById("estado").value;
+
+  let erro = document.getElementById("erro");
+
+  if(
+    !nome ||
+    !whatsapp ||
+    !cpf ||
+    !cep ||
+    !rua ||
+    !numero ||
+    !cidade ||
+    !estado ||
+    !produto
+  ){
+
+    erro.style.display = "block";
+    return;
+  }
+
+  erro.style.display = "none";
+
+  let complemento =
+    document.getElementById("complemento").value.trim();
+
+  let total =
+    produto.preco * produto.quantidade;
+
+  let pedidoAtual = {
+
+    produto: produto.nome,
+
+    imagem: produto.imagem || "",
+
+    tamanho: produto.tamanho,
+
+    quantidade: produto.quantidade,
+
+    preco: produto.preco,
+
+    total: total,
+
+    nome: nome,
+
+    whatsapp: whatsapp,
+
+    cpf: cpf,
+
+    endereco:
+      rua + ", " +
+      numero +
+      (complemento ? " - " + complemento : "") +
+      " - " +
+      cidade +
+      "/" +
+      estado +
+      " - CEP " +
+      cep,
+
+    pagamento: "",
+
+    status: "Aguardando pagamento",
+
+    data: new Date().toLocaleString("pt-BR")
+
+  };
+
+  localStorage.setItem(
+    "vantaPedidoAtual",
+    JSON.stringify(pedidoAtual)
+  );
+
+  window.location.href = "pagamento.html";
+}
+
+</script>
+
+</body>
+</html>
