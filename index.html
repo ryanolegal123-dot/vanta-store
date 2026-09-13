@@ -1,522 +1,589 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="google-site-verification" content="aw0StDDXTsw8jD0um-LOj1K_8HRT_S3uJOOHZVIo05I">
+<meta name="google-site-verification" content="aw0StDDXTsw8jD0um-LOj1K_8HRT_S3uJOOHZVIo05I">
 
-  <title>VANTA — Vista sua presença</title>
+<title>VANTA — Vista sua presença</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
 
-    body {
-      background: #080808;
-      color: #fff;
-    }
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
 
-    header {
-      height: 72px;
-      padding: 0 6%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #222;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(8,8,8,.85);
-      backdrop-filter: blur(12px);
-      z-index: 20;
-    }
+body {
+background: #080808;
+color: #fff;
+}
 
-    .logo {
-      color: #fff;
-      text-decoration: none;
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: 5px;
-    }
+/* HEADER */
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
+header {
+height: 72px;
+padding: 0 6%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid #222;
+position: fixed;
+top: 0;
+width: 100%;
+background: rgba(8,8,8,.85);
+backdrop-filter: blur(12px);
+z-index: 20;
+}
 
-    nav a {
-      color: #999;
-      text-decoration: none;
-      font-size: 13px;
-      transition: .2s;
-    }
+/* LOGO VANTA */
 
-    nav a:hover {
-      color: #fff;
-    }
+.vanta-logo {
+display: flex;
+align-items: center;
+gap: 10px;
+text-decoration: none;
+color: #fff;
+}
 
-    .cart {
-      color: #fff;
-      border: 1px solid #333;
-      padding: 9px 13px;
-      border-radius: 5px;
-    }
+.vanta-mark {
+width: 34px;
+height: 34px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 2px solid #fff;
+font-size: 18px;
+font-weight: 900;
+font-style: italic;
+letter-spacing: -2px;
+transform: skew(-8deg);
+}
 
-    .cart span {
-      color: #999;
-      margin-left: 4px;
-    }
+.vanta-name {
+font-size: 24px;
+font-weight: 900;
+letter-spacing: 5px;
+}
 
-    .hero {
-      min-height: 100vh;
-      padding: 72px 6% 50px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,.95) 0%,
-          rgba(0,0,0,.7) 45%,
-          rgba(0,0,0,.25) 100%
-        ),
-        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=90")
-        center / cover;
-    }
+/* NAV */
 
-    .hero-content {
-      max-width: 760px;
-    }
+nav {
+display: flex;
+align-items: center;
+gap: 25px;
+}
 
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #aaa;
-      margin-bottom: 25px;
-    }
+nav a {
+color: #999;
+text-decoration: none;
+font-size: 13px;
+transition: .2s;
+}
 
-    .hero h1 {
-      font-size: clamp(58px, 12vw, 145px);
-      line-height: .82;
-      letter-spacing: -7px;
-      font-weight: 900;
-    }
+nav a:hover {
+color: #fff;
+}
 
-    .hero p {
-      max-width: 430px;
-      color: #aaa;
-      margin-top: 30px;
-      line-height: 1.6;
-      font-size: 14px;
-    }
+.cart {
+color: #fff;
+border: 1px solid #333;
+padding: 9px 13px;
+border-radius: 5px;
+}
 
-    .hero-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 16px 28px;
-      background: #fff;
-      color: #000;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      border-radius: 4px;
-      transition: .2s;
-    }
+.cart span {
+color: #999;
+margin-left: 4px;
+}
 
-    .hero-button:hover {
-      background: #ccc;
-    }
+/* HERO */
 
-    section {
-      padding: 100px 6%;
-    }
+.hero {
+min-height: 100vh;
+padding: 72px 6% 50px;
+display: flex;
+align-items: center;
+position: relative;
+overflow: hidden;
 
-    .section-title {
-      font-size: clamp(38px, 7vw, 70px);
-      letter-spacing: -3px;
-      margin-bottom: 15px;
-    }
+background:
+linear-gradient(
+90deg,
+rgba(0,0,0,.95) 0%,
+rgba(0,0,0,.7) 45%,
+rgba(0,0,0,.25) 100%
+),
+url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=90")
+center / cover;
+}
 
-    .section-text {
-      color: #777;
-      font-size: 14px;
-      line-height: 1.6;
-      max-width: 500px;
-    }
+.hero-content {
+max-width: 760px;
+}
 
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 45px;
-    }
+.eyebrow {
+font-size: 11px;
+letter-spacing: 4px;
+color: #aaa;
+margin-bottom: 25px;
+}
 
-    .category {
-      min-height: 260px;
-      display: flex;
-      align-items: end;
-      padding: 25px;
-      text-decoration: none;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-    }
+.hero h1 {
+font-size: clamp(58px, 12vw, 145px);
+line-height: .82;
+letter-spacing: -7px;
+font-weight: 900;
+}
 
-    .category::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,.9));
-    }
+.hero p {
+max-width: 430px;
+color: #aaa;
+margin-top: 30px;
+line-height: 1.6;
+font-size: 14px;
+}
 
-    .category h3 {
-      position: relative;
-      font-size: 25px;
-      letter-spacing: -1px;
-    }
+.hero-button {
+display: inline-block;
+margin-top: 30px;
+padding: 16px 28px;
+background: #fff;
+color: #000;
+text-decoration: none;
+font-size: 12px;
+font-weight: bold;
+letter-spacing: 1px;
+border-radius: 4px;
+transition: .2s;
+}
 
-    .catalog-cta {
-      background: #fff;
-      color: #000;
-      text-align: center;
-      padding: 90px 6%;
-    }
+.hero-button:hover {
+background: #ccc;
+}
 
-    .catalog-cta h2 {
-      font-size: clamp(42px, 8vw, 85px);
-      letter-spacing: -4px;
-      line-height: .9;
-    }
+/* SECTIONS */
 
-    .catalog-cta p {
-      color: #555;
-      margin: 22px auto;
-      max-width: 450px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+section {
+padding: 100px 6%;
+}
 
-    .catalog-button {
-      display: inline-block;
-      background: #000;
-      color: #fff;
-      padding: 16px 30px;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      border-radius: 4px;
-    }
+.section-title {
+font-size: clamp(38px, 7vw, 70px);
+letter-spacing: -3px;
+margin-bottom: 15px;
+}
 
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 50px;
-    }
+.section-text {
+color: #777;
+font-size: 14px;
+line-height: 1.6;
+max-width: 500px;
+}
 
-    .benefit {
-      border-top: 1px solid #333;
-      padding-top: 20px;
-    }
+/* CATEGORIES */
 
-    .benefit strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
+.categories {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px;
+margin-top: 45px;
+}
 
-    .benefit p {
-      color: #666;
-      font-size: 13px;
-      line-height: 1.5;
-    }
+.category {
+min-height: 260px;
+display: flex;
+align-items: end;
+padding: 25px;
+text-decoration: none;
+color: #fff;
+position: relative;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+}
 
-    .about {
-      border-top: 1px solid #222;
-    }
+.category::before {
+content: "";
+position: absolute;
+inset: 0;
+background: linear-gradient(transparent, rgba(0,0,0,.9));
+}
 
-    footer {
-      border-top: 1px solid #222;
-      padding: 40px 6%;
-      color: #555;
-      font-size: 12px;
-      display: flex;
-      justify-content: space-between;
-    }
+.category h3 {
+position: relative;
+font-size: 25px;
+letter-spacing: -1px;
+}
 
-    @media (max-width: 700px) {
+/* CATALOG CTA */
 
-      header {
-        padding: 0 5%;
-      }
+.catalog-cta {
+background: #fff;
+color: #000;
+text-align: center;
+padding: 90px 6%;
+}
 
-      nav a:not(.cart) {
-        display: none;
-      }
+.catalog-cta h2 {
+font-size: clamp(42px, 8vw, 85px);
+letter-spacing: -4px;
+line-height: .9;
+}
 
-      .hero {
-        min-height: 100svh;
-        padding: 90px 5% 50px;
-      }
+.catalog-cta p {
+color: #555;
+margin: 22px auto;
+max-width: 450px;
+font-size: 14px;
+line-height: 1.5;
+}
 
-      .hero h1 {
-        font-size: 65px;
-        letter-spacing: -4px;
-      }
+.catalog-button {
+display: inline-block;
+background: #000;
+color: #fff;
+padding: 16px 30px;
+text-decoration: none;
+font-size: 12px;
+font-weight: bold;
+letter-spacing: 1px;
+border-radius: 4px;
+}
 
-      .categories {
-        grid-template-columns: 1fr;
-      }
+/* BENEFITS */
 
-      .category {
-        min-height: 220px;
-      }
+.benefits {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 30px;
+margin-top: 50px;
+}
 
-      .benefits {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
+.benefit {
+border-top: 1px solid #333;
+padding-top: 20px;
+}
 
-      section {
-        padding: 75px 5%;
-      }
+.benefit strong {
+display: block;
+font-size: 15px;
+margin-bottom: 10px;
+}
 
-      footer {
-        display: block;
-      }
-    }
-  </style>
+.benefit p {
+color: #666;
+font-size: 13px;
+line-height: 1.5;
+}
+
+/* ABOUT */
+
+.about {
+border-top: 1px solid #222;
+}
+
+/* FOOTER */
+
+footer {
+border-top: 1px solid #222;
+padding: 40px 6%;
+color: #555;
+font-size: 12px;
+display: flex;
+justify-content: space-between;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+header {
+padding: 0 5%;
+}
+
+.vanta-mark {
+width: 30px;
+height: 30px;
+font-size: 16px;
+}
+
+.vanta-name {
+font-size: 20px;
+letter-spacing: 4px;
+}
+
+nav a:not(.cart) {
+display: none;
+}
+
+.hero {
+min-height: 100svh;
+padding: 90px 5% 50px;
+}
+
+.hero h1 {
+font-size: 65px;
+letter-spacing: -4px;
+}
+
+.categories {
+grid-template-columns: 1fr;
+}
+
+.category {
+min-height: 220px;
+}
+
+.benefits {
+grid-template-columns: 1fr;
+gap: 35px;
+}
+
+section {
+padding: 75px 5%;
+}
+
+footer {
+display: block;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
 
-  <a href="index.html" class="logo">
-    VANTA
-  </a>
+<a href="index.html" class="vanta-logo">
+<span class="vanta-mark">V</span>
+<span class="vanta-name">VANTA</span>
+</a>
 
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="catalogo.html">Catálogo</a>
+<nav>
 
-    <a href="carrinho.html" class="cart">
-      Carrinho <span id="cartCount">0</span>
-    </a>
-  </nav>
+<a href="index.html">Início</a>
+
+<a href="catalogo.html">Catálogo</a>
+
+<a href="carrinho.html" class="cart">
+Carrinho <span id="cartCount">0</span>
+</a>
+
+</nav>
 
 </header>
 
 
 <section class="hero">
 
-  <div class="hero-content">
+<div class="hero-content">
 
-    <div class="eyebrow">
-      VANTA / STREETWEAR
-    </div>
+<div class="eyebrow">
+VANTA / STREETWEAR
+</div>
 
-    <h1>
-      VISTA<br>
-      SUA<br>
-      PRESENÇA.
-    </h1>
+<h1>
+VISTA<br>
+SUA<br>
+PRESENÇA.
+</h1>
 
-    <p>
-      Streetwear essencial para quem não precisa chamar atenção
-      para ser notado.
-    </p>
+<p>
+Streetwear essencial para quem não precisa chamar atenção
+para ser notado.
+</p>
 
-    <a href="catalogo.html" class="hero-button">
-      VER CATÁLOGO
-    </a>
+<a href="catalogo.html" class="hero-button">
+VER CATÁLOGO
+</a>
 
-  </div>
+</div>
 
 </section>
 
 
 <section>
 
-  <div class="eyebrow">
-    EXPLORE
-  </div>
+<div class="eyebrow">
+EXPLORE
+</div>
 
-  <h2 class="section-title">
-    CATEGORIAS
-  </h2>
+<h2 class="section-title">
+CATEGORIAS
+</h2>
 
-  <p class="section-text">
-    Peças pensadas para construir um visual urbano,
-    minimalista e marcante.
-  </p>
+<p class="section-text">
+Peças pensadas para construir um visual urbano,
+minimalista e marcante.
+</p>
 
-  <div class="categories">
+<div class="categories">
 
-    <a
-      href="catalogo.html"
-      class="category"
-      style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85')"
-    >
-      <h3>CAMISETAS</h3>
-    </a>
-
-
-    <a
-      href="catalogo.html"
-      class="category"
-      style="background-image:url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85')"
-    >
-      <h3>MOLETONS</h3>
-    </a>
+<a
+href="catalogo.html"
+class="category"
+style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85')"
+>
+<h3>CAMISETAS</h3>
+</a>
 
 
-    <a
-      href="catalogo.html"
-      class="category"
-      style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85')"
-    >
-      <h3>CARGOS</h3>
-    </a>
+<a
+href="catalogo.html"
+class="category"
+style="background-image:url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85')"
+>
+<h3>MOLETONS</h3>
+</a>
 
-  </div>
+
+<a
+href="catalogo.html"
+class="category"
+style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85')"
+>
+<h3>CARGOS</h3>
+</a>
+
+</div>
 
 </section>
 
 
 <section class="catalog-cta">
 
-  <div class="eyebrow">
-    VANTA COLLECTION
-  </div>
+<div class="eyebrow">
+VANTA COLLECTION
+</div>
 
-  <h2>
-    ENCONTRE<br>
-    SEU ESTILO.
-  </h2>
+<h2>
+ENCONTRE<br>
+SEU ESTILO.
+</h2>
 
-  <p>
-    Descubra a coleção completa VANTA e escolha
-    as peças que combinam com sua presença.
-  </p>
+<p>
+Descubra a coleção completa VANTA e escolha
+as peças que combinam com sua presença.
+</p>
 
-  <a href="catalogo.html" class="catalog-button">
-    ABRIR CATÁLOGO
-  </a>
+<a href="catalogo.html" class="catalog-button">
+ABRIR CATÁLOGO
+</a>
 
 </section>
 
 
 <section>
 
-  <div class="eyebrow">
-    POR QUE VANTA?
-  </div>
+<div class="eyebrow">
+POR QUE VANTA?
+</div>
 
-  <h2 class="section-title">
-    ESSENCIAL.<br>
-    DIRETO.
-  </h2>
+<h2 class="section-title">
+ESSENCIAL.<br>
+DIRETO.
+</h2>
 
+<div class="benefits">
 
-  <div class="benefits">
+<div class="benefit">
 
-    <div class="benefit">
-      <strong>ESTILO URBANO</strong>
+<strong>ESTILO URBANO</strong>
 
-      <p>
-        Design inspirado na cultura streetwear
-        e na estética das grandes cidades.
-      </p>
-    </div>
+<p>
+Design inspirado na cultura streetwear
+e na estética das grandes cidades.
+</p>
 
-
-    <div class="benefit">
-      <strong>PEÇAS ESSENCIAIS</strong>
-
-      <p>
-        Modelos fáceis de combinar e feitos
-        para fazer parte do seu dia a dia.
-      </p>
-    </div>
+</div>
 
 
-    <div class="benefit">
-      <strong>VISTA SUA PRESENÇA</strong>
+<div class="benefit">
 
-      <p>
-        Mais que roupa. Uma forma de mostrar
-        quem você é sem precisar dizer nada.
-      </p>
-    </div>
+<strong>PEÇAS ESSENCIAIS</strong>
 
-  </div>
+<p>
+Modelos fáceis de combinar e feitos
+para fazer parte do seu dia a dia.
+</p>
+
+</div>
+
+
+<div class="benefit">
+
+<strong>VISTA SUA PRESENÇA</strong>
+
+<p>
+Mais que roupa. Uma forma de mostrar
+quem você é sem precisar dizer nada.
+</p>
+
+</div>
+
+</div>
 
 </section>
 
 
 <section class="about">
 
-  <div class="eyebrow">
-    SOBRE A VANTA
-  </div>
+<div class="eyebrow">
+SOBRE A VANTA
+</div>
 
-  <h2 class="section-title">
-    NÃO É SÓ<br>
-    ROUPA.
-  </h2>
+<h2 class="section-title">
+NÃO É SÓ<br>
+ROUPA.
+</h2>
 
-  <p class="section-text">
-    A VANTA nasceu para quem prefere presença
-    a excesso. Uma estética limpa, urbana e
-    confiante.
-  </p>
+<p class="section-text">
+A VANTA nasceu para quem prefere presença
+a excesso. Uma estética limpa, urbana e
+confiante.
+</p>
 
 </section>
 
 
 <footer>
 
-  <div>
-    © 2026 VANTA
-  </div>
+<div>
+© 2026 VANTA
+</div>
 
-  <div>
-    Vista sua presença.
-  </div>
+<div>
+Vista sua presença.
+</div>
 
 </footer>
 
 
 <script>
 
-  function atualizarCarrinho() {
+function atualizarCarrinho() {
 
-    const carrinho = JSON.parse(
-      localStorage.getItem("vantaCarrinho") || "[]"
-    );
+const carrinho = JSON.parse(
+localStorage.getItem("vantaCarrinho") || "[]"
+);
 
-    const total = carrinho.reduce(
-      (soma, item) => soma + (Number(item.quantidade) || 0),
-      0
-    );
+const total = carrinho.reduce(
+(soma, item) => soma + (Number(item.quantidade) || 0),
+0
+);
 
-    document.getElementById("cartCount").textContent = total;
+document.getElementById("cartCount").textContent = total;
 
-  }
+}
 
-  atualizarCarrinho();
+atualizarCarrinho();
 
 </script>
 
