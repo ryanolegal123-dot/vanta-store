@@ -1,530 +1,522 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VANTA | Vista sua presença</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
+  <title>VANTA — Vista sua presença</title>
 
-html{
-  scroll-behavior:smooth;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-body{
-  background:#0b0b0b;
-  color:#fff;
-}
+    body {
+      background: #080808;
+      color: #fff;
+    }
 
-header{
-  height:70px;
-  border-bottom:1px solid #222;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 30px;
-  position:sticky;
-  top:0;
-  background:#0b0b0bf2;
-  z-index:10;
-}
+    header {
+      height: 72px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #222;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(8,8,8,.85);
+      backdrop-filter: blur(12px);
+      z-index: 20;
+    }
 
-.logo{
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:4px;
-}
+    .logo {
+      color: #fff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 5px;
+    }
 
-nav{
-  display:flex;
-  gap:25px;
-}
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
 
-nav a{
-  color:#aaa;
-  text-decoration:none;
-  font-size:14px;
-}
+    nav a {
+      color: #999;
+      text-decoration: none;
+      font-size: 13px;
+      transition: .2s;
+    }
 
-nav a:hover{
-  color:#fff;
-}
+    nav a:hover {
+      color: #fff;
+    }
 
-.cart{
-  color:#fff;
-  text-decoration:none;
-  font-size:14px;
-}
+    .cart {
+      color: #fff;
+      border: 1px solid #333;
+      padding: 9px 13px;
+      border-radius: 5px;
+    }
 
-.hero{
-  min-height:600px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:60px 20px;
-  background:
-    linear-gradient(#0009,#0009),
-    url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=90")
-    center/cover;
-}
+    .cart span {
+      color: #999;
+      margin-left: 4px;
+    }
 
-.hero h1{
-  font-size:clamp(45px,9vw,90px);
-  font-weight:900;
-  letter-spacing:-3px;
-  margin-bottom:20px;
-}
+    .hero {
+      min-height: 100vh;
+      padding: 72px 6% 50px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.95) 0%,
+          rgba(0,0,0,.7) 45%,
+          rgba(0,0,0,.25) 100%
+        ),
+        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=90")
+        center / cover;
+    }
 
-.hero p{
-  color:#ccc;
-  font-size:18px;
-  margin-bottom:30px;
-}
+    .hero-content {
+      max-width: 760px;
+    }
 
-.btn{
-  display:inline-block;
-  padding:16px 30px;
-  background:#fff;
-  color:#000;
-  text-decoration:none;
-  border-radius:7px;
-  font-weight:bold;
-}
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #aaa;
+      margin-bottom: 25px;
+    }
 
-.btn:hover{
-  background:#ddd;
-}
+    .hero h1 {
+      font-size: clamp(58px, 12vw, 145px);
+      line-height: .82;
+      letter-spacing: -7px;
+      font-weight: 900;
+    }
 
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:70px 20px;
-}
+    .hero p {
+      max-width: 430px;
+      color: #aaa;
+      margin-top: 30px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
 
-.titulo{
-  font-size:30px;
-  margin-bottom:30px;
-}
+    .hero-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 16px 28px;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      transition: .2s;
+    }
 
-.categorias{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-}
+    .hero-button:hover {
+      background: #ccc;
+    }
 
-.categoria{
-  height:180px;
-  background:#151515;
-  border:1px solid #252525;
-  border-radius:10px;
-  display:flex;
-  align-items:end;
-  padding:20px;
-  color:#fff;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:bold;
-}
+    section {
+      padding: 100px 6%;
+    }
 
-.categoria:hover{
-  background:#202020;
-}
+    .section-title {
+      font-size: clamp(38px, 7vw, 70px);
+      letter-spacing: -3px;
+      margin-bottom: 15px;
+    }
 
-.produtos{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
+    .section-text {
+      color: #777;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 500px;
+    }
 
-.card{
-  background:#111;
-  border:1px solid #222;
-  border-radius:10px;
-  overflow:hidden;
-  transition:.2s;
-}
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 45px;
+    }
 
-.card:hover{
-  transform:translateY(-4px);
-}
+    .category {
+      min-height: 260px;
+      display: flex;
+      align-items: end;
+      padding: 25px;
+      text-decoration: none;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
 
-.card img{
-  width:100%;
-  height:300px;
-  object-fit:cover;
-}
+    .category::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.9));
+    }
 
-.card-info{
-  padding:17px;
-}
+    .category h3 {
+      position: relative;
+      font-size: 25px;
+      letter-spacing: -1px;
+    }
 
-.card h3{
-  font-size:16px;
-  margin-bottom:10px;
-}
+    .catalog-cta {
+      background: #fff;
+      color: #000;
+      text-align: center;
+      padding: 90px 6%;
+    }
 
-.preco{
-  font-size:19px;
-  font-weight:bold;
-}
+    .catalog-cta h2 {
+      font-size: clamp(42px, 8vw, 85px);
+      letter-spacing: -4px;
+      line-height: .9;
+    }
 
-.antigo{
-  color:#666;
-  text-decoration:line-through;
-  font-size:13px;
-  margin-bottom:4px;
-}
+    .catalog-cta p {
+      color: #555;
+      margin: 22px auto;
+      max-width: 450px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-.card a{
-  display:block;
-  margin-top:15px;
-  padding:12px;
-  text-align:center;
-  background:#fff;
-  color:#000;
-  text-decoration:none;
-  border-radius:6px;
-  font-size:13px;
-  font-weight:bold;
-}
+    .catalog-button {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 16px 30px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 4px;
+    }
 
-.beneficios{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
 
-.beneficio{
-  background:#111;
-  border:1px solid #222;
-  border-radius:10px;
-  padding:25px;
-}
+    .benefit {
+      border-top: 1px solid #333;
+      padding-top: 20px;
+    }
 
-.beneficio h3{
-  margin-bottom:10px;
-}
+    .benefit strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
 
-.beneficio p{
-  color:#888;
-  line-height:1.5;
-  font-size:14px;
-}
+    .benefit p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
 
-.sobre{
-  text-align:center;
-  max-width:750px;
-}
+    .about {
+      border-top: 1px solid #222;
+    }
 
-.sobre p{
-  color:#999;
-  line-height:1.7;
-}
+    footer {
+      border-top: 1px solid #222;
+      padding: 40px 6%;
+      color: #555;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
 
-footer{
-  border-top:1px solid #222;
-  padding:40px 20px;
-  text-align:center;
-  color:#666;
-  font-size:13px;
-}
+    @media (max-width: 700px) {
 
-@media(max-width:800px){
+      header {
+        padding: 0 5%;
+      }
 
-  header{
-    padding:0 15px;
-  }
+      nav a:not(.cart) {
+        display: none;
+      }
 
-  nav{
-    display:none;
-  }
+      .hero {
+        min-height: 100svh;
+        padding: 90px 5% 50px;
+      }
 
-  .categorias{
-    grid-template-columns:repeat(2,1fr);
-  }
+      .hero h1 {
+        font-size: 65px;
+        letter-spacing: -4px;
+      }
 
-  .produtos{
-    grid-template-columns:repeat(2,1fr);
-  }
+      .categories {
+        grid-template-columns: 1fr;
+      }
 
-  .beneficios{
-    grid-template-columns:1fr;
-  }
+      .category {
+        min-height: 220px;
+      }
 
-  .card img{
-    height:240px;
-  }
+      .benefits {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
 
-}
+      section {
+        padding: 75px 5%;
+      }
 
-@media(max-width:450px){
-
-  .produtos{
-    grid-template-columns:1fr;
-  }
-
-  .card img{
-    height:350px;
-  }
-
-}
-</style>
+      footer {
+        display: block;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">VANTA</div>
+  <a href="index.html" class="logo">
+    VANTA
+  </a>
 
-<nav>
-<a href="#categorias">Categorias</a>
-<a href="#produtos">Produtos</a>
-<a href="#sobre">Sobre</a>
-</nav>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Catálogo</a>
 
-<a href="carrinho.html" class="cart">
-🛒 Carrinho
-</a>
+    <a href="carrinho.html" class="cart">
+      Carrinho <span id="cartCount">0</span>
+    </a>
+  </nav>
 
 </header>
 
+
 <section class="hero">
 
-<div>
+  <div class="hero-content">
 
-<h1>VISTA SUA<br>PRESENÇA.</h1>
+    <div class="eyebrow">
+      VANTA / STREETWEAR
+    </div>
 
-<p>
-Streetwear masculino. Visual forte. Sem exagero.
-</p>
+    <h1>
+      VISTA<br>
+      SUA<br>
+      PRESENÇA.
+    </h1>
 
-<a href="#produtos" class="btn">
-VER PRODUTOS
-</a>
+    <p>
+      Streetwear essencial para quem não precisa chamar atenção
+      para ser notado.
+    </p>
 
-</div>
+    <a href="catalogo.html" class="hero-button">
+      VER CATÁLOGO
+    </a>
 
-</section>
-
-<section id="categorias">
-
-<h2 class="titulo">
-Categorias
-</h2>
-
-<div class="categorias">
-
-<a href="#produtos" class="categoria">
-CAMISETAS
-</a>
-
-<a href="#produtos" class="categoria">
-CALÇAS
-</a>
-
-<a href="#produtos" class="categoria">
-MOLETONS
-</a>
-
-<a href="#produtos" class="categoria">
-ACESSÓRIOS
-</a>
-
-</div>
+  </div>
 
 </section>
 
-<section id="produtos">
-
-<h2 class="titulo">
-Mais vendidos
-</h2>
-
-<div class="produtos">
-
-<div class="card">
-
-<img
-src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=90"
-alt="Oversized Essential Black">
-
-<div class="card-info">
-
-<h3>
-Oversized Essential Black
-</h3>
-
-<div class="antigo">
-R$ 119,90
-</div>
-
-<div class="preco">
-R$ 89,90
-</div>
-
-<a href="produto.html">
-VER PRODUTO
-</a>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img
-src="https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=800&q=90"
-alt="Boxy Premium White">
-
-<div class="card-info">
-
-<h3>
-Boxy Premium White
-</h3>
-
-<div class="antigo">
-R$ 109,90
-</div>
-
-<div class="preco">
-R$ 79,90
-</div>
-
-<a href="produto-boxy.html">
-VER PRODUTO
-</a>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img
-src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=90"
-alt="Cargo Urban Black">
-
-<div class="card-info">
-
-<h3>
-Cargo Urban Black
-</h3>
-
-<div class="preco">
-R$ 129,90
-</div>
-
-<a href="produto-cargo.html">
-VER PRODUTO
-</a>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img
-src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=90"
-alt="VANTA Essential Hoodie">
-
-<div class="card-info">
-
-<h3>
-VANTA Essential Hoodie
-</h3>
-
-<div class="antigo">
-R$ 189,90
-</div>
-
-<div class="preco">
-R$ 149,90
-</div>
-
-<a href="moletom.html">
-VER PRODUTO
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
 
 <section>
 
-<div class="beneficios">
+  <div class="eyebrow">
+    EXPLORE
+  </div>
 
-<div class="beneficio">
+  <h2 class="section-title">
+    CATEGORIAS
+  </h2>
 
-<h3>
-🚚 Envio
-</h3>
+  <p class="section-text">
+    Peças pensadas para construir um visual urbano,
+    minimalista e marcante.
+  </p>
 
-<p>
-Receba seu pedido no conforto da sua casa.
-</p>
 
-</div>
+  <div class="categories">
 
-<div class="beneficio">
+    <a
+      href="catalogo.html"
+      class="category"
+      style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85')"
+    >
+      <h3>CAMISETAS</h3>
+    </a>
 
-<h3>
-🔒 Compra segura
-</h3>
 
-<p>
-Seu pedido será processado com segurança.
-</p>
+    <a
+      href="catalogo.html"
+      class="category"
+      style="background-image:url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85')"
+    >
+      <h3>MOLETONS</h3>
+    </a>
 
-</div>
 
-<div class="beneficio">
+    <a
+      href="catalogo.html"
+      class="category"
+      style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85')"
+    >
+      <h3>CARGOS</h3>
+    </a>
 
-<h3>
-⚡ VANTA
-</h3>
+  </div>
 
-<p>
-Peças essenciais para um visual forte e autêntico.
-</p>
+</section>
 
-</div>
 
-</div>
+<section class="catalog-cta">
+
+  <div class="eyebrow">
+    VANTA COLLECTION
+  </div>
+
+  <h2>
+    ENCONTRE<br>
+    SEU ESTILO.
+  </h2>
+
+  <p>
+    Descubra a coleção completa VANTA e escolha
+    as peças que combinam com sua presença.
+  </p>
+
+  <a href="catalogo.html" class="catalog-button">
+    ABRIR CATÁLOGO
+  </a>
 
 </section>
 
-<section id="sobre" class="sobre">
 
-<h2 class="titulo">
-Sobre a VANTA
-</h2>
+<section>
 
-<p>
-A VANTA nasceu para quem não precisa exagerar
-para ser notado. Streetwear masculino com
-design minimalista, presença e atitude.
-</p>
+  <div class="eyebrow">
+    POR QUE VANTA?
+  </div>
+
+  <h2 class="section-title">
+    ESSENCIAL.<br>
+    DIRETO.
+  </h2>
+
+
+  <div class="benefits">
+
+    <div class="benefit">
+      <strong>ESTILO URBANO</strong>
+
+      <p>
+        Design inspirado na cultura streetwear
+        e na estética das grandes cidades.
+      </p>
+    </div>
+
+
+    <div class="benefit">
+      <strong>PEÇAS ESSENCIAIS</strong>
+
+      <p>
+        Modelos fáceis de combinar e feitos
+        para fazer parte do seu dia a dia.
+      </p>
+    </div>
+
+
+    <div class="benefit">
+      <strong>VISTA SUA PRESENÇA</strong>
+
+      <p>
+        Mais que roupa. Uma forma de mostrar
+        quem você é sem precisar dizer nada.
+      </p>
+    </div>
+
+  </div>
 
 </section>
+
+
+<section class="about">
+
+  <div class="eyebrow">
+    SOBRE A VANTA
+  </div>
+
+  <h2 class="section-title">
+    NÃO É SÓ<br>
+    ROUPA.
+  </h2>
+
+  <p class="section-text">
+    A VANTA nasceu para quem prefere presença
+    a excesso. Uma estética limpa, urbana e
+    confiante.
+  </p>
+
+</section>
+
 
 <footer>
 
-VANTA © 2026 — Vista sua presença.
+  <div>
+    © 2026 VANTA
+  </div>
+
+  <div>
+    Vista sua presença.
+  </div>
 
 </footer>
+
+
+<script>
+
+  function atualizarCarrinho() {
+
+    const carrinho = JSON.parse(
+      localStorage.getItem("vantaCarrinho") || "[]"
+    );
+
+    const total = carrinho.reduce(
+      (soma, item) => soma + (Number(item.quantidade) || 0),
+      0
+    );
+
+    document.getElementById("cartCount").textContent = total;
+  }
+
+  atualizarCarrinho();
+
+</script>
 
 </body>
 </html>
