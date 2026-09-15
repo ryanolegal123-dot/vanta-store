@@ -666,14 +666,18 @@ await resposta.json();
 
 if(!resposta.ok){
 
-console.error(dados);
+console.error("ERRO SUPABASE:", dados);
+
+alert(
+"Erro do Supabase:\n\n" +
+JSON.stringify(dados, null, 2)
+);
 
 throw new Error(
 "Erro ao salvar pedido"
 );
 
 }
-
 
 /* ================================
    PEGAR PEDIDO CRIADO
