@@ -4,9 +4,12 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>VANTA</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<title>Produto | VANTA</title>
 
 <style>
 
@@ -18,120 +21,338 @@ font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-background:#0b0b0b;
+background:#080808;
 color:#fff;
 }
+
+/* HEADER */
 
 header{
 height:70px;
-border-bottom:1px solid #222;
+padding:0 6%;
+
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 25px;
+
+border-bottom:1px solid #222;
+
+position:sticky;
+top:0;
+
+background:rgba(8,8,8,.94);
+backdrop-filter:blur(12px);
+
+z-index:10;
 }
 
 .logo{
-font-size:26px;
-font-weight:900;
-letter-spacing:4px;
 color:#fff;
 text-decoration:none;
+
+font-size:25px;
+font-weight:900;
+letter-spacing:5px;
 }
 
-.back{
-color:#aaa;
+nav{
+display:flex;
+align-items:center;
+gap:24px;
+}
+
+nav a{
+color:#999;
 text-decoration:none;
 font-size:13px;
 }
 
-.container{
-max-width:1000px;
-margin:40px auto;
-padding:20px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
+nav a:hover{
+color:#fff;
 }
 
-.produto-img{
+.cart{
+color:#fff;
+border:1px solid #333;
+padding:9px 13px;
+border-radius:5px;
+}
+
+/* PRODUTO */
+
+.product-page{
+
 width:100%;
+max-width:1250px;
+
+margin:0 auto;
+
+padding:70px 40px 100px;
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:70px;
+
+}
+
+/* FOTO */
+
+.product-image{
+
+position:relative;
+
+width:100%;
+
 aspect-ratio:4/5;
+
+background:#111;
+
+overflow:hidden;
+}
+
+.product-image img{
+
+width:100%;
+height:100%;
+
 object-fit:cover;
-border-radius:12px;
+
 display:block;
-background:#151515;
+
 }
 
-h1{
-font-size:32px;
-margin-bottom:15px;
-}
+/* TAG */
 
-.preco{
-font-size:25px;
+.tag{
+
+position:absolute;
+
+top:18px;
+left:18px;
+
+background:#fff;
+color:#000;
+
+padding:8px 12px;
+
+font-size:10px;
+
 font-weight:bold;
-margin:15px 0;
+
+letter-spacing:1px;
+
+z-index:2;
 }
 
-.antigo{
-color:#777;
+/* INFORMAÇÕES */
+
+.product-info{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+}
+
+.product-info h1{
+
+font-size:
+clamp(40px,5vw,68px);
+
+line-height:.9;
+
+letter-spacing:-3px;
+
+margin-bottom:20px;
+}
+
+.old-price{
+
+color:#555;
+
 text-decoration:line-through;
-font-size:16px;
+
+font-size:14px;
+
+margin-bottom:5px;
 }
 
-.parcela{
+.price{
+
+font-size:25px;
+
+font-weight:bold;
+
+}
+
+.installment{
+
+color:#777;
+
+font-size:12px;
+
+margin-top:7px;
+
+margin-bottom:30px;
+}
+
+/* TAMANHOS */
+
+.label{
+
+font-size:11px;
+
+letter-spacing:1px;
+
+margin-bottom:10px;
+
 color:#aaa;
+}
+
+.sizes{
+
+display:flex;
+
+gap:8px;
+
 margin-bottom:25px;
 }
 
-label{
-display:block;
-margin-bottom:8px;
-font-weight:bold;
-}
+.size{
 
-select,
-input{
-width:100%;
-padding:14px;
-background:#181818;
+width:48px;
+height:42px;
+
+background:#111;
+
 border:1px solid #333;
-color:#fff;
-border-radius:8px;
-margin-bottom:18px;
-}
 
-button{
-width:100%;
-padding:17px;
-border:0;
-border-radius:8px;
-background:#fff;
-color:#000;
-font-weight:bold;
+color:#fff;
+
 cursor:pointer;
 }
 
-button:hover{
-background:#ddd;
-}
+.size.active{
 
-.carrinho-flutuante{
-position:fixed;
-right:20px;
-bottom:20px;
-width:58px;
-height:58px;
-border-radius:50%;
 background:#fff;
 color:#000;
+
+border-color:#fff;
+}
+
+/* QUANTIDADE */
+
+.quantity{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+margin-bottom:25px;
+}
+
+.quantity input{
+
+width:65px;
+
+background:#111;
+
+border:1px solid #333;
+
+color:#fff;
+
+padding:12px;
+
+text-align:center;
+
+font-size:14px;
+}
+
+/* BOTÃO */
+
+.add{
+
+width:100%;
+
+padding:17px;
+
+border:0;
+
+background:#fff;
+
+color:#000;
+
+font-size:11px;
+
+font-weight:bold;
+
+letter-spacing:1px;
+
+cursor:pointer;
+
+transition:.2s;
+}
+
+.add:hover{
+
+background:#ccc;
+
+}
+
+/* VOLTAR */
+
+.back{
+
+display:inline-block;
+
+margin-top:18px;
+
+color:#777;
+
+font-size:12px;
+
+text-decoration:none;
+}
+
+.back:hover{
+color:#fff;
+}
+
+/* CARRINHO FLUTUANTE */
+
+.carrinho-flutuante{
+
+position:fixed;
+
+right:22px;
+bottom:22px;
+
+width:58px;
+height:58px;
+
+border-radius:50%;
+
+background:#fff;
+color:#000;
+
 display:none;
+
 align-items:center;
 justify-content:center;
+
 font-size:24px;
+
 text-decoration:none;
+
 box-shadow:0 5px 25px rgba(0,0,0,.5);
+
 z-index:100;
 }
 
@@ -140,33 +361,74 @@ display:flex;
 }
 
 .contador{
+
 position:absolute;
+
 top:-5px;
 right:-5px;
-background:#000;
-color:#fff;
+
 width:22px;
 height:22px;
+
 border-radius:50%;
+
+background:#000;
+color:#fff;
+
+border:2px solid #fff;
+
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:11px;
+
+font-size:10px;
 font-weight:bold;
-border:2px solid #fff;
 }
 
-@media(max-width:700px){
+/* MOBILE */
 
-.container{
+@media(max-width:800px){
+
+header{
+padding:0 5%;
+}
+
+nav a:not(.cart){
+display:none;
+}
+
+.product-page{
+
 grid-template-columns:1fr;
-margin:20px auto;
-padding:15px;
-gap:25px;
+
+padding:35px 5% 80px;
+
+gap:40px;
+
 }
 
-h1{
-font-size:27px;
+.product-image{
+
+aspect-ratio:4/5;
+
+}
+
+.product-info h1{
+
+font-size:48px;
+
+}
+
+}
+
+/* CELULAR PEQUENO */
+
+@media(max-width:400px){
+
+.product-info h1{
+
+font-size:42px;
+
 }
 
 }
@@ -175,75 +437,167 @@ font-size:27px;
 
 </head>
 
+
 <body>
+
 
 <header>
 
-<a href="index.html" class="logo">VANTA</a>
+<a
+href="index.html"
+class="logo"
+>
+VANTA
+</a>
 
-<a href="catalogo.html" class="back">← Catálogo</a>
+
+<nav>
+
+<a href="index.html">
+Início
+</a>
+
+<a href="catalogo.html">
+Catálogo
+</a>
+
+<a
+href="carrinho.html"
+class="cart"
+>
+Carrinho
+<span id="cartCount">0</span>
+</a>
+
+</nav>
 
 </header>
 
 
-<div class="container">
+<main
+class="product-page"
+id="productPage"
+>
 
-<div>
+<div class="product-image">
+
+<span
+class="tag"
+id="productTag"
+>
+VANTA
+</span>
 
 <img
-id="produtoImagem"
-class="produto-img"
+id="productImage"
 src=""
-alt="Produto VANTA"
+alt=""
 >
 
 </div>
 
 
-<div>
+<div class="product-info">
 
-<h1 id="produtoNome"></h1>
-
-<div id="produtoAntigo" class="antigo"></div>
-
-<div id="produtoPreco" class="preco"></div>
-
-<div id="produtoParcela" class="parcela"></div>
+<h1 id="productName">
+Produto
+</h1>
 
 
-<label for="tamanho">
-Tamanho
-</label>
-
-<select id="tamanho">
-
-<option value="P">P</option>
-<option value="M" selected>M</option>
-<option value="G">G</option>
-<option value="GG">GG</option>
-
-</select>
-
-
-<label for="quantidade">
-Quantidade
-</label>
-
-<input
-id="quantidade"
-type="number"
-value="1"
-min="1"
+<div
+class="old-price"
+id="oldPrice"
 >
+</div>
 
 
-<button onclick="adicionarCarrinho()">
-ADICIONAR AO CARRINHO
+<div
+class="price"
+id="price"
+>
+</div>
+
+
+<div
+class="installment"
+id="installment"
+>
+</div>
+
+
+<div class="label">
+TAMANHO
+</div>
+
+
+<div class="sizes">
+
+<button
+class="size"
+data-size="P"
+>
+P
+</button>
+
+<button
+class="size active"
+data-size="M"
+>
+M
+</button>
+
+<button
+class="size"
+data-size="G"
+>
+G
+</button>
+
+<button
+class="size"
+data-size="GG"
+>
+GG
 </button>
 
 </div>
 
+
+<div class="label">
+QUANTIDADE
 </div>
+
+
+<div class="quantity">
+
+<input
+id="quantity"
+type="number"
+min="1"
+value="1"
+>
+
+</div>
+
+
+<button
+class="add"
+id="addButton"
+>
+ADICIONAR AO CARRINHO
+</button>
+
+
+<a
+href="catalogo.html"
+class="back"
+>
+← Voltar para o catálogo
+</a>
+
+</div>
+
+</main>
 
 
 <a
@@ -254,7 +608,10 @@ class="carrinho-flutuante"
 
 🛒
 
-<span id="contador" class="contador">
+<span
+id="contador"
+class="contador"
+>
 0
 </span>
 
@@ -263,9 +620,14 @@ class="carrinho-flutuante"
 
 <script>
 
+/*
+==================================================
+PRODUTOS VANTA
+==================================================
+*/
+
 const produtos = {
 
-/* 01 */
 oversized:{
 nome:"Oversized Essential Black",
 preco:89.90,
@@ -274,7 +636,6 @@ imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format
 tag:"ESSENTIAL"
 },
 
-/* 02 */
 boxy:{
 nome:"Boxy Premium White",
 preco:79.90,
@@ -283,7 +644,6 @@ imagem:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format
 tag:"BEST SELLER"
 },
 
-/* 03 */
 cargo:{
 nome:"Cargo Urban Black",
 preco:129.90,
@@ -292,7 +652,6 @@ imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fi
 tag:"NEW"
 },
 
-/* 04 */
 moletom:{
 nome:"VANTA Essential Hoodie",
 preco:149.90,
@@ -301,7 +660,6 @@ imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fi
 tag:"HOODIE"
 },
 
-/* 05 */
 oversizedwhite:{
 nome:"Oversized Heavy White",
 preco:94.90,
@@ -310,7 +668,6 @@ imagem:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format
 tag:"NEW"
 },
 
-/* 06 */
 oversizedgray:{
 nome:"Oversized Urban Gray",
 preco:94.90,
@@ -319,7 +676,6 @@ imagem:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format
 tag:"URBAN"
 },
 
-/* 07 */
 streetblack:{
 nome:"Street Tee Black",
 preco:69.90,
@@ -328,7 +684,6 @@ imagem:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format
 tag:"STREET"
 },
 
-/* 08 */
 basicgray:{
 nome:"Basic Premium Gray",
 preco:64.90,
@@ -337,7 +692,6 @@ imagem:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format
 tag:"BASIC"
 },
 
-/* 09 */
 cargoolive:{
 nome:"Cargo Tactical Olive",
 preco:139.90,
@@ -346,7 +700,6 @@ imagem:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format
 tag:"TACTICAL"
 },
 
-/* 10 */
 cargojeans:{
 nome:"Cargo Denim Black",
 preco:149.90,
@@ -355,7 +708,6 @@ imagem:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fi
 tag:"DENIM"
 },
 
-/* 11 */
 joggerblack:{
 nome:"Jogger Essential Black",
 preco:119.90,
@@ -364,16 +716,14 @@ imagem:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fi
 tag:"ESSENTIAL"
 },
 
-/* 12 */
 joggergray:{
 nome:"Jogger Urban Gray",
 preco:119.90,
 antigo:149.90,
-imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://images.unsplash.com/photo-1584865288642-42078afe6942?auto=format&fit=crop&w=1000&q=90",
 tag:"URBAN"
 },
 
-/* 13 */
 hoodieblack:{
 nome:"Heavy Hoodie Black",
 preco:169.90,
@@ -382,7 +732,6 @@ imagem:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format
 tag:"HEAVY"
 },
 
-/* 14 */
 hoodiegray:{
 nome:"Heavy Hoodie Gray",
 preco:169.90,
@@ -391,16 +740,14 @@ imagem:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format
 tag:"HEAVY"
 },
 
-/* 15 */
 ziphoodie:{
 nome:"Zip Hoodie Black",
 preco:179.90,
 antigo:219.90,
-imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/419503/item/goods_09_419503.jpg",
 tag:"ZIP"
 },
 
-/* 16 */
 jaqueta:{
 nome:"Urban Jacket Black",
 preco:199.90,
@@ -409,7 +756,6 @@ imagem:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fi
 tag:"JACKET"
 },
 
-/* 17 */
 camisa:{
 nome:"Overshirt Utility Black",
 preco:139.90,
@@ -418,16 +764,14 @@ imagem:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format
 tag:"UTILITY"
 },
 
-/* 18 */
 regata:{
 nome:"Regata Street Black",
 preco:59.90,
 antigo:79.90,
-imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
+imagem:"https://www.rokit.co.uk/cdn/shop/files/MECT-S46177V_1.jpg?v=1688525323",
 tag:"STREET"
 },
 
-/* 19 */
 boneblack:{
 nome:"VANTA Cap Black",
 preco:49.90,
@@ -436,7 +780,6 @@ imagem:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format
 tag:"ACCESSORY"
 },
 
-/* 20 */
 bermuda:{
 nome:"Bermuda Cargo Black",
 preco:89.90,
@@ -448,164 +791,249 @@ tag:"SUMMER"
 };
 
 
-const parametros =
-new URLSearchParams(window.location.search);
+/*
+==================================================
+IDENTIFICA O PRODUTO
+==================================================
+*/
+
+const params =
+new URLSearchParams(
+window.location.search
+);
 
 const id =
-parametros.get("id") || "oversized";
+params.get("id") || "oversized";
 
 const produto =
 produtos[id] || produtos.oversized;
 
 
-document.title =
-produto.nome + " | VANTA";
+/*
+==================================================
+PREENCHER PÁGINA
+==================================================
+*/
+
+document.getElementById(
+"productName"
+).textContent =
+produto.nome;
 
 
-document.getElementById("produtoNome")
-.textContent = produto.nome;
+document.getElementById(
+"productImage"
+).src =
+produto.imagem;
 
 
-document.getElementById("produtoImagem")
-.src = produto.imagem;
+document.getElementById(
+"productImage"
+).alt =
+produto.nome;
 
 
-document.getElementById("produtoImagem")
-.alt = produto.nome;
+document.getElementById(
+"productTag"
+).textContent =
+produto.tag;
 
 
-document.getElementById("produtoPreco")
-.textContent =
+document.getElementById(
+"oldPrice"
+).textContent =
+"R$ " +
+produto.antigo
+.toFixed(2)
+.replace(".",",");
+
+
+document.getElementById(
+"price"
+).textContent =
 "R$ " +
 produto.preco
 .toFixed(2)
 .replace(".",",");
 
 
-if(produto.antigo){
-
-document.getElementById("produtoAntigo")
-.textContent =
-"R$ " +
-produto.antigo
+document.getElementById(
+"installment"
+).textContent =
+"ou 3x de R$ " +
+(produto.preco / 3)
 .toFixed(2)
-.replace(".",",");
+.replace(".",",") +
+" sem juros";
 
-}else{
 
-document.getElementById("produtoAntigo")
-.style.display="none";
+document.title =
+produto.nome +
+" | VANTA";
+
+
+/*
+==================================================
+TAMANHOS
+==================================================
+*/
+
+let tamanhoSelecionado = "M";
+
+document
+.querySelectorAll(".size")
+.forEach(botao => {
+
+botao.addEventListener(
+"click",
+() => {
+
+document
+.querySelectorAll(".size")
+.forEach(b =>
+b.classList.remove("active")
+);
+
+botao.classList.add("active");
+
+tamanhoSelecionado =
+botao.dataset.size;
 
 }
+);
+
+});
 
 
-const parcela =
-produto.preco / 3;
+/*
+==================================================
+CARRINHO
+==================================================
+*/
 
-
-document.getElementById("produtoParcela")
-.textContent =
-"ou 3x de R$ " +
-parcela
-.toFixed(2)
-.replace(".",",");
-
-
-function pegarCarrinho(){
+function atualizarCarrinho(){
 
 let carrinho =
 JSON.parse(
-localStorage.getItem("vantaCarrinho")
+localStorage.getItem(
+"vantaCarrinho"
+)
 ) || [];
+
 
 if(!Array.isArray(carrinho)){
 carrinho=[];
 }
 
-return carrinho;
-
-}
-
-
-function atualizarCarrinho(){
-
-const carrinho =
-pegarCarrinho();
-
 
 const total =
 carrinho.reduce(
 (soma,item) =>
-soma + (Number(item.quantidade) || 0),
+soma +
+(Number(item.quantidade) || 0),
 0
 );
 
 
-document.getElementById("contador")
-.textContent = total;
+document.getElementById(
+"cartCount"
+).textContent =
+total;
+
+
+document.getElementById(
+"contador"
+).textContent =
+total;
 
 
 const botao =
-document.getElementById("carrinhoFlutuante");
+document.getElementById(
+"carrinhoFlutuante"
+);
 
 
 if(total > 0){
 
-botao.classList.add("ativo");
+botao.classList.add(
+"ativo"
+);
 
 }else{
 
-botao.classList.remove("ativo");
+botao.classList.remove(
+"ativo"
+);
 
 }
 
 }
 
 
-function adicionarCarrinho(){
+/*
+==================================================
+ADICIONAR
+==================================================
+*/
+
+document
+.getElementById("addButton")
+.addEventListener(
+"click",
+() => {
 
 let carrinho =
-pegarCarrinho();
+JSON.parse(
+localStorage.getItem(
+"vantaCarrinho"
+)
+) || [];
 
 
-const tamanho =
-document.getElementById("tamanho")
-.value;
+if(!Array.isArray(carrinho)){
+carrinho=[];
+}
 
 
 const quantidade =
 Math.max(
 1,
 Number(
-document.getElementById("quantidade").value
+document.getElementById(
+"quantity"
+).value
 ) || 1
 );
 
 
-const produtoExistente =
-carrinho.find(item =>
-item.nome === produto.nome &&
-item.tamanho === tamanho
+const existente =
+carrinho.find(
+item =>
+item.id === id &&
+item.tamanho === tamanhoSelecionado
 );
 
 
-if(produtoExistente){
+if(existente){
 
-produtoExistente.quantidade += quantidade;
+existente.quantidade +=
+quantidade;
 
 }else{
 
 carrinho.push({
 
+id:id,
+
 nome:produto.nome,
 
 preco:produto.preco,
 
-tamanho:tamanho,
+imagem:produto.imagem,
 
-quantidade:quantidade,
+tamanho:tamanhoSelecionado,
 
-imagem:produto.imagem
+quantidade:quantidade
 
 });
 
@@ -618,11 +1046,24 @@ JSON.stringify(carrinho)
 );
 
 
+atualizarCarrinho();
+
+
+/*
+VOLTA PARA O CATÁLOGO
+*/
+
 window.location.href =
 "catalogo.html";
 
-}
+});
 
+
+/*
+==================================================
+INICIAR
+==================================================
+*/
 
 atualizarCarrinho();
 
