@@ -61,11 +61,24 @@ h2{
   line-height:1.8;
 }
 
+.item{
+  padding:12px 0;
+  border-bottom:1px solid #222;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.item strong{
+  color:#fff;
+}
+
 .total{
   color:#fff;
   font-size:22px;
   font-weight:bold;
-  margin-top:10px;
+  margin-top:15px;
 }
 
 .metodos{
@@ -126,6 +139,11 @@ button{
 button:hover{
   background:#ddd;
 }
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 </style>
 </head>
 
@@ -144,7 +162,7 @@ button:hover{
 <h2>Resumo</h2>
 
 <div id="pedido" class="pedido">
-Carregando...
+  Carregando...
 </div>
 
 </div>
@@ -155,55 +173,113 @@ Carregando...
 
 <div class="metodos">
 
-<div class="metodo" id="pix" onclick="selecionar('PIX')">
-<strong>PIX</strong>
-<span>Pagamento instantâneo</span>
+<div
+  class="metodo"
+  id="pix"
+  onclick="selecionar('PIX')"
+>
+  <strong>PIX</strong>
+  <span>Pagamento instantâneo</span>
 </div>
 
-<div class="metodo" id="cartao" onclick="selecionar('Cartão')">
-<strong>Cartão</strong>
-<span>Crédito ou débito</span>
+<div
+  class="metodo"
+  id="cartao"
+  onclick="selecionar('Cartão')"
+>
+  <strong>Cartão</strong>
+  <span>Crédito ou débito</span>
 </div>
 
 </div>
 
 <div id="info" class="info">
-Escolha uma forma de pagamento.
+  Escolha uma forma de pagamento.
 </div>
 
 </div>
 
-<button onclick="pagar()">
-PAGAR PEDIDO
+<button id="botao" onclick="pagar()">
+  PAGAR PEDIDO
 </button>
 
 </div>
 
 <script>
 
-let pedido = JSON.parse(
-  localStorage.getItem("vantaPedidoAtual")
-);
+const SUPABASE_URL =
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
+let pedido =
+  JSON.parse(
+    localStorage.getItem("vantaCheckout")
+  );
 
 let metodoSelecionado = "";
 
-let area = document.getElementById("pedido");
+const area =
+  document.getElementById("pedido");
 
 if(!pedido){
 
-  area.innerHTML = "Nenhum pedido encontrado.";
+  area.innerHTML =
+    "Nenhum pedido encontrado.";
 
 }else{
 
-  area.innerHTML = `
-    <div><strong>${pedido.produto}</strong></div>
-    <div>Tamanho: ${pedido.tamanho}</div>
-    <div>Quantidade: ${pedido.quantidade}</div>
-    <div>Cliente: ${pedido.nome}</div>
+  let html = "";
+
+  if(Array.isArray(pedido.itens)){
+
+    pedido.itens.forEach(item => {
+
+      const preco =
+        Number(item.preco) || 0;
+
+      const quantidade =
+        Number(item.quantidade) || 1;
+
+      const subtotal =
+        preco * quantidade;
+
+      html += `
+        <div class="item">
+          <strong>
+            ${item.nome || "Produto"}
+          </strong><br>
+
+          Tamanho:
+          ${item.tamanho || "Único"}<br>
+
+          Quantidade:
+          ${quantidade}<br>
+
+          Subtotal:
+          R$ ${subtotal.toFixed(2).replace(".",",")}
+        </div>
+      `;
+
+    });
+
+  }
+
+  html += `
+    <div>
+      Cliente: ${pedido.nome}
+    </div>
+
     <div class="total">
-      Total: R$ ${pedido.total.toFixed(2).replace(".",",")}
+      Total: R$
+      ${Number(pedido.total)
+        .toFixed(2)
+        .replace(".",",")}
     </div>
   `;
+
+  area.innerHTML = html;
 }
 
 function selecionar(metodo){
@@ -237,7 +313,7 @@ function selecionar(metodo){
   }
 }
 
-function pagar(){
+async function pagar(){
 
   if(!pedido){
 
@@ -253,27 +329,190 @@ function pagar(){
 
   }
 
-  pedido.pagamento = metodoSelecionado;
-  pedido.status = "Pagamento iniciado";
+  const botao =
+    document.getElementById("botao");
 
-  let pedidos =
-    JSON.parse(localStorage.getItem("vantaPedidos")) || [];
+  botao.disabled = true;
+  botao.innerText = "REGISTRANDO PEDIDO...";
 
-  pedidos.push(pedido);
+  try{
 
-  localStorage.setItem(
-    "vantaPedidos",
-    JSON.stringify(pedidos)
-  );
+    /*
+      AGORA SIM o pedido é criado no Supabase.
 
-  localStorage.removeItem("vantaPedidoAtual");
-  localStorage.removeItem("vantaCarrinho");
+      Isso acontece SOMENTE depois que
+      o cliente escolheu a forma de pagamento.
+    */
 
-  alert(
-    "Pedido registrado! O pagamento será conectado em breve."
-  );
+    const resposta =
+      await fetch(
+        `${SUPABASE_URL}/rest/v1/pedidos`,
+        {
+          method:"POST",
 
-  window.location.href = "pedidos.html";
+          headers:{
+            "apikey":SUPABASE_KEY,
+            "Authorization":
+              `Bearer ${SUPABASE_KEY}`,
+            "Content-Type":
+              "application/json",
+            "Prefer":
+              "return=representation"
+          },
+
+          body:JSON.stringify({
+
+            nome_cliente:
+              pedido.nome,
+
+            telefone:
+              pedido.whatsapp,
+
+            cpf:
+              pedido.cpf,
+
+            endereco:
+              pedido.endereco,
+
+            cidade:
+              pedido.cidade,
+
+            estado:
+              pedido.estado,
+
+            cep:
+              pedido.cep,
+
+            itens:
+              pedido.itens,
+
+            total:
+              Number(pedido.total),
+
+            forma_pagamento:
+              metodoSelecionado,
+
+            status:
+              "Pagamento iniciado"
+
+          })
+        }
+      );
+
+    const dados =
+      await resposta.json();
+
+    if(!resposta.ok){
+
+      console.error(
+        "Erro Supabase:",
+        dados
+      );
+
+      throw new Error(
+        dados.message ||
+        dados.error_description ||
+        "Erro ao registrar pedido."
+      );
+
+    }
+
+    const pedidoCriado =
+      Array.isArray(dados)
+        ? dados[0]
+        : dados;
+
+    /*
+      Guardamos também uma cópia local
+      para a página de pedidos.
+    */
+
+    const pedidoLocal = {
+
+      id:
+        pedidoCriado?.id || null,
+
+      numero_pedido:
+        pedidoCriado?.numero_pedido || null,
+
+      nome:
+        pedido.nome,
+
+      whatsapp:
+        pedido.whatsapp,
+
+      cpf:
+        pedido.cpf,
+
+      endereco:
+        pedido.endereco,
+
+      cidade:
+        pedido.cidade,
+
+      estado:
+        pedido.estado,
+
+      cep:
+        pedido.cep,
+
+      itens:
+        pedido.itens,
+
+      total:
+        Number(pedido.total),
+
+      pagamento:
+        metodoSelecionado,
+
+      status:
+        "Pagamento iniciado",
+
+      data:
+        new Date().toISOString()
+
+    };
+
+    let pedidos =
+      JSON.parse(
+        localStorage.getItem("vantaPedidos")
+      ) || [];
+
+    pedidos.push(pedidoLocal);
+
+    localStorage.setItem(
+      "vantaPedidos",
+      JSON.stringify(pedidos)
+    );
+
+    /*
+      Limpa os dados temporários.
+    */
+
+    localStorage.removeItem("vantaCheckout");
+    localStorage.removeItem("vantaCarrinho");
+
+    alert(
+      "Pedido registrado com sucesso!"
+    );
+
+    window.location.href =
+      "pedidos.html";
+
+  }catch(erro){
+
+    console.error(erro);
+
+    alert(
+      "Não foi possível registrar o pedido.\n\n" +
+      "Tente novamente."
+    );
+
+    botao.disabled = false;
+    botao.innerText = "PAGAR PEDIDO";
+
+  }
+
 }
 
 </script>
