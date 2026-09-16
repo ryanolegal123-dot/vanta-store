@@ -1,920 +1,443 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>Checkout | VANTA</title>
 
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
 }
 
 body{
-background:#0b0b0b;
-color:#fff;
+  background:#0b0b0b;
+  color:#fff;
 }
 
 header{
-height:70px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-bottom:1px solid #222;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid #222;
 }
 
 .logo{
-font-size:26px;
-font-weight:900;
-letter-spacing:4px;
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
 .container{
-max-width:700px;
-margin:40px auto;
-padding:20px;
+  max-width:600px;
+  margin:40px auto;
+  padding:20px;
 }
 
 h1{
-font-size:30px;
-margin-bottom:25px;
+  font-size:30px;
+  margin-bottom:25px;
 }
 
 .box{
-background:#111;
-border:1px solid #222;
-padding:22px;
-border-radius:12px;
-margin-bottom:20px;
+  background:#111;
+  border:1px solid #222;
+  border-radius:12px;
+  padding:22px;
+  margin-bottom:20px;
 }
 
 h2{
-font-size:18px;
-margin-bottom:18px;
+  font-size:18px;
+  margin-bottom:18px;
 }
 
-input,select{
-width:100%;
-padding:14px;
-margin-bottom:12px;
-background:#181818;
-border:1px solid #333;
-border-radius:8px;
-color:#fff;
-outline:none;
+label{
+  display:block;
+  margin-bottom:7px;
+  font-size:14px;
+  color:#ccc;
 }
 
-.row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+input,
+select{
+  width:100%;
+  padding:14px;
+  margin-bottom:16px;
+  border:1px solid #333;
+  border-radius:8px;
+  background:#181818;
+  color:#fff;
+  outline:none;
+}
+
+input:focus,
+select:focus{
+  border-color:#fff;
+}
+
+.linha{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
 .resumo{
-color:#bbb;
-line-height:1.8;
+  color:#bbb;
+  line-height:1.7;
 }
 
-.item-resumo{
-padding:12px 0;
-border-bottom:1px solid #222;
+.item{
+  padding:12px 0;
+  border-bottom:1px solid #222;
 }
 
-.item-resumo:last-child{
-border-bottom:0;
+.item:last-child{
+  border-bottom:0;
 }
 
-.item-nome{
-color:#fff;
-font-weight:bold;
+.item strong{
+  color:#fff;
 }
 
 .total{
-font-size:22px;
-font-weight:bold;
-color:#fff;
-margin-top:15px;
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+  margin-top:15px;
 }
 
 button{
-width:100%;
-padding:17px;
-border:0;
-border-radius:8px;
-background:#fff;
-color:#000;
-font-weight:bold;
-font-size:15px;
-cursor:pointer;
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
 }
 
 button:hover{
-background:#ddd;
+  background:#ddd;
 }
 
 button:disabled{
-opacity:.5;
-cursor:not-allowed;
+  opacity:.6;
+  cursor:not-allowed;
 }
 
-.erro{
-color:#ff5555;
-margin-bottom:15px;
-display:none;
-line-height:1.5;
+@media(max-width:500px){
+  .linha{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+
+  .container{
+    margin:20px auto;
+    padding:15px;
+  }
 }
-
-.sucesso{
-color:#62ff8a;
-margin-bottom:15px;
-display:none;
-}
-
-.aviso{
-color:#777;
-font-size:12px;
-margin-top:10px;
-line-height:1.5;
-}
-
-@media(max-width:600px){
-
-.row{
-grid-template-columns:1fr;
-gap:0;
-}
-
-.container{
-margin:20px auto;
-padding:15px;
-}
-
-h1{
-font-size:26px;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<div class="logo">VANTA</div>
-
+  <div class="logo">VANTA</div>
 </header>
-
 
 <div class="container">
 
-<h1>Finalizar compra</h1>
-
+<h1>Checkout</h1>
 
 <div class="box">
 
 <h2>Seus dados</h2>
 
-<div id="erro" class="erro">
-Preencha todos os campos obrigatórios.
-</div>
+<label for="nome">Nome completo</label>
+<input id="nome" type="text" placeholder="Seu nome completo">
 
-<input
-id="nome"
-type="text"
-placeholder="Nome completo"
-autocomplete="name"
->
+<label for="whatsapp">WhatsApp</label>
+<input id="whatsapp" type="tel" placeholder="(11) 99999-9999">
 
-<input
-id="whatsapp"
-type="tel"
-placeholder="WhatsApp"
-autocomplete="tel"
->
+<label for="cpf">CPF</label>
+<input id="cpf" type="text" placeholder="000.000.000-00">
 
-<input
-id="cpf"
-type="text"
-placeholder="CPF"
-inputmode="numeric"
-autocomplete="off"
->
+<label for="cep">CEP</label>
+<input id="cep" type="text" placeholder="00000-000" onblur="buscarCEP()">
 
-<input
-id="cep"
-type="text"
-placeholder="CEP"
-inputmode="numeric"
-onblur="buscarCEP()"
-autocomplete="postal-code"
->
+<label for="rua">Rua</label>
+<input id="rua" type="text" placeholder="Nome da rua">
 
-<input
-id="rua"
-type="text"
-placeholder="Rua"
-autocomplete="street-address"
->
+<div class="linha">
 
-<div class="row">
+  <div>
+    <label for="numero">Número</label>
+    <input id="numero" type="text" placeholder="123">
+  </div>
 
-<input
-id="numero"
-type="text"
-placeholder="Número"
->
-
-<input
-id="complemento"
-type="text"
-placeholder="Complemento"
->
+  <div>
+    <label for="complemento">Complemento</label>
+    <input id="complemento" type="text" placeholder="Opcional">
+  </div>
 
 </div>
 
-<input
-id="cidade"
-type="text"
-placeholder="Cidade"
-autocomplete="address-level2"
->
+<label for="cidade">Cidade</label>
+<input id="cidade" type="text" placeholder="Cidade">
 
+<label for="estado">Estado</label>
 <select id="estado">
-
-<option value="">Estado</option>
-
-<option>AC</option>
-<option>AL</option>
-<option>AP</option>
-<option>AM</option>
-<option>BA</option>
-<option>CE</option>
-<option>DF</option>
-<option>ES</option>
-<option>GO</option>
-<option>MA</option>
-<option>MT</option>
-<option>MS</option>
-<option>MG</option>
-<option>PA</option>
-<option>PB</option>
-<option>PR</option>
-<option>PE</option>
-<option>PI</option>
-<option>RJ</option>
-<option>RN</option>
-<option>RS</option>
-<option>RO</option>
-<option>RR</option>
-<option>SC</option>
-<option>SP</option>
-<option>SE</option>
-<option>TO</option>
-
+  <option value="">Selecione</option>
+  <option value="AC">AC</option>
+  <option value="AL">AL</option>
+  <option value="AP">AP</option>
+  <option value="AM">AM</option>
+  <option value="BA">BA</option>
+  <option value="CE">CE</option>
+  <option value="DF">DF</option>
+  <option value="ES">ES</option>
+  <option value="GO">GO</option>
+  <option value="MA">MA</option>
+  <option value="MT">MT</option>
+  <option value="MS">MS</option>
+  <option value="MG">MG</option>
+  <option value="PA">PA</option>
+  <option value="PB">PB</option>
+  <option value="PR">PR</option>
+  <option value="PE">PE</option>
+  <option value="PI">PI</option>
+  <option value="RJ">RJ</option>
+  <option value="RN">RN</option>
+  <option value="RS">RS</option>
+  <option value="RO">RO</option>
+  <option value="RR">RR</option>
+  <option value="SC">SC</option>
+  <option value="SP">SP</option>
+  <option value="SE">SE</option>
+  <option value="TO">TO</option>
 </select>
 
 </div>
-
 
 <div class="box">
 
 <h2>Resumo do pedido</h2>
 
 <div id="resumo" class="resumo">
-Carregando...
+  Carregando...
 </div>
 
 </div>
 
-
-<button
-id="botao"
-onclick="continuarPagamento()"
->
-
-CONTINUAR PARA PAGAMENTO
-
+<button id="botao" onclick="continuarPagamento()">
+  CONTINUAR PARA PAGAMENTO
 </button>
 
 </div>
 
-
 <script>
 
-
-/* =====================================
-   SUPABASE
-===================================== */
-
 const SUPABASE_URL =
-"https://pzqgsbxuhsesfxhmgfbi.supabase.co";
-
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
-
-
-/* =====================================
-   CARRINHO
-===================================== */
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
 
 let carrinho =
-JSON.parse(
-localStorage.getItem("vantaCarrinho")
-) || [];
+  JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
 
-
-/*
-Compatibilidade com carrinho antigo:
-se existir um único objeto, transforma em array.
-*/
-
-if(
-!Array.isArray(carrinho) &&
-carrinho &&
-carrinho.nome
-){
-
-carrinho = [carrinho];
-
-localStorage.setItem(
-"vantaCarrinho",
-JSON.stringify(carrinho)
-);
-
-}
-
-
-const resumo =
-document.getElementById("resumo");
-
-
-/* =====================================
-   DINHEIRO
-===================================== */
-
-function dinheiro(valor){
-
-return Number(valor || 0)
-.toFixed(2)
-.replace(".",",");
-
-}
-
-
-/* =====================================
-   TOTAL
-===================================== */
-
-function calcularTotal(){
-
-return carrinho.reduce(
-(total, produto) => {
-
-let preco =
-Number(produto.preco) || 0;
-
-let quantidade =
-Number(produto.quantidade) || 0;
-
-return total +
-(preco * quantidade);
-
-},
-0
-);
-
-}
-
-
-/* =====================================
-   MOSTRAR RESUMO
-===================================== */
+const resumo = document.getElementById("resumo");
 
 function mostrarResumo(){
 
-if(
-!Array.isArray(carrinho) ||
-carrinho.length === 0
-){
+  if(!carrinho.length){
 
-resumo.innerHTML =
-"Seu carrinho está vazio.";
+    resumo.innerHTML = "Seu carrinho está vazio.";
+    return;
+  }
 
-document.getElementById(
-"botao"
-).disabled = true;
+  let total = 0;
 
-return;
+  resumo.innerHTML = carrinho.map(item => {
 
+    const preco = Number(item.preco) || 0;
+    const quantidade = Number(item.quantidade) || 1;
+    const subtotal = preco * quantidade;
+
+    total += subtotal;
+
+    return `
+      <div class="item">
+        <strong>${item.nome || "Produto"}</strong><br>
+        Tamanho: ${item.tamanho || "Único"}<br>
+        Quantidade: ${quantidade}<br>
+        Preço: R$ ${preco.toFixed(2).replace(".",",")}<br>
+        Subtotal: R$ ${subtotal.toFixed(2).replace(".",",")}
+      </div>
+    `;
+
+  }).join("");
+
+  resumo.innerHTML += `
+    <div class="total">
+      Total: R$ ${total.toFixed(2).replace(".",",")}
+    </div>
+  `;
 }
-
-
-let html = "";
-
-
-carrinho.forEach(produto => {
-
-let preco =
-Number(produto.preco) || 0;
-
-let quantidade =
-Number(produto.quantidade) || 0;
-
-let subtotal =
-preco * quantidade;
-
-
-html += `
-
-<div class="item-resumo">
-
-<div class="item-nome">
-${produto.nome || "Produto"}
-</div>
-
-<div>
-Tamanho: ${produto.tamanho || "-"}
-</div>
-
-<div>
-Quantidade: ${quantidade}
-</div>
-
-<div>
-R$ ${dinheiro(preco)} cada
-</div>
-
-<div>
-Subtotal: R$ ${dinheiro(subtotal)}
-</div>
-
-</div>
-
-`;
-
-});
-
-
-html += `
-
-<div class="total">
-
-Total:
-R$ ${dinheiro(calcularTotal())}
-
-</div>
-
-`;
-
-
-resumo.innerHTML = html;
-
-}
-
-
-mostrarResumo();
-
-
-/* =====================================
-   BUSCAR CEP
-===================================== */
 
 async function buscarCEP(){
 
-let cep =
-document.getElementById("cep")
-.value
-.replace(/\D/g,"");
+  const cep =
+    document.getElementById("cep").value
+    .replace(/\D/g,"");
 
+  if(cep.length !== 8) return;
 
-if(cep.length !== 8){
+  try{
 
-return;
+    const resposta =
+      await fetch(
+        `https://viacep.com.br/ws/${cep}/json/`
+      );
 
+    const dados = await resposta.json();
+
+    if(dados.erro){
+      return;
+    }
+
+    document.getElementById("rua").value =
+      dados.logradouro || "";
+
+    document.getElementById("cidade").value =
+      dados.localidade || "";
+
+    document.getElementById("estado").value =
+      dados.uf || "";
+
+  }catch(e){
+
+    console.log("Erro ao buscar CEP:",e);
+
+  }
 }
 
+function continuarPagamento(){
 
-try{
+  const nome =
+    document.getElementById("nome").value.trim();
 
-let resposta =
-await fetch(
-"https://viacep.com.br/ws/" +
-cep +
-"/json/"
-);
+  const whatsapp =
+    document.getElementById("whatsapp").value.trim();
 
+  const cpf =
+    document.getElementById("cpf").value.trim();
 
-let dados =
-await resposta.json();
+  const cep =
+    document.getElementById("cep").value.trim();
 
+  const rua =
+    document.getElementById("rua").value.trim();
 
-if(dados.erro){
+  const numero =
+    document.getElementById("numero").value.trim();
 
-return;
+  const complemento =
+    document.getElementById("complemento").value.trim();
 
+  const cidade =
+    document.getElementById("cidade").value.trim();
+
+  const estado =
+    document.getElementById("estado").value;
+
+  if(!nome ||
+     !whatsapp ||
+     !cpf ||
+     !cep ||
+     !rua ||
+     !numero ||
+     !cidade ||
+     !estado){
+
+    alert("Preencha todos os campos obrigatórios.");
+    return;
+  }
+
+  if(!carrinho.length){
+
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  let total = 0;
+
+  const itens = carrinho.map(item => {
+
+    const preco =
+      Number(item.preco) || 0;
+
+    const quantidade =
+      Number(item.quantidade) || 1;
+
+    total += preco * quantidade;
+
+    return {
+      nome: item.nome || "Produto",
+      tamanho: item.tamanho || "",
+      quantidade: quantidade,
+      preco: preco,
+      imagem: item.imagem || ""
+    };
+
+  });
+
+  const endereco =
+    `${rua}, ${numero}` +
+    (complemento ? `, ${complemento}` : "");
+
+  /*
+    IMPORTANTE:
+
+    Aqui NÃO criamos o pedido no Supabase.
+
+    Apenas guardamos os dados temporariamente
+    para que o pedido seja criado depois que
+    o cliente escolher o pagamento.
+  */
+
+  const dadosCheckout = {
+
+    nome: nome,
+    whatsapp: whatsapp,
+    cpf: cpf,
+    endereco: endereco,
+    cidade: cidade,
+    estado: estado,
+    cep: cep,
+    itens: itens,
+    total: total
+
+  };
+
+  localStorage.setItem(
+    "vantaCheckout",
+    JSON.stringify(dadosCheckout)
+  );
+
+  window.location.href = "pagamento.html";
 }
 
-
-document.getElementById("rua").value =
-dados.logradouro || "";
-
-
-document.getElementById("cidade").value =
-dados.localidade || "";
-
-
-document.getElementById("estado").value =
-dados.uf || "";
-
-
-}catch(e){
-
-console.log(
-"Erro ao buscar CEP:",
-e
-);
-
-}
-
-}
-
-
-/* =====================================
-   FINALIZAR
-===================================== */
-
-async function continuarPagamento(){
-
-let nome =
-document.getElementById("nome")
-.value
-.trim();
-
-
-let whatsapp =
-document.getElementById("whatsapp")
-.value
-.trim();
-
-
-let cpf =
-document.getElementById("cpf")
-.value
-.trim();
-
-
-let cep =
-document.getElementById("cep")
-.value
-.trim();
-
-
-let rua =
-document.getElementById("rua")
-.value
-.trim();
-
-
-let numero =
-document.getElementById("numero")
-.value
-.trim();
-
-
-let complemento =
-document.getElementById("complemento")
-.value
-.trim();
-
-
-let cidade =
-document.getElementById("cidade")
-.value
-.trim();
-
-
-let estado =
-document.getElementById("estado")
-.value;
-
-
-let erro =
-document.getElementById("erro");
-
-
-let botao =
-document.getElementById("botao");
-
-
-/* =====================================
-   VALIDAÇÃO
-===================================== */
-
-if(
-
-!nome ||
-!whatsapp ||
-!cpf ||
-!cep ||
-!rua ||
-!numero ||
-!cidade ||
-!estado ||
-!Array.isArray(carrinho) ||
-carrinho.length === 0
-
-){
-
-erro.innerText =
-"Preencha todos os campos obrigatórios.";
-
-erro.style.display =
-"block";
-
-return;
-
-}
-
-
-erro.style.display =
-"none";
-
-
-botao.disabled =
-true;
-
-botao.innerText =
-"SALVANDO PEDIDO...";
-
-
-/* =====================================
-   TOTAL
-===================================== */
-
-let total =
-calcularTotal();
-
-
-/* =====================================
-   ITENS
-===================================== */
-
-let itens =
-carrinho.map(produto => ({
-
-nome:
-produto.nome || "",
-
-tamanho:
-produto.tamanho || "",
-
-quantidade:
-Number(produto.quantidade) || 0,
-
-preco:
-Number(produto.preco) || 0,
-
-imagem:
-produto.imagem || ""
-
-}));
-
-
-/* =====================================
-   ENDEREÇO
-===================================== */
-
-let endereco =
-rua +
-", " +
-numero +
-(
-complemento
-? " - " + complemento
-: ""
-);
-
-
-/* =====================================
-   ENVIAR SUPABASE
-===================================== */
-
-try{
-
-let resposta =
-await fetch(
-SUPABASE_URL +
-"/rest/v1/pedidos",
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":
-"application/json",
-
-"apikey":
-SUPABASE_KEY,
-
-"Authorization":
-"Bearer " +
-SUPABASE_KEY,
-
-"Prefer":
-"return=representation"
-
-},
-
-body:JSON.stringify({
-
-nome_cliente:
-nome,
-
-telefone:
-whatsapp,
-
-cpf:
-cpf,
-
-endereco:
-endereco,
-
-cidade:
-cidade,
-
-estado:
-estado,
-
-cep:
-cep,
-
-itens:
-itens,
-
-total:
-total,
-
-forma_pagamento:
-"",
-
-status:
-"pendente"
-
-})
-
-});
-
-
-let dados =
-await resposta.json();
-
-
-/* =====================================
-   ERRO SUPABASE
-===================================== */
-
-if(!resposta.ok){
-
-console.error(
-"ERRO SUPABASE:",
-dados
-);
-
-alert(
-"Erro ao salvar pedido:\n\n" +
-JSON.stringify(
-dados,
-null,
-2
-)
-);
-
-throw new Error(
-"Erro ao salvar pedido"
-);
-
-}
-
-
-/* =====================================
-   PEDIDO CRIADO
-===================================== */
-
-let pedidoCriado =
-dados[0];
-
-
-if(!pedidoCriado){
-
-throw new Error(
-"Pedido não retornado pelo Supabase"
-);
-
-}
-
-
-/* =====================================
-   SALVAR PEDIDO LOCAL
-===================================== */
-
-let pedidoAtual = {
-
-id:
-pedidoCriado.id,
-
-numero_pedido:
-pedidoCriado.numero_pedido,
-
-nome:
-nome,
-
-whatsapp:
-whatsapp,
-
-cpf:
-cpf,
-
-endereco:
-endereco +
-" - " +
-cidade +
-"/" +
-estado +
-" - CEP " +
-cep,
-
-itens:
-itens,
-
-total:
-total,
-
-pagamento:
-"",
-
-status:
-"pendente",
-
-data:
-new Date()
-.toLocaleString("pt-BR")
-
-};
-
-
-localStorage.setItem(
-
-"vantaPedidoAtual",
-
-JSON.stringify(
-pedidoAtual
-)
-
-);
-
-
-/* =====================================
-   IR PARA PAGAMENTO
-===================================== */
-
-window.location.href =
-"pagamento.html";
-
-}
-
-
-/* =====================================
-   ERRO GERAL
-===================================== */
-
-catch(e){
-
-console.error(e);
-
-botao.disabled =
-false;
-
-botao.innerText =
-"CONTINUAR PARA PAGAMENTO";
-
-}
-
-}
+mostrarResumo();
 
 </script>
 
 </body>
-
 </html>
