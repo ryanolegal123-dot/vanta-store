@@ -1,209 +1,965 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Política de Privacidade | VANTA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Política de Privacidade da VANTA Store.">
+<title>Política de Privacidade | ANARKA</title>
 
-  <link rel="icon" href="/favicon.png">
+<meta
+  name="description"
+  content="Política de Privacidade da ANARKA."
+>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<link rel="icon" href="/favicon.png">
 
-    body {
-      margin: 0;
-      background: #0a0a0a;
-      color: #f5f5f5;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.7;
-    }
+<style>
 
-    header {
-      padding: 28px 7%;
-      border-bottom: 1px solid #222;
-      text-align: center;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .logo {
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: 5px;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    main {
-      width: 90%;
-      max-width: 900px;
-      margin: 50px auto 80px;
-    }
+body{
+  background:#050505;
+  color:#f5f5f5;
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.7;
+}
 
-    h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  pointer-events:none;
+  opacity:.025;
 
-    h2 {
-      margin-top: 40px;
-      font-size: 22px;
-    }
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #fff 0,
+      #fff 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
 
-    p,
-    li {
-      color: #cfcfcf;
-      font-size: 16px;
-    }
+a{
+  color:inherit;
+  text-decoration:none;
+}
 
-    ul {
-      padding-left: 25px;
-    }
+/* TOPBAR */
 
-    .atualizacao {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 40px;
-    }
+.topbar{
+  padding:9px 15px;
 
-    a {
-      color: #fff;
-    }
+  background:#d60000;
+  color:#fff;
 
-    footer {
-      border-top: 1px solid #222;
-      padding: 30px;
-      text-align: center;
-      color: #777;
-      font-size: 14px;
-    }
-  </style>
+  text-align:center;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+/* HEADER */
+
+header{
+  height:88px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  border-bottom:1px solid #252525;
+
+  background:#050505;
+}
+
+.logo{
+  width:135px;
+  height:70px;
+
+  object-fit:contain;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+nav a{
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+nav a:hover{
+  color:#d60000;
+}
+
+/* HERO */
+
+.hero{
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:70px 6% 55px;
+}
+
+.label{
+  color:#d60000;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+}
+
+h1{
+  margin-top:12px;
+
+  max-width:900px;
+
+  font-size:clamp(
+    52px,
+    8vw,
+    105px
+  );
+
+  line-height:.82;
+
+  letter-spacing:-6px;
+
+  text-transform:uppercase;
+}
+
+h1 span{
+  color:transparent;
+
+  -webkit-text-stroke:1px #fff;
+}
+
+.atualizacao{
+  margin-top:25px;
+
+  color:#666;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+}
+
+/* CONTEÚDO */
+
+.content{
+  display:grid;
+
+  grid-template-columns:230px 1fr;
+
+  gap:60px;
+
+  width:88%;
+
+  max-width:1200px;
+
+  margin:0 auto 110px;
+
+  padding-top:55px;
+
+  border-top:1px solid #292929;
+}
+
+/* MENU */
+
+.side{
+  position:sticky;
+
+  top:30px;
+
+  height:max-content;
+}
+
+.side-title{
+  margin-bottom:18px;
+
+  color:#d60000;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+.side a{
+  display:block;
+
+  padding:10px 0;
+
+  border-bottom:1px solid #202020;
+
+  color:#666;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
+}
+
+.side a:hover{
+  color:#fff;
+
+  padding-left:6px;
+}
+
+/* POLÍTICA */
+
+.policy{
+  max-width:800px;
+}
+
+.intro{
+  margin-bottom:55px;
+
+  color:#aaa;
+
+  font-size:16px;
+
+  line-height:1.8;
+}
+
+section{
+  scroll-margin-top:30px;
+
+  padding:0 0 45px;
+
+  margin-bottom:45px;
+
+  border-bottom:1px solid #242424;
+}
+
+.number{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#d60000;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:2px;
+}
+
+h2{
+  margin-bottom:18px;
+
+  font-size:28px;
+
+  letter-spacing:-1px;
+
+  text-transform:uppercase;
+}
+
+p,
+li{
+  color:#aaa;
+
+  font-size:14px;
+
+  line-height:1.8;
+}
+
+p + p{
+  margin-top:17px;
+}
+
+ul{
+  margin-top:17px;
+
+  padding-left:20px;
+}
+
+li{
+  margin:7px 0;
+}
+
+li::marker{
+  color:#d60000;
+}
+
+/* INFO BOX */
+
+.notice{
+  margin-top:25px;
+
+  padding:20px;
+
+  border-left:3px solid #d60000;
+
+  background:#0b0b0b;
+
+  color:#888;
+
+  font-size:12px;
+}
+
+/* STATEMENT */
+
+.statement{
+  width:88%;
+
+  max-width:1200px;
+
+  margin:0 auto 90px;
+
+  padding-top:60px;
+
+  border-top:1px solid #292929;
+}
+
+.statement small{
+  color:#d60000;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:3px;
+}
+
+.statement h2{
+  max-width:950px;
+
+  margin-top:14px;
+
+  font-size:clamp(
+    40px,
+    6vw,
+    80px
+  );
+
+  line-height:.85;
+
+  letter-spacing:-4px;
+}
+
+.statement h2 span{
+  color:transparent;
+
+  -webkit-text-stroke:1px #fff;
+}
+
+/* FOOTER */
+
+footer{
+  padding:45px 6%;
+
+  border-top:1px solid #222;
+
+  text-align:center;
+
+  color:#555;
+
+  font-size:9px;
+
+  letter-spacing:2px;
+}
+
+footer img{
+  display:block;
+
+  width:120px;
+  height:75px;
+
+  margin:0 auto 10px;
+
+  object-fit:contain;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .content{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .side{
+    position:static;
+
+    display:none;
+  }
+
+}
+
+@media(max-width:550px){
+
+  header{
+    height:72px;
+
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+    height:58px;
+  }
+
+  nav a:first-child{
+    display:none;
+  }
+
+  .hero{
+    padding:50px 4% 40px;
+  }
+
+  h1{
+    letter-spacing:-4px;
+  }
+
+  .content{
+    width:92%;
+
+    padding-top:35px;
+
+    margin-bottom:70px;
+  }
+
+  .intro{
+    font-size:14px;
+  }
+
+  h2{
+    font-size:23px;
+  }
+
+  p,
+  li{
+    font-size:13px;
+  }
+
+  .statement{
+    width:92%;
+
+    margin-bottom:65px;
+  }
+
+  .statement h2{
+    letter-spacing:-2px;
+  }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">VANTA</div>
-  </header>
+<div class="topbar">
+  ANARKA — PRIVACIDADE E DADOS
+</div>
 
-  <main>
+<header>
 
-    <h1>Política de Privacidade</h1>
+  <a href="index.html">
 
-    <p class="atualizacao">
-      Última atualização: 16 de setembro de 2026
+    <img
+      src="/anarka-logo.png"
+      alt="ANARKA"
+      class="logo"
+    >
+
+  </a>
+
+  <nav>
+
+    <a href="index.html">
+      Início
+    </a>
+
+    <a href="catalogo.html">
+      Coleção
+    </a>
+
+  </nav>
+
+</header>
+
+
+<div class="hero">
+
+  <div class="label">
+    ANARKA / LEGAL
+  </div>
+
+  <h1>
+
+    POLÍTICA DE<br>
+
+    <span>PRIVACIDADE.</span>
+
+  </h1>
+
+  <div class="atualizacao">
+    Última atualização: 17 de setembro de 2026
+  </div>
+
+</div>
+
+
+<main class="content">
+
+  <!-- MENU -->
+
+  <aside class="side">
+
+    <div class="side-title">
+      NESTA PÁGINA
+    </div>
+
+    <a href="#dados">
+      01 — Dados coletados
+    </a>
+
+    <a href="#uso">
+      02 — Uso dos dados
+    </a>
+
+    <a href="#compartilhamento">
+      03 — Compartilhamento
+    </a>
+
+    <a href="#whatsapp">
+      04 — WhatsApp
+    </a>
+
+    <a href="#seguranca">
+      05 — Segurança
+    </a>
+
+    <a href="#localstorage">
+      06 — Armazenamento local
+    </a>
+
+    <a href="#direitos">
+      07 — Seus direitos
+    </a>
+
+    <a href="#alteracoes">
+      08 — Alterações
+    </a>
+
+    <a href="#contato">
+      09 — Contato
+    </a>
+
+  </aside>
+
+
+  <!-- POLÍTICA -->
+
+  <div class="policy">
+
+    <p class="intro">
+
+      A ANARKA valoriza a privacidade de seus
+      clientes e se compromete a tratar os dados
+      pessoais fornecidos durante a utilização
+      do site e a realização de pedidos de forma
+      responsável e de acordo com a legislação
+      aplicável.
+
     </p>
 
-    <p>
-      A VANTA Store valoriza a privacidade de seus clientes e se compromete
-      a proteger os dados pessoais fornecidos durante a utilização do nosso site
-      e durante a realização de pedidos.
-    </p>
 
-    <h2>1. Dados que coletamos</h2>
+    <section id="dados">
 
-    <p>
-      Para processar um pedido, podemos coletar informações fornecidas pelo
-      próprio cliente, incluindo:
-    </p>
+      <span class="number">
+        01 / DADOS
+      </span>
 
-    <ul>
-      <li>Nome completo;</li>
-      <li>Número de telefone ou WhatsApp;</li>
-      <li>CPF;</li>
-      <li>Endereço de entrega;</li>
-      <li>Cidade e estado;</li>
-      <li>CEP;</li>
-      <li>Produtos, tamanhos e quantidades escolhidos;</li>
-      <li>Valor total do pedido;</li>
-      <li>Forma de pagamento informada no pedido.</li>
-    </ul>
+      <h2>
+        Dados que coletamos
+      </h2>
 
-    <h2>2. Como utilizamos os dados</h2>
+      <p>
 
-    <p>
-      Os dados coletados são utilizados principalmente para:
-    </p>
+        Para processar pedidos e permitir o
+        funcionamento da loja, podemos coletar
+        informações fornecidas diretamente pelo
+        cliente, incluindo:
 
-    <ul>
-      <li>Processar e registrar pedidos;</li>
-      <li>Realizar a entrega dos produtos;</li>
-      <li>Entrar em contato com o cliente sobre o pedido;</li>
-      <li>Prestar atendimento ao cliente;</li>
-      <li>Prevenir erros, fraudes e uso indevido do serviço;</li>
-      <li>Cumprir obrigações legais quando aplicável.</li>
-    </ul>
+      </p>
 
-    <h2>3. Compartilhamento de informações</h2>
+      <ul>
 
-    <p>
-      A VANTA não comercializa dados pessoais dos clientes.
-      Algumas informações podem ser compartilhadas com prestadores de serviços
-      necessários para o funcionamento da loja, como serviços de hospedagem,
-      armazenamento de dados, processamento de pedidos, entrega e comunicação.
-    </p>
+        <li>
+          Nome completo;
+        </li>
 
-    <p>
-      Os dados somente serão compartilhados quando necessário para a execução
-      dos serviços relacionados ao pedido ou quando houver obrigação legal.
-    </p>
+        <li>
+          Número de telefone ou WhatsApp;
+        </li>
 
-    <h2>4. WhatsApp</h2>
+        <li>
+          CPF;
+        </li>
 
-    <p>
-      A VANTA poderá utilizar o WhatsApp para comunicação relacionada aos
-      pedidos e atendimento ao cliente. Informações necessárias para identificar
-      e acompanhar um pedido poderão ser utilizadas nesse processo.
-    </p>
+        <li>
+          Endereço de entrega;
+        </li>
 
-    <h2>5. Armazenamento e segurança</h2>
+        <li>
+          Cidade e estado;
+        </li>
 
-    <p>
-      Os dados dos pedidos são armazenados em sistemas digitais utilizados
-      pela VANTA. Adotamos medidas técnicas e administrativas destinadas a
-      proteger as informações contra acesso, alteração, divulgação ou destruição
-      não autorizada.
-    </p>
+        <li>
+          CEP;
+        </li>
 
-    <h2>6. Cookies e armazenamento local</h2>
+        <li>
+          Produtos, tamanhos e quantidades escolhidos;
+        </li>
 
-    <p>
-      O site pode utilizar recursos do navegador, como armazenamento local
-      (localStorage), para manter informações necessárias ao funcionamento
-      do carrinho e da experiência de compra.
-    </p>
+        <li>
+          Valor total do pedido;
+        </li>
 
-    <h2>7. Direitos do titular</h2>
+        <li>
+          Forma de pagamento informada no pedido.
+        </li>
 
-    <p>
-      Nos termos da legislação aplicável, incluindo a Lei Geral de Proteção
-      de Dados Pessoais (LGPD), o titular poderá solicitar informações sobre
-      o tratamento de seus dados e, quando aplicável, exercer os direitos
-      previstos na legislação.
-    </p>
+      </ul>
 
-    <h2>8. Alterações nesta política</h2>
+    </section>
 
-    <p>
-      Esta Política de Privacidade poderá ser atualizada periodicamente para
-      refletir alterações nos serviços, na legislação ou nas práticas da VANTA.
-      A versão mais recente estará disponível nesta página.
-    </p>
 
-    <h2>9. Contato</h2>
+    <section id="uso">
 
-    <p>
-      Para dúvidas ou solicitações relacionadas à privacidade e aos dados
-      pessoais, o cliente poderá entrar em contato com a VANTA por meio dos
-      canais de atendimento disponibilizados no site.
-    </p>
+      <span class="number">
+        02 / UTILIZAÇÃO
+      </span>
 
-  </main>
+      <h2>
+        Como utilizamos os dados
+      </h2>
 
-  <footer>
-    © 2026 VANTA — Vista sua presença.
-  </footer>
+      <p>
+        Os dados coletados podem ser utilizados para:
+      </p>
+
+      <ul>
+
+        <li>
+          Processar e registrar pedidos;
+        </li>
+
+        <li>
+          Viabilizar a entrega dos produtos;
+        </li>
+
+        <li>
+          Entrar em contato com o cliente sobre o pedido;
+        </li>
+
+        <li>
+          Prestar atendimento ao cliente;
+        </li>
+
+        <li>
+          Manter o funcionamento e a segurança da loja;
+        </li>
+
+        <li>
+          Prevenir erros, fraudes e uso indevido do serviço;
+        </li>
+
+        <li>
+          Cumprir obrigações legais quando aplicável.
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <section id="compartilhamento">
+
+      <span class="number">
+        03 / COMPARTILHAMENTO
+      </span>
+
+      <h2>
+        Compartilhamento de informações
+      </h2>
+
+      <p>
+
+        A ANARKA não comercializa dados pessoais
+        de clientes.
+
+      </p>
+
+      <p>
+
+        Algumas informações poderão ser tratadas
+        ou compartilhadas com prestadores de
+        serviços necessários para o funcionamento
+        da loja, como serviços de hospedagem,
+        armazenamento de dados, comunicação,
+        processamento de pedidos e entrega.
+
+      </p>
+
+      <p>
+
+        Os dados também poderão ser fornecidos
+        quando necessário para o cumprimento de
+        obrigação legal ou determinação de
+        autoridade competente.
+
+      </p>
+
+    </section>
+
+
+    <section id="whatsapp">
+
+      <span class="number">
+        04 / COMUNICAÇÃO
+      </span>
+
+      <h2>
+        WhatsApp
+      </h2>
+
+      <p>
+
+        A ANARKA poderá utilizar o WhatsApp ou
+        outros canais de contato informados pelo
+        cliente para comunicações relacionadas
+        ao pedido e ao atendimento.
+
+      </p>
+
+      <p>
+
+        Informações necessárias para identificar,
+        processar e acompanhar um pedido poderão
+        ser utilizadas durante essa comunicação.
+
+      </p>
+
+    </section>
+
+
+    <section id="seguranca">
+
+      <span class="number">
+        05 / SEGURANÇA
+      </span>
+
+      <h2>
+        Armazenamento e segurança
+      </h2>
+
+      <p>
+
+        Os dados relacionados aos pedidos podem
+        ser armazenados em sistemas digitais
+        utilizados pela ANARKA para operação da
+        loja.
+
+      </p>
+
+      <p>
+
+        Buscamos adotar medidas técnicas e
+        administrativas adequadas para reduzir
+        riscos de acesso, alteração, divulgação
+        ou destruição não autorizada das
+        informações.
+
+      </p>
+
+    </section>
+
+
+    <section id="localstorage">
+
+      <span class="number">
+        06 / NAVEGADOR
+      </span>
+
+      <h2>
+        Cookies e armazenamento local
+      </h2>
+
+      <p>
+
+        O site poderá utilizar recursos do
+        navegador, incluindo armazenamento local
+        (localStorage), para manter informações
+        necessárias ao funcionamento do carrinho,
+        checkout e experiência de compra.
+
+      </p>
+
+      <div class="notice">
+
+        O armazenamento local permite, por exemplo,
+        que os produtos adicionados ao carrinho
+        permaneçam disponíveis durante a navegação
+        no site.
+
+      </div>
+
+    </section>
+
+
+    <section id="direitos">
+
+      <span class="number">
+        07 / LGPD
+      </span>
+
+      <h2>
+        Direitos do titular
+      </h2>
+
+      <p>
+
+        Nos termos da legislação aplicável,
+        incluindo a Lei Geral de Proteção de
+        Dados Pessoais — LGPD, o titular poderá
+        solicitar informações sobre o tratamento
+        de seus dados e exercer, quando aplicável,
+        os direitos previstos na legislação.
+
+      </p>
+
+    </section>
+
+
+    <section id="alteracoes">
+
+      <span class="number">
+        08 / ATUALIZAÇÕES
+      </span>
+
+      <h2>
+        Alterações nesta política
+      </h2>
+
+      <p>
+
+        Esta Política de Privacidade poderá ser
+        atualizada periodicamente para refletir
+        alterações nos serviços, na legislação
+        ou nas práticas da ANARKA.
+
+      </p>
+
+      <p>
+
+        A versão mais recente estará disponível
+        nesta página, acompanhada da data de
+        atualização.
+
+      </p>
+
+    </section>
+
+
+    <section id="contato">
+
+      <span class="number">
+        09 / CONTATO
+      </span>
+
+      <h2>
+        Contato
+      </h2>
+
+      <p>
+
+        Para dúvidas ou solicitações relacionadas
+        à privacidade e ao tratamento de dados
+        pessoais, o cliente poderá entrar em
+        contato com a ANARKA pelos canais de
+        atendimento disponibilizados no site.
+
+      </p>
+
+    </section>
+
+  </div>
+
+</main>
+
+
+<section class="statement">
+
+  <small>
+    ANARKA / PRIVACIDADE
+  </small>
+
+  <h2>
+
+    SEUS DADOS.<br>
+
+    <span>
+      SUA PRIVACIDADE.
+    </span>
+
+  </h2>
+
+</section>
+
+
+<footer>
+
+  <img
+    src="/anarka-logo.png"
+    alt="ANARKA"
+  >
+
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+
+</footer>
 
 </body>
+
 </html>
