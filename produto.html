@@ -1,1074 +1,1040 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" type="image/png" href="/favicon.png">
+<title>Produto | ANARKA</title>
+<meta name="description" content="ANARKA — Streetwear, expressão e contracultura.">
 
-<title>Produto | VANTA</title>
+<link rel="icon" href="/favicon.png">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-background:#080808;
-color:#fff;
+  background:#050505;
+  color:#f5f5f5;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
 }
 
-/* HEADER */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+  background:repeating-linear-gradient(
+    0deg,
+    #fff 0,
+    #fff 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+
+.topbar{
+  background:#d60000;
+  text-align:center;
+  padding:9px 15px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
 
 header{
-height:70px;
-padding:0 6%;
-
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-border-bottom:1px solid #222;
-
-position:sticky;
-top:0;
-
-background:rgba(8,8,8,.94);
-backdrop-filter:blur(12px);
-
-z-index:10;
+  height:88px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  border-bottom:1px solid #262626;
+  background:rgba(5,5,5,.97);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo{
-color:#fff;
-text-decoration:none;
-
-font-size:25px;
-font-weight:900;
-letter-spacing:5px;
+  width:135px;
+  height:70px;
+  object-fit:contain;
 }
 
 nav{
-display:flex;
-align-items:center;
-gap:24px;
+  display:flex;
+  align-items:center;
+  gap:30px;
 }
 
 nav a{
-color:#999;
-text-decoration:none;
-font-size:13px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
-nav a:hover{
-color:#fff;
-}
+nav a:hover{color:#d60000}
 
 .cart{
-color:#fff;
-border:1px solid #333;
-padding:9px 13px;
-border-radius:5px;
+  border:1px solid #444;
+  padding:11px 15px;
 }
-
-/* PRODUTO */
 
 .product-page{
-
-width:100%;
-max-width:1250px;
-
-margin:0 auto;
-
-padding:70px 40px 100px;
-
-display:grid;
-
-grid-template-columns:
-1fr 1fr;
-
-gap:70px;
-
+  max-width:1400px;
+  margin:auto;
+  padding:65px 6% 110px;
 }
 
-/* FOTO */
-
-.product-image{
-
-position:relative;
-
-width:100%;
-
-aspect-ratio:4/5;
-
-background:#111;
-
-overflow:hidden;
+.breadcrumb{
+  color:#666;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:25px;
 }
 
-.product-image img{
+.breadcrumb a:hover{color:#d60000}
 
-width:100%;
-height:100%;
-
-object-fit:cover;
-
-display:block;
-
+.product-layout{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:70px;
+  align-items:start;
 }
 
-/* TAG */
-
-.tag{
-
-position:absolute;
-
-top:18px;
-left:18px;
-
-background:#fff;
-color:#000;
-
-padding:8px 12px;
-
-font-size:10px;
-
-font-weight:bold;
-
-letter-spacing:1px;
-
-z-index:2;
+.image-area{
+  position:relative;
+  background:#0b0b0b;
+  border:1px solid #292929;
+  overflow:hidden;
 }
 
-/* INFORMAÇÕES */
-
-.product-info{
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
+.image-area::before{
+  content:"ANARKA";
+  position:absolute;
+  right:-15px;
+  bottom:-15px;
+  z-index:0;
+  color:#111;
+  font-size:100px;
+  font-weight:1000;
+  letter-spacing:-7px;
 }
 
-.product-info h1{
+.image-area img{
+  position:relative;
+  z-index:1;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  filter:grayscale(.35) contrast(1.05);
+}
 
-font-size:
-clamp(40px,5vw,68px);
+.image-tag{
+  position:absolute;
+  z-index:5;
+  left:15px;
+  top:15px;
+  background:#d60000;
+  padding:8px 12px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
 
-line-height:.9;
+.info{
+  position:sticky;
+  top:120px;
+}
 
-letter-spacing:-3px;
+.collection{
+  color:#d60000;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
 
-margin-bottom:20px;
+h1{
+  margin-top:13px;
+  font-size:clamp(42px,5vw,72px);
+  line-height:.88;
+  letter-spacing:-3px;
+  text-transform:uppercase;
+}
+
+.product-code{
+  margin-top:15px;
+  color:#555;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.prices{
+  margin-top:30px;
+  display:flex;
+  align-items:center;
+  gap:13px;
 }
 
 .old-price{
-
-color:#555;
-
-text-decoration:line-through;
-
-font-size:14px;
-
-margin-bottom:5px;
+  color:#555;
+  text-decoration:line-through;
+  font-size:15px;
 }
 
 .price{
-
-font-size:25px;
-
-font-weight:bold;
-
+  font-size:29px;
+  font-weight:1000;
 }
 
 .installment{
-
-color:#777;
-
-font-size:12px;
-
-margin-top:7px;
-
-margin-bottom:30px;
+  display:block;
+  color:#777;
+  font-size:12px;
+  margin-top:7px;
 }
 
-/* TAMANHOS */
+.divider{
+  height:1px;
+  background:#292929;
+  margin:30px 0;
+}
 
 .label{
-
-font-size:11px;
-
-letter-spacing:1px;
-
-margin-bottom:10px;
-
-color:#aaa;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:13px;
 }
 
+.label span{color:#666}
+
 .sizes{
-
-display:flex;
-
-gap:8px;
-
-margin-bottom:25px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
 }
 
 .size{
+  height:52px;
+  border:1px solid #333;
+  background:#080808;
+  color:#fff;
+  cursor:pointer;
+  font-weight:900;
+  transition:.15s;
+}
 
-width:48px;
-height:42px;
-
-background:#111;
-
-border:1px solid #333;
-
-color:#fff;
-
-cursor:pointer;
+.size:hover{
+  border-color:#fff;
 }
 
 .size.active{
-
-background:#fff;
-color:#000;
-
-border-color:#fff;
+  background:#d60000;
+  border-color:#d60000;
 }
 
-/* QUANTIDADE */
-
-.quantity{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-margin-bottom:25px;
+.quantity-wrap{
+  display:flex;
+  align-items:center;
+  border:1px solid #333;
+  width:145px;
 }
 
-.quantity input{
-
-width:65px;
-
-background:#111;
-
-border:1px solid #333;
-
-color:#fff;
-
-padding:12px;
-
-text-align:center;
-
-font-size:14px;
+.quantity-wrap button{
+  width:45px;
+  height:48px;
+  border:0;
+  background:#0b0b0b;
+  color:#fff;
+  cursor:pointer;
+  font-size:18px;
 }
 
-/* BOTÃO */
+.quantity-wrap button:hover{background:#191919}
+
+.quantity-wrap input{
+  width:55px;
+  height:48px;
+  border:0;
+  border-left:1px solid #333;
+  border-right:1px solid #333;
+  background:#050505;
+  color:#fff;
+  text-align:center;
+  outline:none;
+  font-weight:900;
+}
 
 .add{
-
-width:100%;
-
-padding:17px;
-
-border:0;
-
-background:#fff;
-
-color:#000;
-
-font-size:11px;
-
-font-weight:bold;
-
-letter-spacing:1px;
-
-cursor:pointer;
-
-transition:.2s;
+  width:100%;
+  min-height:62px;
+  margin-top:25px;
+  border:1px solid #fff;
+  background:#fff;
+  color:#000;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.15s;
 }
 
 .add:hover{
-
-background:#ccc;
-
+  background:#d60000;
+  color:#fff;
+  border-color:#d60000;
+  transform:translate(-3px,-3px);
+  box-shadow:6px 6px 0 #fff;
 }
 
-/* VOLTAR */
-
-.back{
-
-display:inline-block;
-
-margin-top:18px;
-
-color:#777;
-
-font-size:12px;
-
-text-decoration:none;
+.details{
+  margin-top:30px;
+  border-top:1px solid #292929;
 }
 
-.back:hover{
-color:#fff;
+.detail{
+  padding:18px 0;
+  border-bottom:1px solid #292929;
+  display:flex;
+  gap:15px;
 }
 
-/* CARRINHO FLUTUANTE */
-
-.carrinho-flutuante{
-
-position:fixed;
-
-right:22px;
-bottom:22px;
-
-width:58px;
-height:58px;
-
-border-radius:50%;
-
-background:#fff;
-color:#000;
-
-display:none;
-
-align-items:center;
-justify-content:center;
-
-font-size:24px;
-
-text-decoration:none;
-
-box-shadow:0 5px 25px rgba(0,0,0,.5);
-
-z-index:100;
+.detail-number{
+  color:#d60000;
+  font-size:10px;
+  font-weight:900;
 }
 
-.carrinho-flutuante.ativo{
-display:flex;
+.detail h3{
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-.contador{
-
-position:absolute;
-
-top:-5px;
-right:-5px;
-
-width:22px;
-height:22px;
-
-border-radius:50%;
-
-background:#000;
-color:#fff;
-
-border:2px solid #fff;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-font-size:10px;
-font-weight:bold;
+.detail p{
+  margin-top:5px;
+  color:#777;
+  font-size:12px;
+  line-height:1.5;
 }
 
-/* MOBILE */
-
-@media(max-width:800px){
-
-header{
-padding:0 5%;
+.manifesto{
+  margin-top:90px;
+  border-top:1px solid #292929;
+  border-bottom:1px solid #292929;
+  padding:65px 0;
 }
 
-nav a:not(.cart){
-display:none;
+.manifesto small{
+  color:#d60000;
+  font-weight:900;
+  letter-spacing:3px;
 }
 
-.product-page{
-
-grid-template-columns:1fr;
-
-padding:35px 5% 80px;
-
-gap:40px;
-
+.manifesto h2{
+  margin-top:15px;
+  max-width:950px;
+  font-size:clamp(40px,6vw,80px);
+  line-height:.85;
+  letter-spacing:-4px;
+  text-transform:uppercase;
 }
 
-.product-image{
-
-aspect-ratio:4/5;
-
+.manifesto h2 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
 }
 
-.product-info h1{
-
-font-size:48px;
-
+.floating-cart{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:60px;
+  height:60px;
+  background:#d60000;
+  border:2px solid #fff;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:900;
+  box-shadow:6px 6px 0 #000;
+  font-size:21px;
 }
 
+.cart-count{
+  position:absolute;
+  right:-8px;
+  top:-8px;
+  min-width:23px;
+  height:23px;
+  padding:0 5px;
+  background:#fff;
+  color:#000;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:900;
 }
 
-/* CELULAR PEQUENO */
-
-@media(max-width:400px){
-
-.product-info h1{
-
-font-size:42px;
-
+footer{
+  border-top:1px solid #222;
+  padding:45px 6%;
+  text-align:center;
+  color:#555;
+  font-size:10px;
+  letter-spacing:2px;
 }
 
+footer img{
+  display:block;
+  width:120px;
+  height:75px;
+  object-fit:contain;
+  margin:0 auto 10px;
 }
 
+@media(max-width:850px){
+  .product-layout{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .info{position:static}
+}
+
+@media(max-width:650px){
+  header{
+    height:72px;
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+    height:58px;
+  }
+
+  nav a:not(.cart){display:none}
+
+  .product-page{
+    padding:30px 4% 70px;
+  }
+
+  .product-layout{gap:28px}
+
+  h1{
+    font-size:43px;
+    letter-spacing:-2px;
+  }
+
+  .manifesto{margin-top:65px}
+
+  .manifesto h2{letter-spacing:-2px}
+}
 </style>
-
 </head>
-
 
 <body>
 
+<div class="topbar">
+  ANARKA — NÃO VISTA O PADRÃO
+</div>
 
 <header>
+  <a href="index.html">
+    <img src="/anarka-logo.png" class="logo" alt="ANARKA">
+  </a>
 
-<a
-href="index.html"
-class="logo"
->
-VANTA
-</a>
-
-
-<nav>
-
-<a href="index.html">
-Início
-</a>
-
-<a href="catalogo.html">
-Catálogo
-</a>
-
-<a
-href="carrinho.html"
-class="cart"
->
-Carrinho
-<span id="cartCount">0</span>
-</a>
-
-</nav>
-
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Coleção</a>
+    <a href="carrinho.html" class="cart">🛒 Carrinho</a>
+  </nav>
 </header>
 
+<main class="product-page">
 
-<main
-class="product-page"
-id="productPage"
->
+  <div class="breadcrumb">
+    <a href="index.html">ANARKA</a>
+    /
+    <a href="catalogo.html">COLEÇÃO</a>
+    /
+    <span id="breadcrumbName">PEÇA</span>
+  </div>
 
-<div class="product-image">
+  <div class="product-layout">
 
-<span
-class="tag"
-id="productTag"
->
-VANTA
-</span>
+    <div class="image-area">
+      <span class="image-tag" id="tag">ANARKA</span>
+      <img id="productImage" src="" alt="">
+    </div>
 
-<img
-id="productImage"
-src=""
-alt=""
->
+    <div class="info">
 
-</div>
+      <div class="collection">
+        ANARKA / COLEÇÃO 001
+      </div>
 
+      <h1 id="productName">
+        CARREGANDO...
+      </h1>
 
-<div class="product-info">
+      <div class="product-code" id="productCode">
+        ANK-001
+      </div>
 
-<h1 id="productName">
-Produto
-</h1>
+      <div class="prices">
+        <span class="old-price" id="oldPrice"></span>
+        <span class="price" id="price"></span>
+      </div>
 
+      <span class="installment" id="installment"></span>
 
-<div
-class="old-price"
-id="oldPrice"
->
-</div>
+      <div class="divider"></div>
 
+      <div class="label">
+        TAMANHO
+        <span>SELECIONE</span>
+      </div>
 
-<div
-class="price"
-id="price"
->
-</div>
+      <div class="sizes">
+        <button class="size" data-size="P">P</button>
+        <button class="size" data-size="M">M</button>
+        <button class="size" data-size="G">G</button>
+        <button class="size" data-size="GG">GG</button>
+      </div>
 
+      <div class="divider"></div>
 
-<div
-class="installment"
-id="installment"
->
-</div>
+      <div class="label">
+        QUANTIDADE
+      </div>
 
+      <div class="quantity-wrap">
+        <button type="button" id="minus">−</button>
+        <input id="quantity" type="number" value="1" min="1" max="10">
+        <button type="button" id="plus">+</button>
+      </div>
 
-<div class="label">
-TAMANHO
-</div>
+      <button class="add" id="addCart">
+        ADICIONAR AO CARRINHO →
+      </button>
 
+      <div class="details">
 
-<div class="sizes">
+        <div class="detail">
+          <span class="detail-number">01</span>
+          <div>
+            <h3>Identidade ANARKA</h3>
+            <p>Streetwear construído para existir fora do padrão.</p>
+          </div>
+        </div>
 
-<button
-class="size"
-data-size="P"
->
-P
-</button>
+        <div class="detail">
+          <span class="detail-number">02</span>
+          <div>
+            <h3>Pedido registrado</h3>
+            <p>Seu pedido é registrado em nosso sistema durante a finalização.</p>
+          </div>
+        </div>
 
-<button
-class="size active"
-data-size="M"
->
-M
-</button>
+        <div class="detail">
+          <span class="detail-number">03</span>
+          <div>
+            <h3>Atendimento</h3>
+            <p>Acompanhamento e comunicação sobre o seu pedido.</p>
+          </div>
+        </div>
 
-<button
-class="size"
-data-size="G"
->
-G
-</button>
+      </div>
 
-<button
-class="size"
-data-size="GG"
->
-GG
-</button>
+    </div>
 
-</div>
+  </div>
 
+  <section class="manifesto">
+    <small>ANARKA / MANIFESTO</small>
 
-<div class="label">
-QUANTIDADE
-</div>
-
-
-<div class="quantity">
-
-<input
-id="quantity"
-type="number"
-min="1"
-value="1"
->
-
-</div>
-
-
-<button
-class="add"
-id="addButton"
->
-ADICIONAR AO CARRINHO
-</button>
-
-
-<a
-href="catalogo.html"
-class="back"
->
-← Voltar para o catálogo
-</a>
-
-</div>
+    <h2>
+      NÃO É SOBRE SE ENCAIXAR.<br>
+      <span>É SOBRE EXISTIR.</span>
+    </h2>
+  </section>
 
 </main>
 
-
-<a
-href="carrinho.html"
-id="carrinhoFlutuante"
-class="carrinho-flutuante"
->
-
-🛒
-
-<span
-id="contador"
-class="contador"
->
-0
-</span>
-
+<a href="carrinho.html" class="floating-cart" id="floatingCart">
+  🛒
+  <span class="cart-count" id="cartCount">0</span>
 </a>
 
+<footer>
+  <img src="/anarka-logo.png" alt="ANARKA">
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+</footer>
 
 <script>
 
-/*
-==================================================
-PRODUTOS VANTA
-==================================================
-*/
+/* ==========================================================
+   PRODUTOS
+   IDs preservados para manter os links atuais funcionando.
+========================================================== */
 
 const produtos = {
 
-oversized:{
-nome:"Oversized Essential Black",
-preco:89.90,
-antigo:119.90,
-imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
-tag:"ESSENTIAL"
-},
+  oversized:{
+    nome:"Oversized Essential Black",
+    preco:89.90,
+    precoAntigo:119.90,
+    imagem:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=90",
+    tag:"ESSENTIAL"
+  },
 
-boxy:{
-nome:"Boxy Premium White",
-preco:79.90,
-antigo:109.90,
-imagem:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90",
-tag:"BEST SELLER"
-},
+  boxy:{
+    nome:"Boxy Premium White",
+    preco:79.90,
+    precoAntigo:109.90,
+    imagem:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=1000&q=90",
+    tag:"BEST SELLER"
+  },
 
-cargo:{
-nome:"Cargo Urban Black",
-preco:129.90,
-antigo:159.90,
-imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
-tag:"NEW"
-},
+  cargo:{
+    nome:"Cargo Urban Black",
+    preco:129.90,
+    precoAntigo:159.90,
+    imagem:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=90",
+    tag:"NEW"
+  },
 
-moletom:{
-nome:"VANTA Essential Hoodie",
-preco:149.90,
-antigo:189.90,
-imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
-tag:"HOODIE"
-},
+  moletom:{
+    nome:"ANARKA Essential Hoodie",
+    preco:149.90,
+    precoAntigo:189.90,
+    imagem:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=90",
+    tag:"HOODIE"
+  },
 
-oversizedwhite:{
-nome:"Oversized Heavy White",
-preco:94.90,
-antigo:124.90,
-imagem:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=90",
-tag:"NEW"
-},
+  oversizedwhite:{
+    nome:"Oversized Heavy White",
+    preco:94.90,
+    precoAntigo:124.90,
+    imagem:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=90",
+    tag:"NEW"
+  },
 
-oversizedgray:{
-nome:"Oversized Urban Gray",
-preco:94.90,
-antigo:124.90,
-imagem:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=90",
-tag:"URBAN"
-},
+  oversizedgray:{
+    nome:"Oversized Urban Gray",
+    preco:94.90,
+    precoAntigo:124.90,
+    imagem:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=90",
+    tag:"URBAN"
+  },
 
-streetblack:{
-nome:"Street Tee Black",
-preco:69.90,
-antigo:89.90,
-imagem:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=90",
-tag:"STREET"
-},
+  streetblack:{
+    nome:"Street Tee Black",
+    preco:69.90,
+    precoAntigo:89.90,
+    imagem:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=90",
+    tag:"STREET"
+  },
 
-basicgray:{
-nome:"Basic Premium Gray",
-preco:64.90,
-antigo:84.90,
-imagem:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=90",
-tag:"BASIC"
-},
+  basicgray:{
+    nome:"Basic Premium Gray",
+    preco:64.90,
+    precoAntigo:84.90,
+    imagem:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=90",
+    tag:"BASIC"
+  },
 
-cargoolive:{
-nome:"Cargo Tactical Olive",
-preco:139.90,
-antigo:169.90,
-imagem:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=90",
-tag:"TACTICAL"
-},
+  cargoolive:{
+    nome:"Cargo Tactical Olive",
+    preco:139.90,
+    precoAntigo:169.90,
+    imagem:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=90",
+    tag:"TACTICAL"
+  },
 
-cargojeans:{
-nome:"Cargo Denim Black",
-preco:149.90,
-antigo:179.90,
-imagem:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=1000&q=90",
-tag:"DENIM"
-},
+  cargojeans:{
+    nome:"Cargo Denim Black",
+    preco:149.90,
+    precoAntigo:179.90,
+    imagem:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=1000&q=90",
+    tag:"DENIM"
+  },
 
-joggerblack:{
-nome:"Jogger Essential Black",
-preco:119.90,
-antigo:149.90,
-imagem:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1000&q=90",
-tag:"ESSENTIAL"
-},
+  joggerblack:{
+    nome:"Jogger Essential Black",
+    preco:119.90,
+    precoAntigo:149.90,
+    imagem:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1000&q=90",
+    tag:"ESSENTIAL"
+  },
 
-joggergray:{
-nome:"Jogger Urban Gray",
-preco:119.90,
-antigo:149.90,
-imagem:"https://images.unsplash.com/photo-1584865288642-42078afe6942?auto=format&fit=crop&w=1000&q=90",
-tag:"URBAN"
-},
+  joggergray:{
+    nome:"Jogger Urban Gray",
+    preco:119.90,
+    precoAntigo:149.90,
+    imagem:"https://images.unsplash.com/photo-1584865288642-42078afe6942?auto=format&fit=crop&w=1000&q=90",
+    tag:"URBAN"
+  },
 
-hoodieblack:{
-nome:"Heavy Hoodie Black",
-preco:169.90,
-antigo:209.90,
-imagem:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=90",
-tag:"HEAVY"
-},
+  hoodieblack:{
+    nome:"Heavy Hoodie Black",
+    preco:169.90,
+    precoAntigo:209.90,
+    imagem:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=90",
+    tag:"HEAVY"
+  },
 
-hoodiegray:{
-nome:"Heavy Hoodie Gray",
-preco:169.90,
-antigo:209.90,
-imagem:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=90",
-tag:"HEAVY"
-},
+  hoodiegray:{
+    nome:"Heavy Hoodie Gray",
+    preco:169.90,
+    precoAntigo:209.90,
+    imagem:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=90",
+    tag:"HEAVY"
+  },
 
-ziphoodie:{
-nome:"Zip Hoodie Black",
-preco:179.90,
-antigo:219.90,
-imagem:"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/419503/item/goods_09_419503.jpg",
-tag:"ZIP"
-},
+  ziphoodie:{
+    nome:"Zip Hoodie Black",
+    preco:179.90,
+    precoAntigo:219.90,
+    imagem:"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/419503/item/goods_09_419503.jpg",
+    tag:"ZIP"
+  },
 
-jaqueta:{
-nome:"Urban Jacket Black",
-preco:199.90,
-antigo:249.90,
-imagem:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=90",
-tag:"JACKET"
-},
+  jaqueta:{
+    nome:"Urban Jacket Black",
+    preco:199.90,
+    precoAntigo:249.90,
+    imagem:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=90",
+    tag:"JACKET"
+  },
 
-camisa:{
-nome:"Overshirt Utility Black",
-preco:139.90,
-antigo:169.90,
-imagem:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=90",
-tag:"UTILITY"
-},
+  camisa:{
+    nome:"Overshirt Utility Black",
+    preco:139.90,
+    precoAntigo:169.90,
+    imagem:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=90",
+    tag:"UTILITY"
+  },
 
-regata:{
-nome:"Regata Street Black",
-preco:59.90,
-antigo:79.90,
-imagem:"https://www.rokit.co.uk/cdn/shop/files/MECT-S46177V_1.jpg?v=1688525323",
-tag:"STREET"
-},
+  regata:{
+    nome:"Regata Street Black",
+    preco:59.90,
+    precoAntigo:79.90,
+    imagem:"https://www.rokit.co.uk/cdn/shop/files/MECT-S46177V_1.jpg?v=1688525323",
+    tag:"STREET"
+  },
 
-boneblack:{
-nome:"VANTA Cap Black",
-preco:49.90,
-antigo:69.90,
-imagem:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=1000&q=90",
-tag:"ACCESSORY"
-},
+  boneblack:{
+    nome:"ANARKA Cap Black",
+    preco:49.90,
+    precoAntigo:69.90,
+    imagem:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=1000&q=90",
+    tag:"ACCESSORY"
+  },
 
-bermuda:{
-nome:"Bermuda Cargo Black",
-preco:89.90,
-antigo:109.90,
-imagem:"https://images.unsplash.com/photo-1565084888279-aca607ecce0c?auto=format&fit=crop&w=1000&q=90",
-tag:"SUMMER"
-}
+  bermuda:{
+    nome:"Bermuda Cargo Black",
+    preco:89.90,
+    precoAntigo:109.90,
+    imagem:"https://images.unsplash.com/photo-1565084888279-aca607ecce0c?auto=format&fit=crop&w=1000&q=90",
+    tag:"SUMMER"
+  }
 
 };
 
+/* ==========================================================
+   PRODUTO ATUAL
+========================================================== */
 
-/*
-==================================================
-IDENTIFICA O PRODUTO
-==================================================
-*/
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id") || "oversized";
 
-const params =
-new URLSearchParams(
-window.location.search
-);
+const produto = produtos[id] || produtos.oversized;
 
-const id =
-params.get("id") || "oversized";
+let tamanhoSelecionado = "";
 
-const produto =
-produtos[id] || produtos.oversized;
+/* ==========================================================
+   FORMATAR
+========================================================== */
 
-
-/*
-==================================================
-PREENCHER PÁGINA
-==================================================
-*/
-
-document.getElementById(
-"productName"
-).textContent =
-produto.nome;
-
-
-document.getElementById(
-"productImage"
-).src =
-produto.imagem;
-
-
-document.getElementById(
-"productImage"
-).alt =
-produto.nome;
-
-
-document.getElementById(
-"productTag"
-).textContent =
-produto.tag;
-
-
-document.getElementById(
-"oldPrice"
-).textContent =
-"R$ " +
-produto.antigo
-.toFixed(2)
-.replace(".",",");
-
-
-document.getElementById(
-"price"
-).textContent =
-"R$ " +
-produto.preco
-.toFixed(2)
-.replace(".",",");
-
-
-document.getElementById(
-"installment"
-).textContent =
-"ou 3x de R$ " +
-(produto.preco / 3)
-.toFixed(2)
-.replace(".",",") +
-" sem juros";
-
-
-document.title =
-produto.nome +
-" | VANTA";
-
-
-/*
-==================================================
-TAMANHOS
-==================================================
-*/
-
-let tamanhoSelecionado = "M";
-
-document
-.querySelectorAll(".size")
-.forEach(botao => {
-
-botao.addEventListener(
-"click",
-() => {
-
-document
-.querySelectorAll(".size")
-.forEach(b =>
-b.classList.remove("active")
-);
-
-botao.classList.add("active");
-
-tamanhoSelecionado =
-botao.dataset.size;
-
+function dinheiro(valor){
+  return Number(valor).toLocaleString(
+    "pt-BR",
+    {
+      style:"currency",
+      currency:"BRL"
+    }
+  );
 }
-);
+
+/* ==========================================================
+   PREENCHER PÁGINA
+========================================================== */
+
+document.title = produto.nome + " | ANARKA";
+
+document.getElementById("productName").textContent =
+  produto.nome;
+
+document.getElementById("breadcrumbName").textContent =
+  produto.nome;
+
+document.getElementById("tag").textContent =
+  produto.tag;
+
+document.getElementById("productImage").src =
+  produto.imagem;
+
+document.getElementById("productImage").alt =
+  produto.nome;
+
+document.getElementById("price").textContent =
+  dinheiro(produto.preco);
+
+document.getElementById("oldPrice").textContent =
+  dinheiro(produto.precoAntigo);
+
+document.getElementById("installment").textContent =
+  "3x de " + dinheiro(produto.preco / 3);
+
+const numeroProduto =
+  Object.keys(produtos).indexOf(id) + 1;
+
+document.getElementById("productCode").textContent =
+  "ANK-" +
+  String(numeroProduto > 0 ? numeroProduto : 1)
+    .padStart(3,"0");
+
+/* ==========================================================
+   TAMANHOS
+========================================================== */
+
+document.querySelectorAll(".size").forEach(botao=>{
+
+  botao.addEventListener("click",()=>{
+
+    document.querySelectorAll(".size").forEach(item=>{
+      item.classList.remove("active");
+    });
+
+    botao.classList.add("active");
+
+    tamanhoSelecionado =
+      botao.dataset.size;
+
+  });
 
 });
 
+/* ==========================================================
+   QUANTIDADE
+========================================================== */
 
-/*
-==================================================
-CARRINHO
-==================================================
-*/
+const quantidadeInput =
+  document.getElementById("quantity");
+
+document.getElementById("minus")
+.addEventListener("click",()=>{
+
+  let quantidade =
+    Number(quantidadeInput.value) || 1;
+
+  quantidade--;
+
+  if(quantidade < 1){
+    quantidade = 1;
+  }
+
+  quantidadeInput.value =
+    quantidade;
+
+});
+
+document.getElementById("plus")
+.addEventListener("click",()=>{
+
+  let quantidade =
+    Number(quantidadeInput.value) || 1;
+
+  quantidade++;
+
+  if(quantidade > 10){
+    quantidade = 10;
+  }
+
+  quantidadeInput.value =
+    quantidade;
+
+});
+
+quantidadeInput.addEventListener("change",()=>{
+
+  let quantidade =
+    Number(quantidadeInput.value) || 1;
+
+  if(quantidade < 1){
+    quantidade = 1;
+  }
+
+  if(quantidade > 10){
+    quantidade = 10;
+  }
+
+  quantidadeInput.value =
+    quantidade;
+
+});
+
+/* ==========================================================
+   CARRINHO
+========================================================== */
+
+function pegarCarrinho(){
+
+  try{
+
+    let carrinho =
+      JSON.parse(
+        localStorage.getItem("vantaCarrinho")
+      ) || [];
+
+    if(!Array.isArray(carrinho)){
+      carrinho = carrinho ? [carrinho] : [];
+    }
+
+    return carrinho;
+
+  }catch{
+
+    return [];
+
+  }
+
+}
 
 function atualizarCarrinho(){
 
-let carrinho =
-JSON.parse(
-localStorage.getItem(
-"vantaCarrinho"
-)
-) || [];
+  const carrinho =
+    pegarCarrinho();
 
+  const total =
+    carrinho.reduce(
+      (soma,item)=>
+        soma + (Number(item.quantidade) || 1),
+      0
+    );
 
-if(!Array.isArray(carrinho)){
-carrinho=[];
-}
+  document.getElementById("cartCount").textContent =
+    total;
 
-
-const total =
-carrinho.reduce(
-(soma,item) =>
-soma +
-(Number(item.quantidade) || 0),
-0
-);
-
-
-document.getElementById(
-"cartCount"
-).textContent =
-total;
-
-
-document.getElementById(
-"contador"
-).textContent =
-total;
-
-
-const botao =
-document.getElementById(
-"carrinhoFlutuante"
-);
-
-
-if(total > 0){
-
-botao.classList.add(
-"ativo"
-);
-
-}else{
-
-botao.classList.remove(
-"ativo"
-);
+  document.getElementById("floatingCart").style.display =
+    total > 0 ? "flex" : "none";
 
 }
 
-}
+/* ==========================================================
+   ADICIONAR
+========================================================== */
 
+document.getElementById("addCart")
+.addEventListener("click",()=>{
 
-/*
-==================================================
-ADICIONAR
-==================================================
-*/
+  if(!tamanhoSelecionado){
 
-document
-.getElementById("addButton")
-.addEventListener(
-"click",
-() => {
+    alert("Selecione um tamanho.");
 
-let carrinho =
-JSON.parse(
-localStorage.getItem(
-"vantaCarrinho"
-)
-) || [];
+    return;
 
+  }
 
-if(!Array.isArray(carrinho)){
-carrinho=[];
-}
+  const quantidade =
+    Number(quantidadeInput.value) || 1;
 
+  const carrinho =
+    pegarCarrinho();
 
-const quantidade =
-Math.max(
-1,
-Number(
-document.getElementById(
-"quantity"
-).value
-) || 1
-);
+  /*
+    Mantemos exatamente os campos que o
+    carrinho/checkout utilizam.
+  */
 
+  const itemExistente =
+    carrinho.find(item =>
+      item.id === id &&
+      item.tamanho === tamanhoSelecionado
+    );
 
-const existente =
-carrinho.find(
-item =>
-item.id === id &&
-item.tamanho === tamanhoSelecionado
-);
+  if(itemExistente){
 
+    itemExistente.quantidade =
+      (Number(itemExistente.quantidade) || 0)
+      + quantidade;
 
-if(existente){
+  }else{
 
-existente.quantidade +=
-quantidade;
+    carrinho.push({
 
-}else{
+      id:id,
 
-carrinho.push({
+      nome:produto.nome,
 
-id:id,
+      preco:Number(produto.preco),
 
-nome:produto.nome,
+      quantidade:quantidade,
 
-preco:produto.preco,
+      tamanho:tamanhoSelecionado,
 
-imagem:produto.imagem,
+      imagem:produto.imagem
 
-tamanho:tamanhoSelecionado,
+    });
 
-quantidade:quantidade
+  }
+
+  localStorage.setItem(
+    "vantaCarrinho",
+    JSON.stringify(carrinho)
+  );
+
+  atualizarCarrinho();
+
+  /*
+    Comportamento que você já usava:
+    adicionou -> volta ao catálogo.
+  */
+
+  window.location.href =
+    "catalogo.html";
 
 });
 
-}
+atualizarCarrinho();
 
-
-localStorage.setItem(
-"vantaCarrinho",
-JSON.stringify(carrinho)
+window.addEventListener(
+  "storage",
+  atualizarCarrinho
 );
-
-
-atualizarCarrinho();
-
-
-/*
-VOLTA PARA O CATÁLOGO
-*/
-
-window.location.href =
-"catalogo.html";
-
-});
-
-
-/*
-==================================================
-INICIAR
-==================================================
-*/
-
-atualizarCarrinho();
 
 </script>
 
 </body>
-
 </html>
