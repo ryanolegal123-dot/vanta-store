@@ -172,7 +172,9 @@ h1 span{
   text-transform:uppercase;
 }
 
-/* PERFIL */
+/* =========================
+   PERFIL
+========================= */
 
 .perfil{
   padding:25px 20px;
@@ -278,12 +280,15 @@ h1 span{
   color:#fff;
 }
 
-/* PEDIDO */
+/* =========================
+   PEDIDO
+========================= */
 
 .pedido{
   margin-bottom:16px;
   border:1px solid #292929;
   background:#050505;
+  overflow:hidden;
 }
 
 .pedido:last-child{
@@ -321,10 +326,20 @@ h1 span{
   text-transform:uppercase;
 }
 
+/* CORPO DO PEDIDO */
+
 .pedido-body{
   padding:18px;
+  display:block;
+}
+
+.pedido-info{
+  width:100%;
+}
+
+.pedido-resumo{
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   justify-content:space-between;
   gap:20px;
 }
@@ -332,25 +347,74 @@ h1 span{
 .quantidade{
   color:#777;
   font-size:10px;
-}
-
-.total{
-  font-size:18px;
-  font-weight:900;
-}
-
-.acompanhar{
-  display:inline-block;
-  margin-top:9px;
-  color:#fff;
-  font-size:8px;
-  font-weight:900;
-  letter-spacing:1.5px;
   text-transform:uppercase;
 }
 
+.total{
+  font-size:22px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+/* =========================
+   BOTÃO ACOMPANHAR
+========================= */
+
+.acompanhar{
+  width:100%;
+  min-height:58px;
+
+  margin-top:20px;
+  padding:0 22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#d60000;
+  border:2px solid #d60000;
+
+  color:#fff;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  cursor:pointer;
+
+  transition:
+    background .2s,
+    color .2s,
+    border-color .2s,
+    transform .15s,
+    box-shadow .2s;
+}
+
 .acompanhar:hover{
-  color:#d60000;
+  background:#fff;
+  border-color:#fff;
+  color:#000;
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    5px 5px 0 #d60000;
+}
+
+.acompanhar:active{
+  transform:scale(.98);
+  box-shadow:none;
+}
+
+.acompanhar .seta{
+  margin-left:12px;
+  font-size:17px;
+  transition:transform .2s;
+}
+
+.acompanhar:hover .seta{
+  transform:translateX(5px);
 }
 
 /* =========================
@@ -427,10 +491,31 @@ footer{
     margin-top:40px;
   }
 
-  .pedido-top,
-  .pedido-body{
+  .pedido-top{
     align-items:flex-start;
     flex-direction:column;
+  }
+
+  .pedido-body{
+    padding:17px;
+  }
+
+  .pedido-resumo{
+    width:100%;
+    align-items:center;
+  }
+
+  .total{
+    font-size:21px;
+  }
+
+  .acompanhar{
+    min-height:60px;
+    margin-top:18px;
+    padding:0 14px;
+
+    font-size:10px;
+    letter-spacing:1.6px;
   }
 
 }
@@ -599,6 +684,7 @@ import {
 const SUPABASE_URL =
   "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
 
@@ -617,17 +703,22 @@ const supabase =
 const loading =
   document.getElementById("loading");
 
+
 const pagina =
   document.getElementById("pagina");
+
 
 const nomeEl =
   document.getElementById("nome");
 
+
 const emailEl =
   document.getElementById("email");
 
+
 const avatarEl =
   document.getElementById("avatar");
+
 
 const pedidosEl =
   document.getElementById("pedidos");
@@ -674,18 +765,14 @@ if(error || !user){
       .toUpperCase();
 
 
-  /*
-  Por enquanto carregamos a página normalmente.
-
-  Na próxima etapa vamos ativar RLS e
-  vincular os novos pedidos ao user.id.
-  */
-
-  await carregarPedidos(user.id);
+  await carregarPedidos(
+    user.id
+  );
 
 
   loading.style.display =
     "none";
+
 
   pagina.style.display =
     "block";
@@ -713,7 +800,10 @@ async function carregarPedidos(userId){
         criado_em,
         itens
       `)
-      .eq("user_id",userId)
+      .eq(
+        "user_id",
+        userId
+      )
       .order(
         "criado_em",
         {
@@ -729,9 +819,11 @@ async function carregarPedidos(userId){
       error
     );
 
+
     mostrarVazio();
 
     return;
+
   }
 
 
@@ -743,6 +835,7 @@ async function carregarPedidos(userId){
     mostrarVazio();
 
     return;
+
   }
 
 
@@ -751,7 +844,10 @@ async function carregarPedidos(userId){
 
 
       const quantidade =
-        Array.isArray(pedido.itens)
+        Array.isArray(
+          pedido.itens
+        )
+
           ? pedido.itens.reduce(
               (total,item)=>
                 total +
@@ -760,6 +856,7 @@ async function carregarPedidos(userId){
                 ),
               0
             )
+
           : 0;
 
 
@@ -772,25 +869,32 @@ async function carregarPedidos(userId){
             <div>
 
               <div class="numero">
+
                 PEDIDO #${escapar(
                   pedido.numero_pedido ||
                   pedido.id
                 )}
+
               </div>
 
               <div class="data">
+
                 ${formatarData(
                   pedido.criado_em
                 )}
+
               </div>
 
             </div>
 
+
             <div class="status">
+
               ${escapar(
                 pedido.status ||
                 "Pagamento em análise"
               )}
+
             </div>
 
           </div>
@@ -798,18 +902,33 @@ async function carregarPedidos(userId){
 
           <div class="pedido-body">
 
-            <div>
+            <div class="pedido-info">
 
-              <div class="quantidade">
+              <div class="pedido-resumo">
 
-                ${quantidade}
-                ${
-                  quantidade === 1
-                    ? "ITEM"
-                    : "ITENS"
-                }
+                <div class="quantidade">
+
+                  ${quantidade}
+
+                  ${
+                    quantidade === 1
+                      ? "ITEM"
+                      : "ITENS"
+                  }
+
+                </div>
+
+
+                <div class="total">
+
+                  ${dinheiro(
+                    pedido.total
+                  )}
+
+                </div>
 
               </div>
+
 
               <a
                 href="pedido.html?id=${encodeURIComponent(
@@ -817,15 +936,15 @@ async function carregarPedidos(userId){
                 )}"
                 class="acompanhar"
               >
-                ACOMPANHAR PEDIDO →
+
+                ACOMPANHAR PEDIDO
+
+                <span class="seta">
+                  →
+                </span>
+
               </a>
 
-            </div>
-
-            <div class="total">
-              ${dinheiro(
-                pedido.total
-              )}
             </div>
 
           </div>
@@ -888,6 +1007,7 @@ document
 
       await supabase.auth.signOut();
 
+
       window.location.replace(
         "login.html"
       );
@@ -902,7 +1022,9 @@ document
 
 function dinheiro(valor){
 
-  return Number(valor || 0)
+  return Number(
+    valor || 0
+  )
     .toLocaleString(
       "pt-BR",
       {
@@ -920,16 +1042,21 @@ function formatarData(data){
     return "";
   }
 
+
   const objeto =
     new Date(data);
+
 
   if(
     Number.isNaN(
       objeto.getTime()
     )
   ){
+
     return "";
+
   }
+
 
   return objeto.toLocaleString(
     "pt-BR",
@@ -948,10 +1075,14 @@ function formatarData(data){
 function escapar(texto){
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   div.textContent =
     texto ?? "";
+
 
   return div.innerHTML;
 
