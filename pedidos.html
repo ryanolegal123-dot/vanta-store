@@ -1,177 +1,1223 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Pedidos | VANTA</title>
+
+<title>Meus Pedidos | ANARKA</title>
+
+<meta
+  name="description"
+  content="Acompanhe seus pedidos ANARKA."
+>
+
+<link rel="icon" href="/favicon.png">
 
 <style>
-*{box-sizing:border-box}
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-color:#111;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
+body{
+  min-height:100vh;
+  background:#050505;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #fff 0,
+      #fff 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* TOPBAR */
+
+.topbar{
+  padding:9px 15px;
+  background:#d60000;
+
+  text-align:center;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+/* HEADER */
+
 header{
-height:70px;
-background:#000;
-color:#fff;
-display:flex;
-align-items:center;
-padding:0 6%;
+  height:88px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  border-bottom:1px solid #252525;
+
+  background:#050505;
 }
 
 .logo{
-font-size:25px;
-font-weight:bold;
-letter-spacing:4px;
+  width:135px;
+  height:70px;
+  object-fit:contain;
 }
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+nav a{
+  color:#fff;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+nav a:hover{
+  color:#d60000;
+}
+
+/* CONTAINER */
 
 .container{
-max-width:1000px;
-margin:40px auto;
-padding:20px;
+  width:100%;
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:70px 6% 110px;
 }
 
-.box{
-background:#fff;
-padding:25px;
-border-radius:10px;
-margin-bottom:20px;
+.page-label{
+  color:#d60000;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
 }
+
+h1{
+  margin-top:12px;
+
+  font-size:clamp(
+    55px,
+    8vw,
+    110px
+  );
+
+  line-height:.8;
+
+  letter-spacing:-6px;
+
+  text-transform:uppercase;
+}
+
+h1 span{
+  color:transparent;
+
+  -webkit-text-stroke:1px #fff;
+}
+
+.description{
+  max-width:570px;
+
+  margin-top:25px;
+
+  color:#777;
+
+  font-size:13px;
+
+  line-height:1.7;
+}
+
+/* LISTA */
+
+#lista{
+  margin-top:55px;
+}
+
+/* PEDIDO */
 
 .pedido{
-border:1px solid #ddd;
-padding:20px;
-border-radius:8px;
-margin-bottom:15px;
+  margin-bottom:25px;
+
+  border:1px solid #292929;
+
+  background:#090909;
 }
 
-.pedido h2{
-margin-top:0;
+.pedido-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:22px 25px;
+
+  border-bottom:1px solid #292929;
+}
+
+.pedido-numero{
+  color:#d60000;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+.pedido-data{
+  margin-top:7px;
+
+  color:#666;
+
+  font-size:10px;
+
+  letter-spacing:1px;
 }
 
 .status{
-display:inline-block;
-padding:8px 12px;
-background:#eee;
-border-radius:20px;
-font-size:13px;
-font-weight:bold;
+  display:inline-flex;
+
+  align-items:center;
+
+  padding:9px 12px;
+
+  border:1px solid #d60000;
+
+  color:#fff;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
 }
+
+.status::before{
+  content:"";
+
+  width:6px;
+  height:6px;
+
+  margin-right:8px;
+
+  border-radius:50%;
+
+  background:#d60000;
+}
+
+/* CONTEÚDO */
+
+.pedido-body{
+  display:grid;
+
+  grid-template-columns:1.2fr .8fr;
+
+  gap:30px;
+
+  padding:25px;
+}
+
+.section-title{
+  margin-bottom:18px;
+
+  color:#666;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+/* PRODUTOS */
+
+.produtos{
+  border-top:1px solid #242424;
+}
+
+.produto{
+  display:grid;
+
+  grid-template-columns:70px 1fr auto;
+
+  gap:15px;
+
+  align-items:center;
+
+  padding:15px 0;
+
+  border-bottom:1px solid #242424;
+}
+
+.produto-imagem{
+  width:70px;
+  height:85px;
+
+  background:#111;
+
+  overflow:hidden;
+
+  border:1px solid #242424;
+}
+
+.produto-imagem img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  filter:grayscale(.5);
+}
+
+.produto-nome{
+  font-size:12px;
+  font-weight:900;
+
+  line-height:1.3;
+
+  text-transform:uppercase;
+}
+
+.produto-info{
+  margin-top:6px;
+
+  color:#666;
+
+  font-size:10px;
+
+  line-height:1.6;
+}
+
+.produto-preco{
+  font-size:12px;
+  font-weight:900;
+
+  white-space:nowrap;
+}
+
+/* DADOS */
+
+.dados{
+  padding:20px;
+
+  border:1px solid #242424;
+
+  background:#070707;
+}
+
+.dado{
+  padding:12px 0;
+
+  border-bottom:1px solid #222;
+}
+
+.dado:first-of-type{
+  padding-top:0;
+}
+
+.dado:last-child{
+  padding-bottom:0;
+
+  border-bottom:0;
+}
+
+.dado span{
+  display:block;
+
+  margin-bottom:5px;
+
+  color:#666;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+}
+
+.dado strong{
+  color:#fff;
+
+  font-size:11px;
+
+  line-height:1.5;
+}
+
+/* TOTAL */
+
+.pedido-footer{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:22px 25px;
+
+  border-top:1px solid #292929;
+}
+
+.pagamento{
+  color:#777;
+
+  font-size:10px;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
+}
+
+.total span{
+  display:block;
+
+  margin-bottom:4px;
+
+  color:#666;
+
+  text-align:right;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+.total strong{
+  font-size:25px;
+}
+
+/* VAZIO */
 
 .vazio{
-text-align:center;
-padding:40px 10px;
-color:#777;
+  padding:75px 25px;
+
+  border:1px dashed #333;
+
+  text-align:center;
 }
 
-button{
-width:100%;
-padding:15px;
-background:#000;
-color:#fff;
-border:0;
-border-radius:5px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
+.vazio-symbol{
+  color:#d60000;
+
+  font-size:45px;
+  font-weight:900;
 }
+
+.vazio h2{
+  margin-top:18px;
+
+  font-size:30px;
+
+  text-transform:uppercase;
+}
+
+.vazio p{
+  max-width:420px;
+
+  margin:10px auto 25px;
+
+  color:#777;
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+.botao{
+  display:inline-flex;
+
+  min-height:52px;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:0 24px;
+
+  background:#fff;
+
+  color:#000;
+
+  border:1px solid #fff;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  transition:.15s;
+}
+
+.botao:hover{
+  background:#d60000;
+
+  border-color:#d60000;
+
+  color:#fff;
+
+  transform:translate(-3px,-3px);
+
+  box-shadow:5px 5px 0 #fff;
+}
+
+/* STATEMENT */
+
+.statement{
+  margin-top:90px;
+
+  padding-top:60px;
+
+  border-top:1px solid #292929;
+}
+
+.statement small{
+  color:#d60000;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:3px;
+}
+
+.statement h2{
+  max-width:900px;
+
+  margin-top:14px;
+
+  font-size:clamp(
+    40px,
+    6vw,
+    80px
+  );
+
+  line-height:.85;
+
+  letter-spacing:-4px;
+
+  text-transform:uppercase;
+}
+
+.statement h2 span{
+  color:transparent;
+
+  -webkit-text-stroke:1px #fff;
+}
+
+/* FOOTER */
+
+footer{
+  padding:45px 6%;
+
+  border-top:1px solid #222;
+
+  text-align:center;
+
+  color:#555;
+
+  font-size:9px;
+
+  letter-spacing:2px;
+}
+
+footer img{
+  display:block;
+
+  width:120px;
+  height:75px;
+
+  object-fit:contain;
+
+  margin:0 auto 10px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+  .pedido-body{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:550px){
+
+  header{
+    height:72px;
+
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+    height:58px;
+  }
+
+  nav a:first-child{
+    display:none;
+  }
+
+  .container{
+    padding:50px 4% 75px;
+  }
+
+  h1{
+    letter-spacing:-4px;
+  }
+
+  #lista{
+    margin-top:40px;
+  }
+
+  .pedido-header{
+    align-items:flex-start;
+
+    flex-direction:column;
+
+    padding:18px 16px;
+  }
+
+  .pedido-body{
+    padding:18px 16px;
+  }
+
+  .produto{
+    grid-template-columns:60px 1fr;
+  }
+
+  .produto-imagem{
+    width:60px;
+    height:75px;
+  }
+
+  .produto-preco{
+    grid-column:2;
+  }
+
+  .pedido-footer{
+    align-items:flex-start;
+
+    flex-direction:column;
+
+    padding:18px 16px;
+  }
+
+  .total span{
+    text-align:left;
+  }
+
+  .statement h2{
+    letter-spacing:-2px;
+  }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+<div class="topbar">
+  ANARKA — SEUS PEDIDOS
+</div>
+
 <header>
-<div class="logo">VANTA</div>
+
+  <a href="index.html">
+
+    <img
+      src="/anarka-logo.png"
+      alt="ANARKA"
+      class="logo"
+    >
+
+  </a>
+
+  <nav>
+
+    <a href="index.html">
+      Início
+    </a>
+
+    <a href="catalogo.html">
+      Coleção
+    </a>
+
+  </nav>
+
 </header>
 
-<div class="container">
+<main class="container">
 
-<div class="box">
+  <div class="page-label">
+    ANARKA / HISTÓRICO
+  </div>
 
-<h1>Pedidos</h1>
+  <h1>
+    SEUS<br>
+    <span>PEDIDOS.</span>
+  </h1>
 
-<div id="lista"></div>
+  <p class="description">
 
-</div>
+    Os pedidos realizados neste dispositivo
+    aparecem aqui depois da finalização.
 
-</div>
+  </p>
+
+  <div id="lista"></div>
+
+  <section class="statement">
+
+    <small>
+      ANARKA / ARCHIVE
+    </small>
+
+    <h2>
+      PEÇAS PASSAM.<br>
+      <span>IDENTIDADE FICA.</span>
+    </h2>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <img
+    src="/anarka-logo.png"
+    alt="ANARKA"
+  >
+
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+
+</footer>
 
 <script>
 
-let pedidos=
-JSON.parse(localStorage.getItem("vantaPedidos")) || [];
+/*
+==============================================
+IMPORTANTE
 
-let lista=document.getElementById("lista");
+Mantemos exatamente:
+localStorage.vantaPedidos
+
+pagamento.html salva os pedidos nessa chave.
+==============================================
+*/
+
+let pedidos = [];
+
+try{
+
+  pedidos =
+    JSON.parse(
+      localStorage.getItem("vantaPedidos")
+    ) || [];
+
+}catch{
+
+  pedidos = [];
+
+}
+
+if(!Array.isArray(pedidos)){
+  pedidos = [];
+}
+
+const lista =
+  document.getElementById("lista");
+
+
+function dinheiro(valor){
+
+  return Number(valor || 0)
+    .toLocaleString(
+      "pt-BR",
+      {
+        style:"currency",
+        currency:"BRL"
+      }
+    );
+
+}
+
+
+function formatarData(data){
+
+  if(!data){
+    return "Data não disponível";
+  }
+
+  const objeto =
+    new Date(data);
+
+  if(
+    Number.isNaN(
+      objeto.getTime()
+    )
+  ){
+    return data;
+  }
+
+  return objeto.toLocaleString(
+    "pt-BR",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+}
+
+
+function escapar(texto){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    texto ?? "";
+
+  return div.innerHTML;
+
+}
+
 
 function mostrarPedidos(){
 
-if(pedidos.length===0){
+  if(pedidos.length === 0){
 
-lista.innerHTML=`
-<div class="vazio">
-<h2>Nenhum pedido ainda</h2>
-<p>Os pedidos aparecerão aqui.</p>
-</div>
-`;
+    lista.innerHTML = `
 
-return;
+      <div class="vazio">
+
+        <div class="vazio-symbol">
+          Ⓐ
+        </div>
+
+        <h2>
+          Nenhum pedido ainda.
+        </h2>
+
+        <p>
+          Quando você finalizar uma compra,
+          o pedido aparecerá aqui neste dispositivo.
+        </p>
+
+        <a
+          href="catalogo.html"
+          class="botao"
+        >
+          VER COLEÇÃO →
+        </a>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  /*
+  Mais recente primeiro.
+  */
+
+  const pedidosOrdenados =
+    [...pedidos].reverse();
+
+
+  lista.innerHTML =
+    pedidosOrdenados
+      .map((pedido,index)=>{
+
+
+        const numero =
+          pedido.numero_pedido ||
+          pedido.id ||
+          String(
+            pedidos.length - index
+          ).padStart(4,"0");
+
+
+        const itens =
+          Array.isArray(pedido.itens)
+            ? pedido.itens
+            : [];
+
+
+        const produtosHTML =
+          itens.length
+
+          ? itens.map(item=>{
+
+
+              const quantidade =
+                Number(
+                  item.quantidade
+                ) || 1;
+
+
+              const preco =
+                Number(
+                  item.preco
+                ) || 0;
+
+
+              const subtotal =
+                preco * quantidade;
+
+
+              const imagem =
+                item.imagem ||
+                "/anarka-logo.png";
+
+
+              return `
+
+                <div class="produto">
+
+                  <div class="produto-imagem">
+
+                    <img
+                      src="${escapar(imagem)}"
+                      alt="${escapar(item.nome || "Produto ANARKA")}"
+                    >
+
+                  </div>
+
+                  <div>
+
+                    <div class="produto-nome">
+
+                      ${escapar(
+                        item.nome ||
+                        "Produto ANARKA"
+                      )}
+
+                    </div>
+
+                    <div class="produto-info">
+
+                      TAMANHO:
+                      ${escapar(
+                        item.tamanho ||
+                        "Único"
+                      )}
+
+                      <br>
+
+                      QUANTIDADE:
+                      ${quantidade}
+
+                    </div>
+
+                  </div>
+
+                  <div class="produto-preco">
+
+                    ${dinheiro(subtotal)}
+
+                  </div>
+
+                </div>
+
+              `;
+
+
+            }).join("")
+
+          : `
+
+            <div
+              style="
+                color:#666;
+                padding:18px 0;
+                font-size:11px;
+              "
+            >
+
+              Informações dos produtos
+              não disponíveis.
+
+            </div>
+
+          `;
+
+
+        return `
+
+          <article class="pedido">
+
+            <div class="pedido-header">
+
+              <div>
+
+                <div class="pedido-numero">
+
+                  PEDIDO #${escapar(numero)}
+
+                </div>
+
+                <div class="pedido-data">
+
+                  ${escapar(
+                    formatarData(
+                      pedido.data
+                    )
+                  )}
+
+                </div>
+
+              </div>
+
+              <div class="status">
+
+                ${escapar(
+                  pedido.status ||
+                  "Pedido registrado"
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div class="pedido-body">
+
+              <div>
+
+                <div class="section-title">
+
+                  PEÇAS
+
+                </div>
+
+                <div class="produtos">
+
+                  ${produtosHTML}
+
+                </div>
+
+              </div>
+
+
+              <div>
+
+                <div class="section-title">
+
+                  ENTREGA
+
+                </div>
+
+                <div class="dados">
+
+                  <div class="dado">
+
+                    <span>
+                      Cliente
+                    </span>
+
+                    <strong>
+
+                      ${escapar(
+                        pedido.nome ||
+                        "-"
+                      )}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div class="dado">
+
+                    <span>
+                      WhatsApp
+                    </span>
+
+                    <strong>
+
+                      ${escapar(
+                        pedido.whatsapp ||
+                        "-"
+                      )}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div class="dado">
+
+                    <span>
+                      Endereço
+                    </span>
+
+                    <strong>
+
+                      ${escapar(
+                        pedido.endereco ||
+                        "-"
+                      )}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div class="dado">
+
+                    <span>
+                      Cidade / Estado
+                    </span>
+
+                    <strong>
+
+                      ${escapar(
+                        pedido.cidade ||
+                        "-"
+                      )}
+
+                      /
+
+                      ${escapar(
+                        pedido.estado ||
+                        "-"
+                      )}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div class="dado">
+
+                    <span>
+                      CEP
+                    </span>
+
+                    <strong>
+
+                      ${escapar(
+                        pedido.cep ||
+                        "-"
+                      )}
+
+                    </strong>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="pedido-footer">
+
+              <div class="pagamento">
+
+                PAGAMENTO:
+                <strong>
+
+                  ${escapar(
+                    pedido.pagamento ||
+                    "-"
+                  )}
+
+                </strong>
+
+              </div>
+
+              <div class="total">
+
+                <span>
+                  Total
+                </span>
+
+                <strong>
+
+                  ${dinheiro(
+                    pedido.total
+                  )}
+
+                </strong>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        `;
+
+
+      }).join("");
+
 }
 
-lista.innerHTML="";
-
-pedidos.forEach((pedido,index)=>{
-
-lista.innerHTML+=`
-
-<div class="pedido">
-
-<h2>${pedido.produto}</h2>
-
-<p>
-<strong>Cliente:</strong>
-${pedido.nome}
-</p>
-
-<p>
-<strong>WhatsApp:</strong>
-${pedido.whatsapp}
-</p>
-
-<p>
-<strong>Endereço:</strong>
-${pedido.endereco}
-</p>
-
-<p>
-<strong>Pagamento:</strong>
-${pedido.pagamento}
-</p>
-
-<p>
-<strong>Total:</strong>
-R$ ${pedido.total}
-</p>
-
-<span class="status">
-${pedido.status}
-</span>
-
-</div>
-
-`;
-
-});
-
-}
 
 mostrarPedidos();
 
 </script>
 
 </body>
+
 </html>
