@@ -2,213 +2,601 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Carrinho | VANTA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Carrinho | ANARKA</title>
+<meta name="description" content="Seu carrinho ANARKA.">
+
+<link rel="icon" href="/favicon.png">
 
 <style>
+
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,sans-serif;
+  box-sizing:border-box;
 }
 
 body{
-  background:#0b0b0b;
-  color:#fff;
+  background:#050505;
+  color:#f5f5f5;
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
 }
 
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+  background:repeating-linear-gradient(
+    0deg,
+    #fff 0,
+    #fff 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
+.topbar{
+  background:#d60000;
+  color:#fff;
+  text-align:center;
+  padding:9px 15px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* HEADER */
+
 header{
-  height:70px;
-  border-bottom:1px solid #222;
+  height:88px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+  padding:0 6%;
+  border-bottom:1px solid #262626;
+  background:rgba(5,5,5,.97);
 }
 
 .logo{
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:4px;
+  width:135px;
+  height:70px;
+  object-fit:contain;
 }
 
+nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+nav a{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+nav a:hover{
+  color:#d60000;
+}
+
+/* CONTAINER */
+
 .container{
-  max-width:800px;
-  margin:40px auto;
-  padding:20px;
+  max-width:1400px;
+  margin:auto;
+  padding:75px 6% 110px;
+}
+
+.page-label{
+  color:#d60000;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
 }
 
 h1{
-  font-size:30px;
-  margin-bottom:25px;
+  margin-top:12px;
+  font-size:clamp(58px,9vw,125px);
+  line-height:.78;
+  letter-spacing:-6px;
+  text-transform:uppercase;
+}
+
+h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+}
+
+.cart-layout{
+  margin-top:65px;
+  display:grid;
+  grid-template-columns:1.5fr .7fr;
+  gap:45px;
+  align-items:start;
+}
+
+/* ITENS */
+
+.cart-items{
+  border-top:1px solid #292929;
 }
 
 .item{
-  display:flex;
-  gap:18px;
-  padding:18px;
-  margin-bottom:15px;
+  display:grid;
+  grid-template-columns:150px 1fr auto;
+  gap:22px;
+  padding:22px 0;
+  border-bottom:1px solid #292929;
+  align-items:center;
+}
+
+.item-image{
+  width:150px;
+  aspect-ratio:4/5;
+  overflow:hidden;
   background:#111;
-  border:1px solid #222;
-  border-radius:12px;
+  border:1px solid #242424;
 }
 
-.item img{
-  width:110px;
-  height:130px;
+.item-image img{
+  width:100%;
+  height:100%;
   object-fit:cover;
-  border-radius:8px;
+  filter:grayscale(.55);
 }
 
-.info{
-  flex:1;
+.item-tag{
+  color:#d60000;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
-.nome{
-  font-size:18px;
-  font-weight:bold;
-  margin-bottom:8px;
+.item-name{
+  margin-top:7px;
+  font-size:20px;
+  line-height:1.05;
+  text-transform:uppercase;
 }
 
-.preco{
+.item-size{
+  margin-top:9px;
+  color:#777;
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.item-price{
+  display:block;
+  margin-top:15px;
+  font-weight:900;
   font-size:17px;
-  margin-bottom:8px;
 }
 
-.tamanho{
-  color:#aaa;
-  margin-bottom:12px;
+.item-controls{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:20px;
 }
 
-.controle{
+.quantity{
+  display:flex;
+  border:1px solid #333;
+}
+
+.quantity button{
+  width:38px;
+  height:38px;
+  border:0;
+  background:#0b0b0b;
+  color:#fff;
+  cursor:pointer;
+  font-size:17px;
+}
+
+.quantity span{
+  width:42px;
   display:flex;
   align-items:center;
-  gap:12px;
+  justify-content:center;
+  border-left:1px solid #333;
+  border-right:1px solid #333;
+  font-size:12px;
+  font-weight:900;
 }
 
-.controle button{
-  width:32px;
-  height:32px;
-  padding:0;
-  border:1px solid #444;
-  background:#1a1a1a;
-  color:#fff;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.remover{
-  margin-top:12px;
+.remove{
   background:none;
   border:0;
-  color:#888;
+  color:#666;
   cursor:pointer;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
-.remover:hover{
+.remove:hover{
+  color:#d60000;
+}
+
+/* RESUMO */
+
+.summary{
+  border:1px solid #333;
+  background:#090909;
+  padding:28px;
+  position:sticky;
+  top:25px;
+}
+
+.summary-label{
+  color:#d60000;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.summary h2{
+  margin-top:8px;
+  font-size:28px;
+  text-transform:uppercase;
+}
+
+.summary-line{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:18px 0;
+  border-bottom:1px solid #242424;
+  color:#888;
+  font-size:12px;
+}
+
+.summary-line strong{
   color:#fff;
 }
 
-.resumo{
+.summary-total{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
   margin-top:25px;
-  padding:22px;
-  background:#111;
-  border:1px solid #222;
-  border-radius:12px;
 }
 
-.total{
-  font-size:24px;
-  font-weight:bold;
-  margin-bottom:18px;
+.summary-total span{
+  color:#888;
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-.finalizar{
-  display:block;
+.summary-total strong{
+  font-size:30px;
+}
+
+.checkout{
+  display:flex;
+  align-items:center;
+  justify-content:center;
   width:100%;
-  padding:17px;
+  min-height:60px;
+  margin-top:27px;
   background:#fff;
   color:#000;
+  border:1px solid #fff;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.15s;
+}
+
+.checkout:hover{
+  background:#d60000;
+  color:#fff;
+  border-color:#d60000;
+  transform:translate(-3px,-3px);
+  box-shadow:6px 6px 0 #fff;
+}
+
+.continue{
+  display:block;
+  margin-top:18px;
   text-align:center;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:bold;
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
-.finalizar:hover{
-  background:#ddd;
+.continue:hover{
+  color:#fff;
 }
 
-.vazio{
+/* VAZIO */
+
+.empty{
+  border:1px dashed #333;
+  padding:80px 25px;
   text-align:center;
-  padding:60px 20px;
-  background:#111;
-  border:1px solid #222;
-  border-radius:12px;
 }
 
-.vazio h2{
-  margin-bottom:10px;
+.empty-symbol{
+  font-size:45px;
 }
 
-.vazio p{
-  color:#888;
+.empty h2{
+  margin-top:20px;
+  font-size:35px;
+  text-transform:uppercase;
 }
 
-@media(max-width:600px){
+.empty p{
+  margin:12px auto 25px;
+  max-width:430px;
+  color:#777;
+  line-height:1.6;
+}
+
+.empty a{
+  display:inline-flex;
+  min-height:52px;
+  align-items:center;
+  justify-content:center;
+  padding:0 23px;
+  background:#d60000;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* FRASE */
+
+.statement{
+  margin-top:100px;
+  border-top:1px solid #292929;
+  padding-top:65px;
+}
+
+.statement small{
+  color:#d60000;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+.statement h2{
+  margin-top:15px;
+  font-size:clamp(40px,6vw,80px);
+  line-height:.85;
+  letter-spacing:-4px;
+  text-transform:uppercase;
+}
+
+.statement h2 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid #222;
+  padding:45px 6%;
+  text-align:center;
+  color:#555;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+footer img{
+  display:block;
+  width:120px;
+  height:75px;
+  object-fit:contain;
+  margin:0 auto 10px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .cart-layout{
+    grid-template-columns:1fr;
+  }
+
+  .summary{
+    position:static;
+  }
+
+}
+
+@media(max-width:650px){
+
+  header{
+    height:72px;
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+    height:58px;
+  }
+
+  nav a:first-child{
+    display:none;
+  }
+
+  nav{
+    gap:15px;
+  }
+
+  .container{
+    padding:55px 4% 75px;
+  }
+
+  h1{
+    letter-spacing:-4px;
+  }
+
+  .cart-layout{
+    margin-top:45px;
+  }
 
   .item{
-    gap:12px;
+    grid-template-columns:95px 1fr;
+    gap:14px;
+    position:relative;
   }
 
-  .item img{
-    width:90px;
-    height:110px;
+  .item-image{
+    width:95px;
+  }
+
+  .item-name{
+    font-size:14px;
+  }
+
+  .item-price{
+    font-size:14px;
+  }
+
+  .item-controls{
+    grid-column:1 / 3;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .statement h2{
+    letter-spacing:-2px;
   }
 
 }
+
 </style>
 </head>
 
 <body>
 
+<div class="topbar">
+  ANARKA — NÃO VISTA O PADRÃO
+</div>
+
 <header>
-  <div class="logo">VANTA</div>
+
+  <a href="index.html">
+    <img
+      src="/anarka-logo.png"
+      alt="ANARKA"
+      class="logo"
+    >
+  </a>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Coleção</a>
+  </nav>
+
 </header>
 
-<div class="container">
+<main class="container">
 
-<h1>Seu carrinho</h1>
+  <div class="page-label">
+    ANARKA / SEU PEDIDO
+  </div>
 
-<div id="lista"></div>
+  <h1>
+    SEU<br>
+    <span>CARRINHO.</span>
+  </h1>
 
-<div id="resumo"></div>
+  <div id="cartContent"></div>
 
-</div>
+  <section class="statement">
+
+    <small>ANARKA / 001</small>
+
+    <h2>
+      ESCOLHA O QUE<br>
+      <span>REPRESENTA VOCÊ.</span>
+    </h2>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <img
+    src="/anarka-logo.png"
+    alt="ANARKA"
+  >
+
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+
+</footer>
 
 <script>
 
-let carrinho =
-  JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
+/* ============================================
+   CARRINHO ANARKA
 
-/*
- Compatibilidade:
- se o carrinho antigo ainda for um único objeto,
- transformamos automaticamente em array.
-*/
+   IMPORTANTE:
+   "vantaCarrinho" continua igual para manter
+   compatibilidade com produto.html e checkout.
+============================================ */
 
-if(!Array.isArray(carrinho) && carrinho.nome){
+function pegarCarrinho(){
 
-  carrinho = [carrinho];
+  try{
 
-  localStorage.setItem(
-    "vantaCarrinho",
-    JSON.stringify(carrinho)
-  );
+    let carrinho =
+      JSON.parse(
+        localStorage.getItem("vantaCarrinho")
+      ) || [];
+
+    if(!Array.isArray(carrinho)){
+      carrinho =
+        carrinho
+        ? [carrinho]
+        : [];
+    }
+
+    return carrinho;
+
+  }catch{
+
+    return [];
+
+  }
+
 }
 
-function salvar(){
+function salvarCarrinho(carrinho){
 
   localStorage.setItem(
     "vantaCarrinho",
@@ -219,113 +607,287 @@ function salvar(){
 
 function dinheiro(valor){
 
-  return valor
-    .toFixed(2)
-    .replace(".",",");
+  return Number(valor).toLocaleString(
+    "pt-BR",
+    {
+      style:"currency",
+      currency:"BRL"
+    }
+  );
 
 }
 
-function mostrar(){
+/* ============================================
+   TOTAL
+============================================ */
 
-  let lista =
-    document.getElementById("lista");
+function calcularTotal(carrinho){
 
-  let resumo =
-    document.getElementById("resumo");
+  return carrinho.reduce(
+    (total,item)=>{
+
+      const preco =
+        Number(item.preco) || 0;
+
+      const quantidade =
+        Number(item.quantidade) || 1;
+
+      return total +
+        (preco * quantidade);
+
+    },
+    0
+  );
+
+}
+
+function calcularQuantidade(carrinho){
+
+  return carrinho.reduce(
+    (total,item)=>
+      total +
+      (Number(item.quantidade) || 1),
+    0
+  );
+
+}
+
+/* ============================================
+   RENDER
+============================================ */
+
+function renderizarCarrinho(){
+
+  const carrinho =
+    pegarCarrinho();
+
+  const container =
+    document.getElementById("cartContent");
 
   if(carrinho.length === 0){
 
-    lista.innerHTML = `
-      <div class="vazio">
-        <h2>Carrinho vazio</h2>
-        <p>Adicione algum produto para continuar.</p>
+    container.innerHTML = `
+
+      <div
+        class="empty"
+        style="margin-top:55px"
+      >
+
+        <div class="empty-symbol">
+          Ⓐ
+        </div>
+
+        <h2>
+          Seu carrinho está vazio.
+        </h2>
+
+        <p>
+          A coleção continua esperando.
+          Explore as peças ANARKA e escolha
+          o que combina com a sua presença.
+        </p>
+
+        <a href="catalogo.html">
+          VER COLEÇÃO →
+        </a>
+
       </div>
+
     `;
 
-    resumo.innerHTML = "";
-
     return;
+
   }
 
-  lista.innerHTML = "";
+  const total =
+    calcularTotal(carrinho);
 
-  let total = 0;
+  const quantidadeTotal =
+    calcularQuantidade(carrinho);
 
-  carrinho.forEach((produto,index)=>{
+  const itensHTML =
+    carrinho.map((item,index)=>{
 
-    let subtotal =
-      produto.preco * produto.quantidade;
+      const preco =
+        Number(item.preco) || 0;
 
-    total += subtotal;
+      const quantidade =
+        Number(item.quantidade) || 1;
 
-    lista.innerHTML += `
+      const subtotal =
+        preco * quantidade;
 
-      <div class="item">
+      const imagem =
+        item.imagem ||
+        "/anarka-logo.png";
 
-        <img
-          src="${produto.imagem || ""}"
-          alt="${produto.nome}"
-        >
+      const nome =
+        item.nome ||
+        "Peça ANARKA";
 
-        <div class="info">
+      const tamanho =
+        item.tamanho ||
+        "-";
 
-          <div class="nome">
-            ${produto.nome}
-          </div>
+      return `
 
-          <div class="preco">
-            R$ ${dinheiro(produto.preco)}
-          </div>
+        <div class="item">
 
-          <div class="tamanho">
-            Tamanho: ${produto.tamanho}
-          </div>
+          <a
+            href="${item.id
+              ? `produto.html?id=${encodeURIComponent(item.id)}`
+              : "catalogo.html"
+            }"
+            class="item-image"
+          >
 
-          <div class="controle">
+            <img
+              src="${imagem}"
+              alt="${nome}"
+            >
 
-            <button onclick="diminuir(${index})">
-              −
-            </button>
+          </a>
 
-            <span>
-              ${produto.quantidade}
+          <div class="item-info">
+
+            <div class="item-tag">
+              ANARKA / ITEM ${String(index + 1).padStart(2,"0")}
+            </div>
+
+            <a
+              href="${item.id
+                ? `produto.html?id=${encodeURIComponent(item.id)}`
+                : "catalogo.html"
+              }"
+            >
+
+              <h2 class="item-name">
+                ${nome}
+              </h2>
+
+            </a>
+
+            <div class="item-size">
+              TAMANHO: ${tamanho}
+            </div>
+
+            <span class="item-price">
+              ${dinheiro(subtotal)}
             </span>
 
-            <button onclick="aumentar(${index})">
-              +
+          </div>
+
+          <div class="item-controls">
+
+            <div class="quantity">
+
+              <button
+                type="button"
+                onclick="alterarQuantidade(${index},-1)"
+                aria-label="Diminuir quantidade"
+              >
+                −
+              </button>
+
+              <span>
+                ${quantidade}
+              </span>
+
+              <button
+                type="button"
+                onclick="alterarQuantidade(${index},1)"
+                aria-label="Aumentar quantidade"
+              >
+                +
+              </button>
+
+            </div>
+
+            <button
+              type="button"
+              class="remove"
+              onclick="removerItem(${index})"
+            >
+              REMOVER ×
             </button>
 
           </div>
-
-          <button
-            class="remover"
-            onclick="remover(${index})"
-          >
-            Remover
-          </button>
 
         </div>
 
-      </div>
+      `;
 
-    `;
+    }).join("");
 
-  });
+  container.innerHTML = `
 
-  resumo.innerHTML = `
+    <div class="cart-layout">
 
-    <div class="resumo">
+      <section class="cart-items">
+        ${itensHTML}
+      </section>
 
-      <div class="total">
-        Total: R$ ${dinheiro(total)}
-      </div>
+      <aside class="summary">
 
-      <a
-        href="checkout.html"
-        class="finalizar"
-      >
-        FINALIZAR COMPRA
-      </a>
+        <div class="summary-label">
+          ANARKA / RESUMO
+        </div>
+
+        <h2>
+          Pedido
+        </h2>
+
+        <div class="summary-line">
+
+          <span>
+            Produtos (${quantidadeTotal})
+          </span>
+
+          <strong>
+            ${dinheiro(total)}
+          </strong>
+
+        </div>
+
+        <div class="summary-line">
+
+          <span>
+            Frete
+          </span>
+
+          <strong>
+            Calculado no checkout
+          </strong>
+
+        </div>
+
+        <div class="summary-total">
+
+          <span>
+            Total
+          </span>
+
+          <strong>
+            ${dinheiro(total)}
+          </strong>
+
+        </div>
+
+        <a
+          href="checkout.html"
+          class="checkout"
+        >
+          FINALIZAR PEDIDO →
+        </a>
+
+        <a
+          href="catalogo.html"
+          class="continue"
+        >
+          ← CONTINUAR COMPRANDO
+        </a>
+
+      </aside>
 
     </div>
 
@@ -333,40 +895,74 @@ function mostrar(){
 
 }
 
-function aumentar(index){
+/* ============================================
+   ALTERAR QUANTIDADE
+============================================ */
 
-  carrinho[index].quantidade++;
+function alterarQuantidade(index,mudanca){
 
-  salvar();
-  mostrar();
+  const carrinho =
+    pegarCarrinho();
 
-}
+  if(!carrinho[index]){
+    return;
+  }
 
-function diminuir(index){
+  let quantidade =
+    Number(
+      carrinho[index].quantidade
+    ) || 1;
 
-  carrinho[index].quantidade--;
+  quantidade += mudanca;
 
-  if(carrinho[index].quantidade <= 0){
+  if(quantidade <= 0){
 
     carrinho.splice(index,1);
 
+  }else{
+
+    if(quantidade > 10){
+      quantidade = 10;
+    }
+
+    carrinho[index].quantidade =
+      quantidade;
+
   }
 
-  salvar();
-  mostrar();
+  salvarCarrinho(carrinho);
+
+  renderizarCarrinho();
 
 }
 
-function remover(index){
+/* ============================================
+   REMOVER
+============================================ */
+
+function removerItem(index){
+
+  const carrinho =
+    pegarCarrinho();
 
   carrinho.splice(index,1);
 
-  salvar();
-  mostrar();
+  salvarCarrinho(carrinho);
+
+  renderizarCarrinho();
 
 }
 
-mostrar();
+/* ============================================
+   INICIAR
+============================================ */
+
+renderizarCarrinho();
+
+window.addEventListener(
+  "storage",
+  renderizarCarrinho
+);
 
 </script>
 
