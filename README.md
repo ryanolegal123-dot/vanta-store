@@ -1,1 +1,1 @@
-# vanta-store
+# ANARKA-store
