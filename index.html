@@ -125,7 +125,7 @@ nav a{
   position:relative;
 }
 
-nav a:not(.cart-link)::after{
+nav a:not(.cart-link):not(.account-link)::after{
   content:"";
   position:absolute;
   left:0;
@@ -139,6 +139,29 @@ nav a:not(.cart-link)::after{
 nav a:hover::after{
   width:100%;
 }
+
+/* CONTA */
+
+.account-link{
+  border:1px solid #333;
+  padding:11px 15px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  transition:.2s;
+}
+
+.account-link:hover{
+  border-color:#d60000;
+  color:#fff;
+}
+
+.account-icon{
+  color:#d60000;
+  font-size:14px;
+}
+
+/* CARRINHO */
 
 .cart-link{
   border:1px solid #444;
@@ -403,7 +426,11 @@ nav a:hover::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(0deg,rgba(0,0,0,.95),transparent 65%);
+  background:linear-gradient(
+    0deg,
+    rgba(0,0,0,.95),
+    transparent 65%
+  );
 }
 
 .category:hover img{
@@ -797,21 +824,38 @@ footer{
   }
 
   .logo{
-    width:100px;
+    width:90px;
     height:60px;
   }
 
   nav{
-    gap:12px;
+    gap:7px;
   }
 
-  nav a:not(.cart-link){
+  nav a:not(.cart-link):not(.account-link){
     display:none;
   }
 
+  .account-link{
+    padding:9px 10px;
+    font-size:9px;
+    letter-spacing:.5px;
+  }
+
+  .account-icon{
+    font-size:12px;
+  }
+
   .cart-link{
-    padding:9px 11px;
-    font-size:10px;
+    padding:9px 10px;
+    font-size:9px;
+    letter-spacing:.5px;
+  }
+
+  #cartCount{
+    min-width:18px;
+    height:18px;
+    font-size:9px;
   }
 
   .hero{
@@ -820,8 +864,17 @@ footer{
 
   .hero-bg::after{
     background:
-      linear-gradient(0deg,#050505 0%,rgba(0,0,0,.5) 55%,rgba(0,0,0,.2)),
-      linear-gradient(90deg,rgba(0,0,0,.65),transparent);
+      linear-gradient(
+        0deg,
+        #050505 0%,
+        rgba(0,0,0,.5) 55%,
+        rgba(0,0,0,.2)
+      ),
+      linear-gradient(
+        90deg,
+        rgba(0,0,0,.65),
+        transparent
+      );
   }
 
   .hero-content{
@@ -930,14 +983,35 @@ footer{
   </a>
 
   <nav>
-    <a href="index.html">Início</a>
-    <a href="catalogo.html">Coleção</a>
-    <a href="#manifesto">Manifesto</a>
 
+    <a href="index.html">
+      Início
+    </a>
+
+    <a href="catalogo.html">
+      Coleção
+    </a>
+
+    <a href="#manifesto">
+      Manifesto
+    </a>
+
+    <!-- CONTA -->
+    <a
+      href="login.html"
+      class="account-link"
+      id="accountLink"
+    >
+      <span class="account-icon">●</span>
+      <span id="accountText">Entrar</span>
+    </a>
+
+    <!-- CARRINHO -->
     <a href="carrinho.html" class="cart-link">
       🛒 Carrinho
       <span id="cartCount">0</span>
     </a>
+
   </nav>
 
 </header>
@@ -1025,12 +1099,18 @@ footer{
   <div class="section-head">
 
     <div>
-      <div class="section-label">01 / COLEÇÃO</div>
+
+      <div class="section-label">
+        01 / COLEÇÃO
+      </div>
 
       <h2 class="section-title">
         ESCOLHA SEU<br>
-        <span class="outline">UNIFORME.</span>
+        <span class="outline">
+          UNIFORME.
+        </span>
       </h2>
+
     </div>
 
     <p>
@@ -1050,9 +1130,19 @@ footer{
       >
 
       <div class="category-info">
-        <span class="category-number">01</span>
-        <h3>Camisetas</h3>
-        <p>Oversized / Boxy / Street</p>
+
+        <span class="category-number">
+          01
+        </span>
+
+        <h3>
+          Camisetas
+        </h3>
+
+        <p>
+          Oversized / Boxy / Street
+        </p>
+
       </div>
 
     </a>
@@ -1065,9 +1155,19 @@ footer{
       >
 
       <div class="category-info">
-        <span class="category-number">02</span>
-        <h3>Calças</h3>
-        <p>Cargo / Jogger / Denim</p>
+
+        <span class="category-number">
+          02
+        </span>
+
+        <h3>
+          Calças
+        </h3>
+
+        <p>
+          Cargo / Jogger / Denim
+        </p>
+
       </div>
 
     </a>
@@ -1080,9 +1180,19 @@ footer{
       >
 
       <div class="category-info">
-        <span class="category-number">03</span>
-        <h3>Outerwear</h3>
-        <p>Hoodies / Jackets / Overshirts</p>
+
+        <span class="category-number">
+          03
+        </span>
+
+        <h3>
+          Outerwear
+        </h3>
+
+        <p>
+          Hoodies / Jackets / Overshirts
+        </p>
+
       </div>
 
     </a>
@@ -1093,12 +1203,20 @@ footer{
 
 <!-- MANIFESTO -->
 
-<section class="manifesto-wrap" id="manifesto">
+<section
+  class="manifesto-wrap"
+  id="manifesto"
+>
 
   <div class="manifesto">
 
     <div class="manifesto-symbol">
-      <img src="/anarka-logo.png" alt="Símbolo ANARKA">
+
+      <img
+        src="/anarka-logo.png"
+        alt="Símbolo ANARKA"
+      >
+
     </div>
 
     <div class="manifesto-text">
@@ -1115,7 +1233,9 @@ footer{
       <p>
         A ANARKA nasce da ideia de que roupa também é linguagem.
         Não acreditamos que estilo precise pedir permissão.
-        <strong>Vestir é escolher como você aparece para o mundo.</strong>
+        <strong>
+          Vestir é escolher como você aparece para o mundo.
+        </strong>
         Nossa estética vem das ruas, da música, do underground,
         do DIY e de quem constrói a própria identidade.
       </p>
@@ -1133,15 +1253,24 @@ footer{
   <div class="section-head">
 
     <div>
-      <div class="section-label">03 / DESTAQUES</div>
+
+      <div class="section-label">
+        03 / DESTAQUES
+      </div>
 
       <h2 class="section-title">
         PEÇAS EM<br>
-        <span class="outline">DESTAQUE.</span>
+        <span class="outline">
+          DESTAQUE.
+        </span>
       </h2>
+
     </div>
 
-    <a href="catalogo.html" class="btn btn-secondary">
+    <a
+      href="catalogo.html"
+      class="btn btn-secondary"
+    >
       Ver tudo →
     </a>
 
@@ -1149,74 +1278,149 @@ footer{
 
   <div class="products-preview">
 
-    <a href="produto.html?id=oversized" class="product">
+    <a
+      href="produto.html?id=oversized"
+      class="product"
+    >
 
       <div class="product-image">
+
         <img
           src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85"
           alt="Oversized Essential Black"
         >
-        <span class="product-tag">ESSENTIAL</span>
+
+        <span class="product-tag">
+          ESSENTIAL
+        </span>
+
       </div>
 
       <div class="product-info">
-        <h3>Oversized Essential Black</h3>
-        <p>ANARKA / TEE</p>
-        <span class="product-price">R$ 89,90</span>
+
+        <h3>
+          Oversized Essential Black
+        </h3>
+
+        <p>
+          ANARKA / TEE
+        </p>
+
+        <span class="product-price">
+          R$ 89,90
+        </span>
+
       </div>
 
     </a>
 
-    <a href="produto.html?id=cargo" class="product">
+
+    <a
+      href="produto.html?id=cargo"
+      class="product"
+    >
 
       <div class="product-image">
+
         <img
           src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85"
           alt="Cargo Urban Black"
         >
-        <span class="product-tag">URBAN</span>
+
+        <span class="product-tag">
+          URBAN
+        </span>
+
       </div>
 
       <div class="product-info">
-        <h3>Cargo Urban Black</h3>
-        <p>ANARKA / CARGO</p>
-        <span class="product-price">R$ 129,90</span>
+
+        <h3>
+          Cargo Urban Black
+        </h3>
+
+        <p>
+          ANARKA / CARGO
+        </p>
+
+        <span class="product-price">
+          R$ 129,90
+        </span>
+
       </div>
 
     </a>
 
-    <a href="produto.html?id=moletom" class="product">
+
+    <a
+      href="produto.html?id=moletom"
+      class="product"
+    >
 
       <div class="product-image">
+
         <img
           src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=85"
           alt="Essential Hoodie"
         >
-        <span class="product-tag">HOODIE</span>
+
+        <span class="product-tag">
+          HOODIE
+        </span>
+
       </div>
 
       <div class="product-info">
-        <h3>Essential Hoodie</h3>
-        <p>ANARKA / HEAVY</p>
-        <span class="product-price">R$ 149,90</span>
+
+        <h3>
+          Essential Hoodie
+        </h3>
+
+        <p>
+          ANARKA / HEAVY
+        </p>
+
+        <span class="product-price">
+          R$ 149,90
+        </span>
+
       </div>
 
     </a>
 
-    <a href="produto.html?id=boneblack" class="product">
+
+    <a
+      href="produto.html?id=boneblack"
+      class="product"
+    >
 
       <div class="product-image">
+
         <img
           src="https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=85"
           alt="ANARKA Cap Black"
         >
-        <span class="product-tag">ACCESSORY</span>
+
+        <span class="product-tag">
+          ACCESSORY
+        </span>
+
       </div>
 
       <div class="product-info">
-        <h3>ANARKA Cap Black</h3>
-        <p>ANARKA / ACCESSORY</p>
-        <span class="product-price">R$ 49,90</span>
+
+        <h3>
+          ANARKA Cap Black
+        </h3>
+
+        <p>
+          ANARKA / ACCESSORY
+        </p>
+
+        <span class="product-price">
+          R$ 49,90
+        </span>
+
       </div>
 
     </a>
@@ -1233,7 +1437,9 @@ footer{
 
     <h2>
       MESMO MUNDO.<br>
-      <span>OUTRA MENTALIDADE.</span>
+      <span>
+        OUTRA MENTALIDADE.
+      </span>
     </h2>
 
   </div>
@@ -1247,30 +1453,56 @@ footer{
   <div class="benefits">
 
     <div class="benefit">
-      <span class="benefit-number">01</span>
-      <h3>Identidade</h3>
+
+      <span class="benefit-number">
+        01
+      </span>
+
+      <h3>
+        Identidade
+      </h3>
+
       <p>
         Peças escolhidas para construir presença,
         não para desaparecer no padrão.
       </p>
+
     </div>
 
+
     <div class="benefit">
-      <span class="benefit-number">02</span>
-      <h3>Compra segura</h3>
+
+      <span class="benefit-number">
+        02
+      </span>
+
+      <h3>
+        Compra segura
+      </h3>
+
       <p>
         Seu pedido é registrado e acompanhado
         durante todo o processo.
       </p>
+
     </div>
 
+
     <div class="benefit">
-      <span class="benefit-number">03</span>
-      <h3>Atendimento</h3>
+
+      <span class="benefit-number">
+        03
+      </span>
+
+      <h3>
+        Atendimento
+      </h3>
+
       <p>
         Comunicação direta para acompanhar
         dúvidas e informações do seu pedido.
       </p>
+
     </div>
 
   </div>
@@ -1292,7 +1524,10 @@ footer{
       sua própria presença.
     </p>
 
-    <a href="catalogo.html" class="btn btn-primary">
+    <a
+      href="catalogo.html"
+      class="btn btn-primary"
+    >
       Explorar coleção →
     </a>
 
@@ -1310,7 +1545,10 @@ footer{
 
       <div class="footer-brand">
 
-        <img src="/anarka-logo.png" alt="ANARKA">
+        <img
+          src="/anarka-logo.png"
+          alt="ANARKA"
+        >
 
         <p>
           Streetwear, expressão e contracultura.
@@ -1320,38 +1558,74 @@ footer{
 
       </div>
 
+
       <div class="footer-column">
 
-        <h4>Navegação</h4>
+        <h4>
+          Navegação
+        </h4>
 
-        <a href="index.html">Início</a>
-        <a href="catalogo.html">Coleção</a>
-        <a href="carrinho.html">Carrinho</a>
+        <a href="index.html">
+          Início
+        </a>
+
+        <a href="catalogo.html">
+          Coleção
+        </a>
+
+        <a href="carrinho.html">
+          Carrinho
+        </a>
+
+        <a
+          href="login.html"
+          id="footerAccountLink"
+        >
+          Entrar / Criar conta
+        </a>
 
       </div>
 
+
       <div class="footer-column">
 
-        <h4>ANARKA</h4>
+        <h4>
+          ANARKA
+        </h4>
 
-        <a href="#manifesto">Manifesto</a>
-        <a href="privacidade.html">Privacidade</a>
+        <a href="#manifesto">
+          Manifesto
+        </a>
+
+        <a href="privacidade.html">
+          Privacidade
+        </a>
 
       </div>
 
     </div>
 
+
     <div class="footer-bottom">
 
-      <span>© 2026 ANARKA.</span>
+      <span>
+        © 2026 ANARKA.
+      </span>
 
-      <span>STREETWEAR / SÃO PAULO</span>
+      <span>
+        STREETWEAR / SÃO PAULO
+      </span>
 
     </div>
 
   </div>
 
 </footer>
+
+
+<!-- ================================
+     CARRINHO
+================================ -->
 
 <script>
 
@@ -1366,35 +1640,247 @@ function atualizarCarrinho(){
   let carrinho;
 
   try{
+
     carrinho =
-      JSON.parse(localStorage.getItem("vantaCarrinho")) || [];
+      JSON.parse(
+        localStorage.getItem(
+          "vantaCarrinho"
+        )
+      ) || [];
+
   }catch{
+
     carrinho = [];
+
   }
 
-  if(!Array.isArray(carrinho)){
-    carrinho = carrinho ? [carrinho] : [];
+
+  if(
+    !Array.isArray(
+      carrinho
+    )
+  ){
+
+    carrinho =
+      carrinho
+        ? [carrinho]
+        : [];
+
   }
+
 
   const quantidade =
-    carrinho.reduce((total,item)=>{
-      return total + (Number(item.quantidade) || 1);
-    },0);
+    carrinho.reduce(
+      (total,item)=>{
+
+        return total +
+          (
+            Number(
+              item.quantidade
+            ) || 1
+          );
+
+      },
+      0
+    );
+
 
   const contador =
-    document.getElementById("cartCount");
+    document.getElementById(
+      "cartCount"
+    );
+
 
   if(contador){
-    contador.textContent = quantidade;
+
+    contador.textContent =
+      quantidade;
+
   }
 
 }
 
+
 atualizarCarrinho();
 
-window.addEventListener("storage",atualizarCarrinho);
+window.addEventListener(
+  "storage",
+  atualizarCarrinho
+);
+
+</script>
+
+
+<!-- ================================
+     SUPABASE / CONTA DO CLIENTE
+================================ -->
+
+<script type="module">
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+const SUPABASE_URL =
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+const accountLink =
+  document.getElementById(
+    "accountLink"
+  );
+
+
+const accountText =
+  document.getElementById(
+    "accountText"
+  );
+
+
+const footerAccountLink =
+  document.getElementById(
+    "footerAccountLink"
+  );
+
+
+/* ================================
+   VERIFICAR LOGIN
+================================ */
+
+async function verificarConta(){
+
+  try{
+
+    const {
+      data:{
+        session
+      }
+    } =
+      await supabase.auth
+        .getSession();
+
+
+    if(
+      session &&
+      session.user
+    ){
+
+      accountLink.href =
+        "minha-conta.html";
+
+
+      accountText.textContent =
+        "Minha conta";
+
+
+      footerAccountLink.href =
+        "minha-conta.html";
+
+
+      footerAccountLink.textContent =
+        "Minha conta";
+
+
+      return;
+
+    }
+
+
+    accountLink.href =
+      "login.html";
+
+
+    accountText.textContent =
+      "Entrar";
+
+
+    footerAccountLink.href =
+      "login.html";
+
+
+    footerAccountLink.textContent =
+      "Entrar / Criar conta";
+
+
+  }catch(erro){
+
+    console.error(
+      "Erro ao verificar conta:",
+      erro
+    );
+
+
+    accountLink.href =
+      "login.html";
+
+
+    accountText.textContent =
+      "Entrar";
+
+  }
+
+}
+
+
+await verificarConta();
+
+
+/* ================================
+   ATUALIZA SE LOGIN MUDAR
+================================ */
+
+supabase.auth.onAuthStateChange(
+  (evento,session)=>{
+
+    if(
+      session &&
+      session.user
+    ){
+
+      accountLink.href =
+        "minha-conta.html";
+
+      accountText.textContent =
+        "Minha conta";
+
+      footerAccountLink.href =
+        "minha-conta.html";
+
+      footerAccountLink.textContent =
+        "Minha conta";
+
+    }else{
+
+      accountLink.href =
+        "login.html";
+
+      accountText.textContent =
+        "Entrar";
+
+      footerAccountLink.href =
+        "login.html";
+
+      footerAccountLink.textContent =
+        "Entrar / Criar conta";
+
+    }
+
+  }
+);
 
 </script>
 
 </body>
-</html>
+  </html>
