@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Acompanhar Pedido | ANARKA</title>
+
+<link rel="icon" type="image/png" href="/anarka-favicon.png">
+<link rel="shortcut icon" type="image/png" href="/anarka-favicon.png">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  background:#050505;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+  background:repeating-linear-gradient(
+    0deg,
+    #fff 0,
+    #fff 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.topbar{
+  padding:9px 15px;
+  background:#d60000;
+  text-align:center;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+header{
+  height:88px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #252525;
+}
+
+.logo{
+  width:135px;
+  height:70px;
+  object-fit:contain;
+}
+
+.voltar{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+main{
+  width:88%;
+  max-width:1150px;
+  margin:auto;
+  padding:65px 0 110px;
+}
+
+.label{
+  color:#d60000;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+h1{
+  margin-top:12px;
+  font-size:clamp(55px,8vw,105px);
+  line-height:.82;
+  letter-spacing:-6px;
+}
+
+h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+}
+
+.numero-pedido{
+  margin-top:25px;
+  color:#777;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+/* STATUS PRINCIPAL */
+
+.status-box{
+  margin-top:50px;
+  padding:30px;
+  border:1px solid #292929;
+  background:#090909;
+}
+
+.status-label{
+  color:#555;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.status-atual{
+  margin-top:10px;
+  font-size:25px;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+.status-atual::before{
+  content:"●";
+  margin-right:10px;
+  color:#d60000;
+}
+
+/* TIMELINE */
+
+.timeline{
+  margin-top:45px;
+}
+
+.etapa{
+  position:relative;
+  display:grid;
+  grid-template-columns:45px 1fr;
+  min-height:100px;
+}
+
+.etapa:not(:last-child)::before{
+  content:"";
+  position:absolute;
+  left:17px;
+  top:34px;
+  bottom:-5px;
+  width:2px;
+  background:#252525;
+}
+
+.etapa.concluida:not(:last-child)::before{
+  background:#d60000;
+}
+
+.circulo{
+  position:relative;
+  z-index:2;
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #333;
+  border-radius:50%;
+  background:#090909;
+  color:#555;
+  font-size:12px;
+  font-weight:900;
+}
+
+.etapa.concluida .circulo{
+  border-color:#d60000;
+  background:#d60000;
+  color:#fff;
+}
+
+.etapa.atual .circulo{
+  border-color:#d60000;
+  color:#d60000;
+  box-shadow:0 0 0 5px rgba(214,0,0,.12);
+}
+
+.etapa-info{
+  padding:2px 0 25px 10px;
+}
+
+.etapa-info strong{
+  display:block;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.etapa-info p{
+  margin-top:7px;
+  color:#666;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.etapa.atual .etapa-info strong{
+  color:#d60000;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:25px;
+  margin-top:30px;
+}
+
+.card{
+  border:1px solid #292929;
+  background:#090909;
+}
+
+.card-title{
+  padding:18px 20px;
+  border-bottom:1px solid #292929;
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.card-body{
+  padding:20px;
+}
+
+/* PRODUTOS */
+
+.produto{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:16px 0;
+  border-bottom:1px solid #222;
+}
+
+.produto:first-child{
+  padding-top:0;
+}
+
+.produto:last-child{
+  border-bottom:0;
+}
+
+.produto-nome{
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.produto-info{
+  margin-top:6px;
+  color:#666;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.produto-preco{
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:900;
+}
+
+.total{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid #333;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.total span{
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.total strong{
+  font-size:24px;
+}
+
+/* DADOS */
+
+.dado{
+  margin-bottom:22px;
+}
+
+.dado:last-child{
+  margin-bottom:0;
+}
+
+.dado-label{
+  margin-bottom:6px;
+  color:#555;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.dado-value{
+  color:#bbb;
+  font-size:11px;
+  line-height:1.6;
+  word-break:break-word;
+}
+
+/* RASTREIO */
+
+.rastreio{
+  display:none;
+  margin-top:25px;
+  padding:22px;
+  border:1px solid #d60000;
+  background:#100505;
+}
+
+.rastreio small{
+  display:block;
+  color:#d60000;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.rastreio strong{
+  display:block;
+  margin-top:9px;
+  font-size:17px;
+  letter-spacing:2px;
+  word-break:break-all;
+}
+
+/* CANCELADO */
+
+.cancelado{
+  display:none;
+  margin-top:30px;
+  padding:22px;
+  border:1px solid #d60000;
+  background:#120606;
+}
+
+.cancelado strong{
+  color:#d60000;
+  font-size:13px;
+}
+
+.cancelado p{
+  margin-top:8px;
+  color:#888;
+  font-size:10px;
+  line-height:1.6;
+}
+
+/* ERRO */
+
+.erro{
+  min-height:60vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.erro h2{
+  font-size:30px;
+}
+
+.erro p{
+  margin-top:12px;
+  color:#777;
+  font-size:11px;
+}
+
+.erro a{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 20px;
+  border:1px solid #fff;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+/* LOADING */
+
+.loading{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+#pagina{
+  display:none;
+}
+
+footer{
+  padding:35px 6%;
+  border-top:1px solid #222;
+  color:#555;
+  text-align:center;
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+@media(max-width:750px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:550px){
+  header{
+    height:72px;
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+    height:58px;
+  }
+
+  main{
+    width:92%;
+    padding:45px 0 75px;
+  }
+
+  h1{
+    letter-spacing:-4px;
+  }
+
+  .status-box{
+    padding:22px 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading" class="loading">
+  CARREGANDO PEDIDO...
+</div>
+
+<div id="pagina">
+
+<div class="topbar">
+  ANARKA — ACOMPANHAMENTO DO PEDIDO
+</div>
+
+<header>
+  <a href="index.html">
+    <img src="/anarka-logo.png" class="logo" alt="ANARKA">
+  </a>
+
+  <a href="minha-conta.html" class="voltar">
+    ← MINHA CONTA
+  </a>
+</header>
+
+<main>
+
+  <div class="label">
+    ANARKA / TRACKING
+  </div>
+
+  <h1>
+    SEU<br>
+    <span>PEDIDO.</span>
+  </h1>
+
+  <div class="numero-pedido" id="numeroPedido"></div>
+
+  <section class="status-box">
+
+    <div class="status-label">
+      STATUS ATUAL
+    </div>
+
+    <div class="status-atual" id="statusAtual">
+      —
+    </div>
+
+    <div class="timeline">
+
+      <div class="etapa" data-etapa="0">
+        <div class="circulo">01</div>
+        <div class="etapa-info">
+          <strong>Pedido recebido</strong>
+          <p>
+            Recebemos os dados do seu pedido.
+          </p>
+        </div>
+      </div>
+
+      <div class="etapa" data-etapa="1">
+        <div class="circulo">02</div>
+        <div class="etapa-info">
+          <strong>Pagamento em análise</strong>
+          <p>
+            Estamos conferindo o pagamento via PIX.
+          </p>
+        </div>
+      </div>
+
+      <div class="etapa" data-etapa="2">
+        <div class="circulo">03</div>
+        <div class="etapa-info">
+          <strong>Pagamento confirmado</strong>
+          <p>
+            O pagamento foi identificado.
+          </p>
+        </div>
+      </div>
+
+      <div class="etapa" data-etapa="3">
+        <div class="circulo">04</div>
+        <div class="etapa-info">
+          <strong>Preparando pedido</strong>
+          <p>
+            Seu pedido está sendo separado e preparado.
+          </p>
+        </div>
+      </div>
+
+      <div class="etapa" data-etapa="4">
+        <div class="circulo">05</div>
+        <div class="etapa-info">
+          <strong>Enviado</strong>
+          <p>
+            O pedido saiu para transporte.
+          </p>
+        </div>
+      </div>
+
+      <div class="etapa" data-etapa="5">
+        <div class="circulo">06</div>
+        <div class="etapa-info">
+          <strong>Entregue</strong>
+          <p>
+            Pedido entregue.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rastreio" id="rastreio">
+      <small>CÓDIGO DE RASTREIO</small>
+      <strong id="codigoRastreio"></strong>
+    </div>
+
+    <div class="cancelado" id="cancelado">
+      <strong>PEDIDO CANCELADO</strong>
+      <p>
+        Este pedido foi marcado como cancelado.
+      </p>
+    </div>
+
+  </section>
+
+  <div class="grid">
+
+    <section class="card">
+
+      <div class="card-title">
+        ITENS DO PEDIDO
+      </div>
+
+      <div class="card-body">
+
+        <div id="listaProdutos"></div>
+
+        <div class="total">
+          <span>TOTAL</span>
+          <strong id="totalPedido">R$ 0,00</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <div class="card-title">
+        INFORMAÇÕES
+      </div>
+
+      <div class="card-body">
+
+        <div class="dado">
+          <div class="dado-label">DATA DO PEDIDO</div>
+          <div class="dado-value" id="dataPedido"></div>
+        </div>
+
+        <div class="dado">
+          <div class="dado-label">FORMA DE PAGAMENTO</div>
+          <div class="dado-value" id="pagamento"></div>
+        </div>
+
+        <div class="dado">
+          <div class="dado-label">ENTREGA</div>
+          <div class="dado-value" id="endereco"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<footer>
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+</footer>
+
+</div>
+
+
+<div id="erro" class="erro">
+
+  <div>
+    <h2>PEDIDO NÃO ENCONTRADO.</h2>
+
+    <p>
+      Este pedido não existe ou não pertence à sua conta.
+    </p>
+
+    <a href="minha-conta.html">
+      ← MINHA CONTA
+    </a>
+  </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+const SUPABASE_URL =
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+const loading =
+  document.getElementById("loading");
+
+const pagina =
+  document.getElementById("pagina");
+
+const erroEl =
+  document.getElementById("erro");
+
+
+/* =====================================
+   ID DO PEDIDO
+===================================== */
+
+const parametros =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const pedidoId =
+  parametros.get("id");
+
+
+if(!pedidoId){
+
+  mostrarErro();
+
+}else{
+
+  await iniciar();
+
+}
+
+
+/* =====================================
+   CARREGAR
+===================================== */
+
+async function iniciar(){
+
+  /* usuário autenticado */
+
+  const {
+    data:{
+      user
+    },
+    error:userError
+  } =
+    await supabase.auth.getUser();
+
+
+  if(userError || !user){
+
+    window.location.replace(
+      "login.html"
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Busca pelo ID E pelo user_id.
+
+    Mesmo com RLS ainda não ativado,
+    a interface só retorna o pedido
+    quando os dois pertencem à mesma conta.
+  */
+
+  const {
+    data:pedido,
+    error
+  } =
+    await supabase
+      .from("pedidos")
+      .select(`
+        id,
+        numero_pedido,
+        user_id,
+        itens,
+        total,
+        forma_pagamento,
+        status,
+        criado_em,
+        atualizado_em,
+        endereco,
+        cidade,
+        estado,
+        cep,
+        codigo_rastreio
+      `)
+      .eq("id",pedidoId)
+      .eq("user_id",user.id)
+      .maybeSingle();
+
+
+  if(
+    error ||
+    !pedido
+  ){
+
+    console.error(
+      "Erro ao carregar pedido:",
+      error
+    );
+
+    mostrarErro();
+
+    return;
+
+  }
+
+
+  montarPagina(pedido);
+
+}
+
+
+/* =====================================
+   MONTAR PÁGINA
+===================================== */
+
+function montarPagina(pedido){
+
+  document.getElementById(
+    "numeroPedido"
+  ).textContent =
+    "PEDIDO #" +
+    (
+      pedido.numero_pedido ||
+      pedido.id
+    );
+
+
+  document.getElementById(
+    "statusAtual"
+  ).textContent =
+    pedido.status ||
+    "Pedido recebido";
+
+
+  document.getElementById(
+    "totalPedido"
+  ).textContent =
+    dinheiro(
+      pedido.total
+    );
+
+
+  document.getElementById(
+    "dataPedido"
+  ).textContent =
+    formatarData(
+      pedido.criado_em
+    );
+
+
+  document.getElementById(
+    "pagamento"
+  ).textContent =
+    pedido.forma_pagamento ||
+    "PIX";
+
+
+  /* endereço */
+
+  const partesEndereco = [
+    pedido.endereco,
+    pedido.cidade,
+    pedido.estado,
+    pedido.cep
+  ].filter(Boolean);
+
+
+  document.getElementById(
+    "endereco"
+  ).textContent =
+    partesEndereco.join(" — ") ||
+    "Não informado";
+
+
+  /* produtos */
+
+  montarProdutos(
+    pedido.itens
+  );
+
+
+  /* status */
+
+  montarTimeline(
+    pedido.status
+  );
+
+
+  /* rastreio */
+
+  if(
+    pedido.codigo_rastreio
+  ){
+
+    document.getElementById(
+      "rastreio"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "codigoRastreio"
+    ).textContent =
+      pedido.codigo_rastreio;
+
+  }
+
+
+  loading.style.display =
+    "none";
+
+  pagina.style.display =
+    "block";
+
+}
+
+
+/* =====================================
+   PRODUTOS
+===================================== */
+
+function montarProdutos(itens){
+
+  const container =
+    document.getElementById(
+      "listaProdutos"
+    );
+
+
+  if(
+    !Array.isArray(itens) ||
+    itens.length === 0
+  ){
+
+    container.innerHTML =
+      "<div style='color:#666;font-size:11px'>Nenhum item encontrado.</div>";
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    itens.map(item=>{
+
+      const quantidade =
+        Number(
+          item.quantidade
+        ) || 1;
+
+
+      const preco =
+        Number(
+          item.preco
+        ) || 0;
+
+
+      return `
+
+        <div class="produto">
+
+          <div>
+
+            <div class="produto-nome">
+              ${escapar(
+                item.nome ||
+                "Produto"
+              )}
+            </div>
+
+            <div class="produto-info">
+
+              Tamanho:
+              ${escapar(
+                item.tamanho ||
+                "Único"
+              )}
+
+              <br>
+
+              Quantidade:
+              ${quantidade}
+
+            </div>
+
+          </div>
+
+          <div class="produto-preco">
+
+            ${dinheiro(
+              preco *
+              quantidade
+            )}
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================
+   STATUS / TIMELINE
+===================================== */
+
+function montarTimeline(status){
+
+  const texto =
+    String(
+      status || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  /*
+    Ordem dos estados.
+
+    Aceitamos também o status antigo
+    "Pagamento iniciado".
+  */
+
+  const mapa = {
+
+    "aguardando pagamento":0,
+
+    "pedido recebido":0,
+
+    "pagamento iniciado":1,
+
+    "pagamento em análise":1,
+
+    "pagamento em analise":1,
+
+    "pagamento confirmado":2,
+
+    "preparando pedido":3,
+
+    "enviado":4,
+
+    "entregue":5
+
+  };
+
+
+  if(
+    texto === "cancelado"
+  ){
+
+    document.getElementById(
+      "cancelado"
+    ).style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  const etapaAtual =
+    mapa[texto] ?? 0;
+
+
+  document
+    .querySelectorAll(
+      ".etapa"
+    )
+    .forEach((elemento,index)=>{
+
+      elemento.classList.remove(
+        "concluida",
+        "atual"
+      );
+
+
+      const circulo =
+        elemento.querySelector(
+          ".circulo"
+        );
+
+
+      if(
+        index <
+        etapaAtual
+      ){
+
+        elemento.classList.add(
+          "concluida"
+        );
+
+        circulo.textContent =
+          "✓";
+
+      }else if(
+        index ===
+        etapaAtual
+      ){
+
+        elemento.classList.add(
+          "atual"
+        );
+
+        circulo.textContent =
+          "●";
+
+      }
+
+    });
+
+}
+
+
+/* =====================================
+   UTILIDADES
+===================================== */
+
+function dinheiro(valor){
+
+  return Number(valor || 0)
+    .toLocaleString(
+      "pt-BR",
+      {
+        style:"currency",
+        currency:"BRL"
+      }
+    );
+
+}
+
+
+function formatarData(data){
+
+  if(!data){
+    return "—";
+  }
+
+
+  const objeto =
+    new Date(data);
+
+
+  if(
+    Number.isNaN(
+      objeto.getTime()
+    )
+  ){
+    return "—";
+  }
+
+
+  return objeto.toLocaleString(
+    "pt-BR",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+}
+
+
+function escapar(valor){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    valor ?? "";
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================
+   ERRO
+===================================== */
+
+function mostrarErro(){
+
+  loading.style.display =
+    "none";
+
+  pagina.style.display =
+    "none";
+
+  erroEl.style.display =
+    "flex";
+
+}
+
+</script>
+
+</body>
+  </html>
