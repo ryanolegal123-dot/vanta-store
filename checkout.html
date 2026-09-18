@@ -971,7 +971,30 @@ footer img{
 
 </footer>
 
-<script>
+<script type="module">
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const authSupabase = createClient(
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co",
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh"
+);
+
+const {
+  data:{
+    session:checkoutSession
+  }
+} = await authSupabase.auth.getSession();
+
+if(!checkoutSession){
+
+  window.location.replace(
+    "login.html?redirect=checkout.html"
+  );
+
+}
 
 /*
 ====================================================
