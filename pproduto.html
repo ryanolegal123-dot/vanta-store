@@ -1,0 +1,2870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Produto | ANARKA</title>
+
+<meta
+  name="description"
+  content="ANARKA — Streetwear, expressão e contracultura."
+>
+
+<link
+  rel="icon"
+  href="/anarka-favicon.png"
+>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#050505;
+  color:#f5f5f5;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #fff 0,
+      #fff 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+/* =========================================
+   TOPO
+========================================= */
+
+.topbar{
+  background:#d60000;
+  text-align:center;
+  padding:9px 15px;
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+header{
+  height:88px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  border-bottom:1px solid #262626;
+
+  background:rgba(5,5,5,.97);
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  width:135px;
+  height:70px;
+
+  object-fit:contain;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+nav a{
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+nav a:hover{
+  color:#d60000;
+}
+
+.cart{
+  border:1px solid #444;
+  padding:11px 15px;
+}
+
+
+/* =========================================
+   PRODUTO
+========================================= */
+
+.product-page{
+  max-width:1400px;
+
+  margin:auto;
+
+  padding:
+    65px 6%
+    110px;
+}
+
+.breadcrumb{
+  color:#666;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  margin-bottom:25px;
+}
+
+.breadcrumb a:hover{
+  color:#d60000;
+}
+
+.product-layout{
+  display:grid;
+
+  grid-template-columns:
+    1.08fr .92fr;
+
+  gap:70px;
+
+  align-items:start;
+}
+
+
+/* =========================================
+   IMAGEM
+========================================= */
+
+.image-area{
+  position:relative;
+
+  background:#0b0b0b;
+
+  border:1px solid #292929;
+
+  overflow:hidden;
+}
+
+.image-area::before{
+  content:"ANARKA";
+
+  position:absolute;
+
+  right:-15px;
+  bottom:-15px;
+
+  z-index:0;
+
+  color:#111;
+
+  font-size:100px;
+  font-weight:1000;
+
+  letter-spacing:-7px;
+}
+
+.image-area img{
+  position:relative;
+
+  z-index:1;
+
+  width:100%;
+
+  aspect-ratio:4/5;
+
+  object-fit:cover;
+
+  filter:
+    grayscale(.15)
+    contrast(1.05);
+}
+
+.image-tag{
+  position:absolute;
+
+  z-index:5;
+
+  left:15px;
+  top:15px;
+
+  background:#d60000;
+
+  padding:8px 12px;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+
+/* =========================================
+   GALERIA FRENTE / COSTAS
+========================================= */
+
+.product-gallery{
+  width:100%;
+}
+
+.gallery-controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.gallery-btn{
+  height:52px;
+  border:1px solid #333;
+  background:#080808;
+  color:#777;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.2s;
+}
+
+.gallery-btn:hover{
+  color:#fff;
+  border-color:#777;
+}
+
+.gallery-btn.active{
+  background:#d60000;
+  border-color:#d60000;
+  color:#fff;
+}
+
+.image-area img{
+  transition:opacity .18s ease, transform .18s ease;
+}
+
+.image-area img.changing{
+  opacity:0;
+  transform:scale(.985);
+}
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.info{
+  position:sticky;
+
+  top:120px;
+}
+
+.collection{
+  color:#d60000;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+}
+
+h1{
+  margin-top:13px;
+
+  font-size:
+    clamp(
+      42px,
+      5vw,
+      72px
+    );
+
+  line-height:.88;
+
+  letter-spacing:-3px;
+
+  text-transform:uppercase;
+}
+
+.product-code{
+  margin-top:15px;
+
+  color:#555;
+
+  font-size:10px;
+
+  letter-spacing:2px;
+}
+
+
+/* =========================================
+   PREÇO
+========================================= */
+
+.prices{
+  margin-top:30px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+}
+
+.old-price{
+  display:none;
+
+  color:#555;
+
+  text-decoration:
+    line-through;
+
+  font-size:15px;
+}
+
+.price{
+  font-size:29px;
+
+  font-weight:1000;
+}
+
+.installment{
+  display:block;
+
+  color:#777;
+
+  font-size:12px;
+
+  margin-top:7px;
+}
+
+.divider{
+  height:1px;
+
+  background:#292929;
+
+  margin:30px 0;
+}
+
+
+/* =========================================
+   TAMANHOS
+========================================= */
+
+.label{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  align-items:center;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  margin-bottom:13px;
+}
+
+.label span{
+  color:#666;
+}
+
+.sizes{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:8px;
+}
+
+.size{
+  position:relative;
+
+  height:58px;
+
+  border:1px solid #333;
+
+  background:#080808;
+
+  color:#fff;
+
+  cursor:pointer;
+
+  font-weight:900;
+
+  transition:.15s;
+}
+
+.size:hover:not(:disabled){
+  border-color:#fff;
+}
+
+.size.active{
+  background:#d60000;
+
+  border-color:#d60000;
+}
+
+.size:disabled{
+  color:#444;
+
+  background:#080808;
+
+  border-color:#1c1c1c;
+
+  cursor:not-allowed;
+
+  text-decoration:
+    line-through;
+}
+
+.size-stock{
+  display:block;
+
+  margin-top:3px;
+
+  color:#666;
+
+  font-size:7px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+}
+
+.size.active .size-stock{
+  color:#fff;
+}
+
+.size:disabled .size-stock{
+  color:#3a3a3a;
+}
+
+.stock-message{
+  margin-top:12px;
+
+  color:#777;
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+.stock-message strong{
+  color:#fff;
+}
+
+.stock-message.low{
+  color:#d60000;
+}
+
+
+/* =========================================
+   QUANTIDADE
+========================================= */
+
+.quantity-wrap{
+  display:flex;
+
+  align-items:center;
+
+  border:1px solid #333;
+
+  width:145px;
+}
+
+.quantity-wrap button{
+  width:45px;
+  height:48px;
+
+  border:0;
+
+  background:#0b0b0b;
+
+  color:#fff;
+
+  cursor:pointer;
+
+  font-size:18px;
+}
+
+.quantity-wrap button:hover:not(:disabled){
+  background:#191919;
+}
+
+.quantity-wrap button:disabled{
+  color:#333;
+
+  cursor:not-allowed;
+}
+
+.quantity-wrap input{
+  width:55px;
+  height:48px;
+
+  border:0;
+
+  border-left:
+    1px solid #333;
+
+  border-right:
+    1px solid #333;
+
+  background:#050505;
+
+  color:#fff;
+
+  text-align:center;
+
+  outline:none;
+
+  font-weight:900;
+}
+
+
+/* =========================================
+   BOTÃO CARRINHO
+========================================= */
+
+.add{
+  width:100%;
+
+  min-height:62px;
+
+  margin-top:25px;
+
+  border:1px solid #fff;
+
+  background:#fff;
+
+  color:#000;
+
+  cursor:pointer;
+
+  font-size:12px;
+  font-weight:1000;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  transition:.15s;
+}
+
+.add:hover:not(:disabled){
+  background:#d60000;
+
+  color:#fff;
+
+  border-color:#d60000;
+
+  transform:
+    translate(-3px,-3px);
+
+  box-shadow:
+    6px 6px 0 #fff;
+}
+
+.add:disabled{
+  opacity:.4;
+
+  cursor:not-allowed;
+}
+
+
+/* =========================================
+   DETALHES
+========================================= */
+
+.details{
+  margin-top:30px;
+
+  border-top:
+    1px solid #292929;
+}
+
+.detail{
+  padding:18px 0;
+
+  border-bottom:
+    1px solid #292929;
+
+  display:flex;
+
+  gap:15px;
+}
+
+.detail-number{
+  color:#d60000;
+
+  font-size:10px;
+
+  font-weight:900;
+}
+
+.detail h3{
+  font-size:11px;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
+}
+
+.detail p{
+  margin-top:5px;
+
+  color:#777;
+
+  font-size:12px;
+
+  line-height:1.5;
+}
+
+
+/* =========================================
+   MANIFESTO
+========================================= */
+
+.manifesto{
+  margin-top:90px;
+
+  border-top:
+    1px solid #292929;
+
+  border-bottom:
+    1px solid #292929;
+
+  padding:65px 0;
+}
+
+.manifesto small{
+  color:#d60000;
+
+  font-weight:900;
+
+  letter-spacing:3px;
+}
+
+.manifesto h2{
+  margin-top:15px;
+
+  max-width:950px;
+
+  font-size:
+    clamp(
+      40px,
+      6vw,
+      80px
+    );
+
+  line-height:.85;
+
+  letter-spacing:-4px;
+
+  text-transform:uppercase;
+}
+
+.manifesto h2 span{
+  color:transparent;
+
+  -webkit-text-stroke:
+    1px #fff;
+}
+
+
+/* =========================================
+   CARRINHO FLUTUANTE
+========================================= */
+
+.floating-cart{
+  position:fixed;
+
+  right:22px;
+  bottom:22px;
+
+  width:60px;
+  height:60px;
+
+  background:#d60000;
+
+  border:2px solid #fff;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  z-index:900;
+
+  box-shadow:
+    6px 6px 0 #000;
+
+  font-size:21px;
+}
+
+.cart-count{
+  position:absolute;
+
+  right:-8px;
+  top:-8px;
+
+  min-width:23px;
+
+  height:23px;
+
+  padding:0 5px;
+
+  background:#fff;
+
+  color:#000;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:10px;
+
+  font-weight:900;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+  border-top:
+    1px solid #222;
+
+  padding:45px 6%;
+
+  text-align:center;
+
+  color:#555;
+
+  font-size:10px;
+
+  letter-spacing:2px;
+}
+
+footer img{
+  display:block;
+
+  width:120px;
+  height:75px;
+
+  object-fit:contain;
+
+  margin:
+    0 auto 10px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:850px){
+
+  .product-layout{
+    grid-template-columns:1fr;
+
+    gap:35px;
+  }
+
+  .info{
+    position:static;
+  }
+
+}
+
+@media(max-width:650px){
+
+  header{
+    height:72px;
+
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+
+    height:58px;
+  }
+
+  nav a:not(.cart){
+    display:none;
+  }
+
+  .product-page{
+    padding:
+      30px 4%
+      70px;
+  }
+
+  .product-layout{
+    gap:28px;
+  }
+
+  h1{
+    font-size:43px;
+
+    letter-spacing:-2px;
+  }
+
+  .manifesto{
+    margin-top:65px;
+  }
+
+  .manifesto h2{
+    letter-spacing:-2px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="topbar">
+
+  ANARKA — DROP 001 / 9 PEÇAS
+
+</div>
+
+
+<header>
+
+  <a href="index.html">
+
+    <img
+      src="/anarka-logo.png"
+      class="logo"
+      alt="ANARKA"
+    >
+
+  </a>
+
+
+  <nav>
+
+    <a href="index.html">
+      Início
+    </a>
+
+    <a href="catalogo.html">
+      Coleção
+    </a>
+
+    <a
+      href="carrinho.html"
+      class="cart"
+    >
+      🛒 Carrinho
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main class="product-page">
+
+
+  <div class="breadcrumb">
+
+    <a href="index.html">
+      ANARKA
+    </a>
+
+    /
+
+    <a href="catalogo.html">
+      DROP 001
+    </a>
+
+    /
+
+    <span id="breadcrumbName">
+      PEÇA
+    </span>
+
+  </div>
+
+
+  <div class="product-layout">
+
+
+    <!-- IMAGEM -->
+
+    <div class="product-gallery">
+
+      <div class="image-area">
+
+        <span
+          class="image-tag"
+          id="tag"
+        >
+          DROP 001
+        </span>
+
+        <img
+          id="productImage"
+          src=""
+          alt=""
+        >
+
+      </div>
+
+      <div class="gallery-controls">
+
+        <button
+          type="button"
+          class="gallery-btn active"
+          id="frontBtn"
+        >
+          01 / FRENTE
+        </button>
+
+        <button
+          type="button"
+          class="gallery-btn"
+          id="backBtn"
+        >
+          02 / COSTAS
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- INFORMAÇÕES -->
+
+    <div class="info">
+
+
+      <div class="collection">
+
+        ANARKA / DROP 001
+
+      </div>
+
+
+      <h1 id="productName">
+
+        CARREGANDO...
+
+      </h1>
+
+
+      <div
+        class="product-code"
+        id="productCode"
+      >
+        ANK-001
+      </div>
+
+
+      <div class="prices">
+
+        <span
+          class="old-price"
+          id="oldPrice"
+        ></span>
+
+        <span
+          class="price"
+          id="price"
+        ></span>
+
+      </div>
+
+
+      <span
+        class="installment"
+        id="installment"
+      ></span>
+
+
+      <div class="divider"></div>
+
+
+      <!-- TAMANHO -->
+
+      <div class="label">
+
+        TAMANHO
+
+        <span id="sizeLabel">
+          CARREGANDO ESTOQUE...
+        </span>
+
+      </div>
+
+
+      <div class="sizes">
+
+        <button
+          class="size"
+          data-size="P"
+          disabled
+        >
+
+          P
+
+          <span class="size-stock">
+            ...
+          </span>
+
+        </button>
+
+
+        <button
+          class="size"
+          data-size="M"
+          disabled
+        >
+
+          M
+
+          <span class="size-stock">
+            ...
+          </span>
+
+        </button>
+
+
+        <button
+          class="size"
+          data-size="G"
+          disabled
+        >
+
+          G
+
+          <span class="size-stock">
+            ...
+          </span>
+
+        </button>
+
+      </div>
+
+
+      <div
+        class="stock-message"
+        id="stockMessage"
+      >
+
+        Consultando disponibilidade...
+
+      </div>
+
+
+      <div class="divider"></div>
+
+
+      <!-- QUANTIDADE -->
+
+      <div class="label">
+
+        QUANTIDADE
+
+        <span id="quantityLimit">
+          SELECIONE UM TAMANHO
+        </span>
+
+      </div>
+
+
+      <div class="quantity-wrap">
+
+        <button
+          type="button"
+          id="minus"
+        >
+          −
+        </button>
+
+        <input
+          id="quantity"
+          type="number"
+          value="1"
+          min="1"
+          max="1"
+          readonly
+        >
+
+        <button
+          type="button"
+          id="plus"
+        >
+          +
+        </button>
+
+      </div>
+
+
+      <button
+        class="add"
+        id="addCart"
+        disabled
+      >
+
+        SELECIONE UM TAMANHO
+
+      </button>
+
+
+      <!-- DETALHES -->
+
+      <div class="details">
+
+
+        <div class="detail">
+
+          <span class="detail-number">
+            01
+          </span>
+
+          <div>
+
+            <h3>
+              Drop limitado
+            </h3>
+
+            <p>
+              Primeira coleção ANARKA.
+              Apenas 9 peças no estoque inicial.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <span class="detail-number">
+            02
+          </span>
+
+          <div>
+
+            <h3>
+              Modelagem oversized
+            </h3>
+
+            <p>
+              Caimento amplo em preto com
+              identidade visual exclusiva
+              do Drop 001.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <span class="detail-number">
+            03
+          </span>
+
+          <div>
+
+            <h3>
+              Estoque real
+            </h3>
+
+            <p>
+              A disponibilidade de P, M e G
+              é consultada diretamente no
+              estoque da ANARKA.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <section class="manifesto">
+
+    <small>
+
+      ANARKA / MANIFESTO
+
+    </small>
+
+
+    <h2>
+
+      NÃO É SOBRE SE ENCAIXAR.<br>
+
+      <span>
+        É SOBRE EXISTIR.
+      </span>
+
+    </h2>
+
+  </section>
+
+
+</main>
+
+
+<a
+  href="carrinho.html"
+  class="floating-cart"
+  id="floatingCart"
+>
+
+  🛒
+
+  <span
+    class="cart-count"
+    id="cartCount"
+  >
+    0
+  </span>
+
+</a>
+
+
+<footer>
+
+  <img
+    src="/anarka-logo.png"
+    alt="ANARKA"
+  >
+
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+
+</footer>
+
+
+<script type="module">
+
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+/* ==========================================================
+   SUPABASE
+========================================================== */
+
+
+const SUPABASE_URL =
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* ==========================================================
+   PRODUTOS
+
+   IMPORTANTE:
+   O catalogo.html atual lê este objeto diretamente
+   do produto.html.
+
+   Por isso ele continua existindo aqui.
+
+   SÓ EXISTEM ESTES 3 PRODUTOS NO DROP 001.
+========================================================== */
+
+
+const produtos = {
+
+  caos:{
+
+    slug:"caos",
+
+    nome:"ANARKA — Caos",
+
+    preco:56.99,
+
+    precoAntigo:null,
+
+    imagem:"/Caos.png",
+
+    imagem2:"/Caos2.png",
+
+    tag:"DROP 001",
+
+    codigo:"ANK-001"
+
+  },
+
+
+  "ainda-aqui":{
+
+    slug:"ainda-aqui",
+
+    nome:"ANARKA — Ainda Aqui",
+
+    preco:56.99,
+
+    precoAntigo:null,
+
+    imagem:"/ainda-aqui.png",
+
+    imagem2:"/ainda-aqui2.png",
+
+    tag:"DROP 001",
+
+    codigo:"ANK-002"
+
+  },
+
+
+  "mundo-em-ruinas":{
+
+    slug:"mundo-em-ruinas",
+
+    nome:"ANARKA — Mundo em Ruínas",
+
+    preco:56.99,
+
+    precoAntigo:null,
+
+    imagem:"/mundo-em-ruinas.png",
+
+    imagem2:"/mundo-em-ruinas2.png",
+
+    tag:"DROP 001",
+
+    codigo:"ANK-003"
+
+  }
+
+};
+
+
+/* ==========================================================
+   PRODUTO ATUAL
+========================================================== */
+
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+
+const id =
+  params.get("id")
+  ||
+  "caos";
+
+
+const produto =
+  produtos[id]
+  ||
+  produtos.caos;
+
+
+let tamanhoSelecionado =
+  "";
+
+
+let estoqueAtual = {
+
+  P:0,
+  M:0,
+  G:0
+
+};
+
+
+/* ==========================================================
+   ELEMENTOS
+========================================================== */
+
+
+const quantidadeInput =
+  document.getElementById(
+    "quantity"
+  );
+
+
+const addCart =
+  document.getElementById(
+    "addCart"
+  );
+
+
+const sizeLabel =
+  document.getElementById(
+    "sizeLabel"
+  );
+
+
+const stockMessage =
+  document.getElementById(
+    "stockMessage"
+  );
+
+
+const quantityLimit =
+  document.getElementById(
+    "quantityLimit"
+  );
+
+
+const minus =
+  document.getElementById(
+    "minus"
+  );
+
+
+const plus =
+  document.getElementById(
+    "plus"
+  );
+
+
+/* ==========================================================
+   DINHEIRO
+========================================================== */
+
+
+function dinheiro(
+  valor
+){
+
+  return Number(
+    valor || 0
+  )
+    .toLocaleString(
+      "pt-BR",
+      {
+
+        style:
+          "currency",
+
+        currency:
+          "BRL"
+
+      }
+    );
+
+}
+
+
+/* ==========================================================
+   PREENCHER PRODUTO
+========================================================== */
+
+
+function preencherProduto(){
+
+
+  document.title =
+    produto.nome
+    +
+    " | ANARKA";
+
+
+  document
+    .getElementById(
+      "productName"
+    )
+    .textContent =
+      produto.nome;
+
+
+  document
+    .getElementById(
+      "breadcrumbName"
+    )
+    .textContent =
+      produto.nome;
+
+
+  document
+    .getElementById(
+      "tag"
+    )
+    .textContent =
+      produto.tag;
+
+
+  const imagem =
+    document.getElementById(
+      "productImage"
+    );
+
+
+  imagem.src =
+    produto.imagem;
+
+
+  imagem.alt =
+    produto.nome;
+
+
+  /*
+  Caso você ainda não tenha colocado
+  as imagens no GitHub, mostramos
+  um fundo simples em vez do ícone
+  de imagem quebrada.
+  */
+
+
+  imagem.onerror =
+    function(){
+
+      this.onerror =
+        null;
+
+
+      this.style.display =
+        "none";
+
+
+      const area =
+        document.querySelector(
+          ".image-area"
+        );
+
+
+      area.style.minHeight =
+        "600px";
+
+
+      area.style.background = `
+        radial-gradient(
+          circle at center,
+          #161616 0%,
+          #090909 50%,
+          #050505 100%
+        )
+      `;
+
+    };
+
+
+  document
+    .getElementById(
+      "price"
+    )
+    .textContent =
+      dinheiro(
+        produto.preco
+      );
+
+
+  const oldPrice =
+    document.getElementById(
+      "oldPrice"
+    );
+
+
+  if(
+    produto.precoAntigo
+  ){
+
+    oldPrice.style.display =
+      "inline";
+
+
+    oldPrice.textContent =
+      dinheiro(
+        produto.precoAntigo
+      );
+
+
+  }else{
+
+    oldPrice.style.display =
+      "none";
+
+  }
+
+
+  document
+    .getElementById(
+      "installment"
+    )
+    .textContent =
+
+      "3x de "
+
+      +
+
+      dinheiro(
+        produto.preco / 3
+      );
+
+
+  document
+    .getElementById(
+      "productCode"
+    )
+    .textContent =
+      produto.codigo;
+
+}
+
+
+
+/* ==========================================================
+   GALERIA FRENTE / COSTAS
+========================================================== */
+
+const productImage =
+  document.getElementById("productImage");
+
+const frontBtn =
+  document.getElementById("frontBtn");
+
+const backBtn =
+  document.getElementById("backBtn");
+
+
+function trocarImagem(tipo){
+
+  const novaImagem =
+    tipo === "costas"
+      ? produto.imagem2
+      : produto.imagem;
+
+  productImage.classList.add("changing");
+
+  setTimeout(()=>{
+
+    productImage.style.display = "block";
+    productImage.src = novaImagem;
+
+    productImage.alt =
+      tipo === "costas"
+        ? `${produto.nome} — Costas`
+        : `${produto.nome} — Frente`;
+
+    productImage.classList.remove("changing");
+
+  },150);
+
+  frontBtn.classList.toggle(
+    "active",
+    tipo === "frente"
+  );
+
+  backBtn.classList.toggle(
+    "active",
+    tipo === "costas"
+  );
+
+}
+
+
+frontBtn.addEventListener(
+  "click",
+  ()=>trocarImagem("frente")
+);
+
+
+backBtn.addEventListener(
+  "click",
+  ()=>trocarImagem("costas")
+);
+
+
+/* ==========================================================
+   BUSCAR ESTOQUE NO SUPABASE
+========================================================== */
+
+
+async function carregarEstoque(){
+
+
+  sizeLabel.textContent =
+    "CARREGANDO...";
+
+
+  addCart.disabled =
+    true;
+
+
+  try{
+
+
+    /*
+    Primeiro encontramos o ID real
+    do produto no banco pelo slug.
+    */
+
+
+    const {
+      data:
+        produtoBanco,
+
+      error:
+        produtoErro
+
+    } =
+      await supabase
+
+        .from(
+          "produtos"
+        )
+
+        .select(
+          "id, slug, nome, preco, imagem, ativo"
+        )
+
+        .eq(
+          "slug",
+          produto.slug
+        )
+
+        .eq(
+          "ativo",
+          true
+        )
+
+        .single();
+
+
+    if(
+      produtoErro
+      ||
+      !produtoBanco
+    ){
+
+
+      throw (
+        produtoErro
+        ||
+        new Error(
+          "Produto não encontrado."
+        )
+      );
+
+    }
+
+
+    /*
+    Agora carregamos P / M / G.
+    */
+
+
+    const {
+      data:
+        estoqueBanco,
+
+      error:
+        estoqueErro
+
+    } =
+      await supabase
+
+        .from(
+          "estoque"
+        )
+
+        .select(
+          "tamanho, quantidade"
+        )
+
+        .eq(
+          "produto_id",
+          produtoBanco.id
+        );
+
+
+    if(
+      estoqueErro
+    ){
+
+      throw estoqueErro;
+
+    }
+
+
+    estoqueAtual = {
+
+      P:0,
+      M:0,
+      G:0
+
+    };
+
+
+    (
+      estoqueBanco
+      ||
+      []
+    )
+      .forEach(
+        item=>{
+
+
+          if(
+            ["P","M","G"]
+              .includes(
+                item.tamanho
+              )
+          ){
+
+            estoqueAtual[
+              item.tamanho
+            ] =
+              Math.max(
+                0,
+                Number(
+                  item.quantidade
+                )
+                ||
+                0
+              );
+
+          }
+
+        }
+      );
+
+
+    atualizarBotoesEstoque();
+
+
+  }catch(erro){
+
+
+    console.error(
+      "Erro ao carregar estoque:",
+      erro
+    );
+
+
+    sizeLabel.textContent =
+      "INDISPONÍVEL";
+
+
+    stockMessage.textContent =
+      "Não foi possível consultar o estoque agora.";
+
+
+    stockMessage.classList.add(
+      "low"
+    );
+
+
+    document
+      .querySelectorAll(
+        ".size"
+      )
+      .forEach(
+        botao=>{
+
+          botao.disabled =
+            true;
+
+        }
+      );
+
+
+    addCart.disabled =
+      true;
+
+
+    addCart.textContent =
+      "ESTOQUE INDISPONÍVEL";
+
+  }
+
+}
+
+
+/* ==========================================================
+   ATUALIZAR TAMANHOS
+========================================================== */
+
+
+function atualizarBotoesEstoque(){
+
+
+  let totalDisponivel =
+    0;
+
+
+  document
+    .querySelectorAll(
+      ".size"
+    )
+    .forEach(
+      botao=>{
+
+
+        const tamanho =
+          botao.dataset.size;
+
+
+        const quantidade =
+          estoqueAtual[
+            tamanho
+          ]
+          ||
+          0;
+
+
+        totalDisponivel +=
+          quantidade;
+
+
+        const texto =
+          botao.querySelector(
+            ".size-stock"
+          );
+
+
+        if(
+          quantidade <= 0
+        ){
+
+
+          botao.disabled =
+            true;
+
+
+          texto.textContent =
+            "ESGOTADO";
+
+
+        }else{
+
+
+          botao.disabled =
+            false;
+
+
+          texto.textContent =
+
+            quantidade === 1
+
+              ?
+
+              "ÚLTIMA PEÇA"
+
+              :
+
+              `${quantidade} DISP.`;
+
+        }
+
+      }
+    );
+
+
+  sizeLabel.textContent =
+    "SELECIONE";
+
+
+  if(
+    totalDisponivel <= 0
+  ){
+
+
+    stockMessage.textContent =
+      "Esta peça está esgotada.";
+
+
+    stockMessage.classList.add(
+      "low"
+    );
+
+
+    addCart.disabled =
+      true;
+
+
+    addCart.textContent =
+      "PRODUTO ESGOTADO";
+
+
+  }else{
+
+
+    stockMessage.innerHTML =
+
+      `<strong>${totalDisponivel}</strong> peça`
+
+      +
+
+      (
+        totalDisponivel === 1
+          ?
+          ""
+          :
+          "s"
+      )
+
+      +
+
+      " disponível"
+
+      +
+
+      (
+        totalDisponivel === 1
+          ?
+          "."
+          :
+          "is neste modelo."
+      );
+
+
+    stockMessage.classList.remove(
+      "low"
+    );
+
+
+    addCart.disabled =
+      true;
+
+
+    addCart.textContent =
+      "SELECIONE UM TAMANHO";
+
+  }
+
+}
+
+
+/* ==========================================================
+   SELECIONAR TAMANHO
+========================================================== */
+
+
+document
+  .querySelectorAll(
+    ".size"
+  )
+  .forEach(
+    botao=>{
+
+
+      botao.addEventListener(
+        "click",
+        ()=>{
+
+
+          if(
+            botao.disabled
+          ){
+
+            return;
+
+          }
+
+
+          document
+            .querySelectorAll(
+              ".size"
+            )
+            .forEach(
+              item=>{
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+          botao.classList.add(
+            "active"
+          );
+
+
+          tamanhoSelecionado =
+            botao.dataset.size;
+
+
+          quantidadeInput.value =
+            1;
+
+
+          const disponivel =
+            estoqueAtual[
+              tamanhoSelecionado
+            ]
+            ||
+            0;
+
+
+          quantidadeInput.max =
+            disponivel;
+
+
+          sizeLabel.textContent =
+            `TAMANHO ${tamanhoSelecionado}`;
+
+
+          quantityLimit.textContent =
+
+            disponivel === 1
+
+              ?
+
+              "ÚLTIMA UNIDADE"
+
+              :
+
+              `MÁX. ${disponivel}`;
+
+
+          stockMessage.innerHTML =
+
+            `Tamanho <strong>${tamanhoSelecionado}</strong>: `
+
+            +
+
+            (
+              disponivel === 1
+
+                ?
+
+                "última peça disponível."
+
+                :
+
+                `${disponivel} peças disponíveis.`
+            );
+
+
+          if(
+            disponivel === 1
+          ){
+
+            stockMessage.classList.add(
+              "low"
+            );
+
+
+          }else{
+
+            stockMessage.classList.remove(
+              "low"
+            );
+
+          }
+
+
+          addCart.disabled =
+            false;
+
+
+          addCart.textContent =
+            "ADICIONAR AO CARRINHO →";
+
+        }
+      );
+
+    }
+  );
+
+
+/* ==========================================================
+   QUANTIDADE
+========================================================== */
+
+
+minus.addEventListener(
+  "click",
+  ()=>{
+
+
+    let quantidade =
+      Number(
+        quantidadeInput.value
+      )
+      ||
+      1;
+
+
+    quantidade--;
+
+
+    if(
+      quantidade < 1
+    ){
+
+      quantidade =
+        1;
+
+    }
+
+
+    quantidadeInput.value =
+      quantidade;
+
+  }
+);
+
+
+plus.addEventListener(
+  "click",
+  ()=>{
+
+
+    if(
+      !tamanhoSelecionado
+    ){
+
+      return;
+
+    }
+
+
+    const limite =
+      estoqueAtual[
+        tamanhoSelecionado
+      ]
+      ||
+      1;
+
+
+    let quantidade =
+      Number(
+        quantidadeInput.value
+      )
+      ||
+      1;
+
+
+    quantidade++;
+
+
+    if(
+      quantidade > limite
+    ){
+
+      quantidade =
+        limite;
+
+    }
+
+
+    quantidadeInput.value =
+      quantidade;
+
+  }
+);
+
+
+/* ==========================================================
+   CARRINHO
+========================================================== */
+
+
+function pegarCarrinho(){
+
+
+  try{
+
+
+    let carrinho =
+      JSON.parse(
+        localStorage.getItem(
+          "vantaCarrinho"
+        )
+      )
+      ||
+      [];
+
+
+    if(
+      !Array.isArray(
+        carrinho
+      )
+    ){
+
+
+      carrinho =
+        carrinho
+          ?
+          [carrinho]
+          :
+          [];
+
+    }
+
+
+    return carrinho;
+
+
+  }catch{
+
+
+    return [];
+
+  }
+
+}
+
+
+/* ==========================================================
+   QUANTIDADE JÁ NO CARRINHO
+========================================================== */
+
+
+function quantidadeNoCarrinho(
+  produtoId,
+  tamanho
+){
+
+
+  return pegarCarrinho()
+    .filter(
+      item=>
+
+        item.id === produtoId
+
+        &&
+
+        item.tamanho === tamanho
+
+    )
+    .reduce(
+      (
+        total,
+        item
+      )=>
+
+        total
+
+        +
+
+        (
+          Number(
+            item.quantidade
+          )
+          ||
+          0
+        ),
+
+      0
+    );
+
+}
+
+
+/* ==========================================================
+   CONTADOR DO CARRINHO
+========================================================== */
+
+
+function atualizarCarrinho(){
+
+
+  const carrinho =
+    pegarCarrinho();
+
+
+  const total =
+    carrinho.reduce(
+      (
+        soma,
+        item
+      )=>
+
+        soma
+
+        +
+
+        (
+          Number(
+            item.quantidade
+          )
+          ||
+          1
+        ),
+
+      0
+    );
+
+
+  document
+    .getElementById(
+      "cartCount"
+    )
+    .textContent =
+      total;
+
+
+  document
+    .getElementById(
+      "floatingCart"
+    )
+    .style
+    .display =
+
+      total > 0
+
+        ?
+
+        "flex"
+
+        :
+
+        "none";
+
+}
+
+
+/* ==========================================================
+   ADICIONAR AO CARRINHO
+========================================================== */
+
+
+addCart.addEventListener(
+  "click",
+  async ()=>{
+
+
+    if(
+      !tamanhoSelecionado
+    ){
+
+
+      alert(
+        "Selecione um tamanho."
+      );
+
+
+      return;
+
+    }
+
+
+    /*
+    CONSULTA NOVAMENTE O ESTOQUE
+    antes de adicionar.
+
+    Isso evita usar uma informação
+    antiga da página.
+    */
+
+
+    addCart.disabled =
+      true;
+
+
+    addCart.textContent =
+      "VERIFICANDO ESTOQUE...";
+
+
+    try{
+
+
+      const {
+        data:
+          produtoBanco,
+
+        error:
+          produtoErro
+
+      } =
+        await supabase
+
+          .from(
+            "produtos"
+          )
+
+          .select(
+            "id"
+          )
+
+          .eq(
+            "slug",
+            produto.slug
+          )
+
+          .eq(
+            "ativo",
+            true
+          )
+
+          .single();
+
+
+      if(
+        produtoErro
+        ||
+        !produtoBanco
+      ){
+
+
+        throw (
+          produtoErro
+          ||
+          new Error(
+            "Produto não encontrado."
+          )
+        );
+
+      }
+
+
+      const {
+        data:
+          estoqueBanco,
+
+        error:
+          estoqueErro
+
+      } =
+        await supabase
+
+          .from(
+            "estoque"
+          )
+
+          .select(
+            "quantidade"
+          )
+
+          .eq(
+            "produto_id",
+            produtoBanco.id
+          )
+
+          .eq(
+            "tamanho",
+            tamanhoSelecionado
+          )
+
+          .single();
+
+
+      if(
+        estoqueErro
+      ){
+
+        throw estoqueErro;
+
+      }
+
+
+      const estoqueDisponivel =
+        Number(
+          estoqueBanco
+            ?.quantidade
+        )
+        ||
+        0;
+
+
+      const quantidade =
+        Number(
+          quantidadeInput.value
+        )
+        ||
+        1;
+
+
+      const jaNoCarrinho =
+        quantidadeNoCarrinho(
+          id,
+          tamanhoSelecionado
+        );
+
+
+      /*
+      Exemplo:
+
+      estoque = 1
+      já existe 1 no carrinho
+
+      então não pode adicionar outra.
+      */
+
+
+      if(
+        estoqueDisponivel <= 0
+      ){
+
+
+        alert(
+          "Esse tamanho acabou de esgotar."
+        );
+
+
+        await carregarEstoque();
+
+
+        return;
+
+      }
+
+
+      if(
+        jaNoCarrinho
+        +
+        quantidade
+        >
+        estoqueDisponivel
+      ){
+
+
+        alert(
+
+          "Você já colocou no carrinho a quantidade máxima disponível deste tamanho."
+
+        );
+
+
+        addCart.disabled =
+          false;
+
+
+        addCart.textContent =
+          "ADICIONAR AO CARRINHO →";
+
+
+        return;
+
+      }
+
+
+      const carrinho =
+        pegarCarrinho();
+
+
+      const itemExistente =
+        carrinho.find(
+          item=>
+
+            item.id === id
+
+            &&
+
+            item.tamanho ===
+              tamanhoSelecionado
+        );
+
+
+      if(
+        itemExistente
+      ){
+
+
+        itemExistente.slug =
+          produto.slug;
+
+        itemExistente.produto_id =
+          produtoId;
+
+        itemExistente.quantidade =
+
+          (
+            Number(
+              itemExistente.quantidade
+            )
+            ||
+            0
+          )
+
+          +
+
+          quantidade;
+
+
+      }else{
+
+
+        /*
+        Mantemos o formato que seu
+        checkout atual já utiliza.
+        */
+
+
+        carrinho.push(
+          {
+
+            id:
+              id,
+
+            produto_id:
+              produtoId,
+
+            slug:
+              produto.slug,
+
+            nome:
+              produto.nome,
+
+            preco:
+              Number(
+                produto.preco
+              ),
+
+            quantidade:
+              quantidade,
+
+            tamanho:
+              tamanhoSelecionado,
+
+            imagem:
+              produto.imagem
+
+          }
+        );
+
+      }
+
+
+      localStorage.setItem(
+
+        "vantaCarrinho",
+
+        JSON.stringify(
+          carrinho
+        )
+
+      );
+
+
+      atualizarCarrinho();
+
+
+      /*
+      Mantemos o comportamento atual:
+      adicionou -> volta ao catálogo.
+      */
+
+
+      window.location.href =
+        "catalogo.html";
+
+
+    }catch(erro){
+
+
+      console.error(
+        "Erro ao adicionar produto:",
+        erro
+      );
+
+
+      alert(
+        "Não foi possível verificar o estoque. Tente novamente."
+      );
+
+
+      addCart.disabled =
+        false;
+
+
+      addCart.textContent =
+        "ADICIONAR AO CARRINHO →";
+
+    }
+
+  }
+);
+
+
+/* ==========================================================
+   INICIAR
+========================================================== */
+
+
+preencherProduto();
+
+
+atualizarCarrinho();
+
+
+await carregarEstoque();
+
+
+window.addEventListener(
+  "storage",
+  atualizarCarrinho
+);
+
+
+</script>
+
+
+</body>
+
+  </html>
