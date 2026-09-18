@@ -19,6 +19,13 @@
 
 <link
   rel="icon"
+  type="image/png"
+  href="/anarka-favicon.png"
+>
+
+<link
+  rel="shortcut icon"
+  type="image/png"
   href="/anarka-favicon.png"
 >
 
@@ -82,6 +89,7 @@ select{
 
   font-size:10px;
   font-weight:900;
+
   letter-spacing:2px;
 
   text-transform:uppercase;
@@ -316,6 +324,36 @@ select option{
     1fr 1fr;
 
   gap:12px;
+}
+
+/* =========================
+   CEP STATUS
+========================= */
+
+.cep-status{
+  display:none;
+
+  margin-top:-8px;
+  margin-bottom:15px;
+
+  color:#777;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:1px;
+}
+
+.cep-status.ativo{
+  display:block;
+}
+
+.cep-status.sucesso{
+  color:#5ed47b;
+}
+
+.cep-status.erro{
+  color:#ff6262;
 }
 
 /* =========================
@@ -763,8 +801,12 @@ footer img{
         inputmode="numeric"
         autocomplete="postal-code"
         placeholder="00000-000"
-        onblur="buscarCEP()"
       >
+
+      <div
+        id="cepStatus"
+        class="cep-status"
+      ></div>
 
       <label for="rua">
         Rua
@@ -908,7 +950,6 @@ footer img{
       <button
         id="botao"
         type="button"
-        onclick="continuarPagamento()"
       >
 
         CONTINUAR PARA PAGAMENTO →
@@ -971,68 +1012,131 @@ footer img{
 
 </footer>
 
+
 <script type="module">
 
 import {
   createClient
 } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const authSupabase = createClient(
-  "https://pzqgsbxuhsesfxhmgfbi.supabase.co",
-  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh"
-);
-
-const {
-  data:{
-    session:checkoutSession
-  }
-} = await authSupabase.auth.getSession();
-
-if(!checkoutSession){
-
-  window.location.replace(
-    "login.html?redirect=checkout.html"
-  );
-
-}
 
 /*
 ====================================================
-IMPORTANTE
+ANARKA — CHECKOUT
 
-Fluxo original preservado:
+FLUXO:
 
-vantaCarrinho
-      ↓
-checkout
-      ↓
-vantaCheckout
-      ↓
-pagamento.html
+CARRINHO
+   ↓
+CHECKOUT
+   ↓
+VERIFICA LOGIN
+   ↓
+SALVA vantaCheckout
+   ↓
+PAGAMENTO.HTML
 
-NÃO criamos pedido no Supabase aqui.
-O processamento posterior continua sendo feito
-pela próxima etapa do sistema.
+O PEDIDO NÃO É CRIADO NESTA PÁGINA.
 ====================================================
 */
 
 
 /* ================================================
-   CONFIGURAÇÃO ORIGINAL PRESERVADA
+   SUPABASE
 ================================================ */
 
 const SUPABASE_URL =
-"https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+
 
 const SUPABASE_KEY =
-"sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* ================================================
+   VERIFICAR LOGIN
+================================================ */
+
+async function verificarLogin(){
+
+  try{
+
+    const {
+      data:{
+        session
+      },
+      error
+    } =
+      await supabase.auth
+        .getSession();
+
+
+    if(error){
+
+      console.error(
+        "Erro ao verificar sessão:",
+        error
+      );
+
+    }
+
+
+    if(!session){
+
+      window.location.replace(
+        "login.html?redirect=checkout.html"
+      );
+
+      return false;
+
+    }
+
+
+    return true;
+
+
+  }catch(erro){
+
+    console.error(
+      "Erro de autenticação:",
+      erro
+    );
+
+
+    window.location.replace(
+      "login.html?redirect=checkout.html"
+    );
+
+
+    return false;
+
+  }
+
+}
+
+
+/*
+Espera a verificação antes de liberar
+a página para continuar.
+*/
+
+const usuarioLogado =
+  await verificarLogin();
 
 
 /* ================================================
    CARRINHO
 ================================================ */
 
-let carrinho;
+let carrinho = [];
+
 
 try{
 
@@ -1043,26 +1147,42 @@ try{
       )
     ) || [];
 
-}catch{
+}catch(erro){
 
-  carrinho = [];
+  console.error(
+    "Erro ao carregar carrinho:",
+    erro
+  );
+
+
+  carrinho =
+    [];
 
 }
 
+
 /*
-Compatibilidade caso exista
-um carrinho antigo salvo como objeto.
+Compatibilidade caso uma versão antiga
+tenha salvo somente um objeto.
 */
 
-if(!Array.isArray(carrinho)){
+if(
+  !Array.isArray(
+    carrinho
+  )
+){
 
   carrinho =
     carrinho
-    ? [carrinho]
-    : [];
+      ? [carrinho]
+      : [];
 
 }
 
+
+/* ================================================
+   ELEMENTOS
+================================================ */
 
 const resumo =
   document.getElementById(
@@ -1070,18 +1190,91 @@ const resumo =
   );
 
 
+const botao =
+  document.getElementById(
+    "botao"
+  );
+
+
+const campoNome =
+  document.getElementById(
+    "nome"
+  );
+
+
+const campoWhatsapp =
+  document.getElementById(
+    "whatsapp"
+  );
+
+
+const campoCpf =
+  document.getElementById(
+    "cpf"
+  );
+
+
+const campoCep =
+  document.getElementById(
+    "cep"
+  );
+
+
+const campoRua =
+  document.getElementById(
+    "rua"
+  );
+
+
+const campoNumero =
+  document.getElementById(
+    "numero"
+  );
+
+
+const campoComplemento =
+  document.getElementById(
+    "complemento"
+  );
+
+
+const campoCidade =
+  document.getElementById(
+    "cidade"
+  );
+
+
+const campoEstado =
+  document.getElementById(
+    "estado"
+  );
+
+
+const cepStatus =
+  document.getElementById(
+    "cepStatus"
+  );
+
+
 /* ================================================
-   FORMATAR DINHEIRO
+   DINHEIRO
 ================================================ */
 
-function dinheiro(valor){
+function dinheiro(
+  valor
+){
 
-  return Number(valor)
+  return Number(
+    valor || 0
+  )
     .toLocaleString(
       "pt-BR",
       {
-        style:"currency",
-        currency:"BRL"
+        style:
+          "currency",
+
+        currency:
+          "BRL"
       }
     );
 
@@ -1089,12 +1282,14 @@ function dinheiro(valor){
 
 
 /* ================================================
-   MOSTRAR RESUMO
+   RESUMO DO PEDIDO
 ================================================ */
 
 function mostrarResumo(){
 
-  if(!carrinho.length){
+  if(
+    !carrinho.length
+  ){
 
     resumo.innerHTML = `
 
@@ -1125,80 +1320,104 @@ function mostrarResumo(){
 
     `;
 
-    document.getElementById(
-      "botao"
-    ).disabled = true;
+
+    botao.disabled =
+      true;
+
 
     return;
 
   }
 
 
-  let total = 0;
+  let total =
+    0;
 
 
   resumo.innerHTML =
-    carrinho.map(
-      (item,index)=>{
+    carrinho
+      .map(
+        (
+          item,
+          index
+        )=>{
 
 
-        const preco =
-          Number(
-            item.preco
-          ) || 0;
+          const preco =
+            Number(
+              item.preco
+            ) || 0;
 
 
-        const quantidade =
-          Number(
-            item.quantidade
-          ) || 1;
+          const quantidade =
+            Number(
+              item.quantidade
+            ) || 1;
 
 
-        const subtotal =
-          preco *
-          quantidade;
+          const subtotal =
+            preco *
+            quantidade;
 
 
-        total += subtotal;
+          total +=
+            subtotal;
 
 
-        return `
+          return `
 
-          <div class="item">
+            <div class="item">
 
-            <strong>
+              <strong>
 
-              ${String(index + 1)
-                .padStart(2,"0")}
-              /
-              ${item.nome || "Produto"}
+                ${String(
+                  index + 1
+                ).padStart(
+                  2,
+                  "0"
+                )}
 
-            </strong>
+                /
 
-            Tamanho:
-            ${item.tamanho || "Único"}
+                ${escaparHTML(
+                  item.nome ||
+                  "Produto"
+                )}
 
-            <br>
+              </strong>
 
-            Quantidade:
-            ${quantidade}
+              Tamanho:
+              ${escaparHTML(
+                item.tamanho ||
+                "Único"
+              )}
 
-            <br>
+              <br>
 
-            Valor unitário:
-            ${dinheiro(preco)}
+              Quantidade:
+              ${quantidade}
 
-            <br>
+              <br>
 
-            Subtotal:
-            ${dinheiro(subtotal)}
+              Valor unitário:
+              ${dinheiro(
+                preco
+              )}
 
-          </div>
+              <br>
 
-        `;
+              Subtotal:
+              ${dinheiro(
+                subtotal
+              )}
 
-      }
-    ).join("");
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
 
 
   resumo.innerHTML += `
@@ -1219,7 +1438,9 @@ function mostrarResumo(){
 
       <strong>
 
-        ${dinheiro(total)}
+        ${dinheiro(
+          total
+        )}
 
       </strong>
 
@@ -1231,72 +1452,215 @@ function mostrarResumo(){
 
 
 /* ================================================
-   BUSCAR CEP
-
-   ViaCEP preservado.
+   CEP
 ================================================ */
+
+let ultimoCepBuscado =
+  "";
+
+
+let buscandoCep =
+  false;
+
+
+function atualizarCepStatus(
+  texto,
+  tipo = ""
+){
+
+  if(!texto){
+
+    cepStatus.textContent =
+      "";
+
+    cepStatus.className =
+      "cep-status";
+
+    return;
+
+  }
+
+
+  cepStatus.textContent =
+    texto;
+
+
+  cepStatus.className =
+    "cep-status ativo";
+
+
+  if(tipo){
+
+    cepStatus.classList.add(
+      tipo
+    );
+
+  }
+
+}
+
 
 async function buscarCEP(){
 
-
   const cep =
-    document
-      .getElementById("cep")
+    campoCep
       .value
-      .replace(/\D/g,"");
+      .replace(
+        /\D/g,
+        ""
+      );
 
 
-  if(cep.length !== 8){
+  if(
+    cep.length !== 8
+  ){
+
+    ultimoCepBuscado =
+      "";
+
+
+    atualizarCepStatus(
+      ""
+    );
+
+
     return;
+
   }
+
+
+  /*
+  Impede consultas duplicadas.
+  */
+
+  if(
+    cep === ultimoCepBuscado ||
+    buscandoCep
+  ){
+
+    return;
+
+  }
+
+
+  buscandoCep =
+    true;
+
+
+  atualizarCepStatus(
+    "BUSCANDO CEP..."
+  );
 
 
   try{
 
-
     const resposta =
       await fetch(
-
         `https://viacep.com.br/ws/${cep}/json/`
-
       );
+
+
+    if(
+      !resposta.ok
+    ){
+
+      throw new Error(
+        "Falha ao consultar CEP."
+      );
+
+    }
 
 
     const dados =
       await resposta.json();
 
 
-    if(dados.erro){
+    if(
+      dados.erro
+    ){
+
+      ultimoCepBuscado =
+        "";
+
+
+      atualizarCepStatus(
+        "CEP NÃO ENCONTRADO.",
+        "erro"
+      );
+
+
       return;
+
     }
 
 
-    document
-      .getElementById("rua")
-      .value =
-        dados.logradouro || "";
+    campoRua.value =
+      dados.logradouro ||
+      "";
 
 
-    document
-      .getElementById("cidade")
-      .value =
-        dados.localidade || "";
+    campoCidade.value =
+      dados.localidade ||
+      "";
 
 
-    document
-      .getElementById("estado")
-      .value =
-        dados.uf || "";
+    campoEstado.value =
+      dados.uf ||
+      "";
 
 
-  }catch(e){
+    ultimoCepBuscado =
+      cep;
 
 
-    console.log(
-      "Erro ao buscar CEP:",
-      e
+    atualizarCepStatus(
+      "✓ ENDEREÇO ENCONTRADO",
+      "sucesso"
     );
 
+
+    /*
+    Se a rua veio preenchida,
+    o próximo dado normalmente é o número.
+
+    Se não veio, deixa o cliente preencher a rua.
+    */
+
+    if(
+      dados.logradouro
+    ){
+
+      campoNumero.focus();
+
+    }else{
+
+      campoRua.focus();
+
+    }
+
+
+  }catch(erro){
+
+    console.error(
+      "Erro ao buscar CEP:",
+      erro
+    );
+
+
+    ultimoCepBuscado =
+      "";
+
+
+    atualizarCepStatus(
+      "NÃO FOI POSSÍVEL CONSULTAR O CEP.",
+      "erro"
+    );
+
+
+  }finally{
+
+    buscandoCep =
+      false;
 
   }
 
@@ -1304,77 +1668,237 @@ async function buscarCEP(){
 
 
 /* ================================================
-   CONTINUAR PARA PAGAMENTO
-
-   Estrutura original de dados preservada.
+   VALIDAÇÃO CPF
 ================================================ */
 
-function continuarPagamento(){
+function cpfValido(
+  cpf
+){
+
+  const numeros =
+    String(
+      cpf
+    )
+      .replace(
+        /\D/g,
+        ""
+      );
+
+
+  if(
+    numeros.length !== 11
+  ){
+
+    return false;
+
+  }
+
+
+  /*
+  Impede CPF com todos os números iguais.
+  */
+
+  if(
+    /^(\d)\1{10}$/
+      .test(
+        numeros
+      )
+  ){
+
+    return false;
+
+  }
+
+
+  let soma =
+    0;
+
+
+  for(
+    let i = 0;
+    i < 9;
+    i++
+  ){
+
+    soma +=
+      Number(
+        numeros[i]
+      )
+      *
+      (
+        10 - i
+      );
+
+  }
+
+
+  let digito =
+    (
+      soma * 10
+    )
+    %
+    11;
+
+
+  if(
+    digito === 10
+  ){
+
+    digito =
+      0;
+
+  }
+
+
+  if(
+    digito !==
+    Number(
+      numeros[9]
+    )
+  ){
+
+    return false;
+
+  }
+
+
+  soma =
+    0;
+
+
+  for(
+    let i = 0;
+    i < 10;
+    i++
+  ){
+
+    soma +=
+      Number(
+        numeros[i]
+      )
+      *
+      (
+        11 - i
+      );
+
+  }
+
+
+  digito =
+    (
+      soma * 10
+    )
+    %
+    11;
+
+
+  if(
+    digito === 10
+  ){
+
+    digito =
+      0;
+
+  }
+
+
+  return (
+    digito ===
+    Number(
+      numeros[10]
+    )
+  );
+
+}
+
+
+/* ================================================
+   CONTINUAR PARA PAGAMENTO
+================================================ */
+
+async function continuarPagamento(){
+
+  /*
+  Confere a sessão novamente antes
+  de mandar o cliente para pagamento.
+  */
+
+  const {
+    data:{
+      session
+    }
+  } =
+    await supabase.auth
+      .getSession();
+
+
+  if(!session){
+
+    window.location.href =
+      "login.html?redirect=checkout.html";
+
+    return;
+
+  }
 
 
   const nome =
-    document
-      .getElementById("nome")
+    campoNome
       .value
       .trim();
 
 
   const whatsapp =
-    document
-      .getElementById("whatsapp")
+    campoWhatsapp
       .value
       .trim();
 
 
   const cpf =
-    document
-      .getElementById("cpf")
+    campoCpf
       .value
       .trim();
 
 
   const cep =
-    document
-      .getElementById("cep")
+    campoCep
       .value
       .trim();
 
 
   const rua =
-    document
-      .getElementById("rua")
+    campoRua
       .value
       .trim();
 
 
   const numero =
-    document
-      .getElementById("numero")
+    campoNumero
       .value
       .trim();
 
 
   const complemento =
-    document
-      .getElementById("complemento")
+    campoComplemento
       .value
       .trim();
 
 
   const cidade =
-    document
-      .getElementById("cidade")
+    campoCidade
       .value
       .trim();
 
 
   const estado =
-    document
-      .getElementById("estado")
-      .value;
+    campoEstado
+      .value
+      .trim();
 
 
-  /* CAMPOS OBRIGATÓRIOS */
+  /* ==============================
+     CAMPOS OBRIGATÓRIOS
+  ============================== */
 
   if(
     !nome ||
@@ -1396,18 +1920,110 @@ function continuarPagamento(){
   }
 
 
-  if(!carrinho.length){
+  /* ==============================
+     WHATSAPP
+  ============================== */
+
+  const whatsappNumeros =
+    whatsapp.replace(
+      /\D/g,
+      ""
+    );
+
+
+  if(
+    whatsappNumeros.length < 10 ||
+    whatsappNumeros.length > 11
+  ){
 
     alert(
-      "Seu carrinho está vazio."
+      "Digite um WhatsApp válido."
     );
+
+
+    campoWhatsapp.focus();
+
 
     return;
 
   }
 
 
-  let total = 0;
+  /* ==============================
+     CPF
+  ============================== */
+
+  if(
+    !cpfValido(
+      cpf
+    )
+  ){
+
+    alert(
+      "Digite um CPF válido."
+    );
+
+
+    campoCpf.focus();
+
+
+    return;
+
+  }
+
+
+  /* ==============================
+     CEP
+  ============================== */
+
+  const cepNumeros =
+    cep.replace(
+      /\D/g,
+      ""
+    );
+
+
+  if(
+    cepNumeros.length !== 8
+  ){
+
+    alert(
+      "Digite um CEP válido."
+    );
+
+
+    campoCep.focus();
+
+
+    return;
+
+  }
+
+
+  /* ==============================
+     CARRINHO
+  ============================== */
+
+  if(
+    !carrinho.length
+  ){
+
+    alert(
+      "Seu carrinho está vazio."
+    );
+
+
+    return;
+
+  }
+
+
+  /* ==============================
+     MONTAR ITENS
+  ============================== */
+
+  let total =
+    0;
 
 
   const itens =
@@ -1431,12 +2047,6 @@ function continuarPagamento(){
           preco *
           quantidade;
 
-
-        /*
-        ATENÇÃO:
-        nomes dos campos preservados
-        para o pagamento/Supabase/Resend.
-        */
 
         return {
 
@@ -1464,66 +2074,96 @@ function continuarPagamento(){
     );
 
 
-  const endereco =
+  /* ==============================
+     ENDEREÇO
+  ============================== */
 
-    `${rua}, ${numero}` +
-
-    (
-      complemento
-        ? `, ${complemento}`
-        : ""
-    );
+  let endereco =
+    `${rua}, ${numero}`;
 
 
-  /*
-  ================================================
-  NÃO ALTERAR ESTES NOMES SEM ALTERAR
-  pagamento.html.
+  if(
+    complemento
+  ){
 
-  O pagamento espera estes dados.
-  ================================================
-  */
+    endereco +=
+      `, ${complemento}`;
+
+  }
+
+
+  /* ==============================
+     SALVAR CHECKOUT
+
+     Estes nomes são preservados
+     para pagamento.html.
+  ============================== */
 
   const dadosCheckout = {
 
-    nome:nome,
+    nome:
+      nome,
 
-    whatsapp:whatsapp,
+    whatsapp:
+      whatsapp,
 
-    cpf:cpf,
+    cpf:
+      cpf,
 
-    endereco:endereco,
+    endereco:
+      endereco,
 
-    cidade:cidade,
+    cidade:
+      cidade,
 
-    estado:estado,
+    estado:
+      estado,
 
-    cep:cep,
+    cep:
+      cep,
 
-    itens:itens,
+    itens:
+      itens,
 
-    total:total
+    total:
+      Number(
+        total
+      )
 
   };
 
 
+  try{
+
+    localStorage.setItem(
+      "vantaCheckout",
+      JSON.stringify(
+        dadosCheckout
+      )
+    );
+
+
+  }catch(erro){
+
+    console.error(
+      "Erro ao salvar checkout:",
+      erro
+    );
+
+
+    alert(
+      "Não foi possível salvar os dados do pedido. Tente novamente."
+    );
+
+
+    return;
+
+  }
+
+
   /*
-  CHAVE ORIGINAL PRESERVADA.
-  */
-
-  localStorage.setItem(
-
-    "vantaCheckout",
-
-    JSON.stringify(
-      dadosCheckout
-    )
-
-  );
-
-
-  /*
-  Próxima etapa original.
+  Pagamento continua sendo responsável
+  pela criação do pedido no Supabase.
   */
 
   window.location.href =
@@ -1533,131 +2173,426 @@ function continuarPagamento(){
 
 
 /* ================================================
-   MÁSCARAS VISUAIS
+   EVENTO DO BOTÃO
 
-   Não alteram o formato dos dados enviados.
+   NÃO usamos onclick inline.
+
+   Assim funciona normalmente mesmo
+   com script type="module".
 ================================================ */
 
-document
-  .getElementById("cep")
-  .addEventListener(
-    "input",
-    function(){
-
-      let valor =
-        this.value
-          .replace(/\D/g,"")
-          .slice(0,8);
-
-      if(valor.length > 5){
-
-        valor =
-          valor.slice(0,5)
-          + "-"
-          + valor.slice(5);
-
-      }
-
-      this.value =
-        valor;
-
-    }
-  );
+botao.addEventListener(
+  "click",
+  continuarPagamento
+);
 
 
-document
-  .getElementById("cpf")
-  .addEventListener(
-    "input",
-    function(){
+/* ================================================
+   CEP — MÁSCARA + BUSCA AUTOMÁTICA
+================================================ */
 
-      let valor =
-        this.value
-          .replace(/\D/g,"")
-          .slice(0,11);
+campoCep.addEventListener(
+  "input",
+  ()=>{
 
 
-      valor =
-        valor.replace(
-          /(\d{3})(\d)/,
-          "$1.$2"
+    let valor =
+      campoCep
+        .value
+        .replace(
+          /\D/g,
+          ""
+        )
+        .slice(
+          0,
+          8
         );
 
 
+    if(
+      valor.length > 5
+    ){
+
       valor =
-        valor.replace(
-          /(\d{3})(\d)/,
-          "$1.$2"
+        valor.slice(
+          0,
+          5
+        )
+        +
+        "-"
+        +
+        valor.slice(
+          5
+        );
+
+    }
+
+
+    campoCep.value =
+      valor;
+
+
+    const cepLimpo =
+      valor.replace(
+        /\D/g,
+        ""
+      );
+
+
+    if(
+      cepLimpo.length === 8
+    ){
+
+      buscarCEP();
+
+    }else{
+
+      ultimoCepBuscado =
+        "";
+
+
+      atualizarCepStatus(
+        ""
+      );
+
+    }
+
+  }
+);
+
+
+campoCep.addEventListener(
+  "blur",
+  buscarCEP
+);
+
+
+/* ================================================
+   CPF — MÁSCARA
+================================================ */
+
+campoCpf.addEventListener(
+  "input",
+  ()=>{
+
+
+    let valor =
+      campoCpf
+        .value
+        .replace(
+          /\D/g,
+          ""
+        )
+        .slice(
+          0,
+          11
         );
 
 
-      valor =
-        valor.replace(
-          /(\d{3})(\d{1,2})$/,
-          "$1-$2"
+    valor =
+      valor.replace(
+        /(\d{3})(\d)/,
+        "$1.$2"
+      );
+
+
+    valor =
+      valor.replace(
+        /(\d{3})(\d)/,
+        "$1.$2"
+      );
+
+
+    valor =
+      valor.replace(
+        /(\d{3})(\d{1,2})$/,
+        "$1-$2"
+      );
+
+
+    campoCpf.value =
+      valor;
+
+  }
+);
+
+
+/* ================================================
+   WHATSAPP — MÁSCARA
+================================================ */
+
+campoWhatsapp.addEventListener(
+  "input",
+  ()=>{
+
+
+    let valor =
+      campoWhatsapp
+        .value
+        .replace(
+          /\D/g,
+          ""
+        )
+        .slice(
+          0,
+          11
         );
 
 
-      this.value =
+    if(
+      valor.length > 10
+    ){
+
+      valor =
+        valor.replace(
+          /(\d{2})(\d{5})(\d{4})/,
+          "($1) $2-$3"
+        );
+
+
+    }else if(
+      valor.length > 6
+    ){
+
+      valor =
+        valor.replace(
+          /(\d{2})(\d{4})(\d{0,4})/,
+          "($1) $2-$3"
+        );
+
+
+    }else if(
+      valor.length > 2
+    ){
+
+      valor =
+        valor.replace(
+          /(\d{2})(\d+)/,
+          "($1) $2"
+        );
+
+
+    }else if(
+      valor.length > 0
+    ){
+
+      valor =
+        "(" +
         valor;
 
     }
-  );
 
 
-document
-  .getElementById("whatsapp")
-  .addEventListener(
-    "input",
-    function(){
+    campoWhatsapp.value =
+      valor;
 
-      let valor =
-        this.value
-          .replace(/\D/g,"")
-          .slice(0,11);
+  }
+);
 
 
-      if(valor.length > 10){
+/* ================================================
+   SALVAR DADOS TEMPORÁRIOS
 
-        valor =
-          valor.replace(
-            /(\d{2})(\d{5})(\d{4})/,
-            "($1) $2-$3"
-          );
+   Se o cliente voltar ao carrinho por acidente,
+   podemos manter os dados do formulário durante
+   a sessão atual do navegador.
+================================================ */
 
-      }else if(valor.length > 6){
+const camposTemporarios = [
+  campoNome,
+  campoWhatsapp,
+  campoCpf,
+  campoCep,
+  campoRua,
+  campoNumero,
+  campoComplemento,
+  campoCidade,
+  campoEstado
+];
 
-        valor =
-          valor.replace(
-            /(\d{2})(\d{4})(\d{0,4})/,
-            "($1) $2-$3"
-          );
 
-      }else if(valor.length > 2){
+function salvarFormulario(){
 
-        valor =
-          valor.replace(
-            /(\d{2})(\d+)/,
-            "($1) $2"
-          );
+  const dados = {
 
-      }
+    nome:
+      campoNome.value,
 
-      this.value =
-        valor;
+    whatsapp:
+      campoWhatsapp.value,
 
-    }
-  );
+    cpf:
+      campoCpf.value,
+
+    cep:
+      campoCep.value,
+
+    rua:
+      campoRua.value,
+
+    numero:
+      campoNumero.value,
+
+    complemento:
+      campoComplemento.value,
+
+    cidade:
+      campoCidade.value,
+
+    estado:
+      campoEstado.value
+
+  };
+
+
+  try{
+
+    sessionStorage.setItem(
+      "anarkaCheckoutForm",
+      JSON.stringify(
+        dados
+      )
+    );
+
+  }catch{}
+
+}
+
+
+camposTemporarios.forEach(
+  campo=>{
+
+    campo.addEventListener(
+      "change",
+      salvarFormulario
+    );
+
+
+    campo.addEventListener(
+      "blur",
+      salvarFormulario
+    );
+
+  }
+);
+
+
+/* ================================================
+   RESTAURAR FORMULÁRIO
+================================================ */
+
+function restaurarFormulario(){
+
+  let dados;
+
+
+  try{
+
+    dados =
+      JSON.parse(
+        sessionStorage.getItem(
+          "anarkaCheckoutForm"
+        )
+      );
+
+  }catch{
+
+    dados =
+      null;
+
+  }
+
+
+  if(!dados){
+    return;
+  }
+
+
+  campoNome.value =
+    dados.nome ||
+    "";
+
+
+  campoWhatsapp.value =
+    dados.whatsapp ||
+    "";
+
+
+  campoCpf.value =
+    dados.cpf ||
+    "";
+
+
+  campoCep.value =
+    dados.cep ||
+    "";
+
+
+  campoRua.value =
+    dados.rua ||
+    "";
+
+
+  campoNumero.value =
+    dados.numero ||
+    "";
+
+
+  campoComplemento.value =
+    dados.complemento ||
+    "";
+
+
+  campoCidade.value =
+    dados.cidade ||
+    "";
+
+
+  campoEstado.value =
+    dados.estado ||
+    "";
+
+}
+
+
+/* ================================================
+   SEGURANÇA HTML
+================================================ */
+
+function escaparHTML(
+  valor
+){
+
+  const elemento =
+    document.createElement(
+      "div"
+    );
+
+
+  elemento.textContent =
+    valor ?? "";
+
+
+  return elemento.innerHTML;
+
+}
 
 
 /* ================================================
    INICIAR
 ================================================ */
 
-mostrarResumo();
+if(
+  usuarioLogado
+){
+
+  restaurarFormulario();
+
+  mostrarResumo();
+
+}
 
 </script>
 
 </body>
-
-</html>
+  </html>
