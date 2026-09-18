@@ -269,6 +269,7 @@ footer{
 }
 
 @media(max-width:850px){
+
   main{
     grid-template-columns:1fr;
     gap:45px;
@@ -285,6 +286,7 @@ footer{
 }
 
 @media(max-width:550px){
+
   header{
     height:72px;
     padding:0 4%;
@@ -317,19 +319,28 @@ footer{
 </div>
 
 <header>
+
   <a href="index.html">
-    <img src="/anarka-logo.png" class="logo" alt="ANARKA">
+    <img
+      src="/anarka-logo.png"
+      class="logo"
+      alt="ANARKA"
+    >
   </a>
 
   <a href="index.html" class="voltar">
     ← VOLTAR À LOJA
   </a>
+
 </header>
 
 <main>
 
   <section class="intro">
-    <div class="label">ANARKA / ACCOUNT</div>
+
+    <div class="label">
+      ANARKA / ACCOUNT
+    </div>
 
     <h1>
       SUA<br>
@@ -340,40 +351,64 @@ footer{
       Entre para acompanhar seus pedidos, verificar
       pagamentos e acompanhar cada etapa até a entrega.
     </p>
+
   </section>
 
   <section class="box">
 
     <div class="tabs">
-      <button class="tab ativo" data-form="login">
+
+      <button
+        class="tab ativo"
+        data-form="login"
+      >
         ENTRAR
       </button>
 
-      <button class="tab" data-form="cadastro">
+      <button
+        class="tab"
+        data-form="cadastro"
+      >
         CRIAR CONTA
       </button>
+
     </div>
 
-    <div id="mensagem" class="mensagem"></div>
+    <div
+      id="mensagem"
+      class="mensagem"
+    ></div>
 
     <!-- LOGIN -->
 
-    <form id="login" class="form ativo">
+    <form
+      id="login"
+      class="form ativo"
+    >
 
       <div class="campo">
-        <label>E-MAIL</label>
+
+        <label>
+          E-MAIL
+        </label>
+
         <input
           type="email"
           id="loginEmail"
           autocomplete="email"
           required
         >
+
       </div>
 
       <div class="campo">
-        <label>SENHA</label>
+
+        <label>
+          SENHA
+        </label>
 
         <div class="senha-wrap">
+
           <input
             type="password"
             id="loginSenha"
@@ -389,7 +424,9 @@ footer{
           >
             MOSTRAR
           </button>
+
         </div>
+
       </div>
 
       <button
@@ -412,32 +449,49 @@ footer{
 
     <!-- CADASTRO -->
 
-    <form id="cadastro" class="form">
+    <form
+      id="cadastro"
+      class="form"
+    >
 
       <div class="campo">
-        <label>NOME</label>
+
+        <label>
+          NOME
+        </label>
+
         <input
           type="text"
           id="cadastroNome"
           autocomplete="name"
           required
         >
+
       </div>
 
       <div class="campo">
-        <label>E-MAIL</label>
+
+        <label>
+          E-MAIL
+        </label>
+
         <input
           type="email"
           id="cadastroEmail"
           autocomplete="email"
           required
         >
+
       </div>
 
       <div class="campo">
-        <label>SENHA</label>
+
+        <label>
+          SENHA
+        </label>
 
         <div class="senha-wrap">
+
           <input
             type="password"
             id="cadastroSenha"
@@ -453,7 +507,9 @@ footer{
           >
             MOSTRAR
           </button>
+
         </div>
+
       </div>
 
       <button
@@ -480,11 +536,13 @@ import {
   createClient
 } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
+
 const SUPABASE_URL =
   "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
 
 const SUPABASE_KEY =
   "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
 
 const supabase =
   createClient(
@@ -494,22 +552,73 @@ const supabase =
 
 
 /* ==============================
+   REDIRECIONAMENTO
+
+   Se veio do checkout:
+   login.html?redirect=checkout.html
+
+   Depois do login volta ao checkout.
+
+   Se entrou normalmente:
+   vai para minha-conta.html.
+============================== */
+
+const parametros =
+  new URLSearchParams(
+    window.location.search
+  );
+
+
+const redirectSolicitado =
+  parametros.get(
+    "redirect"
+  );
+
+
+const destinosPermitidos = [
+  "checkout.html",
+  "minha-conta.html"
+];
+
+
+const destinoDepoisLogin =
+  destinosPermitidos.includes(
+    redirectSolicitado
+  )
+    ? redirectSolicitado
+    : "minha-conta.html";
+
+
+/* ==============================
    ELEMENTOS
 ============================== */
 
 const mensagem =
-  document.getElementById("mensagem");
+  document.getElementById(
+    "mensagem"
+  );
+
 
 const btnLogin =
-  document.getElementById("btnLogin");
+  document.getElementById(
+    "btnLogin"
+  );
+
 
 const btnCadastro =
-  document.getElementById("btnCadastro");
+  document.getElementById(
+    "btnCadastro"
+  );
 
 
-function mostrarMensagem(texto,tipo){
+function mostrarMensagem(
+  texto,
+  tipo
+){
 
-  mensagem.textContent = texto;
+  mensagem.textContent =
+    texto;
+
   mensagem.className =
     "mensagem " + tipo;
 
@@ -518,8 +627,11 @@ function mostrarMensagem(texto,tipo){
 
 function limparMensagem(){
 
-  mensagem.textContent = "";
-  mensagem.className = "mensagem";
+  mensagem.textContent =
+    "";
+
+  mensagem.className =
+    "mensagem";
 
 }
 
@@ -529,34 +641,54 @@ function limparMensagem(){
 ============================== */
 
 document
-  .querySelectorAll(".tab")
+  .querySelectorAll(
+    ".tab"
+  )
   .forEach(tab => {
 
-    tab.addEventListener("click",()=>{
+    tab.addEventListener(
+      "click",
+      ()=>{
 
-      limparMensagem();
+        limparMensagem();
 
-      document
-        .querySelectorAll(".tab")
-        .forEach(t =>
-          t.classList.remove("ativo")
+        document
+          .querySelectorAll(
+            ".tab"
+          )
+          .forEach(t =>
+            t.classList.remove(
+              "ativo"
+            )
+          );
+
+
+        document
+          .querySelectorAll(
+            ".form"
+          )
+          .forEach(f =>
+            f.classList.remove(
+              "ativo"
+            )
+          );
+
+
+        tab.classList.add(
+          "ativo"
         );
 
-      document
-        .querySelectorAll(".form")
-        .forEach(f =>
-          f.classList.remove("ativo")
-        );
 
-      tab.classList.add("ativo");
+        document
+          .getElementById(
+            tab.dataset.form
+          )
+          .classList.add(
+            "ativo"
+          );
 
-      document
-        .getElementById(
-          tab.dataset.form
-        )
-        .classList.add("ativo");
-
-    });
+      }
+    );
 
   });
 
@@ -566,30 +698,39 @@ document
 ============================== */
 
 document
-  .querySelectorAll(".mostrar")
+  .querySelectorAll(
+    ".mostrar"
+  )
   .forEach(botao => {
 
-    botao.addEventListener("click",()=>{
+    botao.addEventListener(
+      "click",
+      ()=>{
 
-      const input =
-        document.getElementById(
-          botao.dataset.input
-        );
+        const input =
+          document.getElementById(
+            botao.dataset.input
+          );
 
-      const mostrar =
-        input.type === "password";
 
-      input.type =
-        mostrar
-          ? "text"
-          : "password";
+        const mostrar =
+          input.type ===
+          "password";
 
-      botao.textContent =
-        mostrar
-          ? "OCULTAR"
-          : "MOSTRAR";
 
-    });
+        input.type =
+          mostrar
+            ? "text"
+            : "password";
+
+
+        botao.textContent =
+          mostrar
+            ? "OCULTAR"
+            : "MOSTRAR";
+
+      }
+    );
 
   });
 
@@ -599,7 +740,9 @@ document
 ============================== */
 
 document
-  .getElementById("cadastro")
+  .getElementById(
+    "cadastro"
+  )
   .addEventListener(
     "submit",
     async event => {
@@ -608,46 +751,69 @@ document
 
       limparMensagem();
 
+
       const nome =
         document
-          .getElementById("cadastroNome")
+          .getElementById(
+            "cadastroNome"
+          )
           .value
           .trim();
+
 
       const email =
         document
-          .getElementById("cadastroEmail")
+          .getElementById(
+            "cadastroEmail"
+          )
           .value
           .trim();
 
+
       const senha =
         document
-          .getElementById("cadastroSenha")
+          .getElementById(
+            "cadastroSenha"
+          )
           .value;
 
-      btnCadastro.disabled = true;
+
+      btnCadastro.disabled =
+        true;
+
       btnCadastro.textContent =
         "CRIANDO CONTA...";
+
 
       const {
         data,
         error
       } =
-        await supabase.auth.signUp({
-          email,
-          password:senha,
+        await supabase.auth
+          .signUp({
 
-          options:{
-            data:{
-              nome:nome
-            },
+            email,
 
-            emailRedirectTo:
-              "https://anarka-store-henna.vercel.app/minha-conta.html"
-          }
-        });
+            password:
+              senha,
 
-      btnCadastro.disabled = false;
+            options:{
+
+              data:{
+                nome:nome
+              },
+
+              emailRedirectTo:
+                "https://anarka-store-henna.vercel.app/minha-conta.html"
+
+            }
+
+          });
+
+
+      btnCadastro.disabled =
+        false;
+
       btnCadastro.textContent =
         "CRIAR CONTA →";
 
@@ -655,25 +821,32 @@ document
       if(error){
 
         mostrarMensagem(
-          traduzirErro(error.message),
+          traduzirErro(
+            error.message
+          ),
           "erro"
         );
 
         return;
+
       }
 
 
       /*
-      Se o Supabase criar uma sessão imediatamente,
-      o usuário já pode entrar na conta.
+      Se confirmação de e-mail estiver
+      desativada, o Supabase cria uma
+      sessão imediatamente.
+
+      Nesse caso, respeitamos o redirect.
       */
 
       if(data.session){
 
         window.location.href =
-          "minha-conta.html";
+          destinoDepoisLogin;
 
         return;
+
       }
 
 
@@ -691,7 +864,9 @@ document
 ============================== */
 
 document
-  .getElementById("login")
+  .getElementById(
+    "login"
+  )
   .addEventListener(
     "submit",
     async event => {
@@ -700,31 +875,48 @@ document
 
       limparMensagem();
 
+
       const email =
         document
-          .getElementById("loginEmail")
+          .getElementById(
+            "loginEmail"
+          )
           .value
           .trim();
 
+
       const senha =
         document
-          .getElementById("loginSenha")
+          .getElementById(
+            "loginSenha"
+          )
           .value;
 
-      btnLogin.disabled = true;
+
+      btnLogin.disabled =
+        true;
+
       btnLogin.textContent =
         "ENTRANDO...";
+
 
       const {
         error
       } =
         await supabase.auth
           .signInWithPassword({
+
             email,
-            password:senha
+
+            password:
+              senha
+
           });
 
-      btnLogin.disabled = false;
+
+      btnLogin.disabled =
+        false;
+
       btnLogin.textContent =
         "ENTRAR →";
 
@@ -732,16 +924,29 @@ document
       if(error){
 
         mostrarMensagem(
-          traduzirErro(error.message),
+          traduzirErro(
+            error.message
+          ),
           "erro"
         );
 
         return;
+
       }
 
 
+      /*
+      LOGIN FEITO.
+
+      Se veio do checkout,
+      volta para checkout.html.
+
+      Caso contrário,
+      vai para Minha Conta.
+      */
+
       window.location.href =
-        "minha-conta.html";
+        destinoDepoisLogin;
 
     }
   );
@@ -752,16 +957,21 @@ document
 ============================== */
 
 document
-  .getElementById("esqueciSenha")
+  .getElementById(
+    "esqueciSenha"
+  )
   .addEventListener(
     "click",
     async ()=>{
 
       limparMensagem();
 
+
       const email =
         document
-          .getElementById("loginEmail")
+          .getElementById(
+            "loginEmail"
+          )
           .value
           .trim();
 
@@ -774,6 +984,7 @@ document
         );
 
         return;
+
       }
 
 
@@ -784,8 +995,10 @@ document
           .resetPasswordForEmail(
             email,
             {
+
               redirectTo:
                 "https://anarka-store-henna.vercel.app/login.html"
+
             }
           );
 
@@ -793,11 +1006,14 @@ document
       if(error){
 
         mostrarMensagem(
-          traduzirErro(error.message),
+          traduzirErro(
+            error.message
+          ),
           "erro"
         );
 
         return;
+
       }
 
 
@@ -814,42 +1030,59 @@ document
    TRADUÇÃO DE ERROS
 ============================== */
 
-function traduzirErro(erro){
+function traduzirErro(
+  erro
+){
 
   const texto =
-    String(erro).toLowerCase();
+    String(
+      erro
+    ).toLowerCase();
+
 
   if(
     texto.includes(
       "invalid login credentials"
     )
   ){
+
     return "E-mail ou senha incorretos.";
+
   }
+
 
   if(
     texto.includes(
       "email not confirmed"
     )
   ){
+
     return "Confirme seu e-mail antes de entrar.";
+
   }
+
 
   if(
     texto.includes(
       "user already registered"
     )
   ){
+
     return "Já existe uma conta com este e-mail.";
+
   }
+
 
   if(
     texto.includes(
       "password should be"
     )
   ){
+
     return "A senha precisa ter pelo menos 6 caracteres.";
+
   }
+
 
   return erro;
 
@@ -858,6 +1091,8 @@ function traduzirErro(erro){
 
 /* ==============================
    USUÁRIO JÁ LOGADO
+
+   Também respeita o redirect.
 ============================== */
 
 const {
@@ -865,13 +1100,14 @@ const {
     session
   }
 } =
-  await supabase.auth.getSession();
+  await supabase.auth
+    .getSession();
 
 
 if(session){
 
   window.location.href =
-    "minha-conta.html";
+    destinoDepoisLogin;
 
 }
 
