@@ -1508,8 +1508,354 @@ async function registrarPedido(){
     );
 
     return;
+  }
+
+
+  const confirmar =
+    confirm(
+      "Você já realizou o PIX no valor de " +
+      dinheiro(pedido.total) +
+      "?\n\nO pedido será enviado para análise do pagamento."
+    );
+
+  if(!confirmar){
+    return;
+  }
+
+
+  botao.disabled =
+    true;
+
+  botao.textContent =
+    "ENVIANDO PARA ANÁLISE...";
+
+
+  try{
+
+    /*
+    Atualiza a sessão antes de criar o pedido.
+    Agora o checkout exige login.
+    */
+
+    const {
+      data:{
+        session
+      }
+    } =
+      await supabase.auth
+        .getSession();
+
+
+    /*
+    SEGURANÇA:
+    Como o RLS exige usuário autenticado,
+    não permitimos criar pedido sem sessão.
+    */
+
+    if(
+      !session ||
+      !session.user
+    ){
+
+      window.location.href =
+        "login.html?redirect=checkout.html";
+
+      return;
+    }
+
+
+    const userId =
+      session.user.id;
+
+
+    /*
+    NOVO:
+    salva o e-mail da conta junto ao pedido.
+    Esse endereço será usado posteriormente
+    para os e-mails de atualização via Resend.
+    */
+
+    const emailCliente =
+      session.user.email ||
+      null;
+
+
+    /*
+    Mantemos o REST POST que já funcionava
+    no site para não mexer no trigger
+    atual do Resend.
+    */
+
+    const resposta =
+      await fetch(
+
+        `${SUPABASE_URL}/rest/v1/pedidos`,
+
+        {
+
+          method:"POST",
+
+          headers:{
+
+            "apikey":
+              SUPABASE_KEY,
+
+            "Authorization":
+              `Bearer ${session.access_token}`,
+
+            "Content-Type":
+              "application/json",
+
+            "Prefer":
+              "return=representation"
+
+          },
+
+
+          body:JSON.stringify({
+
+            nome_cliente:
+              pedido.nome,
+
+            telefone:
+              pedido.whatsapp,
+
+            cpf:
+              pedido.cpf,
+
+            endereco:
+              pedido.endereco,
+
+            cidade:
+              pedido.cidade,
+
+            estado:
+              pedido.estado,
+
+            cep:
+              pedido.cep,
+
+            itens:
+              pedido.itens,
+
+            total:
+              Number(
+                pedido.total
+              ),
+
+            forma_pagamento:
+              "PIX",
+
+            status:
+              "Pagamento em análise",
+
+            user_id:
+              userId,
+
+            email_cliente:
+              emailCliente
+
+          })
+
+        }
+      );
+
+
+    let dados =
+      null;
+
+
+    try{
+
+      dados =
+        await resposta.json();
+
+    }catch{
+
+      dados =
+        null;
+
+    }
+
+
+    if(!resposta.ok){
+
+      console.error(
+        "Erro Supabase:",
+        dados
+      );
+
+
+      throw new Error(
+        dados?.message ||
+        dados?.error_description ||
+        "Erro ao registrar pedido."
+      );
+
+    }
+
+
+    const pedidoCriado =
+      Array.isArray(dados)
+        ? dados[0]
+        : dados;
+
+
+    /* ============================
+       CÓPIA LOCAL
+    ============================ */
+
+    const pedidoLocal = {
+
+      id:
+        pedidoCriado?.id ||
+        null,
+
+      numero_pedido:
+        pedidoCriado?.numero_pedido ||
+        null,
+
+      user_id:
+        userId,
+
+      email_cliente:
+        emailCliente,
+
+      nome:
+        pedido.nome,
+
+      whatsapp:
+        pedido.whatsapp,
+
+      cpf:
+        pedido.cpf,
+
+      endereco:
+        pedido.endereco,
+
+      cidade:
+        pedido.cidade,
+
+      estado:
+        pedido.estado,
+
+      cep:
+        pedido.cep,
+
+      itens:
+        pedido.itens,
+
+      total:
+        Number(
+          pedido.total
+        ),
+
+      pagamento:
+        "PIX",
+
+      status:
+        "Pagamento em análise",
+
+      data:
+        pedidoCriado?.criado_em ||
+        new Date()
+          .toISOString()
+
+    };
+
+
+    let pedidos =
+      [];
+
+
+    try{
+
+      pedidos =
+        JSON.parse(
+          localStorage.getItem(
+            "vantaPedidos"
+          )
+        ) || [];
+
+    }catch{
+
+      pedidos =
+        [];
+
+    }
+
+
+    if(
+      !Array.isArray(
+        pedidos
+      )
+    ){
+
+      pedidos =
+        [];
+
+    }
+
+
+    pedidos.push(
+      pedidoLocal
+    );
+
+
+    localStorage.setItem(
+      "vantaPedidos",
+      JSON.stringify(
+        pedidos
+      )
+    );
+
+
+    /*
+    Só limpa depois que o Supabase
+    confirmou a criação.
+    */
+
+    localStorage.removeItem(
+      "vantaCheckout"
+    );
+
+    localStorage.removeItem(
+      "vantaCarrinho"
+    );
+
+
+    /*
+    Agora todo pedido é vinculado
+    a uma conta autenticada.
+    */
+
+    window.location.href =
+      "minha-conta.html";
+
+
+  }catch(erro){
+
+    console.error(
+      "Erro ao registrar pedido:",
+      erro
+    );
+
+
+    alert(
+      "Não foi possível registrar o pedido.\n\n" +
+      "Seu carrinho continua salvo. Tente novamente."
+    );
+
+
+    botao.disabled =
+      false;
+
+    botao.textContent =
+      "JÁ FIZ O PAGAMENTO →";
 
   }
+
+}
 
 
   const confirmar =
