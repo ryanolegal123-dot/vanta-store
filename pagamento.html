@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Pagamento | ANARKA</title>
 
@@ -71,60 +65,44 @@ button{
   font:inherit;
 }
 
-
 /* =========================
    TOP
 ========================= */
 
 .topbar{
   padding:9px 15px;
-
   background:#d60000;
-
   text-align:center;
-
   font-size:10px;
   font-weight:900;
-
   letter-spacing:2px;
 }
 
-
 header{
   height:88px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   padding:0 6%;
-
   border-bottom:1px solid #252525;
 }
-
 
 .logo{
   width:135px;
   height:70px;
-
   object-fit:contain;
 }
 
-
 .secure{
   color:#777;
-
   font-size:9px;
   font-weight:900;
-
   letter-spacing:2px;
 }
-
 
 .secure span{
   color:#d60000;
 }
-
 
 /* =========================
    CONTAINER
@@ -132,60 +110,37 @@ header{
 
 .container{
   width:100%;
-
   max-width:1150px;
-
   margin:auto;
-
   padding:70px 6% 110px;
 }
 
-
 .page-label{
   color:#d60000;
-
   font-size:10px;
   font-weight:900;
-
   letter-spacing:3px;
 }
 
-
 h1{
   margin-top:12px;
-
-  font-size:clamp(
-    55px,
-    8vw,
-    110px
-  );
-
+  font-size:clamp(55px,8vw,110px);
   line-height:.8;
-
   letter-spacing:-6px;
 }
 
-
 h1 span{
   color:transparent;
-
-  -webkit-text-stroke:
-    1px #fff;
+  -webkit-text-stroke:1px #fff;
 }
-
 
 .description{
   max-width:550px;
-
   margin-top:25px;
-
   color:#777;
-
   font-size:13px;
-
   line-height:1.7;
 }
-
 
 /* =========================
    GRID
@@ -193,49 +148,32 @@ h1 span{
 
 .payment-grid{
   display:grid;
-
-  grid-template-columns:
-    .9fr 1.1fr;
-
+  grid-template-columns:.9fr 1.1fr;
   gap:30px;
-
   margin-top:55px;
-
   align-items:start;
 }
 
-
 .box{
   padding:28px;
-
   border:1px solid #292929;
-
   background:#090909;
 }
 
-
 .box-number{
   display:block;
-
   margin-bottom:8px;
-
   color:#d60000;
-
   font-size:9px;
   font-weight:900;
-
   letter-spacing:2px;
 }
 
-
 .box h2{
   margin-bottom:25px;
-
   font-size:23px;
-
   text-transform:uppercase;
 }
-
 
 /* =========================
    PEDIDO
@@ -243,74 +181,51 @@ h1 span{
 
 .pedido{
   color:#999;
-
   font-size:12px;
-
   line-height:1.7;
 }
 
-
 .item{
   padding:17px 0;
-
   border-bottom:1px solid #242424;
 }
-
 
 .item:first-child{
   padding-top:0;
 }
 
-
 .item strong{
   color:#fff;
-
   font-size:13px;
-
   text-transform:uppercase;
 }
 
-
 .customer{
   padding-top:18px;
-
   color:#777;
-
   font-size:11px;
 }
 
-
 .total{
   display:flex;
-
   align-items:flex-end;
   justify-content:space-between;
-
   gap:20px;
-
   margin-top:22px;
-
   padding-top:22px;
-
   border-top:1px solid #333;
 }
 
-
 .total-label{
   color:#777;
-
   font-size:9px;
-
   letter-spacing:2px;
 }
 
-
 .total-value{
   font-size:28px;
-
   font-weight:1000;
 }
-
 
 /* =========================
    PIX
@@ -320,164 +235,108 @@ h1 span{
   text-align:center;
 }
 
-
 .pix-badge{
   display:inline-block;
-
   margin-bottom:15px;
-
   padding:7px 11px;
-
   border:1px solid #d60000;
-
   color:#d60000;
-
   font-size:9px;
   font-weight:900;
-
   letter-spacing:2px;
 }
 
-
 .pix-title{
   font-size:25px;
-
   font-weight:1000;
-
   text-transform:uppercase;
 }
 
-
 .pix-description{
   max-width:450px;
-
   margin:12px auto 25px;
-
   color:#777;
-
   font-size:11px;
-
   line-height:1.6;
 }
-
 
 .qr-container{
   width:230px;
   min-height:230px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   margin:0 auto 25px;
-
   padding:15px;
-
   background:#fff;
 }
-
 
 .qr-container img,
 .qr-container canvas{
   max-width:100%;
-
   height:auto;
 }
-
 
 .valor-pix{
   margin-bottom:25px;
 }
 
-
 .valor-pix small{
   display:block;
-
   margin-bottom:6px;
-
   color:#666;
-
   font-size:8px;
   font-weight:900;
-
   letter-spacing:2px;
 }
-
 
 .valor-pix strong{
   font-size:30px;
-
   font-weight:1000;
 }
 
-
 .copia-label{
   margin-bottom:8px;
-
   color:#777;
-
   text-align:left;
-
   font-size:8px;
   font-weight:900;
-
   letter-spacing:2px;
 }
 
-
 .copia-box{
   display:flex;
-
   gap:8px;
 }
-
 
 #pixCodigo{
   width:100%;
   min-width:0;
-
   height:48px;
-
   padding:0 12px;
-
   border:1px solid #333;
-
   outline:none;
-
   background:#050505;
-
   color:#888;
-
   font-size:10px;
 }
 
-
 #copiar{
   flex-shrink:0;
-
   padding:0 15px;
-
   border:1px solid #fff;
-
   background:#fff;
-
   color:#000;
-
   cursor:pointer;
-
   font-size:9px;
   font-weight:900;
 }
 
-
 #copiar:hover{
   background:#d60000;
-
   border-color:#d60000;
-
   color:#fff;
 }
-
 
 /* =========================
    AVISOS
@@ -485,46 +344,29 @@ h1 span{
 
 .aviso{
   margin-top:20px;
-
   padding:16px;
-
   border:1px solid #292929;
-
   background:#050505;
-
   color:#888;
-
   text-align:left;
-
   font-size:10px;
-
   line-height:1.7;
 }
-
 
 .aviso strong{
   color:#fff;
 }
 
-
 .aviso-red{
   margin-top:12px;
-
   padding:13px;
-
   border-left:3px solid #d60000;
-
   background:#120606;
-
   color:#aaa;
-
   text-align:left;
-
   font-size:10px;
-
   line-height:1.6;
 }
-
 
 /* =========================
    CONTA
@@ -532,42 +374,29 @@ h1 span{
 
 .conta{
   margin-top:15px;
-
   padding:15px;
-
   border:1px solid #292929;
-
   background:#080808;
-
   text-align:left;
 }
 
-
 .conta-label{
   color:#555;
-
   font-size:8px;
   font-weight:900;
-
   letter-spacing:2px;
 }
 
-
 .conta-value{
   margin-top:6px;
-
   color:#aaa;
-
   font-size:10px;
-
   word-break:break-word;
 }
-
 
 .conta-value.logado{
   color:#fff;
 }
-
 
 /* =========================
    BOTÃO
@@ -575,64 +404,42 @@ h1 span{
 
 #botao{
   width:100%;
-
   min-height:62px;
-
   margin-top:18px;
-
   padding:15px;
-
   border:1px solid #fff;
-
   background:#fff;
-
   color:#000;
-
   cursor:pointer;
-
   font-size:11px;
   font-weight:1000;
-
   letter-spacing:2px;
 }
 
-
 #botao:hover{
   background:#d60000;
-
   border-color:#d60000;
-
   color:#fff;
 }
 
-
 #botao:disabled{
   opacity:.5;
-
   cursor:not-allowed;
 }
 
-
 .back{
   display:block;
-
   margin-top:18px;
-
   color:#666;
-
   text-align:center;
-
   font-size:9px;
   font-weight:900;
-
   letter-spacing:1.5px;
 }
-
 
 .back:hover{
   color:#fff;
 }
-
 
 /* =========================
    PASSOS
@@ -640,58 +447,39 @@ h1 span{
 
 .security{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   margin-top:30px;
-
   border:1px solid #242424;
 }
 
-
 .security-item{
   min-height:115px;
-
   padding:20px;
 }
 
-
-.security-item +
-.security-item{
+.security-item + .security-item{
   border-left:1px solid #242424;
 }
 
-
 .security-number{
   color:#d60000;
-
   font-size:9px;
   font-weight:900;
 }
 
-
 .security-item strong{
   display:block;
-
   margin-top:18px;
-
   font-size:10px;
-
   text-transform:uppercase;
 }
 
-
 .security-item p{
   margin-top:6px;
-
   color:#666;
-
   font-size:10px;
-
   line-height:1.5;
 }
-
 
 /* =========================
    FINAL
@@ -699,74 +487,46 @@ h1 span{
 
 .statement{
   margin-top:90px;
-
   padding-top:60px;
-
   border-top:1px solid #292929;
 }
 
-
 .statement small{
   color:#d60000;
-
   font-size:9px;
   font-weight:900;
-
   letter-spacing:3px;
 }
 
-
 .statement h2{
   max-width:900px;
-
   margin-top:14px;
-
-  font-size:clamp(
-    40px,
-    6vw,
-    80px
-  );
-
+  font-size:clamp(40px,6vw,80px);
   line-height:.85;
-
   letter-spacing:-4px;
 }
 
-
 .statement h2 span{
   color:transparent;
-
-  -webkit-text-stroke:
-    1px #fff;
+  -webkit-text-stroke:1px #fff;
 }
-
 
 footer{
   padding:45px 6%;
-
   border-top:1px solid #222;
-
   text-align:center;
-
   color:#555;
-
   font-size:9px;
-
   letter-spacing:2px;
 }
 
-
 footer img{
   display:block;
-
   width:120px;
   height:75px;
-
   object-fit:contain;
-
   margin:0 auto 10px;
 }
-
 
 /* =========================
    MOBILE
@@ -780,97 +540,72 @@ footer img{
 
 }
 
-
 @media(max-width:550px){
 
   header{
     height:72px;
-
     padding:0 4%;
   }
 
-
   .logo{
     width:100px;
-
     height:58px;
   }
 
-
   .secure{
     font-size:7px;
-
     letter-spacing:1px;
   }
-
 
   .container{
     padding:50px 4% 75px;
   }
 
-
   h1{
     letter-spacing:-4px;
   }
 
-
   .payment-grid{
     margin-top:40px;
-
     gap:18px;
   }
-
 
   .box{
     padding:21px 16px;
   }
 
-
   .security{
     grid-template-columns:1fr;
   }
 
-
-  .security-item +
-  .security-item{
+  .security-item + .security-item{
     border-left:0;
-
     border-top:1px solid #242424;
   }
-
 
   .copia-box{
     flex-direction:column;
   }
 
-
   #copiar{
     height:45px;
   }
 
-
   .qr-container{
     width:210px;
-
     min-height:210px;
   }
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="topbar">
-
   ANARKA — PAGAMENTO VIA PIX
-
 </div>
-
 
 <header>
 
@@ -884,150 +619,92 @@ footer img{
 
   </a>
 
-
   <div class="secure">
-
     <span>●</span>
-
     PIX / ETAPA FINAL
-
   </div>
 
 </header>
 
-
 <main class="container">
 
-
   <div class="page-label">
-
     ANARKA / PAGAMENTO
-
   </div>
 
-
   <h1>
-
     ÚLTIMA<br>
-
-    <span>
-      ETAPA.
-    </span>
-
+    <span>ETAPA.</span>
   </h1>
 
-
   <p class="description">
-
     Faça o pagamento via PIX e depois informe que
     realizou a transferência. O pagamento será
     conferido antes da preparação do pedido.
-
   </p>
 
-
   <div class="payment-grid">
-
-
-    <!-- =========================
-         RESUMO
-    ========================== -->
 
     <section class="box">
 
       <span class="box-number">
-
         01 / PEDIDO
-
       </span>
-
 
       <h2>
         Resumo
       </h2>
 
-
       <div
         id="pedido"
         class="pedido"
       >
-
         Carregando...
-
       </div>
 
     </section>
 
-
-    <!-- =========================
-         PIX
-    ========================== -->
-
     <section>
-
 
       <div class="box pix-area">
 
-
         <span class="box-number">
-
           02 / PAGAMENTO
-
         </span>
 
-
         <div class="pix-badge">
-
           PIX
-
         </div>
-
 
         <div class="pix-title">
-
           PAGUE PELO PIX
-
         </div>
 
-
         <p class="pix-description">
-
           Escaneie o QR Code pelo aplicativo do seu
           banco ou copie o código PIX abaixo.
-
         </p>
-
 
         <div
           id="qrcode"
           class="qr-container"
         ></div>
 
-
         <div class="valor-pix">
 
           <small>
-
             VALOR EXATO
-
           </small>
 
-
           <strong id="valorPix">
-
             R$ 0,00
-
           </strong>
 
         </div>
 
-
         <div class="copia-label">
-
           PIX COPIA E COLA
-
         </div>
-
 
         <div class="copia-box">
 
@@ -1038,18 +715,14 @@ footer img{
             value=""
           >
 
-
           <button
             id="copiar"
             type="button"
           >
-
             COPIAR
-
           </button>
 
         </div>
-
 
         <div class="aviso">
 
@@ -1062,7 +735,6 @@ footer img{
 
         </div>
 
-
         <div class="aviso-red">
 
           O botão abaixo não confirma o recebimento
@@ -1072,60 +744,42 @@ footer img{
 
         </div>
 
-
         <div class="conta">
 
           <div class="conta-label">
-
             CONTA VINCULADA
-
           </div>
-
 
           <div
             class="conta-value"
             id="contaUsuario"
           >
-
             Verificando...
-
           </div>
 
         </div>
 
       </div>
 
-
       <button
         id="botao"
         type="button"
       >
-
         JÁ FIZ O PAGAMENTO →
-
       </button>
-
 
       <a
         href="checkout.html"
         class="back"
       >
-
         ← VOLTAR AOS DADOS
-
       </a>
 
     </section>
 
   </div>
 
-
-  <!-- =========================
-       PASSOS
-  ========================== -->
-
   <div class="security">
-
 
     <div class="security-item">
 
@@ -1144,7 +798,6 @@ footer img{
 
     </div>
 
-
     <div class="security-item">
 
       <span class="security-number">
@@ -1161,7 +814,6 @@ footer img{
       </p>
 
     </div>
-
 
     <div class="security-item">
 
@@ -1182,31 +834,20 @@ footer img{
 
   </div>
 
-
   <section class="statement">
 
     <small>
-
       ANARKA / FINAL
-
     </small>
 
-
     <h2>
-
       SEU PEDIDO.<br>
-
-      <span>
-        NO SEU RITMO.
-      </span>
-
+      <span>NO SEU RITMO.</span>
     </h2>
 
   </section>
 
-
 </main>
-
 
 <footer>
 
@@ -1219,36 +860,25 @@ footer img{
 
 </footer>
 
-
-<!-- ==================================================
-     QR CODE
-================================================== -->
-
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
 ></script>
 
-
 <script type="module">
-
 
 import {
   createClient
 } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-
 /* ==================================================
    SUPABASE
 ================================================== */
 
-
 const SUPABASE_URL =
   "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
-
 
 const supabase =
   createClient(
@@ -1256,89 +886,71 @@ const supabase =
     SUPABASE_KEY
   );
 
-
 /* ==================================================
    PIX
 ================================================== */
 
-
 const PIX_KEY =
   "ad22cc96-ded7-4657-932f-797b16ca5078";
-
 
 const PIX_NAME =
   "RYAN DO NASCIMENTO SANTOS";
 
-
 const PIX_CITY =
   "SAO PAULO";
-
 
 /* ==================================================
    ELEMENTOS
 ================================================== */
-
 
 const area =
   document.getElementById(
     "pedido"
   );
 
-
 const botao =
   document.getElementById(
     "botao"
   );
-
 
 const valorPix =
   document.getElementById(
     "valorPix"
   );
 
-
 const pixCodigo =
   document.getElementById(
     "pixCodigo"
   );
-
 
 const contaUsuario =
   document.getElementById(
     "contaUsuario"
   );
 
-
 const qrcode =
   document.getElementById(
     "qrcode"
   );
-
 
 const copiar =
   document.getElementById(
     "copiar"
   );
 
-
 /* ==================================================
    SESSÃO
 ================================================== */
 
-
 let sessionAtual =
   null;
-
 
 let usuarioAtual =
   null;
 
-
 async function verificarUsuario(){
 
-
   try{
-
 
     const {
       data:{
@@ -1349,7 +961,6 @@ async function verificarUsuario(){
       await supabase.auth
         .getSession();
 
-
     if(error){
 
       console.error(
@@ -1359,61 +970,45 @@ async function verificarUsuario(){
 
     }
 
-
     if(
       !session ||
       !session.user
     ){
 
-      /*
-      Agora a ANARKA exige conta
-      para finalizar uma compra.
-      */
-
       window.location.replace(
         "login.html?redirect=checkout.html"
       );
-
 
       return false;
 
     }
 
-
     sessionAtual =
       session;
 
-
     usuarioAtual =
       session.user;
-
 
     contaUsuario.textContent =
       usuarioAtual.email ||
       "Conta ANARKA";
 
-
     contaUsuario.classList.add(
       "logado"
     );
 
-
     return true;
 
-
   }catch(erro){
-
 
     console.error(
       "Erro de autenticação:",
       erro
     );
 
-
     window.location.replace(
       "login.html?redirect=checkout.html"
     );
-
 
     return false;
 
@@ -1421,83 +1016,57 @@ async function verificarUsuario(){
 
 }
 
-
 /* ==================================================
    CARREGAR CHECKOUT
 ================================================== */
 
-
 function carregarCheckout(){
 
-
   try{
-
 
     const bruto =
       localStorage.getItem(
         "vantaCheckout"
       );
 
-
     if(!bruto){
-
       return null;
-
     }
-
 
     const dados =
       JSON.parse(
         bruto
       );
 
-
     if(
       !dados ||
       typeof dados !==
       "object"
     ){
-
       return null;
-
     }
-
-
-    /*
-    Compatibilidade com o checkout
-    que acabamos de criar.
-    */
-
 
     if(
       !Array.isArray(
         dados.itens
       )
     ){
-
-      dados.itens =
-        [];
-
+      dados.itens = [];
     }
-
 
     dados.total =
       Number(
         dados.total
       ) || 0;
 
-
     return dados;
 
-
   }catch(erro){
-
 
     console.error(
       "Erro ao carregar vantaCheckout:",
       erro
     );
-
 
     return null;
 
@@ -1505,75 +1074,56 @@ function carregarCheckout(){
 
 }
 
-
 let pedido =
   carregarCheckout();
-
 
 /* ==================================================
    DINHEIRO
 ================================================== */
 
-
 function dinheiro(
   valor
 ){
 
-
   return Number(
     valor || 0
-  )
-    .toLocaleString(
-      "pt-BR",
-      {
-
-        style:
-          "currency",
-
-        currency:
-          "BRL"
-
-      }
-    );
+  ).toLocaleString(
+    "pt-BR",
+    {
+      style:"currency",
+      currency:"BRL"
+    }
+  );
 
 }
-
 
 /* ==================================================
    ESCAPAR HTML
 ================================================== */
 
-
 function escapar(
   valor
 ){
-
 
   const div =
     document.createElement(
       "div"
     );
 
-
   div.textContent =
     valor ?? "";
-
 
   return div.innerHTML;
 
 }
 
-
 /* ==================================================
    MOSTRAR PEDIDO
 ================================================== */
 
-
 function mostrarPedido(){
 
-
   if(!pedido){
-
 
     area.innerHTML = `
 
@@ -1604,10 +1154,8 @@ function mostrarPedido(){
 
     `;
 
-
     valorPix.textContent =
       "R$ 0,00";
-
 
     qrcode.innerHTML = `
 
@@ -1624,21 +1172,17 @@ function mostrarPedido(){
 
     `;
 
-
     botao.disabled =
       true;
-
 
     return;
 
   }
 
-
   if(
     !pedido.itens.length ||
     pedido.total <= 0
   ){
-
 
     area.innerHTML = `
 
@@ -1669,19 +1213,15 @@ function mostrarPedido(){
 
     `;
 
-
     botao.disabled =
       true;
-
 
     return;
 
   }
 
-
   let html =
     "";
-
 
   pedido.itens.forEach(
     (
@@ -1689,23 +1229,19 @@ function mostrarPedido(){
       index
     )=>{
 
-
       const preco =
         Number(
           item.preco
         ) || 0;
-
 
       const quantidade =
         Number(
           item.quantidade
         ) || 1;
 
-
       const subtotal =
         preco *
         quantidade;
-
 
       html += `
 
@@ -1756,7 +1292,6 @@ function mostrarPedido(){
     }
   );
 
-
   html += `
 
     <div class="customer">
@@ -1770,15 +1305,11 @@ function mostrarPedido(){
 
     </div>
 
-
     <div class="total">
 
       <span class="total-label">
-
         TOTAL
-
       </span>
-
 
       <span class="total-value">
 
@@ -1792,10 +1323,8 @@ function mostrarPedido(){
 
   `;
 
-
   area.innerHTML =
     html;
-
 
   valorPix.textContent =
     dinheiro(
@@ -1804,33 +1333,27 @@ function mostrarPedido(){
 
 }
 
-
 /* ==================================================
    PIX BR CODE
 ================================================== */
-
 
 function campo(
   id,
   valor
 ){
 
-
   valor =
     String(
       valor
     );
 
-
   const tamanho =
     String(
       valor.length
-    )
-      .padStart(
-        2,
-        "0"
-      );
-
+    ).padStart(
+      2,
+      "0"
+    );
 
   return (
     id +
@@ -1840,49 +1363,42 @@ function campo(
 
 }
 
-
 /* ==================================================
    NORMALIZAR TEXTO PIX
 ================================================== */
-
 
 function normalizarTexto(
   texto
 ){
 
-
   return String(
     texto
   )
-    .normalize(
-      "NFD"
-    )
-    .replace(
-      /[\u0300-\u036f]/g,
-      ""
-    )
-    .replace(
-      /[^A-Za-z0-9 ]/g,
-      ""
-    )
-    .toUpperCase();
+  .normalize(
+    "NFD"
+  )
+  .replace(
+    /[\u0300-\u036f]/g,
+    ""
+  )
+  .replace(
+    /[^A-Za-z0-9 ]/g,
+    ""
+  )
+  .toUpperCase();
 
 }
-
 
 /* ==================================================
    CRC16 PIX
 ================================================== */
 
-
 function crc16(
   payload
 ){
 
-
   let resultado =
     0xFFFF;
-
 
   for(
     let i = 0;
@@ -1890,14 +1406,10 @@ function crc16(
     i++
   ){
 
-
     resultado ^=
       payload.charCodeAt(
         i
-      )
-      <<
-      8;
-
+      ) << 8;
 
     for(
       let j = 0;
@@ -1905,12 +1417,10 @@ function crc16(
       j++
     ){
 
-
       if(
         resultado &
         0x8000
       ){
-
 
         resultado =
           (
@@ -1919,15 +1429,12 @@ function crc16(
           ^
           0x1021;
 
-
       }else{
-
 
         resultado =
           resultado << 1;
 
       }
-
 
       resultado &=
         0xFFFF;
@@ -1935,7 +1442,6 @@ function crc16(
     }
 
   }
-
 
   return resultado
     .toString(
@@ -1949,11 +1455,9 @@ function crc16(
 
 }
 
-
 /* ==================================================
    CRIAR PIX
 ================================================== */
-
 
 function criarPayloadPix(
   chave,
@@ -1961,7 +1465,6 @@ function criarPayloadPix(
   cidade,
   valor
 ){
-
 
   const merchantAccount =
 
@@ -1977,39 +1480,31 @@ function criarPayloadPix(
       chave
     );
 
-
   const nomeFinal =
     normalizarTexto(
       nome
-    )
-      .substring(
-        0,
-        25
-      );
-
+    ).substring(
+      0,
+      25
+    );
 
   const cidadeFinal =
     normalizarTexto(
       cidade
-    )
-      .substring(
-        0,
-        15
-      );
-
+    ).substring(
+      0,
+      15
+    );
 
   const valorFinal =
     Number(
       valor
-    )
-      .toFixed(
-        2
-      );
-
+    ).toFixed(
+      2
+    );
 
   let payload =
     "";
-
 
   payload +=
     campo(
@@ -2017,13 +1512,11 @@ function criarPayloadPix(
       "01"
     );
 
-
   payload +=
     campo(
       "26",
       merchantAccount
     );
-
 
   payload +=
     campo(
@@ -2031,13 +1524,11 @@ function criarPayloadPix(
       "0000"
     );
 
-
   payload +=
     campo(
       "53",
       "986"
     );
-
 
   payload +=
     campo(
@@ -2045,13 +1536,11 @@ function criarPayloadPix(
       valorFinal
     );
 
-
   payload +=
     campo(
       "58",
       "BR"
     );
-
 
   payload +=
     campo(
@@ -2059,13 +1548,11 @@ function criarPayloadPix(
       nomeFinal
     );
 
-
   payload +=
     campo(
       "60",
       cidadeFinal
     );
-
 
   payload +=
     campo(
@@ -2076,78 +1563,53 @@ function criarPayloadPix(
       )
     );
 
-
   payload +=
     "6304";
-
 
   payload +=
     crc16(
       payload
     );
 
-
   return payload;
 
 }
-
 
 /* ==================================================
    GERAR QR CODE
 ================================================== */
 
-
 function gerarPix(){
-
 
   if(
     !pedido ||
     pedido.total <= 0
   ){
-
     return;
-
   }
-
 
   const codigo =
     criarPayloadPix(
-
       PIX_KEY,
-
       PIX_NAME,
-
       PIX_CITY,
-
       pedido.total
-
     );
-
 
   pixCodigo.value =
     codigo;
 
-
   qrcode.innerHTML =
     "";
-
-
-  /*
-  QRCode vem do qrcode.min.js
-  carregado antes deste módulo.
-  */
-
 
   if(
     typeof window.QRCode ===
     "undefined"
   ){
 
-
     console.error(
       "Biblioteca QRCode não carregou."
     );
-
 
     qrcode.innerHTML = `
 
@@ -2165,11 +1627,9 @@ function gerarPix(){
 
     `;
 
-
     return;
 
   }
-
 
   new window.QRCode(
     qrcode,
@@ -2194,30 +1654,22 @@ function gerarPix(){
 
 }
 
-
 /* ==================================================
    COPIAR PIX
 ================================================== */
-
 
 copiar.addEventListener(
   "click",
   async ()=>{
 
-
     const codigo =
       pixCodigo.value;
 
-
     if(!codigo){
-
       return;
-
     }
 
-
     try{
-
 
       await navigator
         .clipboard
@@ -2225,12 +1677,9 @@ copiar.addEventListener(
           codigo
         );
 
-
     }catch(erro){
 
-
       pixCodigo.select();
-
 
       document.execCommand(
         "copy"
@@ -2238,18 +1687,14 @@ copiar.addEventListener(
 
     }
 
-
     copiar.textContent =
       "COPIADO ✓";
-
 
     setTimeout(
       ()=>{
 
-
         copiar.textContent =
           "COPIAR";
-
 
       },
       2000
@@ -2258,34 +1703,25 @@ copiar.addEventListener(
   }
 );
 
-
 /* ==================================================
-   REGISTRAR PEDIDO
+   REGISTRAR PEDIDO + BAIXAR ESTOQUE
 ================================================== */
-
 
 async function registrarPedido(){
 
-
   if(!pedido){
-
 
     alert(
       "Nenhum pedido encontrado."
     );
 
-
     return;
 
   }
 
-
   /*
-  Confere novamente a sessão.
-
-  Não existe mais compra anônima.
+    CONFERE A SESSÃO NOVAMENTE
   */
-
 
   const {
     data:{
@@ -2297,22 +1733,18 @@ async function registrarPedido(){
     await supabase.auth
       .getSession();
 
-
   if(
     sessionError ||
     !session ||
     !session.user
   ){
 
-
     window.location.href =
       "login.html?redirect=checkout.html";
-
 
     return;
 
   }
-
 
   const confirmar =
     confirm(
@@ -2331,265 +1763,226 @@ async function registrarPedido(){
 
     );
 
-
   if(!confirmar){
-
     return;
-
   }
-
 
   botao.disabled =
     true;
 
-
   botao.textContent =
     "ENVIANDO PARA ANÁLISE...";
 
-
   try{
-
 
     const userId =
       session.user.id;
-
 
     const emailCliente =
       session.user.email ||
       null;
 
-
     /*
-    Cria o pedido no Supabase.
+      ================================================
+      CRIA PEDIDO + BAIXA ESTOQUE
 
-    O token do usuário é utilizado
-    porque o RLS exige autenticação.
+      Tudo acontece na função PostgreSQL:
+
+      criar_pedido_com_estoque
+
+      Se algum item estiver sem estoque,
+      a transação inteira é cancelada.
+      ================================================
     */
 
+    const {
+      data:
+        pedidoCriado,
 
-    const resposta =
-      await fetch(
+      error:
+        rpcError
 
-        `${SUPABASE_URL}/rest/v1/pedidos`,
+    } =
+      await supabase.rpc(
+
+        "criar_pedido_com_estoque",
 
         {
 
-          method:
-            "POST",
+          p_nome_cliente:
+            pedido.nome,
 
+          p_telefone:
+            pedido.whatsapp,
 
-          headers:{
+          p_cpf:
+            pedido.cpf,
 
-            "apikey":
-              SUPABASE_KEY,
+          p_endereco:
+            pedido.endereco,
 
+          p_cidade:
+            pedido.cidade,
 
-            "Authorization":
-              `Bearer ${session.access_token}`,
+          p_estado:
+            pedido.estado,
 
+          p_cep:
+            pedido.cep,
 
-            "Content-Type":
-              "application/json",
+          p_itens:
+            pedido.itens,
 
+          p_total:
+            Number(
+              pedido.total
+            ),
 
-            "Prefer":
-              "return=representation"
-
-          },
-
-
-          body:
-            JSON.stringify(
-              {
-
-                nome_cliente:
-                  pedido.nome,
-
-                telefone:
-                  pedido.whatsapp,
-
-                cpf:
-                  pedido.cpf,
-
-                endereco:
-                  pedido.endereco,
-
-                cidade:
-                  pedido.cidade,
-
-                estado:
-                  pedido.estado,
-
-                cep:
-                  pedido.cep,
-
-                itens:
-                  pedido.itens,
-
-                total:
-                  Number(
-                    pedido.total
-                  ),
-
-                forma_pagamento:
-                  "PIX",
-
-                status:
-                  "Pagamento em análise",
-
-                user_id:
-                  userId,
-
-                email_cliente:
-                  emailCliente
-
-              }
-            )
+          p_email_cliente:
+            emailCliente
 
         }
 
       );
 
+    /*
+      ERRO DA RPC
+    */
 
-    let dados =
-      null;
-
-
-    try{
-
-
-      dados =
-        await resposta.json();
-
-
-    }catch{
-
-
-      dados =
-        null;
-
-    }
-
-
-    if(
-      !resposta.ok
-    ){
-
+    if(rpcError){
 
       console.error(
-        "Erro Supabase:",
-        dados
+        "Erro criar_pedido_com_estoque:",
+        rpcError
       );
 
+      const mensagem =
+        String(
+          rpcError.message ||
+          ""
+        );
+
+      if(
+        mensagem.includes(
+          "ESTOQUE_INSUFICIENTE"
+        )
+      ){
+
+        throw new Error(
+          "ESTOQUE_INSUFICIENTE"
+        );
+
+      }
+
+      if(
+        mensagem.includes(
+          "PRODUTO_NAO_ENCONTRADO"
+        )
+      ){
+
+        throw new Error(
+          "PRODUTO_NAO_ENCONTRADO"
+        );
+
+      }
+
+      if(
+        mensagem.includes(
+          "PRODUTO_SEM_SLUG"
+        )
+      ){
+
+        throw new Error(
+          "PRODUTO_SEM_SLUG"
+        );
+
+      }
+
+      if(
+        mensagem.includes(
+          "PRODUTO_SEM_TAMANHO"
+        )
+      ){
+
+        throw new Error(
+          "PRODUTO_SEM_TAMANHO"
+        );
+
+      }
+
+      throw rpcError;
+
+    }
+
+    /*
+      GARANTE QUE O PEDIDO VOLTOU
+    */
+
+    if(!pedidoCriado){
 
       throw new Error(
-
-        dados?.message
-
-        ||
-
-        dados?.error_description
-
-        ||
-
-        dados?.hint
-
-        ||
-
-        "Erro ao registrar pedido."
-
+        "PEDIDO_NAO_RETORNADO"
       );
 
     }
 
-
-    const pedidoCriado =
-
-      Array.isArray(
-        dados
-      )
-
-        ?
-
-        dados[0]
-
-        :
-
-        dados;
-
-
-    /* =========================================
-       CÓPIA LOCAL
-    ========================================= */
-
+    /*
+      ================================================
+      CÓPIA LOCAL DO PEDIDO
+      ================================================
+    */
 
     const pedidoLocal = {
-
 
       id:
         pedidoCriado?.id ||
         null,
-
 
       numero_pedido:
         pedidoCriado
           ?.numero_pedido ||
         null,
 
-
       user_id:
         userId,
-
 
       email_cliente:
         emailCliente,
 
-
       nome:
         pedido.nome,
-
 
       whatsapp:
         pedido.whatsapp,
 
-
       cpf:
         pedido.cpf,
-
 
       endereco:
         pedido.endereco,
 
-
       cidade:
         pedido.cidade,
-
 
       estado:
         pedido.estado,
 
-
       cep:
         pedido.cep,
 
-
       itens:
         pedido.itens,
-
 
       total:
         Number(
           pedido.total
         ),
 
-
       pagamento:
         "PIX",
 
-
       status:
         "Pagamento em análise",
-
 
       data:
         pedidoCriado
@@ -2602,13 +1995,14 @@ async function registrarPedido(){
 
     };
 
+    /*
+      CARREGA PEDIDOS LOCAIS
+    */
 
     let pedidosLocais =
       [];
 
-
     try{
-
 
       pedidosLocais =
         JSON.parse(
@@ -2619,15 +2013,12 @@ async function registrarPedido(){
         ||
         [];
 
-
     }catch{
-
 
       pedidosLocais =
         [];
 
     }
-
 
     if(
       !Array.isArray(
@@ -2635,17 +2026,18 @@ async function registrarPedido(){
       )
     ){
 
-
       pedidosLocais =
         [];
 
     }
 
+    /*
+      SALVA PEDIDO LOCAL
+    */
 
     pedidosLocais.push(
       pedidoLocal
     );
-
 
     localStorage.setItem(
 
@@ -2657,64 +2049,127 @@ async function registrarPedido(){
 
     );
 
-
     /*
-    MUITO IMPORTANTE:
+      ================================================
+      LIMPA CARRINHO SOMENTE DEPOIS QUE:
 
-    Só limpamos checkout e carrinho
-    DEPOIS do Supabase confirmar
-    que o pedido foi criado.
+      1. estoque foi conferido
+      2. estoque foi baixado
+      3. pedido foi criado
+      4. Supabase confirmou tudo
+      ================================================
     */
-
 
     localStorage.removeItem(
       "vantaCheckout"
     );
 
-
     localStorage.removeItem(
       "vantaCarrinho"
     );
-
 
     sessionStorage.removeItem(
       "anarkaCheckoutForm"
     );
 
-
     /*
-    Pedido criado.
-    Vai para a conta do cliente.
+      REDIRECIONA PARA CONTA
     */
-
 
     window.location.href =
       "minha-conta.html";
 
-
   }catch(erro){
-
 
     console.error(
       "Erro ao registrar pedido:",
       erro
     );
 
+    const mensagem =
+      String(
+        erro?.message ||
+        ""
+      );
 
-    alert(
+    /*
+      ESTOQUE ESGOTADO
+    */
 
-      "Não foi possível registrar o pedido.\n\n"
+    if(
+      mensagem.includes(
+        "ESTOQUE_INSUFICIENTE"
+      )
+    ){
 
-      +
+      alert(
+        "Uma das peças do seu pedido acabou de esgotar ou não possui quantidade suficiente.\n\nSeu carrinho continua salvo. Volte ao carrinho para atualizar o pedido."
+      );
 
-      "Seu carrinho continua salvo. Tente novamente."
+    }
 
-    );
+    /*
+      PRODUTO NÃO EXISTE NO BANCO
+    */
 
+    else if(
+      mensagem.includes(
+        "PRODUTO_NAO_ENCONTRADO"
+      )
+    ){
+
+      alert(
+        "Um dos produtos do carrinho não foi encontrado no estoque.\n\nSeu carrinho continua salvo."
+      );
+
+    }
+
+    /*
+      ITEM SEM SLUG
+    */
+
+    else if(
+      mensagem.includes(
+        "PRODUTO_SEM_SLUG"
+      )
+    ){
+
+      alert(
+        "Não foi possível identificar um dos produtos do carrinho.\n\nSeu carrinho continua salvo."
+      );
+
+    }
+
+    /*
+      ITEM SEM TAMANHO
+    */
+
+    else if(
+      mensagem.includes(
+        "PRODUTO_SEM_TAMANHO"
+      )
+    ){
+
+      alert(
+        "Um dos produtos está sem tamanho selecionado.\n\nSeu carrinho continua salvo."
+      );
+
+    }
+
+    /*
+      QUALQUER OUTRO ERRO
+    */
+
+    else{
+
+      alert(
+        "Não foi possível registrar o pedido.\n\nSeu carrinho continua salvo. Tente novamente."
+      );
+
+    }
 
     botao.disabled =
       false;
-
 
     botao.textContent =
       "JÁ FIZ O PAGAMENTO →";
@@ -2723,59 +2178,48 @@ async function registrarPedido(){
 
 }
 
-
 /* ==================================================
    BOTÃO PAGAMENTO
 ================================================== */
-
 
 botao.addEventListener(
   "click",
   registrarPedido
 );
 
-
 /* ==================================================
    INICIALIZAÇÃO
 ================================================== */
 
-
 async function iniciar(){
 
-
   /*
-  1. Confere login.
+    1. CONFERE LOGIN
   */
-
 
   const logado =
     await verificarUsuario();
 
-
   if(!logado){
-
     return;
-
   }
 
-
   /*
-  2. Carrega e mostra o pedido.
+    2. CARREGA CHECKOUT
   */
-
 
   pedido =
     carregarCheckout();
 
+  /*
+    3. MOSTRA PEDIDO
+  */
 
   mostrarPedido();
 
-
   /*
-  3. Gera PIX somente se
-     o checkout estiver válido.
+    4. GERA PIX
   */
-
 
   if(
     pedido &&
@@ -2783,33 +2227,15 @@ async function iniciar(){
     pedido.total > 0
   ){
 
-
     gerarPix();
 
   }
 
 }
 
-
-/*
-IMPORTANTE:
-
-Não existe mais código executando gerarPix()
-antes da página estar inicializada.
-
-Isso evita ficar preso em:
-Carregando...
-R$ 0,00
-QR branco.
-*/
-
-
 iniciar();
-
 
 </script>
 
-
 </body>
-
   </html>
