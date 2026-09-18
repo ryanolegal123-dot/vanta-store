@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Coleção | ANARKA</title>
+
+<meta
+  name="description"
+  content="Coleção ANARKA — streetwear, expressão e contracultura."
+>
+
+<link rel="icon" href="/favicon.png">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050505;
+  color:#f5f5f5;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+select{
+  font:inherit;
+}
+
+img{
+  display:block;
+  max-width:100%;
+}
+
+/* TEXTURA */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  pointer-events:none;
+  opacity:.025;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      #fff 0,
+      #fff 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+/* TOP BAR */
+
+.topbar{
+  background:#d60000;
+  color:#fff;
+  text-align:center;
+  padding:9px 15px;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* HEADER */
+
+header{
+  height:88px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:rgba(5,5,5,.97);
+  border-bottom:1px solid #262626;
+}
+
+.logo{
+  width:135px;
+  height:70px;
+  object-fit:contain;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+nav a{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+nav a:hover{
+  color:#d60000;
+}
+
+.cart-link{
+  border:1px solid #444;
+  padding:11px 15px;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.cart-link:hover{
+  border-color:#d60000;
+  color:#fff;
+}
+
+#cartCount{
+  min-width:20px;
+  height:20px;
+  padding:0 5px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#d60000;
+  border-radius:50%;
+
+  font-size:10px;
+  color:#fff;
+}
+
+/* HERO */
+
+.catalog-hero{
+  max-width:1400px;
+  margin:auto;
+
+  padding:85px 6% 60px;
+
+  position:relative;
+}
+
+.catalog-label{
+  color:#d60000;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+
+  margin-bottom:15px;
+}
+
+.catalog-hero h1{
+  font-size:clamp(65px,10vw,145px);
+  line-height:.75;
+
+  text-transform:uppercase;
+  letter-spacing:-7px;
+
+  font-weight:1000;
+}
+
+.catalog-hero h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+}
+
+.catalog-description{
+  margin-top:35px;
+
+  max-width:550px;
+
+  color:#999;
+
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* FAIXA */
+
+.marquee{
+  overflow:hidden;
+
+  background:#d60000;
+  border-top:1px solid #d60000;
+  border-bottom:1px solid #d60000;
+
+  padding:13px 0;
+
+  transform:rotate(-.3deg) scale(1.01);
+}
+
+.marquee-track{
+  display:flex;
+  width:max-content;
+
+  animation:marquee 25s linear infinite;
+}
+
+.marquee span{
+  white-space:nowrap;
+
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:3px;
+
+  margin-right:40px;
+}
+
+.marquee b{
+  color:#000;
+  margin:0 18px;
+}
+
+@keyframes marquee{
+
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(-50%);
+  }
+
+}
+
+/* CONTAINER */
+
+.catalog{
+  max-width:1400px;
+  margin:auto;
+
+  padding:75px 6% 110px;
+}
+
+/* TOOLBAR */
+
+.toolbar{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:30px;
+
+  padding-bottom:25px;
+  margin-bottom:30px;
+
+  border-bottom:1px solid #292929;
+}
+
+.results-title{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.results-title span{
+  color:#d60000;
+}
+
+.controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.filter-button,
+.sort{
+  min-height:42px;
+
+  background:#090909;
+  color:#fff;
+
+  border:1px solid #333;
+
+  padding:0 14px;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+
+  outline:none;
+}
+
+.filter-button{
+  cursor:pointer;
+}
+
+.filter-button:hover,
+.sort:hover{
+  border-color:#d60000;
+}
+
+.sort option{
+  background:#111;
+  color:#fff;
+}
+
+/* FILTROS */
+
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+
+  margin-bottom:35px;
+}
+
+.filter{
+  border:1px solid #292929;
+  background:#080808;
+  color:#888;
+
+  padding:10px 14px;
+
+  cursor:pointer;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+
+  transition:.15s;
+}
+
+.filter:hover{
+  color:#fff;
+  border-color:#777;
+}
+
+.filter.active{
+  color:#fff;
+  background:#d60000;
+  border-color:#d60000;
+}
+
+/* GRID */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+/* CARD */
+
+.product{
+  min-width:0;
+
+  background:#080808;
+  border:1px solid #242424;
+
+  position:relative;
+
+  transition:
+    transform .2s,
+    border-color .2s;
+}
+
+.product:hover{
+  border-color:#777;
+  transform:translateY(-4px);
+}
+
+.product-image{
+  position:relative;
+
+  width:100%;
+  aspect-ratio:4/5;
+
+  overflow:hidden;
+
+  background:#101010;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  filter:grayscale(.75) contrast(1.05);
+
+  transition:
+    transform .35s,
+    filter .35s;
+}
+
+.product:hover .product-image img{
+  transform:scale(1.035);
+  filter:grayscale(0) contrast(1.05);
+}
+
+.product-tag{
+  position:absolute;
+
+  top:10px;
+  left:10px;
+
+  z-index:2;
+
+  padding:6px 9px;
+
+  background:#d60000;
+  color:#fff;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.product-number{
+  position:absolute;
+
+  right:10px;
+  top:10px;
+
+  z-index:2;
+
+  font-size:10px;
+  font-weight:900;
+
+  background:rgba(0,0,0,.75);
+
+  padding:6px 8px;
+}
+
+.product-info{
+  padding:17px 16px 19px;
+}
+
+.product-category{
+  color:#d60000;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+
+  margin-bottom:7px;
+}
+
+.product h2{
+  font-size:14px;
+  line-height:1.35;
+
+  text-transform:uppercase;
+
+  min-height:38px;
+}
+
+.prices{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  margin-top:13px;
+}
+
+.old-price{
+  color:#555;
+
+  text-decoration:line-through;
+
+  font-size:11px;
+}
+
+.price{
+  color:#fff;
+
+  font-size:17px;
+  font-weight:900;
+}
+
+
+.product-action{
+  margin-top:15px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding-top:13px;
+
+  border-top:1px solid #1d1d1d;
+
+  color:#999;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.product:hover .product-action{
+  color:#fff;
+}
+
+.arrow{
+  color:#d60000;
+  font-size:16px;
+}
+
+/* ERRO */
+
+.status{
+  grid-column:1 / -1;
+
+  padding:70px 20px;
+
+  border:1px dashed #333;
+
+  text-align:center;
+}
+
+.status h2{
+  font-size:30px;
+  text-transform:uppercase;
+}
+
+.status p{
+  margin-top:10px;
+  color:#777;
+  line-height:1.6;
+}
+
+/* STATEMENT */
+
+.statement{
+  background:#d60000;
+
+  padding:65px 6%;
+
+  overflow:hidden;
+}
+
+.statement-inner{
+  max-width:1400px;
+  margin:auto;
+}
+
+.statement h2{
+  font-size:clamp(48px,8vw,110px);
+
+  line-height:.8;
+
+  font-weight:1000;
+
+  letter-spacing:-5px;
+
+  text-transform:uppercase;
+}
+
+.statement h2 span{
+  color:#000;
+}
+
+/* FOOTER */
+
+footer{
+  background:#020202;
+
+  border-top:1px solid #222;
+}
+
+.footer{
+  max-width:1400px;
+  margin:auto;
+
+  padding:60px 6% 35px;
+}
+
+.footer-main{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+
+  gap:60px;
+}
+
+.footer-logo{
+  width:160px;
+  height:95px;
+
+  object-fit:contain;
+}
+
+.footer-brand p{
+  color:#777;
+
+  font-size:13px;
+  line-height:1.7;
+
+  max-width:400px;
+}
+
+.footer-column h3{
+  color:#d60000;
+
+  font-size:10px;
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  margin-bottom:18px;
+}
+
+.footer-column a{
+  display:block;
+
+  color:#777;
+
+  margin:11px 0;
+
+  font-size:12px;
+}
+
+.footer-column a:hover{
+  color:#fff;
+}
+
+.footer-bottom{
+  margin-top:50px;
+  padding-top:25px;
+
+  border-top:1px solid #1c1c1c;
+
+  display:flex;
+  justify-content:space-between;
+
+  gap:20px;
+
+  color:#555;
+
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+/* CARRINHO FLUTUANTE */
+
+.floating-cart{
+  position:fixed;
+
+  right:22px;
+  bottom:22px;
+
+  z-index:900;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  width:58px;
+  height:58px;
+
+  background:#d60000;
+  color:#fff;
+
+  border:2px solid #fff;
+
+  box-shadow:6px 6px 0 #000;
+
+  font-size:21px;
+
+  transition:.15s;
+}
+
+.floating-cart:hover{
+  transform:translate(-3px,-3px);
+  box-shadow:9px 9px 0 #000;
+}
+
+.floating-count{
+  position:absolute;
+
+  top:-8px;
+  right:-8px;
+
+  min-width:23px;
+  height:23px;
+
+  padding:0 5px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#fff;
+  color:#000;
+
+  border-radius:50%;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1150px){
+
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+@media(max-width:850px){
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .catalog-hero h1{
+    letter-spacing:-4px;
+  }
+
+  .footer-main{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-brand{
+    grid-column:1 / -1;
+  }
+
+}
+
+@media(max-width:650px){
+
+  header{
+    height:72px;
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+    height:58px;
+  }
+
+  nav{
+    gap:10px;
+  }
+
+  nav a:not(.cart-link){
+    display:none;
+  }
+
+  .cart-link{
+    padding:9px 10px;
+    font-size:9px;
+  }
+
+  .catalog-hero{
+    padding:65px 5% 45px;
+  }
+
+  .catalog-hero h1{
+    font-size:clamp(60px,22vw,100px);
+    letter-spacing:-5px;
+  }
+
+  .catalog{
+    padding:55px 4% 80px;
+  }
+
+  .toolbar{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:15px;
+  }
+
+  .controls{
+    width:100%;
+  }
+
+  .sort{
+    flex:1;
+    width:100%;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+
+  .product-info{
+    padding:12px 10px 14px;
+  }
+
+  .product h2{
+    font-size:11px;
+    min-height:31px;
+  }
+
+  .product-category{
+    font-size:7px;
+  }
+
+  .old-price{
+    display:none;
+  }
+
+  .price{
+    font-size:14px;
+  }
+
+  .product-action{
+    font-size:7px;
+  }
+
+  .statement{
+    padding:50px 5%;
+  }
+
+  .statement h2{
+    letter-spacing:-3px;
+  }
+
+  .footer-main{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .footer-brand{
+    grid-column:auto;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  ANARKA — NÃO VISTA O PADRÃO
+</div>
+
+<header>
+
+  <a href="index.html">
+    <img
+      src="/anarka-logo.png"
+      alt="ANARKA"
+      class="logo"
+    >
+  </a>
+
+  <nav>
+
+    <a href="index.html">
+      Início
+    </a>
+
+    <a href="catalogo.html">
+      Coleção
+    </a>
+
+    <a href="index.html#manifesto">
+      Manifesto
+    </a>
+
+    <a href="carrinho.html" class="cart-link">
+
+      🛒 Carrinho
+
+      <span id="cartCount">
+        0
+      </span>
+
+    </a>
+
+  </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="catalog-hero">
+
+  <div class="catalog-label">
+    ANARKA / COLEÇÃO 001
+  </div>
+
+  <h1>
+    TODAS AS<br>
+    <span>PEÇAS.</span>
+  </h1>
+
+  <p class="catalog-description">
+    Streetwear construído fora do padrão.
+    Explore a coleção ANARKA e encontre
+    as peças que combinam com a sua presença.
+  </p>
+
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+
+  <div class="marquee-track">
+
+    <span>
+      ANARKA <b>✦</b>
+      STREETWEAR <b>✦</b>
+      CONTRACULTURA <b>✦</b>
+      SEM PADRÕES <b>✦</b>
+      SÃO PAULO <b>✦</b>
+      ANARKA <b>✦</b>
+      STREETWEAR <b>✦</b>
+      CONTRACULTURA <b>✦</b>
+      SEM PADRÕES <b>✦</b>
+      SÃO PAULO <b>✦</b>
+    </span>
+
+    <span>
+      ANARKA <b>✦</b>
+      STREETWEAR <b>✦</b>
+      CONTRACULTURA <b>✦</b>
+      SEM PADRÕES <b>✦</b>
+      SÃO PAULO <b>✦</b>
+      ANARKA <b>✦</b>
+      STREETWEAR <b>✦</b>
+      CONTRACULTURA <b>✦</b>
+      SEM PADRÕES <b>✦</b>
+      SÃO PAULO <b>✦</b>
+    </span>
+
+  </div>
+
+</div>
+
+<!-- CATÁLOGO -->
+
+<main class="catalog">
+
+  <div class="toolbar">
+
+    <div class="results-title">
+      <span id="productCount">0</span>
+      PEÇAS ENCONTRADAS
+    </div>
+
+    <div class="controls">
+
+      <select
+        id="sort"
+        class="sort"
+        aria-label="Ordenar produtos"
+      >
+
+        <option value="default">
+          Ordenar
+        </option>
+
+        <option value="price-low">
+          Menor preço
+        </option>
+
+        <option value="price-high">
+          Maior preço
+        </option>
+
+        <option value="name">
+          Nome A-Z
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+  <div
+    class="products"
+    id="products"
+  >
+
+    <div class="status">
+
+      <h2>
+        Carregando coleção...
+      </h2>
+
+      <p>
+        Preparando as peças ANARKA.
+      </p>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- STATEMENT -->
+
+<section class="statement">
+
+  <div class="statement-inner">
+
+    <h2>
+      ROUPA É<br>
+      <span>LINGUAGEM.</span>
+    </h2>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+
+        <img
+          src="/anarka-logo.png"
+          alt="ANARKA"
+          class="footer-logo"
+        >
+
+        <p>
+          Streetwear, expressão e contracultura.
+          Criada para quem prefere construir a própria
+          identidade em vez de receber uma pronta.
+        </p>
+
+      </div>
+
+      <div class="footer-column">
+
+        <h3>Navegação</h3>
+
+        <a href="index.html">
+          Início
+        </a>
+
+        <a href="catalogo.html">
+          Coleção
+        </a>
+
+        <a href="carrinho.html">
+          Carrinho
+        </a>
+
+      </div>
+
+      <div class="footer-column">
+
+        <h3>ANARKA</h3>
+
+        <a href="index.html#manifesto">
+          Manifesto
+        </a>
+
+        <a href="privacidade.html">
+          Privacidade
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 ANARKA.
+      </span>
+
+      <span>
+        STREETWEAR / SÃO PAULO
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- CARRINHO FLUTUANTE -->
+
+<a
+  href="carrinho.html"
+  class="floating-cart"
+  id="floatingCart"
+  aria-label="Abrir carrinho"
+>
+
+  🛒
+
+  <span
+    class="floating-count"
+    id="floatingCount"
+  >
+    0
+  </span>
+
+</a>
+
+<script>
+
+/* =========================================
+   ANARKA — CATÁLOGO
+   Mantém compatibilidade com produto.html
+   e localStorage vantaCarrinho.
+========================================= */
+
+let produtosOriginais = [];
+let filtroAtual = "all";
+
+/* =========================================
+   CATEGORIZAÇÃO
+========================================= */
+
+function categoriaProduto(id, produto){
+
+  const texto =
+    (
+      id + " " +
+      (produto.nome || "") + " " +
+      (produto.tag || "")
+    ).toLowerCase();
+
+  if(
+    texto.includes("cargo") ||
+    texto.includes("jogger") ||
+    texto.includes("bermuda")
+  ){
+    return "calca";
+  }
+
+  if(
+    texto.includes("hoodie") ||
+    texto.includes("moletom") ||
+    texto.includes("jaqueta") ||
+    texto.includes("jacket") ||
+    texto.includes("overshirt") ||
+    texto.includes("camisa")
+  ){
+    return "outerwear";
+  }
+
+  if(
+    texto.includes("bone") ||
+    texto.includes("cap") ||
+    texto.includes("accessory")
+  ){
+    return "acessorio";
+  }
+
+  return "camiseta";
+
+}
+
+/* =========================================
+   NORMALIZA PRODUTOS
+========================================= */
+
+function normalizarProdutos(objeto){
+
+  return Object.entries(objeto).map(
+    ([id,produto],indice)=>{
+
+      return {
+
+        id:id,
+
+        nome:
+          produto.nome ||
+          "Produto ANARKA",
+
+        preco:
+          Number(produto.preco) || 0,
+
+        precoAntigo:
+          Number(
+            produto.precoAntigo ??
+            produto.oldPrice ??
+            produto.preco_antigo
+          ) || 0,
+
+        imagem:
+          produto.imagem || "",
+
+        tag:
+          produto.tag || "ANARKA",
+
+        categoria:
+          categoriaProduto(
+            id,
+            produto
+          ),
+
+        numero:
+          String(indice + 1)
+            .padStart(2,"0")
+
+      };
+
+    }
+  );
+
+}
+
+/* =========================================
+   CARREGAR PRODUTOS DO produto.html
+========================================= */
+
+async function carregarProdutos(){
+
+  const container =
+    document.getElementById("products");
+
+  try{
+
+    const resposta =
+      await fetch(
+        "produto.html?catalog=" +
+        Date.now()
+      );
+
+    if(!resposta.ok){
+      throw new Error(
+        "Não foi possível carregar produto.html"
+      );
+    }
+
+    const html =
+      await resposta.text();
+
+    /*
+      MÉTODO 1:
+      Se futuramente produto.html tiver
+      #catalogoProdutos em JSON, usamos ele.
+    */
+
+    const parser =
+      new DOMParser();
+
+    const documento =
+      parser.parseFromString(
+        html,
+        "text/html"
+      );
+
+    const jsonProdutos =
+      documento.getElementById(
+        "catalogoProdutos"
+      );
+
+    let objetoProdutos = null;
+
+    if(jsonProdutos){
+
+      objetoProdutos =
+        JSON.parse(
+          jsonProdutos.textContent
+        );
+
+    }
+
+    /*
+      MÉTODO 2:
+      Compatibilidade com o produto.html
+      atual que possui:
+
+      const produtos = { ... };
+    */
+
+    if(!objetoProdutos){
+
+      objetoProdutos =
+        extrairObjetoProdutos(html);
+
+    }
+
+    if(
+      !objetoProdutos ||
+      typeof objetoProdutos !== "object"
+    ){
+
+      throw new Error(
+        "Objeto de produtos não encontrado."
+      );
+
+    }
+
+    produtosOriginais =
+      normalizarProdutos(
+        objetoProdutos
+      );
+
+    aplicarFiltros();
+
+  }catch(erro){
+
+    console.error(
+      "ERRO CATÁLOGO:",
+      erro
+    );
+
+    container.innerHTML = `
+
+      <div class="status">
+
+        <h2>
+          Coleção indisponível.
+        </h2>
+
+        <p>
+          Não foi possível carregar os produtos.
+          Atualize a página e tente novamente.
+        </p>
+
+      </div>
+
+    `;
+
+    document.getElementById(
+      "productCount"
+    ).textContent = "0";
+
+  }
+
+}
+
+/* =========================================
+   EXTRAÇÃO ROBUSTA DO OBJETO JS
+
+   Diferente do código antigo, NÃO procura
+   simplesmente o primeiro "};".
+
+   Ele conta as chaves até encontrar
+   exatamente o fechamento do objeto.
+========================================= */
+
+function extrairObjetoProdutos(texto){
+
+  const marcador =
+    "const produtos =";
+
+  const inicioMarcador =
+    texto.indexOf(marcador);
+
+  if(inicioMarcador === -1){
+    return null;
+  }
+
+  const inicioObjeto =
+    texto.indexOf(
+      "{",
+      inicioMarcador
+    );
+
+  if(inicioObjeto === -1){
+    return null;
+  }
+
+  let profundidade = 0;
+  let dentroString = false;
+  let tipoString = "";
+  let escapado = false;
+  let fimObjeto = -1;
+
+  for(
+    let i = inicioObjeto;
+    i < texto.length;
+    i++
+  ){
+
+    const char = texto[i];
+
+    if(dentroString){
+
+      if(escapado){
+        escapado = false;
+        continue;
+      }
+
+      if(char === "\\"){
+        escapado = true;
+        continue;
+      }
+
+      if(char === tipoString){
+        dentroString = false;
+        tipoString = "";
+      }
+
+      continue;
+
+    }
+
+    if(
+      char === '"' ||
+      char === "'" ||
+      char === "`"
+    ){
+
+      dentroString = true;
+      tipoString = char;
+      continue;
+
+    }
+
+    if(char === "{"){
+      profundidade++;
+    }
+
+    if(char === "}"){
+
+      profundidade--;
+
+      if(profundidade === 0){
+
+        fimObjeto = i + 1;
+        break;
+
+      }
+
+    }
+
+  }
+
+  if(fimObjeto === -1){
+    return null;
+  }
+
+  const codigoObjeto =
+    texto.slice(
+      inicioObjeto,
+      fimObjeto
+    );
+
+  try{
+
+    /*
+      O conteúdo vem do próprio produto.html
+      da loja.
+    */
+
+    return Function(
+      '"use strict"; return (' +
+      codigoObjeto +
+      ");"
+    )();
+
+  }catch(erro){
+
+    console.error(
+      "Erro ao interpretar produtos:",
+      erro
+    );
+
+    return null;
+
+  }
+
+}
+
+/* =========================================
+   FORMATAR DINHEIRO
+========================================= */
+
+function dinheiro(valor){
+
+  return Number(valor)
+    .toLocaleString(
+      "pt-BR",
+      {
+        style:"currency",
+        currency:"BRL"
+      }
+    );
+
+}
+
+/* =========================================
+   RENDER
+========================================= */
+
+function renderizar(lista){
+
+  const container =
+    document.getElementById("products");
+
+  const contador =
+    document.getElementById(
+      "productCount"
+    );
+
+  contador.textContent =
+    lista.length;
+
+  if(lista.length === 0){
+
+    container.innerHTML = `
+
+      <div class="status">
+
+        <h2>
+          Nada por aqui.
+        </h2>
+
+        <p>
+          Nenhuma peça encontrada
+          nesse filtro.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  container.innerHTML =
+    lista.map(produto=>{
+
+      const precoAntigo =
+        produto.precoAntigo > produto.preco
+
+        ? `
+          <span class="old-price">
+            ${dinheiro(produto.precoAntigo)}
+          </span>
+        `
+
+        : "";
+
+      return `
+
+        <a
+          href="produto.html?id=${encodeURIComponent(produto.id)}"
+          class="product"
+        >
+
+          <div class="product-image">
+
+            <img
+              src="${produto.imagem}"
+              alt="${produto.nome}"
+              loading="lazy"
+            >
+
+            <span class="product-tag">
+              ${produto.tag}
+            </span>
+
+            <span class="product-number">
+              ${produto.numero}
+            </span>
+
+          </div>
+
+          <div class="product-info">
+
+            <div class="product-category">
+              ANARKA / ${nomeCategoria(produto.categoria)}
+            </div>
+
+            <h2>
+              ${produto.nome}
+            </h2>
+
+            <div class="prices">
+
+              ${precoAntigo}
+
+              <span class="price">
+                ${dinheiro(produto.preco)}
+              </span>
+
+            </div>
+
+            <div class="product-action">
+
+              <span>
+                Ver peça
+              </span>
+
+              <span class="arrow">
+                →
+              </span>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      `;
+
+    }).join("");
+
+}
+
+/* =========================================
+   NOMES DAS CATEGORIAS
+========================================= */
+
+function nomeCategoria(categoria){
+
+  const nomes = {
+
+    camiseta:"TEE",
+
+    calca:"BOTTOM",
+
+    outerwear:"OUTERWEAR",
+
+    acessorio:"ACCESSORY"
+
+  };
+
+  return nomes[categoria] || "STREETWEAR";
+
+}
+
+/* =========================================
+   FILTRO + ORDENAÇÃO
+========================================= */
+
+function aplicarFiltros(){
+
+  let lista =
+    [...produtosOriginais];
+
+  if(filtroAtual !== "all"){
+
+    lista =
+      lista.filter(
+        produto =>
+          produto.categoria ===
+          filtroAtual
+      );
+
+  }
+
+  const ordenacao =
+    document.getElementById(
+      "sort"
+    ).value;
+
+  if(ordenacao === "price-low"){
+
+    lista.sort(
+      (a,b)=>a.preco-b.preco
+    );
+
+  }
+
+  if(ordenacao === "price-high"){
+
+    lista.sort(
+      (a,b)=>b.preco-a.preco
+    );
+
+  }
+
+  if(ordenacao === "name"){
+
+    lista.sort(
+      (a,b)=>
+        a.nome.localeCompare(
+          b.nome,
+          "pt-BR"
+        )
+    );
+
+  }
+
+  renderizar(lista);
+
+}
+
+/* =========================================
+   EVENTOS FILTROS
+========================================= */
+
+document
+.querySelectorAll(".filter")
+.forEach(botao=>{
+
+  botao.addEventListener(
+    "click",
+    ()=>{
+
+      document
+        .querySelectorAll(".filter")
+        .forEach(item=>
+          item.classList.remove(
+            "active"
+          )
+        );
+
+      botao.classList.add(
+        "active"
+      );
+
+      filtroAtual =
+        botao.dataset.filter;
+
+      aplicarFiltros();
+
+    }
+  );
+
+});
+
+document
+.getElementById("sort")
+.addEventListener(
+  "change",
+  aplicarFiltros
+);
+
+/* =========================================
+   CARRINHO
+========================================= */
+
+function atualizarCarrinho(){
+
+  let carrinho;
+
+  try{
+
+    carrinho =
+      JSON.parse(
+        localStorage.getItem(
+          "vantaCarrinho"
+        )
+      ) || [];
+
+  }catch{
+
+    carrinho = [];
+
+  }
+
+  if(!Array.isArray(carrinho)){
+
+    carrinho =
+      carrinho
+      ? [carrinho]
+      : [];
+
+  }
+
+  const quantidade =
+    carrinho.reduce(
+      (total,item)=>
+        total +
+        (
+          Number(
+            item.quantidade
+          ) || 1
+        ),
+      0
+    );
+
+  document.getElementById(
+    "cartCount"
+  ).textContent =
+    quantidade;
+
+  document.getElementById(
+    "floatingCount"
+  ).textContent =
+    quantidade;
+
+  const flutuante =
+    document.getElementById(
+      "floatingCart"
+    );
+
+  flutuante.style.display =
+    quantidade > 0
+    ? "flex"
+    : "none";
+
+}
+
+/* =========================================
+   INICIAR
+========================================= */
+
+atualizarCarrinho();
+carregarProdutos();
+
+window.addEventListener(
+  "storage",
+  atualizarCarrinho
+);
+
+</script>
+
+</body>
+</html>
