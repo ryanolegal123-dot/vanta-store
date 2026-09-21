@@ -1,183 +1,914 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
+
 <title>Encomenda | ANARKA</title>
-<meta name="description" content="Encomende uma peça ANARKA sem pagamento antecipado.">
-<link rel="icon" href="/anarka-favicon.png">
+
+<meta
+  name="description"
+  content="Encomende uma peça ANARKA sem pagamento antecipado."
+>
+
+<link
+  rel="icon"
+  href="/anarka-favicon.png"
+>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#050505;color:#f5f5f5;min-height:100vh}
-a{color:inherit;text-decoration:none}
-button,input,textarea{font:inherit}
-.topbar{background:#d60000;padding:9px 15px;text-align:center;font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
-header{height:82px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #242424}
-.logo{width:125px;height:65px;object-fit:contain}
-.voltar{border:1px solid #333;padding:11px 14px;font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
-main{width:88%;max-width:1050px;margin:auto;padding:65px 0 100px}
-.label{color:#d60000;font-size:10px;font-weight:900;letter-spacing:3px;text-transform:uppercase}
-h1{margin-top:12px;font-size:clamp(48px,8vw,90px);line-height:.84;letter-spacing:-4px;text-transform:uppercase}
-h1 span{color:transparent;-webkit-text-stroke:1px #fff}
-.intro{max-width:690px;margin-top:23px;color:#8a8a8a;font-size:13px;line-height:1.8}
-.notice{margin-top:30px;border:1px solid #5f1818;background:#120707;padding:20px;color:#c8c8c8;font-size:12px;line-height:1.7}
-.notice strong{color:#fff}.notice b{color:#d60000}
-.grid{margin-top:30px;display:grid;grid-template-columns:.9fr 1.1fr;gap:14px}
-.card{border:1px solid #292929;background:#090909;padding:28px}
-.card-title{color:#d60000;font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
-.product{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center}
-.product img{width:120px;aspect-ratio:4/5;object-fit:cover;background:#111;border:1px solid #222}
-.product small{color:#666;font-size:9px;font-weight:900;letter-spacing:1.5px}
-.product h2{margin-top:8px;font-size:23px;text-transform:uppercase;line-height:1}
-.product .meta{margin-top:12px;color:#999;font-size:11px;line-height:1.7}
-.product .price{margin-top:12px;font-size:18px;font-weight:1000}
-.field{margin-bottom:17px}.field label{display:block;margin-bottom:8px;color:#777;font-size:9px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
-.field input,.field textarea{width:100%;border:1px solid #303030;background:#050505;color:#fff;outline:0;padding:14px;font-size:13px}.field input:focus,.field textarea:focus{border-color:#d60000}.field textarea{min-height:95px;resize:vertical}
-.confirm{display:flex;gap:10px;align-items:flex-start;margin:8px 0 20px;color:#8d8d8d;font-size:11px;line-height:1.6}.confirm input{margin-top:3px;accent-color:#d60000}
-.submit{width:100%;min-height:58px;border:1px solid #fff;background:#fff;color:#000;cursor:pointer;font-size:11px;font-weight:1000;letter-spacing:1.6px;text-transform:uppercase}.submit:hover:not(:disabled){background:#d60000;border-color:#d60000;color:#fff}.submit:disabled{opacity:.45;cursor:not-allowed}
-.feedback{display:none;margin-top:15px;padding:14px;border:1px solid #3a1a1a;background:#110707;color:#ccc;font-size:11px;line-height:1.6}.feedback.show{display:block}.feedback.error{border-color:#8c1a1a;color:#ffb4b4}
-.success{display:none;border:1px solid #303030;background:#090909;padding:35px;margin-top:30px}.success.show{display:block}.success .symbol{color:#d60000;font-size:42px;font-weight:1000}.success h2{margin-top:15px;font-size:clamp(30px,5vw,52px);line-height:.95;text-transform:uppercase}.success p{margin-top:16px;color:#999;line-height:1.8;font-size:12px}.success a{display:inline-flex;margin-top:24px;border:1px solid #fff;padding:14px 18px;font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
-footer{padding:35px;border-top:1px solid #222;text-align:center;color:#555;font-size:9px;letter-spacing:1.4px}
-@media(max-width:760px){header{height:72px;padding:0 4%}.logo{width:100px}.grid{grid-template-columns:1fr}main{width:92%;padding:45px 0 75px}.card{padding:22px}.product{grid-template-columns:95px 1fr}.product img{width:95px}h1{letter-spacing:-3px}}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#050505;
+  color:#f5f5f5;
+  min-height:100vh;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+.topbar{
+  background:#d60000;
+  padding:9px 15px;
+  text-align:center;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+header{
+  height:82px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #242424;
+}
+
+.logo{
+  width:125px;
+  height:65px;
+  object-fit:contain;
+}
+
+.voltar{
+  border:1px solid #333;
+  padding:11px 14px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+}
+
+main{
+  width:88%;
+  max-width:1050px;
+  margin:auto;
+  padding:65px 0 100px;
+}
+
+.label{
+  color:#d60000;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+h1{
+  margin-top:12px;
+  font-size:clamp(48px,8vw,90px);
+  line-height:.84;
+  letter-spacing:-4px;
+  text-transform:uppercase;
+}
+
+h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+}
+
+.intro{
+  max-width:690px;
+  margin-top:23px;
+  color:#8a8a8a;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.notice{
+  margin-top:30px;
+  border:1px solid #5f1818;
+  background:#120707;
+  padding:20px;
+  color:#c8c8c8;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.notice strong{
+  color:#fff;
+}
+
+.notice b{
+  color:#d60000;
+}
+
+.grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:14px;
+}
+
+.card{
+  border:1px solid #292929;
+  background:#090909;
+  padding:28px;
+}
+
+.card-title{
+  color:#d60000;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.product{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:18px;
+  align-items:center;
+}
+
+.product img{
+  width:120px;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  background:#111;
+  border:1px solid #222;
+}
+
+.product small{
+  color:#666;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+.product h2{
+  margin-top:8px;
+  font-size:23px;
+  text-transform:uppercase;
+  line-height:1;
+}
+
+.product .meta{
+  margin-top:12px;
+  color:#999;
+  font-size:11px;
+  line-height:1.7;
+}
+
+.product .price{
+  margin-top:12px;
+  font-size:18px;
+  font-weight:1000;
+}
+
+.field{
+  margin-bottom:17px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:8px;
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid #303030;
+  background:#050505;
+  color:#fff;
+  outline:0;
+  padding:14px;
+  font-size:13px;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:#d60000;
+}
+
+.field textarea{
+  min-height:95px;
+  resize:vertical;
+}
+
+.confirm{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin:8px 0 20px;
+  color:#8d8d8d;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.confirm input{
+  margin-top:3px;
+  accent-color:#d60000;
+}
+
+.submit{
+  width:100%;
+  min-height:58px;
+  border:1px solid #fff;
+  background:#fff;
+  color:#000;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+}
+
+.submit:hover:not(:disabled){
+  background:#d60000;
+  border-color:#d60000;
+  color:#fff;
+}
+
+.submit:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.feedback{
+  display:none;
+  margin-top:15px;
+  padding:14px;
+  border:1px solid #3a1a1a;
+  background:#110707;
+  color:#ccc;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.feedback.show{
+  display:block;
+}
+
+.feedback.error{
+  border-color:#8c1a1a;
+  color:#ffb4b4;
+}
+
+.success{
+  display:none;
+  border:1px solid #303030;
+  background:#090909;
+  padding:35px;
+  margin-top:30px;
+}
+
+.success.show{
+  display:block;
+}
+
+.success .symbol{
+  color:#d60000;
+  font-size:42px;
+  font-weight:1000;
+}
+
+.success h2{
+  margin-top:15px;
+  font-size:clamp(30px,5vw,52px);
+  line-height:.95;
+  text-transform:uppercase;
+}
+
+.success p{
+  margin-top:16px;
+  color:#999;
+  line-height:1.8;
+  font-size:12px;
+}
+
+.success a{
+  display:inline-flex;
+  margin-top:24px;
+  border:1px solid #fff;
+  padding:14px 18px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+}
+
+footer{
+  padding:35px;
+  border-top:1px solid #222;
+  text-align:center;
+  color:#555;
+  font-size:9px;
+  letter-spacing:1.4px;
+}
+
+@media(max-width:760px){
+
+  header{
+    height:72px;
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  main{
+    width:92%;
+    padding:45px 0 75px;
+  }
+
+  .card{
+    padding:22px;
+  }
+
+  .product{
+    grid-template-columns:95px 1fr;
+  }
+
+  .product img{
+    width:95px;
+  }
+
+  h1{
+    letter-spacing:-3px;
+  }
+
+}
+
 </style>
+
 </head>
+
 <body>
-<div class="topbar">ENCOMENDA ANARKA — SEM PAGAMENTO ANTECIPADO</div>
+
+<div class="topbar">
+  ENCOMENDA ANARKA — SEM PAGAMENTO ANTECIPADO
+</div>
+
 <header>
-  <a href="index.html"><img src="/anarka-logo.png" class="logo" alt="ANARKA"></a>
-  <a href="javascript:history.back()" class="voltar">← VOLTAR</a>
+
+  <a href="index.html">
+
+    <img
+      src="/anarka-logo.png"
+      class="logo"
+      alt="ANARKA"
+    >
+
+  </a>
+
+  <a
+    href="javascript:history.back()"
+    class="voltar"
+  >
+    ← VOLTAR
+  </a>
+
 </header>
+
 <main>
-  <div class="label">ANARKA / ENCOMENDA</div>
-  <h1>RESERVE AGORA.<br><span>PAGUE DEPOIS.</span></h1>
-  <p class="intro">Quando um tamanho está sem pronta entrega, você pode registrar uma encomenda. Nenhuma cobrança é feita agora.</p>
 
-  <div class="notice" id="avisoPrazo">
-    <strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. <span id="textoPrazoTopo"></span>Quando estiver pronta, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.
+  <div class="label">
+    ANARKA / ENCOMENDA
   </div>
 
-  <div id="formArea" class="grid">
+  <h1>
+    RESERVE AGORA.<br>
+    <span>PAGUE DEPOIS.</span>
+  </h1>
+
+  <p class="intro">
+
+    Quando um tamanho está sem pronta entrega,
+    você pode registrar uma encomenda.
+    Nenhuma cobrança é feita agora.
+
+  </p>
+
+  <div
+    class="notice"
+    id="avisoPrazo"
+  >
+
+    <strong>
+      Como funciona:
+    </strong>
+
+    você registra a peça e o tamanho agora,
+
+    <b>
+      sem pagar
+    </b>.
+
+    <span id="textoPrazoTopo"></span>
+
+    Quando estiver pronta,
+    a ANARKA entra em contato pelo WhatsApp
+    para combinar o pagamento e os próximos passos.
+
+  </div>
+
+  <div
+    id="formArea"
+    class="grid"
+  >
+
     <section class="card">
-      <div class="card-title">PEÇA ENCOMENDADA</div>
-      <div class="product">
-        <img id="produtoImagem" src="" alt="Produto ANARKA">
-        <div>
-          <small id="produtoCodigo">DROP 001</small>
-          <h2 id="produtoNome">CARREGANDO...</h2>
-          <div class="meta">
-            Tamanho: <strong id="produtoTamanho">—</strong><br>
-            Quantidade: <strong id="produtoQuantidade">1</strong><span id="linhaPrevisao" style="display:none"><br>
-            Previsão: <strong>01/10/2026</strong></span>
-          </div>
-          <div class="price" id="produtoPreco">—</div>
-        </div>
+
+      <div class="card-title">
+        PEÇA ENCOMENDADA
       </div>
+
+      <div class="product">
+
+        <img
+          id="produtoImagem"
+          src=""
+          alt="Produto ANARKA"
+        >
+
+        <div>
+
+          <small id="produtoCodigo">
+            DROP 001
+          </small>
+
+          <h2 id="produtoNome">
+            CARREGANDO...
+          </h2>
+
+          <div class="meta">
+
+            Tamanho:
+            <strong id="produtoTamanho">
+              —
+            </strong>
+
+            <br>
+
+            Quantidade:
+            <strong id="produtoQuantidade">
+              1
+            </strong>
+
+            <span
+              id="linhaPrevisao"
+              style="display:none"
+            >
+
+              <br>
+
+              Previsão:
+              <strong>
+                01/10/2026
+              </strong>
+
+            </span>
+
+          </div>
+
+          <div
+            class="price"
+            id="produtoPreco"
+          >
+            —
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
 
     <section class="card">
-      <div class="card-title">SEUS DADOS</div>
+
+      <div class="card-title">
+        SEUS DADOS
+      </div>
+
       <form id="formEncomenda">
+
         <div class="field">
-          <label for="nome">Nome</label>
-          <input id="nome" type="text" autocomplete="name" maxlength="100" required>
+
+          <label for="nome">
+            Nome
+          </label>
+
+          <input
+            id="nome"
+            type="text"
+            autocomplete="name"
+            maxlength="100"
+            required
+          >
+
         </div>
+
         <div class="field">
-          <label for="whatsapp">WhatsApp</label>
-          <input id="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" maxlength="20" required>
+
+          <label for="whatsapp">
+            WhatsApp
+          </label>
+
+          <input
+            id="whatsapp"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="(11) 99999-9999"
+            maxlength="20"
+            required
+          >
+
         </div>
+
         <div class="field">
-          <label for="email">E-mail (opcional)</label>
-          <input id="email" type="email" autocomplete="email" maxlength="160">
+
+          <label for="email">
+            E-mail (opcional)
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            maxlength="160"
+          >
+
         </div>
+
         <div class="field">
-          <label for="observacao">Observação (opcional)</label>
-          <textarea id="observacao" maxlength="500" placeholder="Ex.: melhor horário para contato"></textarea>
+
+          <label for="observacao">
+            Observação (opcional)
+          </label>
+
+          <textarea
+            id="observacao"
+            maxlength="500"
+            placeholder="Ex.: melhor horário para contato"
+          ></textarea>
+
         </div>
+
         <label class="confirm">
-          <input id="confirmacao" type="checkbox" required>
-          <span>Entendi que esta é uma encomenda e que não haverá pagamento agora. A ANARKA entrará em contato pelo WhatsApp quando a peça estiver pronta.</span>
+
+          <input
+            id="confirmacao"
+            type="checkbox"
+            required
+          >
+
+          <span>
+
+            Entendi que esta é uma encomenda
+            e que não haverá pagamento agora.
+            A ANARKA entrará em contato pelo WhatsApp
+            quando a peça estiver pronta.
+
+          </span>
+
         </label>
-        <button id="enviar" class="submit" type="submit">CONFIRMAR ENCOMENDA — R$ 0 AGORA →</button>
-        <div id="feedback" class="feedback"></div>
+
+        <button
+          id="enviar"
+          class="submit"
+          type="submit"
+        >
+          CONFIRMAR ENCOMENDA — R$ 0 AGORA →
+        </button>
+
+        <div
+          id="feedback"
+          class="feedback"
+        ></div>
+
       </form>
+
     </section>
+
   </div>
 
-  <section id="sucesso" class="success">
-    <div class="symbol">Ⓐ</div>
-    <h2>ENCOMENDA REGISTRADA.</h2>
+  <section
+    id="sucesso"
+    class="success"
+  >
+
+    <div class="symbol">
+      Ⓐ
+    </div>
+
+    <h2 id="sucessoTitulo">
+      ENCOMENDA REGISTRADA.
+    </h2>
+
     <p id="sucessoTexto"></p>
-    <a href="catalogo.html">VOLTAR À COLEÇÃO →</a>
+
+    <a href="catalogo.html">
+      VOLTAR À COLEÇÃO →
+    </a>
+
   </section>
+
 </main>
-<footer>© 2026 ANARKA — STREETWEAR / SÃO PAULO</footer>
+
+<footer>
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+</footer>
 
 <script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const SUPABASE_URL = "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
-const SUPABASE_KEY = "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
-const supabase = createClient(SUPABASE_URL,SUPABASE_KEY);
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
+
+const SUPABASE_URL =
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* ==========================================================
+   PRAZO
+========================================================== */
 
 const PRAZO_ENCOMENDA_LIMITE =
-  new Date("2026-10-01T00:00:00-03:00");
+  new Date(
+    "2026-10-01T00:00:00-03:00"
+  );
 
 const mostrarPrazoDia01 =
   new Date() <
   PRAZO_ENCOMENDA_LIMITE;
 
+
 const linhaPrevisao =
-  document.getElementById("linhaPrevisao");
+  document.getElementById(
+    "linhaPrevisao"
+  );
 
 const textoPrazoTopo =
-  document.getElementById("textoPrazoTopo");
+  document.getElementById(
+    "textoPrazoTopo"
+  );
+
 
 if(mostrarPrazoDia01){
-  linhaPrevisao.style.display = "";
+
+  linhaPrevisao.style.display =
+    "";
+
   textoPrazoTopo.innerHTML =
     'As camisas deste lote têm previsão de ficar prontas até <strong>01/10/2026</strong>. ';
+
 }else{
-  linhaPrevisao.style.display = "none";
-  textoPrazoTopo.textContent = "";
+
+  linhaPrevisao.style.display =
+    "none";
+
+  textoPrazoTopo.textContent =
+    "";
+
 }
 
-const formArea = document.getElementById("formArea");
-const form = document.getElementById("formEncomenda");
-const enviar = document.getElementById("enviar");
-const feedback = document.getElementById("feedback");
-const sucesso = document.getElementById("sucesso");
-const sucessoTexto = document.getElementById("sucessoTexto");
+
+/* ==========================================================
+   ELEMENTOS
+========================================================== */
+
+const formArea =
+  document.getElementById(
+    "formArea"
+  );
+
+const form =
+  document.getElementById(
+    "formEncomenda"
+  );
+
+const enviar =
+  document.getElementById(
+    "enviar"
+  );
+
+const feedback =
+  document.getElementById(
+    "feedback"
+  );
+
+const sucesso =
+  document.getElementById(
+    "sucesso"
+  );
+
+const sucessoTexto =
+  document.getElementById(
+    "sucessoTexto"
+  );
+
+const sucessoTitulo =
+  document.getElementById(
+    "sucessoTitulo"
+  );
+
+
+/* ==========================================================
+   FUNÇÕES AUXILIARES
+========================================================== */
 
 function dinheiro(valor){
-  return Number(valor || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+
+  return Number(
+    valor || 0
+  )
+    .toLocaleString(
+      "pt-BR",
+      {
+        style:"currency",
+        currency:"BRL"
+      }
+    );
+
 }
+
 
 function mostrarErro(texto){
-  feedback.textContent = texto;
-  feedback.className = "feedback show error";
+
+  feedback.textContent =
+    texto;
+
+  feedback.className =
+    "feedback show error";
+
 }
+
 
 function limparErro(){
-  feedback.textContent = "";
-  feedback.className = "feedback";
+
+  feedback.textContent =
+    "";
+
+  feedback.className =
+    "feedback";
+
 }
 
+
+/* ==========================================================
+   WHATSAPP
+========================================================== */
+
+const whatsappInput =
+  document.getElementById(
+    "whatsapp"
+  );
+
+
+whatsappInput.addEventListener(
+  "input",
+  ()=>{
+
+    let numeros =
+      whatsappInput.value
+        .replace(
+          /\D/g,
+          ""
+        )
+        .slice(
+          0,
+          11
+        );
+
+
+    if(
+      numeros.length <= 2
+    ){
+
+      whatsappInput.value =
+        numeros;
+
+      return;
+
+    }
+
+
+    if(
+      numeros.length <= 6
+    ){
+
+      whatsappInput.value =
+        `(${numeros.slice(0,2)}) ${numeros.slice(2)}`;
+
+      return;
+
+    }
+
+
+    if(
+      numeros.length <= 10
+    ){
+
+      whatsappInput.value =
+        `(${numeros.slice(0,2)}) ${numeros.slice(2,6)}-${numeros.slice(6)}`;
+
+      return;
+
+    }
+
+
+    whatsappInput.value =
+      `(${numeros.slice(0,2)}) ${numeros.slice(2,7)}-${numeros.slice(7)}`;
+
+  }
+);
+
+
+/* ==========================================================
+   RASCUNHO
+========================================================== */
+
 function pegarRascunho(){
+
   const params =
     new URLSearchParams(
       window.location.search
     );
 
+
   const produtoId =
     Number(
-      params.get("produto_id")
+      params.get(
+        "produto_id"
+      )
     );
+
 
   const tamanho =
     String(
-      params.get("tamanho") || ""
-    ).toUpperCase();
+      params.get(
+        "tamanho"
+      ) || ""
+    )
+      .trim()
+      .toUpperCase();
+
 
   const quantidade =
     Math.max(
@@ -185,237 +916,908 @@ function pegarRascunho(){
       Math.min(
         20,
         Number(
-          params.get("quantidade")
+          params.get(
+            "quantidade"
+          )
         ) || 1
       )
     );
 
+
+  /*
+  Prioriza os parâmetros da URL.
+  */
+
   if(
-    produtoId > 0 &&
-    ["P","M","G"].includes(tamanho)
+    produtoId > 0
+
+    &&
+
+    ["P","M","G"]
+      .includes(
+        tamanho
+      )
   ){
+
+    let imagem =
+      null;
+
+
+    try{
+
+      const salvo =
+        JSON.parse(
+          localStorage.getItem(
+            "anarkaEncomendaRascunho"
+          )
+        );
+
+
+      if(
+        Number(
+          salvo?.produto_id
+        ) === produtoId
+      ){
+
+        imagem =
+          salvo.imagem ||
+          null;
+
+      }
+
+    }catch{}
+
+
     return {
-      produto_id: produtoId,
+
+      produto_id:
+        produtoId,
+
       tamanho,
+
       quantidade,
-      imagem: null
+
+      imagem
+
     };
+
   }
 
+
+  /*
+  Caso não exista URL válida,
+  tenta recuperar do localStorage.
+  */
+
   try{
+
+
     const bruto =
       localStorage.getItem(
         "anarkaEncomendaRascunho"
       );
+
 
     const dados =
       bruto
         ? JSON.parse(bruto)
         : null;
 
+
     if(
-      !dados ||
-      !dados.produto_id ||
-      !["P","M","G"].includes(dados.tamanho)
+      !dados
+
+      ||
+
+      !dados.produto_id
+
+      ||
+
+      !["P","M","G"]
+        .includes(
+          String(
+            dados.tamanho
+          )
+            .toUpperCase()
+        )
     ){
+
       return null;
+
     }
 
-    dados.quantidade =
-      Math.max(
-        1,
-        Math.min(
-          20,
-          Number(dados.quantidade) || 1
+
+    return {
+
+      produto_id:
+        Number(
+          dados.produto_id
+        ),
+
+      tamanho:
+        String(
+          dados.tamanho
         )
-      );
+          .toUpperCase(),
 
-    return dados;
+      quantidade:
+        Math.max(
+          1,
+          Math.min(
+            20,
+            Number(
+              dados.quantidade
+            ) || 1
+          )
+        ),
+
+      imagem:
+        dados.imagem ||
+        null
+
+    };
+
+
   }catch{
+
     return null;
+
   }
+
 }
 
-const rascunho = pegarRascunho();
-if(!rascunho){
-  window.location.replace("catalogo.html");
-}
 
-let produtoBanco = null;
+const rascunho =
+  pegarRascunho();
+
+
+let produtoBanco =
+  null;
+
+
+/* ==========================================================
+   CARREGAR ENCOMENDA
+========================================================== */
 
 async function carregar(){
-  const { data: produto, error: produtoErro } = await supabase
-    .from("produtos")
-    .select("id,slug,nome,preco,imagem,ativo")
-    .eq("id",rascunho.produto_id)
-    .eq("ativo",true)
-    .single();
 
-  if(produtoErro || !produto){
-    mostrarErro("Não foi possível carregar essa peça.");
-    enviar.disabled = true;
-    return;
-  }
 
-  produtoBanco = produto;
-
-  const { data: estoque, error: estoqueErro } = await supabase
-    .from("estoque")
-    .select("quantidade")
-    .eq("produto_id",produto.id)
-    .eq("tamanho",rascunho.tamanho)
-    .single();
-
-  if(estoqueErro){
-    mostrarErro("Não foi possível confirmar a disponibilidade agora.");
-    enviar.disabled = true;
-    return;
-  }
-
-  if(Number(estoque?.quantidade || 0) > 0){
-    mostrarErro("Esse tamanho voltou ao estoque. Volte para a página do produto para comprar normalmente com pronta entrega.");
-    enviar.disabled = true;
-    return;
-  }
-
-  document.getElementById("produtoImagem").src = rascunho.imagem || produto.imagem || "/anarka-logo.png";
-  document.getElementById("produtoNome").textContent = produto.nome;
-  document.getElementById("produtoTamanho").textContent = rascunho.tamanho;
-  document.getElementById("produtoQuantidade").textContent = rascunho.quantidade;
-  document.getElementById("produtoPreco").textContent = `${dinheiro(produto.preco)} cada — sem cobrança agora`;
-
-  const { data:{ user } } = await supabase.auth.getUser();
-  if(user){
-    document.getElementById("nome").value = user.user_metadata?.nome || "";
-    document.getElementById("email").value = user.email || "";
-  }
-}
-
-form.addEventListener("submit", async event => {
-  event.preventDefault();
   limparErro();
 
-  if(!produtoBanco){
-    mostrarErro("Produto ainda não foi carregado.");
-    return;
-  }
 
-  const nome = document.getElementById("nome").value.trim();
-  const whatsapp = document.getElementById("whatsapp").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const observacao = document.getElementById("observacao").value.trim();
-  const digitos = whatsapp.replace(/\D/g,"");
+  enviar.disabled =
+    true;
 
-  if(nome.length < 2){
-    mostrarErro("Digite seu nome.");
-    return;
-  }
 
-  if(digitos.length < 10){
-    mostrarErro("Digite um WhatsApp válido com DDD.");
-    return;
-  }
+  enviar.textContent =
+    "CARREGANDO...";
 
-  enviar.disabled = true;
-  enviar.textContent = "CONFIRMANDO...";
 
   try{
-    const { data: estoque, error: estoqueErro } = await supabase
-      .from("estoque")
-      .select("quantidade")
-      .eq("produto_id",produtoBanco.id)
-      .eq("tamanho",rascunho.tamanho)
-      .single();
 
-    if(estoqueErro) throw estoqueErro;
-
-    if(Number(estoque?.quantidade || 0) > 0){
-      throw new Error("ESTOQUE_VOLTOU");
-    }
 
     const {
-      data: encomendaId,
-      error
-    } = await supabase
-      .rpc(
-        "criar_encomenda",
-        {
-          p_produto_id:
-            produtoBanco.id,
+      data:produto,
+      error:produtoErro
+    } =
+      await supabase
 
-          p_tamanho:
-            rascunho.tamanho,
+        .from(
+          "produtos"
+        )
 
-          p_quantidade:
-            rascunho.quantidade,
+        .select(
+          "id,slug,nome,preco,imagem,ativo"
+        )
 
-          p_nome_cliente:
-            nome,
+        .eq(
+          "id",
+          rascunho.produto_id
+        )
 
-          p_whatsapp:
-            whatsapp,
+        .eq(
+          "ativo",
+          true
+        )
 
-          p_email_cliente:
-            email || null,
+        .single();
 
-          p_observacao:
-            observacao || null
-        }
+
+    if(
+      produtoErro ||
+      !produto
+    ){
+
+      console.error(
+        produtoErro
       );
 
-    if(error){
-      throw error;
+      throw new Error(
+        "PRODUTO_INVALIDO"
+      );
+
     }
 
-    localStorage.removeItem("anarkaEncomendaRascunho");
-    formArea.style.display = "none";
-    sucesso.classList.add("show");
-    sucessoTexto.innerHTML =
-      `Encomenda confirmada para <strong>${rascunho.quantidade}x ${produtoBanco.nome}</strong>, tamanho <strong>${rascunho.tamanho}</strong>. Você não paga nada agora.`
-      +
-      (
-        mostrarPrazoDia01
-          ? ` A previsão é a peça ficar pronta até <strong>01/10/2026</strong>.`
-          : ``
+
+    produtoBanco =
+      produto;
+
+
+    const {
+      data:estoque,
+      error:estoqueErro
+    } =
+      await supabase
+
+        .from(
+          "estoque"
+        )
+
+        .select(
+          "quantidade"
+        )
+
+        .eq(
+          "produto_id",
+          produto.id
+        )
+
+        .eq(
+          "tamanho",
+          rascunho.tamanho
+        )
+
+        .single();
+
+
+    if(estoqueErro){
+
+      console.error(
+        estoqueErro
+      );
+
+      throw new Error(
+        "ESTOQUE_NAO_ENCONTRADO"
+      );
+
+    }
+
+
+    /*
+    Se o tamanho voltou ao estoque,
+    não registramos como encomenda.
+    */
+
+    if(
+      Number(
+        estoque?.quantidade || 0
+      ) > 0
+    ){
+
+      mostrarErro(
+        "Esse tamanho voltou ao estoque. Volte para a página do produto para comprar normalmente com pronta entrega."
+      );
+
+
+      enviar.disabled =
+        true;
+
+
+      enviar.textContent =
+        "TAMANHO DISPONÍVEL EM ESTOQUE";
+
+
+      return;
+
+    }
+
+
+    const produtoImagem =
+      document.getElementById(
+        "produtoImagem"
+      );
+
+
+    produtoImagem.src =
+      rascunho.imagem ||
+      produto.imagem ||
+      "/anarka-logo.png";
+
+
+    produtoImagem.onerror =
+      function(){
+
+        this.onerror =
+          null;
+
+        this.src =
+          "/anarka-logo.png";
+
+      };
+
+
+    document
+      .getElementById(
+        "produtoNome"
       )
-      +
-      ` Quando estiver pronta, entraremos em contato no WhatsApp informado para combinar o pagamento.`;
+      .textContent =
+        produto.nome;
+
+
+    document
+      .getElementById(
+        "produtoTamanho"
+      )
+      .textContent =
+        rascunho.tamanho;
+
+
+    document
+      .getElementById(
+        "produtoQuantidade"
+      )
+      .textContent =
+        rascunho.quantidade;
+
+
+    document
+      .getElementById(
+        "produtoPreco"
+      )
+      .textContent =
+
+        `${dinheiro(produto.preco)} cada — sem cobrança agora`;
+
+
+    /*
+    Se estiver logado, preenche
+    nome/e-mail automaticamente.
+    */
+
+    try{
+
+      const {
+        data:{
+          user
+        }
+      } =
+        await supabase
+          .auth
+          .getUser();
+
+
+      if(user){
+
+        document
+          .getElementById(
+            "nome"
+          )
+          .value =
+
+            user
+              .user_metadata
+              ?.nome || "";
+
+
+        document
+          .getElementById(
+            "email"
+          )
+          .value =
+
+            user.email ||
+            "";
+
+      }
+
+    }catch(erro){
+
+      console.log(
+        "Cliente não logado:",
+        erro
+      );
+
+    }
+
+
+    enviar.disabled =
+      false;
+
+
+    enviar.textContent =
+      "CONFIRMAR ENCOMENDA — R$ 0 AGORA →";
+
 
   }catch(erro){
-    console.error(erro);
-    const mensagemErro =
+
+
+    console.error(
+      "Erro ao carregar encomenda:",
+      erro
+    );
+
+
+    enviar.disabled =
+      true;
+
+
+    enviar.textContent =
+      "ENCOMENDA INDISPONÍVEL";
+
+
+    const mensagem =
       String(
         erro?.message ||
         erro ||
         ""
       );
 
-    if(
-      mensagemErro.includes("ESTOQUE_VOLTOU") ||
-      mensagemErro.includes("ESTOQUE_DISPONIVEL")
-    ){
-      mostrarErro(
-        "Esse tamanho voltou ao estoque durante a confirmação. Você já pode comprar normalmente pela página do produto."
-      );
-    }else if(
-      mensagemErro.includes("TAMANHO_INVALIDO") ||
-      mensagemErro.includes("QUANTIDADE_INVALIDA") ||
-      mensagemErro.includes("PRODUTO_INVALIDO")
-    ){
-      mostrarErro(
-        "Os dados da encomenda ficaram inválidos. Volte para a peça e tente novamente."
-      );
-    }else{
-      mostrarErro(
-        "Não foi possível registrar a encomenda agora. Atualize a página e tente novamente."
-      );
-    }
-    enviar.disabled = false;
-    enviar.textContent = "CONFIRMAR ENCOMENDA — R$ 0 AGORA →";
-  }
-});
 
-await carregar();
+    if(
+      mensagem.includes(
+        "PRODUTO_INVALIDO"
+      )
+    ){
+
+      mostrarErro(
+        "Essa peça não está disponível para encomenda."
+      );
+
+
+    }else if(
+      mensagem.includes(
+        "ESTOQUE_NAO_ENCONTRADO"
+      )
+    ){
+
+      mostrarErro(
+        "Não conseguimos localizar esse tamanho no estoque."
+      );
+
+
+    }else{
+
+      mostrarErro(
+        "Não foi possível carregar a encomenda. Atualize a página e tente novamente."
+      );
+
+    }
+
+  }
+
+}
+
+
+/* ==========================================================
+   CONFIRMAR
+========================================================== */
+
+form.addEventListener(
+  "submit",
+  async event=>{
+
+
+    event.preventDefault();
+
+
+    limparErro();
+
+
+    if(
+      !rascunho ||
+      !produtoBanco
+    ){
+
+      mostrarErro(
+        "Produto ainda não foi carregado."
+      );
+
+      return;
+
+    }
+
+
+    const nome =
+      document
+        .getElementById(
+          "nome"
+        )
+        .value
+        .trim();
+
+
+    const whatsapp =
+      document
+        .getElementById(
+          "whatsapp"
+        )
+        .value
+        .trim();
+
+
+    const email =
+      document
+        .getElementById(
+          "email"
+        )
+        .value
+        .trim();
+
+
+    const observacao =
+      document
+        .getElementById(
+          "observacao"
+        )
+        .value
+        .trim();
+
+
+    const digitos =
+      whatsapp.replace(
+        /\D/g,
+        ""
+      );
+
+
+    if(
+      nome.length < 2
+    ){
+
+      mostrarErro(
+        "Digite seu nome."
+      );
+
+      return;
+
+    }
+
+
+    if(
+      digitos.length < 10
+      ||
+      digitos.length > 11
+    ){
+
+      mostrarErro(
+        "Digite um WhatsApp válido com DDD."
+      );
+
+      return;
+
+    }
+
+
+    if(
+      email &&
+      !document
+        .getElementById(
+          "email"
+        )
+        .checkValidity()
+    ){
+
+      mostrarErro(
+        "Digite um e-mail válido."
+      );
+
+      return;
+
+    }
+
+
+    enviar.disabled =
+      true;
+
+
+    enviar.textContent =
+      "CONFIRMANDO...";
+
+
+    try{
+
+
+      /*
+      Confere novamente o estoque
+      imediatamente antes da RPC.
+      */
+
+      const {
+        data:estoque,
+        error:estoqueErro
+      } =
+        await supabase
+
+          .from(
+            "estoque"
+          )
+
+          .select(
+            "quantidade"
+          )
+
+          .eq(
+            "produto_id",
+            produtoBanco.id
+          )
+
+          .eq(
+            "tamanho",
+            rascunho.tamanho
+          )
+
+          .single();
+
+
+      if(estoqueErro){
+
+        throw estoqueErro;
+
+      }
+
+
+      if(
+        Number(
+          estoque?.quantidade || 0
+        ) > 0
+      ){
+
+        throw new Error(
+          "ESTOQUE_VOLTOU"
+        );
+
+      }
+
+
+      /*
+      RPC do Supabase.
+
+      Ela pega nome, slug e preço diretamente
+      do banco e registra a encomenda sem
+      pagamento.
+      */
+
+      const {
+        data:encomendaId,
+        error
+      } =
+        await supabase
+
+          .rpc(
+            "criar_encomenda",
+            {
+
+              p_produto_id:
+                produtoBanco.id,
+
+              p_tamanho:
+                rascunho.tamanho,
+
+              p_quantidade:
+                rascunho.quantidade,
+
+              p_nome_cliente:
+                nome,
+
+              p_whatsapp:
+                whatsapp,
+
+              p_email_cliente:
+                email || null,
+
+              p_observacao:
+                observacao || null
+
+            }
+          );
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      console.log(
+        "Encomenda criada:",
+        encomendaId
+      );
+
+
+      localStorage.removeItem(
+        "anarkaEncomendaRascunho"
+      );
+
+
+      formArea.style.display =
+        "none";
+
+
+      sucesso.classList.add(
+        "show"
+      );
+
+
+      sucessoTitulo.textContent =
+        "ENCOMENDA REGISTRADA.";
+
+
+      sucessoTexto.innerHTML =
+
+        `Encomenda <strong>#${encomendaId}</strong> confirmada para ` +
+
+        `<strong>${rascunho.quantidade}x ${produtoBanco.nome}</strong>, ` +
+
+        `tamanho <strong>${rascunho.tamanho}</strong>. ` +
+
+        `Você <strong>não paga nada agora</strong>.`
+
+        +
+
+        (
+          mostrarPrazoDia01
+
+            ? ` A previsão é a peça ficar pronta até <strong>01/10/2026</strong>.`
+
+            : ``
+        )
+
+        +
+
+        ` Quando estiver pronta, entraremos em contato pelo WhatsApp informado para combinar o pagamento.`;
+
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+
+    }catch(erro){
+
+
+      console.error(
+        "Erro ao registrar encomenda:",
+        erro
+      );
+
+
+      const mensagemErro =
+        String(
+
+          erro?.message ||
+
+          erro?.details ||
+
+          erro ||
+
+          ""
+
+        );
+
+
+      if(
+        mensagemErro.includes(
+          "ESTOQUE_VOLTOU"
+        )
+
+        ||
+
+        mensagemErro.includes(
+          "ESTOQUE_DISPONIVEL"
+        )
+      ){
+
+        mostrarErro(
+          "Esse tamanho voltou ao estoque durante a confirmação. Você já pode comprar normalmente pela página do produto."
+        );
+
+
+      }else if(
+        mensagemErro.includes(
+          "TAMANHO_INVALIDO"
+        )
+      ){
+
+        mostrarErro(
+          "O tamanho selecionado é inválido. Volte para a peça e tente novamente."
+        );
+
+
+      }else if(
+        mensagemErro.includes(
+          "QUANTIDADE_INVALIDA"
+        )
+      ){
+
+        mostrarErro(
+          "A quantidade da encomenda é inválida."
+        );
+
+
+      }else if(
+        mensagemErro.includes(
+          "PRODUTO_INVALIDO"
+        )
+      ){
+
+        mostrarErro(
+          "Essa peça não está mais disponível para encomenda."
+        );
+
+
+      }else if(
+        mensagemErro.includes(
+          "ESTOQUE_NAO_ENCONTRADO"
+        )
+      ){
+
+        mostrarErro(
+          "Não encontramos esse tamanho no estoque."
+        );
+
+
+      }else{
+
+        mostrarErro(
+          "Não foi possível registrar a encomenda agora. Atualize a página e tente novamente."
+        );
+
+      }
+
+
+      enviar.disabled =
+        false;
+
+
+      enviar.textContent =
+        "CONFIRMAR ENCOMENDA — R$ 0 AGORA →";
+
+    }
+
+  }
+);
+
+
+/* ==========================================================
+   INICIAR
+========================================================== */
+
+/*
+Evita tentar executar carregar()
+com rascunho null caso alguém abra
+encomenda.html diretamente.
+*/
+
+if(!rascunho){
+
+  formArea.style.display =
+    "none";
+
+
+  sucesso.classList.add(
+    "show"
+  );
+
+
+  sucessoTitulo.textContent =
+    "NENHUMA ENCOMENDA SELECIONADA.";
+
+
+  sucessoTexto.innerHTML =
+
+    `Volte para a coleção, escolha uma peça e selecione um tamanho marcado como <strong>ENCOMENDA</strong>.`;
+
+
+}else{
+
+  await carregar();
+
+}
+
 </script>
+
 </body>
+
 </html>
