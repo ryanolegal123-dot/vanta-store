@@ -52,8 +52,8 @@ footer{padding:35px;border-top:1px solid #222;text-align:center;color:#555;font-
   <h1>RESERVE AGORA.<br><span>PAGUE DEPOIS.</span></h1>
   <p class="intro">Quando um tamanho está sem pronta entrega, você pode registrar uma encomenda. Nenhuma cobrança é feita agora.</p>
 
-  <div class="notice" id="avisoPrazo">
-    <strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. Quando a peça estiver pronta, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.
+  <div class="notice">
+    <strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. As camisas deste lote têm previsão de ficar prontas até <strong>01/10/2026</strong>. Quando estiverem prontas, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.
   </div>
 
   <div id="formArea" class="grid">
@@ -67,9 +67,7 @@ footer{padding:35px;border-top:1px solid #222;text-align:center;color:#555;font-
           <div class="meta">
             Tamanho: <strong id="produtoTamanho">—</strong><br>
             Quantidade: <strong id="produtoQuantidade">1</strong><br>
-            <span id="linhaPrevisao" style="display:none">
-              Previsão: <strong>01/10/2026</strong>
-            </span>
+            Previsão: <strong>01/10/2026</strong>
           </div>
           <div class="price" id="produtoPreco">—</div>
         </div>
@@ -120,19 +118,6 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const SUPABASE_URL = "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
 const SUPABASE_KEY = "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
 const supabase = createClient(SUPABASE_URL,SUPABASE_KEY);
-
-const PRAZO_ENCOMENDA_LIMITE = new Date("2026-10-01T00:00:00-03:00");
-const mostrarPrazoDia01 = new Date() < PRAZO_ENCOMENDA_LIMITE;
-
-if(mostrarPrazoDia01){
-  document.getElementById("avisoPrazo").innerHTML =
-    '<strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. As camisas deste lote têm previsão de ficar prontas até <strong>01/10/2026</strong>. Quando estiverem prontas, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.';
-
-  const linhaPrevisao = document.getElementById("linhaPrevisao");
-  if(linhaPrevisao){
-    linhaPrevisao.style.display = "inline";
-  }
-}
 
 const formArea = document.getElementById("formArea");
 const form = document.getElementById("formEncomenda");
@@ -281,14 +266,7 @@ form.addEventListener("submit", async event => {
     localStorage.removeItem("anarkaEncomendaRascunho");
     formArea.style.display = "none";
     sucesso.classList.add("show");
-    sucessoTexto.innerHTML =
-      `Encomenda confirmada para <strong>${rascunho.quantidade}x ${produtoBanco.nome}</strong>, tamanho <strong>${rascunho.tamanho}</strong>. Você não paga nada agora.` +
-      (
-        mostrarPrazoDia01
-          ? ` A previsão é a peça ficar pronta até <strong>01/10/2026</strong>.`
-          : ``
-      ) +
-      ` Quando estiver pronta, entraremos em contato no WhatsApp informado para combinar o pagamento.`;
+    sucessoTexto.innerHTML = `Encomenda confirmada para <strong>${rascunho.quantidade}x ${produtoBanco.nome}</strong>, tamanho <strong>${rascunho.tamanho}</strong>. Você não paga nada agora. A previsão é a peça ficar pronta até <strong>01/10/2026</strong>. Quando estiver pronta, entraremos em contato no WhatsApp informado para combinar o pagamento.`;
 
   }catch(erro){
     console.error(erro);
