@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contas | ANARKA Admin</title>
+<link rel="icon" href="/anarka-favicon.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:#050505;color:#fff;min-height:100vh}
+a{color:inherit;text-decoration:none}button,input{font:inherit}
+.topbar{background:#d60000;padding:9px 15px;text-align:center;font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+header{height:82px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #242424}
+.logo{width:125px;height:65px;object-fit:contain}.header-actions{display:flex;gap:8px}
+.header-actions a,.header-actions button{border:1px solid #333;background:#080808;color:#fff;padding:11px 13px;cursor:pointer;font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.header-actions a:hover,.header-actions button:hover{border-color:#d60000;color:#d60000}
+main{width:90%;max-width:1200px;margin:auto;padding:60px 0 100px}.label{color:#d60000;font-size:10px;font-weight:900;letter-spacing:3px;text-transform:uppercase}
+h1{margin-top:10px;font-size:clamp(50px,8vw,90px);line-height:.84;letter-spacing:-4px;text-transform:uppercase}h1 span{color:transparent;-webkit-text-stroke:1px #fff}
+.sub{margin-top:20px;color:#777;line-height:1.7;font-size:12px;max-width:700px}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:32px}.sum{border:1px solid #292929;background:#090909;padding:19px}.sum small{color:#666;font-size:8px;font-weight:900;letter-spacing:1.5px}.sum strong{display:block;margin-top:12px;font-size:27px}
+.tools{display:flex;gap:8px;margin:28px 0}.tools input{flex:1;border:1px solid #303030;background:#090909;color:#fff;padding:14px;outline:0}.tools input:focus{border-color:#d60000}.atualizar{min-height:46px;padding:0 16px;border:1px solid #333;background:#090909;color:#aaa;cursor:pointer;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase}.atualizar:hover{border-color:#d60000;color:#fff}
+.list{display:grid;gap:12px}.card{border:1px solid #292929;background:#090909}.card.admin{border-color:#5d1b1b;background:#0d0707}.card-head{padding:18px 20px;border-bottom:1px solid #222;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.card-head small{display:block;color:#666;font-size:8px;font-weight:900;letter-spacing:1.4px}.card-head h2{margin-top:6px;font-size:20px;text-transform:uppercase;word-break:break-word}.badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}.badge{padding:8px 10px;border:1px solid #333;background:#080808;color:#aaa;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}.badge.ok{border-color:#245b2a;background:#071008;color:#8ddd95}.badge.admin{border-color:#6d1717;background:#130707;color:#ff7b7b}.grid{display:grid;grid-template-columns:repeat(2,1fr);padding:0 20px}.block{padding:20px 0}.block+.block{padding-left:20px;border-left:1px solid #222}.dado{margin-bottom:14px}.dado:last-child{margin-bottom:0}.dado small{display:block;color:#666;font-size:8px;font-weight:900;letter-spacing:1.3px;margin-bottom:4px}.dado div{font-size:12px;line-height:1.6;word-break:break-word}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.stat{border:1px solid #222;background:#060606;padding:14px}.stat small{color:#555;font-size:8px;font-weight:900;letter-spacing:1px}.stat strong{display:block;margin-top:8px;font-size:20px}.empty{border:1px solid #292929;padding:35px;color:#777;text-align:center}.loading,.denied{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#777;font-size:11px;letter-spacing:2px}.denied{display:none}.panel{display:none}.rodape-info{margin-top:18px;color:#444;font-size:9px;letter-spacing:1px;text-align:right}
+@media(max-width:760px){header{height:72px;padding:0 4%}.logo{width:100px}.summary{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.block+.block{padding-left:0;border-left:0;border-top:1px solid #222}.tools{flex-direction:column}main{width:92%;padding-top:45px}.card-head{flex-direction:column}.badges{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<div id="loading" class="loading">VERIFICANDO ADMINISTRADOR...</div>
+<div id="denied" class="denied"><div>ACESSO NEGADO.<br><br><a href="index.html">← VOLTAR À LOJA</a></div></div>
+<div id="panel" class="panel">
+  <div class="topbar">ANARKA — CONTAS CADASTRADAS</div>
+  <header>
+    <a href="index.html"><img src="/anarka-logo.png" class="logo" alt="ANARKA"></a>
+    <div class="header-actions">
+      <a href="admin.html">← PAINEL</a>
+      <button id="sair">SAIR</button>
+    </div>
+  </header>
+  <main>
+    <div class="label">ANARKA / ADMIN</div>
+    <h1>CON<span>TAS.</span></h1>
+    <p class="sub">Visualize as contas cadastradas no site, quando foram criadas, o último acesso e quantos pedidos ou encomendas estão vinculados a cada usuário.</p>
+
+    <section class="summary">
+      <div class="sum"><small>CONTAS</small><strong id="sumContas">0</strong></div>
+      <div class="sum"><small>CONFIRMADAS</small><strong id="sumConfirmadas">0</strong></div>
+      <div class="sum"><small>ADMINS</small><strong id="sumAdmins">0</strong></div>
+      <div class="sum"><small>COM PEDIDOS</small><strong id="sumCompradores">0</strong></div>
+    </section>
+
+    <div class="tools">
+      <input id="busca" type="search" placeholder="Buscar por nome ou e-mail...">
+      <button id="atualizar" class="atualizar" type="button">ATUALIZAR</button>
+    </div>
+
+    <div id="lista" class="list"></div>
+    <div id="rodapeInfo" class="rodape-info"></div>
+  </main>
+</div>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase = createClient(
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co",
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh"
+);
+
+const loading=document.getElementById("loading");
+const denied=document.getElementById("denied");
+const panel=document.getElementById("panel");
+const lista=document.getElementById("lista");
+const busca=document.getElementById("busca");
+const atualizar=document.getElementById("atualizar");
+const rodapeInfo=document.getElementById("rodapeInfo");
+
+let contas=[];
+let atualizando=false;
+
+function esc(v){
+  const d=document.createElement("div");
+  d.textContent=v??"";
+  return d.innerHTML;
+}
+
+function dataBR(v){
+  if(!v)return "—";
+  const d=new Date(v);
+  if(Number.isNaN(d.getTime()))return "—";
+  return d.toLocaleString("pt-BR",{
+    day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"
+  });
+}
+
+function atualizarResumo(){
+  document.getElementById("sumContas").textContent=contas.length;
+  document.getElementById("sumConfirmadas").textContent=contas.filter(c=>c.email_confirmado).length;
+  document.getElementById("sumAdmins").textContent=contas.filter(c=>c.administrador).length;
+  document.getElementById("sumCompradores").textContent=contas.filter(c=>Number(c.total_pedidos||0)+Number(c.total_encomendas||0)>0).length;
+}
+
+function render(dados){
+  if(!dados.length){
+    lista.innerHTML='<div class="empty">NENHUMA CONTA ENCONTRADA.</div>';
+    return;
+  }
+
+  lista.innerHTML=dados.map(c=>{
+    const totalPedidos=Number(c.total_pedidos||0);
+    const totalEncomendas=Number(c.total_encomendas||0);
+    return `
+      <article class="card ${c.administrador?"admin":""}">
+        <div class="card-head">
+          <div>
+            <small>CADASTRADA EM ${dataBR(c.criado_em)}</small>
+            <h2>${esc(c.nome||"Cliente")}</h2>
+          </div>
+          <div class="badges">
+            ${c.email_confirmado?'<span class="badge ok">E-MAIL CONFIRMADO</span>':'<span class="badge">E-MAIL PENDENTE</span>'}
+            ${c.administrador?'<span class="badge admin">ADMIN</span>':''}
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="block">
+            <div class="dado">
+              <small>E-MAIL</small>
+              <div>${esc(c.email||"—")}</div>
+            </div>
+            <div class="dado">
+              <small>ÚLTIMO ACESSO</small>
+              <div>${dataBR(c.ultimo_acesso)}</div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="dado">
+              <small>ID DA CONTA</small>
+              <div>${esc(c.id)}</div>
+            </div>
+            <div class="stats">
+              <div class="stat"><small>PEDIDOS</small><strong>${totalPedidos}</strong></div>
+              <div class="stat"><small>ENCOMENDAS</small><strong>${totalEncomendas}</strong></div>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function aplicarBusca(){
+  const q=busca.value.trim().toLowerCase();
+  if(!q){render(contas);return;}
+  render(contas.filter(c=>[c.nome,c.email,c.id].join(" ").toLowerCase().includes(q)));
+}
+
+async function carregarContas(silencioso=false){
+  if(atualizando)return;
+  atualizando=true;
+
+  if(!silencioso){
+    atualizar.disabled=true;
+    atualizar.textContent="ATUALIZANDO...";
+  }
+
+  const {data,error}=await supabase.rpc("listar_usuarios_admin");
+
+  if(!silencioso){
+    atualizar.disabled=false;
+    atualizar.textContent="ATUALIZAR";
+  }
+
+  atualizando=false;
+
+  if(error){
+    console.error("Erro ao carregar contas:",error);
+    lista.innerHTML='<div class="empty">ERRO AO CARREGAR CONTAS.</div>';
+    return;
+  }
+
+  contas=data||[];
+  atualizarResumo();
+  aplicarBusca();
+  rodapeInfo.textContent="ATUALIZADO: "+new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+}
+
+async function iniciar(){
+  const {data:{user},error}=await supabase.auth.getUser();
+  if(error||!user){
+    loading.style.display="none";
+    denied.style.display="flex";
+    return;
+  }
+
+  const {data:admin,error:adminErro}=await supabase
+    .from("admins")
+    .select("user_id")
+    .eq("user_id",user.id)
+    .maybeSingle();
+
+  if(adminErro||!admin){
+    loading.style.display="none";
+    denied.style.display="flex";
+    return;
+  }
+
+  await carregarContas();
+  loading.style.display="none";
+  panel.style.display="block";
+
+  setInterval(()=>{
+    if(document.visibilityState==="visible"){
+      carregarContas(true);
+    }
+  },10000);
+}
+
+busca.addEventListener("input",aplicarBusca);
+atualizar.addEventListener("click",()=>carregarContas());
+
+document.getElementById("sair").addEventListener("click",async()=>{
+  await supabase.auth.signOut();
+  location.replace("login.html");
+});
+
+await iniciar();
+</script>
+</body>
+</html>
