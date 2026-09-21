@@ -1355,8 +1355,8 @@ const supabase =
 
 
 /* ==========================================================
-   PRAZO TEMPORÁRIO DE ENCOMENDA
-   A data 01/10/2026 some automaticamente em 01/10/2026.
+   PRAZO TEMPORÁRIO DA ENCOMENDA
+   Em 01/10/2026 qualquer menção ao dia 01 some automaticamente.
 ========================================================== */
 
 const PRAZO_ENCOMENDA_LIMITE =
@@ -2761,8 +2761,17 @@ addCart.addEventListener(
         );
 
 
+        const destinoEncomenda =
+          "encomenda.html"
+          + "?produto_id="
+          + encodeURIComponent(produtoBanco.id)
+          + "&tamanho="
+          + encodeURIComponent(tamanhoSelecionado)
+          + "&quantidade="
+          + encodeURIComponent(quantidade);
+
         window.location.href =
-          "encomenda.html";
+          destinoEncomenda;
 
 
         return;
