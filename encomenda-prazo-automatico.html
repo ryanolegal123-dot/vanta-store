@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Encomenda | ANARKA</title>
+<meta name="description" content="Encomende uma peça ANARKA sem pagamento antecipado.">
+<link rel="icon" href="/anarka-favicon.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:#050505;color:#f5f5f5;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+.topbar{background:#d60000;padding:9px 15px;text-align:center;font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+header{height:82px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #242424}
+.logo{width:125px;height:65px;object-fit:contain}
+.voltar{border:1px solid #333;padding:11px 14px;font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+main{width:88%;max-width:1050px;margin:auto;padding:65px 0 100px}
+.label{color:#d60000;font-size:10px;font-weight:900;letter-spacing:3px;text-transform:uppercase}
+h1{margin-top:12px;font-size:clamp(48px,8vw,90px);line-height:.84;letter-spacing:-4px;text-transform:uppercase}
+h1 span{color:transparent;-webkit-text-stroke:1px #fff}
+.intro{max-width:690px;margin-top:23px;color:#8a8a8a;font-size:13px;line-height:1.8}
+.notice{margin-top:30px;border:1px solid #5f1818;background:#120707;padding:20px;color:#c8c8c8;font-size:12px;line-height:1.7}
+.notice strong{color:#fff}.notice b{color:#d60000}
+.grid{margin-top:30px;display:grid;grid-template-columns:.9fr 1.1fr;gap:14px}
+.card{border:1px solid #292929;background:#090909;padding:28px}
+.card-title{color:#d60000;font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+.product{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center}
+.product img{width:120px;aspect-ratio:4/5;object-fit:cover;background:#111;border:1px solid #222}
+.product small{color:#666;font-size:9px;font-weight:900;letter-spacing:1.5px}
+.product h2{margin-top:8px;font-size:23px;text-transform:uppercase;line-height:1}
+.product .meta{margin-top:12px;color:#999;font-size:11px;line-height:1.7}
+.product .price{margin-top:12px;font-size:18px;font-weight:1000}
+.field{margin-bottom:17px}.field label{display:block;margin-bottom:8px;color:#777;font-size:9px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.field input,.field textarea{width:100%;border:1px solid #303030;background:#050505;color:#fff;outline:0;padding:14px;font-size:13px}.field input:focus,.field textarea:focus{border-color:#d60000}.field textarea{min-height:95px;resize:vertical}
+.confirm{display:flex;gap:10px;align-items:flex-start;margin:8px 0 20px;color:#8d8d8d;font-size:11px;line-height:1.6}.confirm input{margin-top:3px;accent-color:#d60000}
+.submit{width:100%;min-height:58px;border:1px solid #fff;background:#fff;color:#000;cursor:pointer;font-size:11px;font-weight:1000;letter-spacing:1.6px;text-transform:uppercase}.submit:hover:not(:disabled){background:#d60000;border-color:#d60000;color:#fff}.submit:disabled{opacity:.45;cursor:not-allowed}
+.feedback{display:none;margin-top:15px;padding:14px;border:1px solid #3a1a1a;background:#110707;color:#ccc;font-size:11px;line-height:1.6}.feedback.show{display:block}.feedback.error{border-color:#8c1a1a;color:#ffb4b4}
+.success{display:none;border:1px solid #303030;background:#090909;padding:35px;margin-top:30px}.success.show{display:block}.success .symbol{color:#d60000;font-size:42px;font-weight:1000}.success h2{margin-top:15px;font-size:clamp(30px,5vw,52px);line-height:.95;text-transform:uppercase}.success p{margin-top:16px;color:#999;line-height:1.8;font-size:12px}.success a{display:inline-flex;margin-top:24px;border:1px solid #fff;padding:14px 18px;font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+footer{padding:35px;border-top:1px solid #222;text-align:center;color:#555;font-size:9px;letter-spacing:1.4px}
+@media(max-width:760px){header{height:72px;padding:0 4%}.logo{width:100px}.grid{grid-template-columns:1fr}main{width:92%;padding:45px 0 75px}.card{padding:22px}.product{grid-template-columns:95px 1fr}.product img{width:95px}h1{letter-spacing:-3px}}
+</style>
+</head>
+<body>
+<div class="topbar">ENCOMENDA ANARKA — SEM PAGAMENTO ANTECIPADO</div>
+<header>
+  <a href="index.html"><img src="/anarka-logo.png" class="logo" alt="ANARKA"></a>
+  <a href="javascript:history.back()" class="voltar">← VOLTAR</a>
+</header>
+<main>
+  <div class="label">ANARKA / ENCOMENDA</div>
+  <h1>RESERVE AGORA.<br><span>PAGUE DEPOIS.</span></h1>
+  <p class="intro">Quando um tamanho está sem pronta entrega, você pode registrar uma encomenda. Nenhuma cobrança é feita agora.</p>
+
+  <div class="notice" id="avisoPrazo">
+    <strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. Quando a peça estiver pronta, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.
+  </div>
+
+  <div id="formArea" class="grid">
+    <section class="card">
+      <div class="card-title">PEÇA ENCOMENDADA</div>
+      <div class="product">
+        <img id="produtoImagem" src="" alt="Produto ANARKA">
+        <div>
+          <small id="produtoCodigo">DROP 001</small>
+          <h2 id="produtoNome">CARREGANDO...</h2>
+          <div class="meta">
+            Tamanho: <strong id="produtoTamanho">—</strong><br>
+            Quantidade: <strong id="produtoQuantidade">1</strong><br>
+            <span id="linhaPrevisao" style="display:none">
+              Previsão: <strong>01/10/2026</strong>
+            </span>
+          </div>
+          <div class="price" id="produtoPreco">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">SEUS DADOS</div>
+      <form id="formEncomenda">
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" maxlength="20" required>
+        </div>
+        <div class="field">
+          <label for="email">E-mail (opcional)</label>
+          <input id="email" type="email" autocomplete="email" maxlength="160">
+        </div>
+        <div class="field">
+          <label for="observacao">Observação (opcional)</label>
+          <textarea id="observacao" maxlength="500" placeholder="Ex.: melhor horário para contato"></textarea>
+        </div>
+        <label class="confirm">
+          <input id="confirmacao" type="checkbox" required>
+          <span>Entendi que esta é uma encomenda e que não haverá pagamento agora. A ANARKA entrará em contato pelo WhatsApp quando a peça estiver pronta.</span>
+        </label>
+        <button id="enviar" class="submit" type="submit">CONFIRMAR ENCOMENDA — R$ 0 AGORA →</button>
+        <div id="feedback" class="feedback"></div>
+      </form>
+    </section>
+  </div>
+
+  <section id="sucesso" class="success">
+    <div class="symbol">Ⓐ</div>
+    <h2>ENCOMENDA REGISTRADA.</h2>
+    <p id="sucessoTexto"></p>
+    <a href="catalogo.html">VOLTAR À COLEÇÃO →</a>
+  </section>
+</main>
+<footer>© 2026 ANARKA — STREETWEAR / SÃO PAULO</footer>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL = "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+const SUPABASE_KEY = "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+const supabase = createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const PRAZO_ENCOMENDA_LIMITE = new Date("2026-10-01T00:00:00-03:00");
+const mostrarPrazoDia01 = new Date() < PRAZO_ENCOMENDA_LIMITE;
+
+if(mostrarPrazoDia01){
+  document.getElementById("avisoPrazo").innerHTML =
+    '<strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. As camisas deste lote têm previsão de ficar prontas até <strong>01/10/2026</strong>. Quando estiverem prontas, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.';
+
+  const linhaPrevisao = document.getElementById("linhaPrevisao");
+  if(linhaPrevisao){
+    linhaPrevisao.style.display = "inline";
+  }
+}
+
+const formArea = document.getElementById("formArea");
+const form = document.getElementById("formEncomenda");
+const enviar = document.getElementById("enviar");
+const feedback = document.getElementById("feedback");
+const sucesso = document.getElementById("sucesso");
+const sucessoTexto = document.getElementById("sucessoTexto");
+
+function dinheiro(valor){
+  return Number(valor || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+}
+
+function mostrarErro(texto){
+  feedback.textContent = texto;
+  feedback.className = "feedback show error";
+}
+
+function limparErro(){
+  feedback.textContent = "";
+  feedback.className = "feedback";
+}
+
+function pegarRascunho(){
+  try{
+    const bruto = localStorage.getItem("anarkaEncomendaRascunho");
+    const dados = bruto ? JSON.parse(bruto) : null;
+    if(!dados || !dados.produto_id || !["P","M","G"].includes(dados.tamanho)) return null;
+    dados.quantidade = Math.max(1,Math.min(20,Number(dados.quantidade)||1));
+    return dados;
+  }catch{
+    return null;
+  }
+}
+
+const rascunho = pegarRascunho();
+if(!rascunho){
+  window.location.replace("catalogo.html");
+}
+
+let produtoBanco = null;
+
+async function carregar(){
+  const { data: produto, error: produtoErro } = await supabase
+    .from("produtos")
+    .select("id,slug,nome,preco,imagem,ativo")
+    .eq("id",rascunho.produto_id)
+    .eq("ativo",true)
+    .single();
+
+  if(produtoErro || !produto){
+    mostrarErro("Não foi possível carregar essa peça.");
+    enviar.disabled = true;
+    return;
+  }
+
+  produtoBanco = produto;
+
+  const { data: estoque, error: estoqueErro } = await supabase
+    .from("estoque")
+    .select("quantidade")
+    .eq("produto_id",produto.id)
+    .eq("tamanho",rascunho.tamanho)
+    .single();
+
+  if(estoqueErro){
+    mostrarErro("Não foi possível confirmar a disponibilidade agora.");
+    enviar.disabled = true;
+    return;
+  }
+
+  if(Number(estoque?.quantidade || 0) > 0){
+    mostrarErro("Esse tamanho voltou ao estoque. Volte para a página do produto para comprar normalmente com pronta entrega.");
+    enviar.disabled = true;
+    return;
+  }
+
+  document.getElementById("produtoImagem").src = rascunho.imagem || produto.imagem || "/anarka-logo.png";
+  document.getElementById("produtoNome").textContent = produto.nome;
+  document.getElementById("produtoTamanho").textContent = rascunho.tamanho;
+  document.getElementById("produtoQuantidade").textContent = rascunho.quantidade;
+  document.getElementById("produtoPreco").textContent = `${dinheiro(produto.preco)} cada — sem cobrança agora`;
+
+  const { data:{ user } } = await supabase.auth.getUser();
+  if(user){
+    document.getElementById("nome").value = user.user_metadata?.nome || "";
+    document.getElementById("email").value = user.email || "";
+  }
+}
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  limparErro();
+
+  if(!produtoBanco){
+    mostrarErro("Produto ainda não foi carregado.");
+    return;
+  }
+
+  const nome = document.getElementById("nome").value.trim();
+  const whatsapp = document.getElementById("whatsapp").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const observacao = document.getElementById("observacao").value.trim();
+  const digitos = whatsapp.replace(/\D/g,"");
+
+  if(nome.length < 2){
+    mostrarErro("Digite seu nome.");
+    return;
+  }
+
+  if(digitos.length < 10){
+    mostrarErro("Digite um WhatsApp válido com DDD.");
+    return;
+  }
+
+  enviar.disabled = true;
+  enviar.textContent = "CONFIRMANDO...";
+
+  try{
+    const { data: estoque, error: estoqueErro } = await supabase
+      .from("estoque")
+      .select("quantidade")
+      .eq("produto_id",produtoBanco.id)
+      .eq("tamanho",rascunho.tamanho)
+      .single();
+
+    if(estoqueErro) throw estoqueErro;
+
+    if(Number(estoque?.quantidade || 0) > 0){
+      throw new Error("ESTOQUE_VOLTOU");
+    }
+
+    const { error } = await supabase
+      .from("encomendas")
+      .insert({
+        produto_id: produtoBanco.id,
+        tamanho: rascunho.tamanho,
+        quantidade: rascunho.quantidade,
+        nome_cliente: nome,
+        whatsapp,
+        email_cliente: email || null,
+        observacao: observacao || null
+      });
+
+    if(error) throw error;
+
+    localStorage.removeItem("anarkaEncomendaRascunho");
+    formArea.style.display = "none";
+    sucesso.classList.add("show");
+    sucessoTexto.innerHTML =
+      `Encomenda confirmada para <strong>${rascunho.quantidade}x ${produtoBanco.nome}</strong>, tamanho <strong>${rascunho.tamanho}</strong>. Você não paga nada agora.` +
+      (
+        mostrarPrazoDia01
+          ? ` A previsão é a peça ficar pronta até <strong>01/10/2026</strong>.`
+          : ``
+      ) +
+      ` Quando estiver pronta, entraremos em contato no WhatsApp informado para combinar o pagamento.`;
+
+  }catch(erro){
+    console.error(erro);
+    if(String(erro?.message || erro).includes("ESTOQUE_VOLTOU")){
+      mostrarErro("Esse tamanho voltou ao estoque durante a confirmação. Você já pode comprar normalmente pela página do produto.");
+    }else{
+      mostrarErro("Não foi possível registrar a encomenda agora. Tente novamente.");
+    }
+    enviar.disabled = false;
+    enviar.textContent = "CONFIRMAR ENCOMENDA — R$ 0 AGORA →";
+  }
+});
+
+await carregar();
+</script>
+</body>
+</html>
