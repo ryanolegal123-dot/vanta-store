@@ -6,19 +6,19 @@
 
 <title>ANARKA | Streetwear & Contracultura</title>
 
-<meta name="description" content="ANARKA — Streetwear underground, atitude e contracultura. Vista o que você pensa.">
-
-<!-- GOOGLE SEARCH CONSOLE - PRESERVADO -->
 <meta
-name="google-site-verification"
-content="aw0StDDXTsw8jD0um-LOj1K_8HRT_S3uJOOHZVIo05I"
+  name="description"
+  content="ANARKA — Streetwear underground, atitude e contracultura. Drop 001 disponível."
 >
 
-<link rel="icon" type="image/png" href="/anarka-favicon.png">
-<link rel="shortcut icon" type="image/png" href="/anarka-favicon.png">
+<meta
+  name="google-site-verification"
+  content="aw0StDDXTsw8jD0um-LOj1K_8HRT_S3uJOOHZVIo05I"
+>
+
+<link rel="icon" href="/favicon.png">
 
 <style>
-
 *{
   margin:0;
   padding:0;
@@ -36,6 +36,23 @@ body{
   overflow-x:hidden;
 }
 
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      #fff 0,
+      #fff 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
 a{
   color:inherit;
   text-decoration:none;
@@ -47,28 +64,7 @@ img{
 }
 
 /* =========================
-   TEXTURA
-========================= */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9999;
-  opacity:.035;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      #fff 0,
-      #fff 1px,
-      transparent 1px,
-      transparent 3px
-    );
-}
-
-/* =========================
-   TOP BAR
+   TOPBAR
 ========================= */
 
 .topbar{
@@ -99,22 +95,16 @@ header{
   z-index:1000;
 }
 
-.logo-link{
-  display:flex;
-  align-items:center;
-}
-
 .logo{
   width:135px;
   height:70px;
   object-fit:contain;
-  filter:contrast(1.2);
 }
 
 nav{
   display:flex;
   align-items:center;
-  gap:34px;
+  gap:30px;
 }
 
 nav a{
@@ -122,46 +112,7 @@ nav a{
   font-weight:900;
   letter-spacing:2px;
   text-transform:uppercase;
-  position:relative;
 }
-
-nav a:not(.cart-link):not(.account-link)::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-8px;
-  width:0;
-  height:2px;
-  background:#d60000;
-  transition:.2s;
-}
-
-nav a:hover::after{
-  width:100%;
-}
-
-/* CONTA */
-
-.account-link{
-  border:1px solid #333;
-  padding:11px 15px;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  transition:.2s;
-}
-
-.account-link:hover{
-  border-color:#d60000;
-  color:#fff;
-}
-
-.account-icon{
-  color:#d60000;
-  font-size:14px;
-}
-
-/* CARRINHO */
 
 .cart-link{
   border:1px solid #444;
@@ -219,9 +170,9 @@ nav a:hover::after{
   background:
     linear-gradient(
       90deg,
-      rgba(0,0,0,.94) 0%,
-      rgba(0,0,0,.63) 42%,
-      rgba(0,0,0,.20) 75%
+      rgba(0,0,0,.96) 0%,
+      rgba(0,0,0,.68) 42%,
+      rgba(0,0,0,.22) 75%
     ),
     linear-gradient(
       0deg,
@@ -257,7 +208,7 @@ nav a:hover::after{
   font-weight:1000;
   letter-spacing:-7px;
   text-transform:uppercase;
-  max-width:900px;
+  max-width:950px;
 }
 
 .hero h1 span{
@@ -266,7 +217,7 @@ nav a:hover::after{
 
 .hero p{
   margin-top:28px;
-  max-width:540px;
+  max-width:560px;
   color:#d0d0d0;
   font-size:17px;
   line-height:1.6;
@@ -321,7 +272,7 @@ nav a:hover::after{
   border-bottom:1px solid #292929;
   background:#0c0c0c;
   padding:15px 0;
-  transform:rotate(-.4deg) scale(1.01);
+  transform:rotate(-.35deg) scale(1.01);
 }
 
 .marquee-track{
@@ -358,6 +309,20 @@ nav a:hover::after{
   padding:100px 6%;
 }
 
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:48px;
+}
+
+.section-head p{
+  max-width:420px;
+  color:#999;
+  line-height:1.7;
+}
+
 .section-label{
   color:#d60000;
   font-size:11px;
@@ -380,89 +345,110 @@ nav a:hover::after{
   -webkit-text-stroke:1px #fff;
 }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:30px;
-  margin-bottom:50px;
-}
-
-.section-head p{
-  max-width:400px;
-  color:#999;
-  line-height:1.7;
-}
-
 /* =========================
-   CATEGORIAS
+   DROP 001
 ========================= */
 
-.categories{
+.drop-grid{
   display:grid;
-  grid-template-columns:1.3fr 1fr 1fr;
-  gap:13px;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
 }
 
-.category{
-  min-height:510px;
-  border:1px solid #292929;
+.drop-card{
   position:relative;
+  border:1px solid #292929;
+  background:#090909;
   overflow:hidden;
-  background:#111;
+  transition:.2s;
 }
 
-.category img{
-  position:absolute;
-  inset:0;
+.drop-card:hover{
+  border-color:#777;
+  transform:translateY(-5px);
+}
+
+.drop-image{
+  position:relative;
+  aspect-ratio:4/5;
+  background:#111;
+  overflow:hidden;
+}
+
+.drop-image img{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:grayscale(1) contrast(1.15);
-  transition:.4s;
+  transition:.35s;
 }
 
-.category::after{
-  content:"";
+.drop-card:hover .drop-image img{
+  transform:scale(1.035);
+}
+
+.drop-badge{
   position:absolute;
-  inset:0;
-  background:linear-gradient(
-    0deg,
-    rgba(0,0,0,.95),
-    transparent 65%
-  );
-}
-
-.category:hover img{
-  transform:scale(1.045);
-  filter:grayscale(.3) contrast(1.2);
-}
-
-.category-info{
-  position:absolute;
-  left:25px;
-  right:25px;
-  bottom:25px;
+  left:10px;
+  top:10px;
   z-index:2;
+  background:#d60000;
+  color:#fff;
+  padding:7px 10px;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:1.3px;
 }
 
-.category-number{
-  color:#d60000;
+.drop-number{
+  position:absolute;
+  right:12px;
+  top:10px;
+  z-index:2;
+  font-size:10px;
   font-weight:900;
-  font-size:12px;
-}
-
-.category h3{
-  margin-top:5px;
-  font-size:29px;
-  text-transform:uppercase;
-  letter-spacing:-1px;
-}
-
-.category p{
-  margin-top:8px;
   color:#aaa;
-  font-size:13px;
+}
+
+.drop-info{
+  padding:19px;
+}
+
+.drop-info small{
+  display:block;
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.6px;
+  margin-bottom:9px;
+}
+
+.drop-info h3{
+  font-size:21px;
+  text-transform:uppercase;
+  letter-spacing:-.6px;
+  line-height:1.05;
+}
+
+.drop-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid #202020;
+}
+
+.price{
+  font-size:20px;
+  font-weight:1000;
+}
+
+.view{
+  color:#d60000;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:1.3px;
 }
 
 /* =========================
@@ -473,8 +459,6 @@ nav a:hover::after{
   border-top:1px solid #222;
   border-bottom:1px solid #222;
   background:#0a0a0a;
-  position:relative;
-  overflow:hidden;
 }
 
 .manifesto{
@@ -488,14 +472,15 @@ nav a:hover::after{
 }
 
 .manifesto-symbol{
-  position:relative;
+  border:1px solid #292929;
+  background:#050505;
+  padding:34px;
 }
 
 .manifesto-symbol img{
   width:100%;
-  max-width:480px;
+  max-width:430px;
   margin:auto;
-  filter:contrast(1.2);
 }
 
 .manifesto-text .small{
@@ -518,91 +503,6 @@ nav a:hover::after{
   font-size:17px;
   line-height:1.8;
   max-width:660px;
-}
-
-.manifesto-text strong{
-  color:#fff;
-}
-
-.spray{
-  color:#d60000;
-}
-
-/* =========================
-   DESTAQUES
-========================= */
-
-.products-preview{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-
-.product{
-  border:1px solid #292929;
-  background:#090909;
-  transition:.2s;
-}
-
-.product:hover{
-  border-color:#777;
-  transform:translateY(-4px);
-}
-
-.product-image{
-  position:relative;
-  aspect-ratio:4/5;
-  overflow:hidden;
-  background:#111;
-}
-
-.product-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:grayscale(.8);
-  transition:.35s;
-}
-
-.product:hover .product-image img{
-  filter:grayscale(0);
-  transform:scale(1.03);
-}
-
-.product-tag{
-  position:absolute;
-  left:10px;
-  top:10px;
-  background:#d60000;
-  padding:6px 9px;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.product-info{
-  padding:17px;
-}
-
-.product-info h3{
-  text-transform:uppercase;
-  font-size:15px;
-  line-height:1.3;
-}
-
-.product-info p{
-  color:#777;
-  font-size:11px;
-  margin-top:6px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-.product-price{
-  display:block;
-  margin-top:13px;
-  font-weight:900;
-  font-size:18px;
 }
 
 /* =========================
@@ -745,31 +645,33 @@ footer{
 }
 
 .footer-brand img{
-  width:170px;
-  height:100px;
-  object-fit:contain;
+  width:150px;
+  margin-bottom:18px;
 }
 
 .footer-brand p{
   color:#777;
-  max-width:420px;
+  max-width:430px;
   line-height:1.7;
   font-size:13px;
 }
 
+.footer-column{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
 .footer-column h4{
-  font-size:11px;
-  letter-spacing:2px;
-  text-transform:uppercase;
   color:#d60000;
-  margin-bottom:20px;
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:5px;
 }
 
 .footer-column a{
-  display:block;
-  color:#888;
-  font-size:13px;
-  margin:12px 0;
+  color:#999;
+  font-size:12px;
 }
 
 .footer-column a:hover{
@@ -791,90 +693,58 @@ footer{
    RESPONSIVO
 ========================= */
 
-@media(max-width:1000px){
-
-  .products-preview{
-    grid-template-columns:repeat(2,1fr);
+@media(max-width:900px){
+  .drop-grid{
+    grid-template-columns:1fr;
   }
 
-  .categories{
+  .drop-card{
+    display:grid;
     grid-template-columns:1fr 1fr;
   }
 
-  .category:first-child{
-    grid-column:1 / 3;
+  .drop-image{
+    aspect-ratio:1/1;
+  }
+
+  .drop-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
   }
 
   .manifesto{
     grid-template-columns:1fr;
     gap:35px;
   }
-
-  .manifesto-symbol img{
-    max-width:380px;
-  }
-
 }
 
 @media(max-width:720px){
-
   header{
     height:72px;
     padding:0 4%;
   }
 
   .logo{
-    width:90px;
+    width:100px;
     height:60px;
   }
 
   nav{
-    gap:7px;
+    gap:10px;
   }
 
-  nav a:not(.cart-link):not(.account-link){
+  nav a:not(.cart-link){
     display:none;
   }
 
-  .account-link{
-    padding:9px 10px;
-    font-size:9px;
-    letter-spacing:.5px;
-  }
-
-  .account-icon{
-    font-size:12px;
-  }
-
   .cart-link{
-    padding:9px 10px;
-    font-size:9px;
-    letter-spacing:.5px;
-  }
-
-  #cartCount{
-    min-width:18px;
-    height:18px;
-    font-size:9px;
+    padding:9px 11px;
+    font-size:10px;
   }
 
   .hero{
     min-height:690px;
-  }
-
-  .hero-bg::after{
-    background:
-      linear-gradient(
-        0deg,
-        #050505 0%,
-        rgba(0,0,0,.5) 55%,
-        rgba(0,0,0,.2)
-      ),
-      linear-gradient(
-        90deg,
-        rgba(0,0,0,.65),
-        transparent
-      );
   }
 
   .hero-content{
@@ -901,16 +771,12 @@ footer{
     margin-top:20px;
   }
 
-  .categories{
-    grid-template-columns:1fr;
+  .drop-card{
+    display:block;
   }
 
-  .category:first-child{
-    grid-column:auto;
-  }
-
-  .category{
-    min-height:420px;
+  .drop-image{
+    aspect-ratio:4/5;
   }
 
   .manifesto{
@@ -919,23 +785,6 @@ footer{
 
   .manifesto-text h2{
     letter-spacing:-2px;
-  }
-
-  .products-preview{
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-  }
-
-  .product-info{
-    padding:12px;
-  }
-
-  .product-info h3{
-    font-size:12px;
-  }
-
-  .product-price{
-    font-size:15px;
   }
 
   .statement{
@@ -964,70 +813,43 @@ footer{
     flex-direction:column;
     gap:10px;
   }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-  ANARKA — STREETWEAR / CONTRACULTURA / SÃO PAULO
+  DROP 001 DISPONÍVEL — 3 CAMISETAS / ESTOQUE LIMITADO
 </div>
 
 <header>
-
-  <a href="index.html" class="logo-link">
+  <a href="index.html">
     <img src="/anarka-logo.png" alt="ANARKA" class="logo">
   </a>
 
   <nav>
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Coleção</a>
+    <a href="#manifesto">Manifesto</a>
 
-    <a href="index.html">
-      Início
-    </a>
-
-    <a href="catalogo.html">
-      Coleção
-    </a>
-
-    <a href="#manifesto">
-      Manifesto
-    </a>
-
-    <!-- CONTA -->
-    <a
-      href="login.html"
-      class="account-link"
-      id="accountLink"
-    >
-      <span class="account-icon">●</span>
-      <span id="accountText">Entrar</span>
-    </a>
-
-    <!-- CARRINHO -->
     <a href="carrinho.html" class="cart-link">
       🛒 Carrinho
       <span id="cartCount">0</span>
     </a>
-
   </nav>
-
 </header>
 
 <!-- HERO -->
 
 <section class="hero">
-
   <div class="hero-bg">
     <img src="/anarka-banner.png" alt="ANARKA Streetwear">
   </div>
 
   <div class="hero-content">
-
     <div class="hero-kicker">
-      NÃO É SÓ ROUPA.
+      DROP 001 / DISPONÍVEL AGORA
     </div>
 
     <h1>
@@ -1036,165 +858,129 @@ footer{
     </h1>
 
     <p>
-      Streetwear criado para quem não nasceu para desaparecer
-      no meio da multidão. Roupa, expressão e contracultura.
+      Três camisetas. Uma identidade. O primeiro drop da ANARKA
+      nasceu para quem prefere existir fora do padrão.
     </p>
 
     <div class="hero-buttons">
-
-      <a href="catalogo.html" class="btn btn-primary">
-        Ver coleção →
+      <a href="#drop001" class="btn btn-primary">
+        Ver Drop 001 →
       </a>
 
-      <a href="#manifesto" class="btn btn-secondary">
-        Nosso manifesto
+      <a href="catalogo.html" class="btn btn-secondary">
+        Abrir coleção
       </a>
-
     </div>
-
   </div>
-
 </section>
 
-<!-- FAIXA -->
+<!-- MARQUEE -->
 
 <div class="marquee">
-
   <div class="marquee-track">
-
     <span>
       ANARKA <b>✦</b>
-      STREETWEAR <b>✦</b>
-      CONTRACULTURA <b>✦</b>
-      EXPRESSÃO <b>✦</b>
-      SEM PADRÕES <b>✦</b>
+      DROP 001 <b>✦</b>
+      CAOS <b>✦</b>
+      AINDA AQUI <b>✦</b>
+      MUNDO EM RUÍNAS <b>✦</b>
       ANARKA <b>✦</b>
-      STREETWEAR <b>✦</b>
-      CONTRACULTURA <b>✦</b>
-      EXPRESSÃO <b>✦</b>
-      SEM PADRÕES <b>✦</b>
+      DROP 001 <b>✦</b>
+      CAOS <b>✦</b>
+      AINDA AQUI <b>✦</b>
+      MUNDO EM RUÍNAS <b>✦</b>
     </span>
 
     <span>
       ANARKA <b>✦</b>
-      STREETWEAR <b>✦</b>
-      CONTRACULTURA <b>✦</b>
-      EXPRESSÃO <b>✦</b>
-      SEM PADRÕES <b>✦</b>
+      DROP 001 <b>✦</b>
+      CAOS <b>✦</b>
+      AINDA AQUI <b>✦</b>
+      MUNDO EM RUÍNAS <b>✦</b>
       ANARKA <b>✦</b>
-      STREETWEAR <b>✦</b>
-      CONTRACULTURA <b>✦</b>
-      EXPRESSÃO <b>✦</b>
-      SEM PADRÕES <b>✦</b>
+      DROP 001 <b>✦</b>
+      CAOS <b>✦</b>
+      AINDA AQUI <b>✦</b>
+      MUNDO EM RUÍNAS <b>✦</b>
     </span>
-
   </div>
-
 </div>
 
-<!-- CATEGORIAS -->
+<!-- DROP -->
 
-<section class="section">
+<section class="section" id="drop001">
 
   <div class="section-head">
-
     <div>
-
-      <div class="section-label">
-        01 / COLEÇÃO
-      </div>
+      <div class="section-label">01 / DROP 001</div>
 
       <h2 class="section-title">
-        ESCOLHA SEU<br>
-        <span class="outline">
-          UNIFORME.
-        </span>
+        TRÊS PEÇAS.<br>
+        <span class="outline">UMA IDENTIDADE.</span>
       </h2>
-
     </div>
 
     <p>
-      Peças urbanas, silhuetas pesadas e uma estética feita
-      para existir fora do padrão.
+      O primeiro drop da ANARKA é formado exclusivamente
+      pelas três camisetas abaixo. Sem cargos, moletons ou
+      produtos antigos.
     </p>
-
   </div>
 
-  <div class="categories">
+  <div class="drop-grid">
 
-    <a href="catalogo.html" class="category">
-
-      <img
-        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85"
-        alt="Camisetas ANARKA"
-      >
-
-      <div class="category-info">
-
-        <span class="category-number">
-          01
-        </span>
-
-        <h3>
-          Camisetas
-        </h3>
-
-        <p>
-          Oversized / Boxy / Street
-        </p>
-
+    <a href="produto.html?id=caos" class="drop-card">
+      <div class="drop-image">
+        <img src="/Caos.png" alt="ANARKA — Caos">
+        <span class="drop-badge">DROP 001</span>
+        <span class="drop-number">01</span>
       </div>
 
+      <div class="drop-info">
+        <small>ANARKA / TEE 001</small>
+        <h3>ANARKA — CAOS</h3>
+
+        <div class="drop-bottom">
+          <span class="price">R$ 56,99</span>
+          <span class="view">VER PEÇA →</span>
+        </div>
+      </div>
     </a>
 
-    <a href="catalogo.html" class="category">
-
-      <img
-        src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85"
-        alt="Calças ANARKA"
-      >
-
-      <div class="category-info">
-
-        <span class="category-number">
-          02
-        </span>
-
-        <h3>
-          Calças
-        </h3>
-
-        <p>
-          Cargo / Jogger / Denim
-        </p>
-
+    <a href="produto.html?id=ainda-aqui" class="drop-card">
+      <div class="drop-image">
+        <img src="/ainda-aqui.png" alt="ANARKA — Ainda Aqui">
+        <span class="drop-badge">DROP 001</span>
+        <span class="drop-number">02</span>
       </div>
 
+      <div class="drop-info">
+        <small>ANARKA / TEE 002</small>
+        <h3>ANARKA — AINDA AQUI</h3>
+
+        <div class="drop-bottom">
+          <span class="price">R$ 56,99</span>
+          <span class="view">VER PEÇA →</span>
+        </div>
+      </div>
     </a>
 
-    <a href="catalogo.html" class="category">
-
-      <img
-        src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85"
-        alt="Moletons ANARKA"
-      >
-
-      <div class="category-info">
-
-        <span class="category-number">
-          03
-        </span>
-
-        <h3>
-          Outerwear
-        </h3>
-
-        <p>
-          Hoodies / Jackets / Overshirts
-        </p>
-
+    <a href="produto.html?id=mundo-em-ruinas" class="drop-card">
+      <div class="drop-image">
+        <img src="/mundo-em-ruinas.png" alt="ANARKA — Mundo em Ruínas">
+        <span class="drop-badge">DROP 001</span>
+        <span class="drop-number">03</span>
       </div>
 
+      <div class="drop-info">
+        <small>ANARKA / TEE 003</small>
+        <h3>ANARKA — MUNDO EM RUÍNAS</h3>
+
+        <div class="drop-bottom">
+          <span class="price">R$ 56,99</span>
+          <span class="view">VER PEÇA →</span>
+        </div>
+      </div>
     </a>
 
   </div>
@@ -1203,503 +989,183 @@ footer{
 
 <!-- MANIFESTO -->
 
-<section
-  class="manifesto-wrap"
-  id="manifesto"
->
-
+<section class="manifesto-wrap" id="manifesto">
   <div class="manifesto">
 
     <div class="manifesto-symbol">
-
-      <img
-        src="/anarka-logo.png"
-        alt="Símbolo ANARKA"
-      >
-
+      <img src="/anarka-logo.png" alt="Símbolo ANARKA">
     </div>
 
     <div class="manifesto-text">
-
-      <span class="small">
-        02 / MANIFESTO
-      </span>
+      <span class="small">02 / MANIFESTO</span>
 
       <h2>
-        NÃO NASCEMOS<br>
-        PARA <span class="spray">CABER.</span>
+        NÃO É SOBRE<br>
+        SE ENCAIXAR.
       </h2>
 
       <p>
-        A ANARKA nasce da ideia de que roupa também é linguagem.
-        Não acreditamos que estilo precise pedir permissão.
-        <strong>
-          Vestir é escolher como você aparece para o mundo.
-        </strong>
-        Nossa estética vem das ruas, da música, do underground,
-        do DIY e de quem constrói a própria identidade.
+        A ANARKA nasce da vontade de transformar roupa em presença.
+        O Drop 001 não tenta agradar todo mundo: ele existe para quem
+        encontra identidade no caos, permanece ainda aqui e olha para
+        um mundo em ruínas sem desaparecer dentro dele.
       </p>
-
     </div>
 
   </div>
-
-</section>
-
-<!-- PRODUTOS -->
-
-<section class="section">
-
-  <div class="section-head">
-
-    <div>
-
-      <div class="section-label">
-        03 / DESTAQUES
-      </div>
-
-      <h2 class="section-title">
-        PEÇAS EM<br>
-        <span class="outline">
-          DESTAQUE.
-        </span>
-      </h2>
-
-    </div>
-
-    <a
-      href="catalogo.html"
-      class="btn btn-secondary"
-    >
-      Ver tudo →
-    </a>
-
-  </div>
-
-  <div class="products-preview">
-
-    <a
-      href="produto.html?id=oversized"
-      class="product"
-    >
-
-      <div class="product-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=85"
-          alt="Oversized Essential Black"
-        >
-
-        <span class="product-tag">
-          ESSENTIAL
-        </span>
-
-      </div>
-
-      <div class="product-info">
-
-        <h3>
-          Oversized Essential Black
-        </h3>
-
-        <p>
-          ANARKA / TEE
-        </p>
-
-        <span class="product-price">
-          R$ 89,90
-        </span>
-
-      </div>
-
-    </a>
-
-
-    <a
-      href="produto.html?id=cargo"
-      class="product"
-    >
-
-      <div class="product-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85"
-          alt="Cargo Urban Black"
-        >
-
-        <span class="product-tag">
-          URBAN
-        </span>
-
-      </div>
-
-      <div class="product-info">
-
-        <h3>
-          Cargo Urban Black
-        </h3>
-
-        <p>
-          ANARKA / CARGO
-        </p>
-
-        <span class="product-price">
-          R$ 129,90
-        </span>
-
-      </div>
-
-    </a>
-
-
-    <a
-      href="produto.html?id=moletom"
-      class="product"
-    >
-
-      <div class="product-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=85"
-          alt="Essential Hoodie"
-        >
-
-        <span class="product-tag">
-          HOODIE
-        </span>
-
-      </div>
-
-      <div class="product-info">
-
-        <h3>
-          Essential Hoodie
-        </h3>
-
-        <p>
-          ANARKA / HEAVY
-        </p>
-
-        <span class="product-price">
-          R$ 149,90
-        </span>
-
-      </div>
-
-    </a>
-
-
-    <a
-      href="produto.html?id=boneblack"
-      class="product"
-    >
-
-      <div class="product-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=85"
-          alt="ANARKA Cap Black"
-        >
-
-        <span class="product-tag">
-          ACCESSORY
-        </span>
-
-      </div>
-
-      <div class="product-info">
-
-        <h3>
-          ANARKA Cap Black
-        </h3>
-
-        <p>
-          ANARKA / ACCESSORY
-        </p>
-
-        <span class="product-price">
-          R$ 49,90
-        </span>
-
-      </div>
-
-    </a>
-
-  </div>
-
 </section>
 
 <!-- FRASE -->
 
 <section class="statement">
-
   <div class="statement-inner">
-
     <h2>
       MESMO MUNDO.<br>
-      <span>
-        OUTRA MENTALIDADE.
-      </span>
+      <span>OUTRA MENTALIDADE.</span>
     </h2>
-
   </div>
-
 </section>
 
 <!-- BENEFÍCIOS -->
 
 <section class="section">
-
   <div class="benefits">
 
     <div class="benefit">
-
-      <span class="benefit-number">
-        01
-      </span>
-
-      <h3>
-        Identidade
-      </h3>
-
+      <span class="benefit-number">01</span>
+      <h3>Estoque real</h3>
       <p>
-        Peças escolhidas para construir presença,
-        não para desaparecer no padrão.
+        Disponibilidade por tamanho ligada ao estoque
+        atual da ANARKA.
       </p>
-
     </div>
 
-
     <div class="benefit">
-
-      <span class="benefit-number">
-        02
-      </span>
-
-      <h3>
-        Compra segura
-      </h3>
-
+      <span class="benefit-number">02</span>
+      <h3>Frete calculado</h3>
       <p>
-        Seu pedido é registrado e acompanhado
-        durante todo o processo.
+        Informe seu CEP no checkout e escolha a opção
+        de entrega disponível.
       </p>
-
     </div>
 
-
     <div class="benefit">
-
-      <span class="benefit-number">
-        03
-      </span>
-
-      <h3>
-        Atendimento
-      </h3>
-
+      <span class="benefit-number">03</span>
+      <h3>Acompanhamento</h3>
       <p>
-        Comunicação direta para acompanhar
-        dúvidas e informações do seu pedido.
+        Cada pedido fica vinculado à conta do cliente
+        para acompanhar o andamento.
       </p>
-
     </div>
 
   </div>
-
 </section>
 
 <!-- CTA -->
 
 <section class="cta">
-
   <div class="cta-box">
-
     <h2>
-      NÃO VISTA O PADRÃO.
+      O DROP JÁ COMEÇOU.
     </h2>
 
     <p>
-      Conheça a primeira coleção ANARKA e construa
-      sua própria presença.
+      Escolha uma das três peças do Drop 001
+      e entre na primeira coleção da ANARKA.
     </p>
 
-    <a
-      href="catalogo.html"
-      class="btn btn-primary"
-    >
+    <a href="catalogo.html" class="btn btn-primary">
       Explorar coleção →
     </a>
-
   </div>
-
 </section>
 
 <!-- FOOTER -->
 
 <footer>
-
   <div class="footer-inner">
 
     <div class="footer-top">
 
       <div class="footer-brand">
-
-        <img
-          src="/anarka-logo.png"
-          alt="ANARKA"
-        >
+        <img src="/anarka-logo.png" alt="ANARKA">
 
         <p>
           Streetwear, expressão e contracultura.
           Criada para quem prefere construir a própria identidade
           em vez de receber uma pronta.
         </p>
-
       </div>
 
-
       <div class="footer-column">
-
-        <h4>
-          Navegação
-        </h4>
-
-        <a href="index.html">
-          Início
-        </a>
-
-        <a href="catalogo.html">
-          Coleção
-        </a>
-
-        <a href="carrinho.html">
-          Carrinho
-        </a>
-
-        <a
-          href="login.html"
-          id="footerAccountLink"
-        >
-          Entrar / Criar conta
-        </a>
-
+        <h4>NAVEGAÇÃO</h4>
+        <a href="index.html">Início</a>
+        <a href="catalogo.html">Coleção</a>
+        <a href="carrinho.html">Carrinho</a>
       </div>
 
-
       <div class="footer-column">
-
-        <h4>
-          ANARKA
-        </h4>
-
-        <a href="#manifesto">
-          Manifesto
-        </a>
-
-        <a href="privacidade.html">
-          Privacidade
-        </a>
-
+        <h4>ANARKA</h4>
+        <a href="#manifesto">Manifesto</a>
+        <a href="privacidade.html">Privacidade</a>
       </div>
 
     </div>
 
-
     <div class="footer-bottom">
-
-      <span>
-        © 2026 ANARKA.
-      </span>
-
-      <span>
-        STREETWEAR / SÃO PAULO
-      </span>
-
+      <span>© 2026 ANARKA.</span>
+      <span>STREETWEAR / SÃO PAULO</span>
     </div>
 
   </div>
-
 </footer>
 
-
-<!-- ================================
-     CARRINHO
-================================ -->
-
 <script>
-
-/*
-  IMPORTANTE:
-  mantemos "vantaCarrinho" internamente para continuar
-  compatível com o carrinho atual.
-*/
-
 function atualizarCarrinho(){
 
   let carrinho;
 
   try{
-
     carrinho =
       JSON.parse(
         localStorage.getItem(
           "vantaCarrinho"
         )
       ) || [];
-
   }catch{
-
     carrinho = [];
-
   }
 
-
-  if(
-    !Array.isArray(
-      carrinho
-    )
-  ){
-
+  if(!Array.isArray(carrinho)){
     carrinho =
       carrinho
         ? [carrinho]
         : [];
-
   }
-
 
   const quantidade =
     carrinho.reduce(
       (total,item)=>{
-
         return total +
           (
             Number(
               item.quantidade
             ) || 1
           );
-
       },
       0
     );
-
 
   const contador =
     document.getElementById(
       "cartCount"
     );
 
-
   if(contador){
-
     contador.textContent =
       quantidade;
-
   }
-
 }
-
 
 atualizarCarrinho();
 
@@ -1707,179 +1173,6 @@ window.addEventListener(
   "storage",
   atualizarCarrinho
 );
-
-</script>
-
-
-<!-- ================================
-     SUPABASE / CONTA DO CLIENTE
-================================ -->
-
-<script type="module">
-
-import {
-  createClient
-} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-
-const SUPABASE_URL =
-  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
-
-
-const SUPABASE_KEY =
-  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
-
-
-const supabase =
-  createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-
-
-const accountLink =
-  document.getElementById(
-    "accountLink"
-  );
-
-
-const accountText =
-  document.getElementById(
-    "accountText"
-  );
-
-
-const footerAccountLink =
-  document.getElementById(
-    "footerAccountLink"
-  );
-
-
-/* ================================
-   VERIFICAR LOGIN
-================================ */
-
-async function verificarConta(){
-
-  try{
-
-    const {
-      data:{
-        session
-      }
-    } =
-      await supabase.auth
-        .getSession();
-
-
-    if(
-      session &&
-      session.user
-    ){
-
-      accountLink.href =
-        "minha-conta.html";
-
-
-      accountText.textContent =
-        "Minha conta";
-
-
-      footerAccountLink.href =
-        "minha-conta.html";
-
-
-      footerAccountLink.textContent =
-        "Minha conta";
-
-
-      return;
-
-    }
-
-
-    accountLink.href =
-      "login.html";
-
-
-    accountText.textContent =
-      "Entrar";
-
-
-    footerAccountLink.href =
-      "login.html";
-
-
-    footerAccountLink.textContent =
-      "Entrar / Criar conta";
-
-
-  }catch(erro){
-
-    console.error(
-      "Erro ao verificar conta:",
-      erro
-    );
-
-
-    accountLink.href =
-      "login.html";
-
-
-    accountText.textContent =
-      "Entrar";
-
-  }
-
-}
-
-
-await verificarConta();
-
-
-/* ================================
-   ATUALIZA SE LOGIN MUDAR
-================================ */
-
-supabase.auth.onAuthStateChange(
-  (evento,session)=>{
-
-    if(
-      session &&
-      session.user
-    ){
-
-      accountLink.href =
-        "minha-conta.html";
-
-      accountText.textContent =
-        "Minha conta";
-
-      footerAccountLink.href =
-        "minha-conta.html";
-
-      footerAccountLink.textContent =
-        "Minha conta";
-
-    }else{
-
-      accountLink.href =
-        "login.html";
-
-      accountText.textContent =
-        "Entrar";
-
-      footerAccountLink.href =
-        "login.html";
-
-      footerAccountLink.textContent =
-        "Entrar / Criar conta";
-
-    }
-
-  }
-);
-
 </script>
 
 </body>
