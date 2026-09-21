@@ -52,8 +52,8 @@ footer{padding:35px;border-top:1px solid #222;text-align:center;color:#555;font-
   <h1>RESERVE AGORA.<br><span>PAGUE DEPOIS.</span></h1>
   <p class="intro">Quando um tamanho está sem pronta entrega, você pode registrar uma encomenda. Nenhuma cobrança é feita agora.</p>
 
-  <div class="notice">
-    <strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. As camisas deste lote têm previsão de ficar prontas até <strong>01/10/2026</strong>. Quando estiverem prontas, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.
+  <div class="notice" id="avisoPrazo">
+    <strong>Como funciona:</strong> você registra a peça e o tamanho agora, <b>sem pagar</b>. <span id="textoPrazoTopo"></span>Quando estiver pronta, a ANARKA entra em contato pelo WhatsApp para combinar o pagamento e os próximos passos.
   </div>
 
   <div id="formArea" class="grid">
@@ -66,8 +66,8 @@ footer{padding:35px;border-top:1px solid #222;text-align:center;color:#555;font-
           <h2 id="produtoNome">CARREGANDO...</h2>
           <div class="meta">
             Tamanho: <strong id="produtoTamanho">—</strong><br>
-            Quantidade: <strong id="produtoQuantidade">1</strong><br>
-            Previsão: <strong>01/10/2026</strong>
+            Quantidade: <strong id="produtoQuantidade">1</strong><span id="linhaPrevisao" style="display:none"><br>
+            Previsão: <strong>01/10/2026</strong></span>
           </div>
           <div class="price" id="produtoPreco">—</div>
         </div>
@@ -119,6 +119,29 @@ const SUPABASE_URL = "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
 const SUPABASE_KEY = "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
 const supabase = createClient(SUPABASE_URL,SUPABASE_KEY);
 
+
+const PRAZO_ENCOMENDA_LIMITE =
+  new Date("2026-10-01T00:00:00-03:00");
+
+const mostrarPrazoDia01 =
+  new Date() <
+  PRAZO_ENCOMENDA_LIMITE;
+
+const linhaPrevisao =
+  document.getElementById("linhaPrevisao");
+
+const textoPrazoTopo =
+  document.getElementById("textoPrazoTopo");
+
+if(mostrarPrazoDia01){
+  linhaPrevisao.style.display = "";
+  textoPrazoTopo.innerHTML =
+    'As camisas deste lote têm previsão de ficar prontas até <strong>01/10/2026</strong>. ';
+}else{
+  linhaPrevisao.style.display = "none";
+  textoPrazoTopo.textContent = "";
+}
+
 const formArea = document.getElementById("formArea");
 const form = document.getElementById("formEncomenda");
 const enviar = document.getElementById("enviar");
@@ -141,11 +164,72 @@ function limparErro(){
 }
 
 function pegarRascunho(){
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const produtoId =
+    Number(
+      params.get("produto_id")
+    );
+
+  const tamanho =
+    String(
+      params.get("tamanho") || ""
+    ).toUpperCase();
+
+  const quantidade =
+    Math.max(
+      1,
+      Math.min(
+        20,
+        Number(
+          params.get("quantidade")
+        ) || 1
+      )
+    );
+
+  if(
+    produtoId > 0 &&
+    ["P","M","G"].includes(tamanho)
+  ){
+    return {
+      produto_id: produtoId,
+      tamanho,
+      quantidade,
+      imagem: null
+    };
+  }
+
   try{
-    const bruto = localStorage.getItem("anarkaEncomendaRascunho");
-    const dados = bruto ? JSON.parse(bruto) : null;
-    if(!dados || !dados.produto_id || !["P","M","G"].includes(dados.tamanho)) return null;
-    dados.quantidade = Math.max(1,Math.min(20,Number(dados.quantidade)||1));
+    const bruto =
+      localStorage.getItem(
+        "anarkaEncomendaRascunho"
+      );
+
+    const dados =
+      bruto
+        ? JSON.parse(bruto)
+        : null;
+
+    if(
+      !dados ||
+      !dados.produto_id ||
+      !["P","M","G"].includes(dados.tamanho)
+    ){
+      return null;
+    }
+
+    dados.quantidade =
+      Math.max(
+        1,
+        Math.min(
+          20,
+          Number(dados.quantidade) || 1
+        )
+      );
+
     return dados;
   }catch{
     return null;
@@ -249,31 +333,82 @@ form.addEventListener("submit", async event => {
       throw new Error("ESTOQUE_VOLTOU");
     }
 
-    const { error } = await supabase
-      .from("encomendas")
-      .insert({
-        produto_id: produtoBanco.id,
-        tamanho: rascunho.tamanho,
-        quantidade: rascunho.quantidade,
-        nome_cliente: nome,
-        whatsapp,
-        email_cliente: email || null,
-        observacao: observacao || null
-      });
+    const {
+      data: encomendaId,
+      error
+    } = await supabase
+      .rpc(
+        "criar_encomenda",
+        {
+          p_produto_id:
+            produtoBanco.id,
 
-    if(error) throw error;
+          p_tamanho:
+            rascunho.tamanho,
+
+          p_quantidade:
+            rascunho.quantidade,
+
+          p_nome_cliente:
+            nome,
+
+          p_whatsapp:
+            whatsapp,
+
+          p_email_cliente:
+            email || null,
+
+          p_observacao:
+            observacao || null
+        }
+      );
+
+    if(error){
+      throw error;
+    }
 
     localStorage.removeItem("anarkaEncomendaRascunho");
     formArea.style.display = "none";
     sucesso.classList.add("show");
-    sucessoTexto.innerHTML = `Encomenda confirmada para <strong>${rascunho.quantidade}x ${produtoBanco.nome}</strong>, tamanho <strong>${rascunho.tamanho}</strong>. Você não paga nada agora. A previsão é a peça ficar pronta até <strong>01/10/2026</strong>. Quando estiver pronta, entraremos em contato no WhatsApp informado para combinar o pagamento.`;
+    sucessoTexto.innerHTML =
+      `Encomenda confirmada para <strong>${rascunho.quantidade}x ${produtoBanco.nome}</strong>, tamanho <strong>${rascunho.tamanho}</strong>. Você não paga nada agora.`
+      +
+      (
+        mostrarPrazoDia01
+          ? ` A previsão é a peça ficar pronta até <strong>01/10/2026</strong>.`
+          : ``
+      )
+      +
+      ` Quando estiver pronta, entraremos em contato no WhatsApp informado para combinar o pagamento.`;
 
   }catch(erro){
     console.error(erro);
-    if(String(erro?.message || erro).includes("ESTOQUE_VOLTOU")){
-      mostrarErro("Esse tamanho voltou ao estoque durante a confirmação. Você já pode comprar normalmente pela página do produto.");
+    const mensagemErro =
+      String(
+        erro?.message ||
+        erro ||
+        ""
+      );
+
+    if(
+      mensagemErro.includes("ESTOQUE_VOLTOU") ||
+      mensagemErro.includes("ESTOQUE_DISPONIVEL")
+    ){
+      mostrarErro(
+        "Esse tamanho voltou ao estoque durante a confirmação. Você já pode comprar normalmente pela página do produto."
+      );
+    }else if(
+      mensagemErro.includes("TAMANHO_INVALIDO") ||
+      mensagemErro.includes("QUANTIDADE_INVALIDA") ||
+      mensagemErro.includes("PRODUTO_INVALIDO")
+    ){
+      mostrarErro(
+        "Os dados da encomenda ficaram inválidos. Volte para a peça e tente novamente."
+      );
     }else{
-      mostrarErro("Não foi possível registrar a encomenda agora. Tente novamente.");
+      mostrarErro(
+        "Não foi possível registrar a encomenda agora. Atualize a página e tente novamente."
+      );
     }
     enviar.disabled = false;
     enviar.textContent = "CONFIRMAR ENCOMENDA — R$ 0 AGORA →";
