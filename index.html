@@ -738,6 +738,13 @@ footer{
     display:none;
   }
 
+  .account-menu-button{
+    display:inline-flex;
+    font-size:9px;
+    letter-spacing:1px;
+    white-space:nowrap;
+  }
+
   .cart-link{
     padding:9px 11px;
     font-size:10px;
@@ -814,6 +821,181 @@ footer{
     gap:10px;
   }
 }
+
+
+/* =========================
+   MENU LATERAL / CONTA
+========================= */
+
+.account-menu-button{
+  border:0;
+  background:none;
+  color:#fff;
+  cursor:pointer;
+  font:inherit;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.account-menu-button:hover{
+  color:#d60000;
+}
+
+.drawer-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:2500;
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(3px);
+  opacity:0;
+  visibility:hidden;
+  transition:.22s ease;
+}
+
+.drawer-backdrop.ativo{
+  opacity:1;
+  visibility:visible;
+}
+
+.account-drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  z-index:2600;
+  width:min(390px,92vw);
+  height:100dvh;
+  background:#080808;
+  border-left:1px solid #2c2c2c;
+  transform:translateX(100%);
+  transition:transform .26s ease;
+  display:flex;
+  flex-direction:column;
+  box-shadow:-18px 0 40px rgba(0,0,0,.38);
+}
+
+.account-drawer.ativo{
+  transform:translateX(0);
+}
+
+.drawer-top{
+  min-height:88px;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #242424;
+}
+
+.drawer-top span{
+  color:#d60000;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+}
+
+.drawer-close{
+  width:40px;
+  height:40px;
+  border:1px solid #333;
+  background:#0d0d0d;
+  color:#fff;
+  cursor:pointer;
+  font-size:22px;
+  line-height:1;
+}
+
+.drawer-close:hover{
+  border-color:#d60000;
+  color:#d60000;
+}
+
+.drawer-body{
+  padding:30px 24px;
+  overflow:auto;
+}
+
+.drawer-label{
+  color:#666;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.drawer-title{
+  font-size:42px;
+  line-height:.9;
+  letter-spacing:-2px;
+  text-transform:uppercase;
+  margin-bottom:28px;
+}
+
+.drawer-title span{
+  color:#d60000;
+}
+
+.drawer-links{
+  display:grid;
+  gap:9px;
+}
+
+.drawer-link{
+  min-height:58px;
+  border:1px solid #2b2b2b;
+  background:#0b0b0b;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  transition:.16s;
+}
+
+.drawer-link:hover{
+  border-color:#d60000;
+  background:#130707;
+  color:#fff;
+  transform:translateX(-3px);
+}
+
+.drawer-link strong{
+  color:#d60000;
+  font-size:18px;
+}
+
+.drawer-separator{
+  height:1px;
+  background:#222;
+  margin:28px 0;
+}
+
+.drawer-note{
+  color:#777;
+  font-size:11px;
+  line-height:1.7;
+}
+
+body.drawer-open{
+  overflow:hidden;
+}
+
+@media(max-width:720px){
+  .drawer-top{
+    min-height:72px;
+  }
+
+  .drawer-title{
+    font-size:36px;
+  }
+}
+
 
 /* =========================
    INSTAGRAM
@@ -987,6 +1169,18 @@ footer{
     <a href="index.html">Início</a>
     <a href="catalogo.html">Coleção</a>
     <a href="#manifesto">Manifesto</a>
+
+    <button
+      type="button"
+      class="account-menu-button"
+      id="accountMenuButton"
+      aria-label="Abrir menu da conta"
+      aria-controls="accountDrawer"
+      aria-expanded="false"
+    >
+      CONTA ☰
+    </button>
+
     <a
       href="https://www.instagram.com/anarka_store/"
       target="_blank"
@@ -1002,6 +1196,88 @@ footer{
     </a>
   </nav>
 </header>
+
+<div
+  class="drawer-backdrop"
+  id="drawerBackdrop"
+></div>
+
+<aside
+  class="account-drawer"
+  id="accountDrawer"
+  aria-hidden="true"
+>
+  <div class="drawer-top">
+    <span>ANARKA / ACCOUNT</span>
+
+    <button
+      type="button"
+      class="drawer-close"
+      id="drawerClose"
+      aria-label="Fechar menu"
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="drawer-body">
+
+    <div class="drawer-label">
+      ÁREA DO CLIENTE
+    </div>
+
+    <h2 class="drawer-title">
+      SUA<br>
+      <span>CONTA.</span>
+    </h2>
+
+    <div class="drawer-links">
+
+      <a
+        href="minha-conta.html"
+        class="drawer-link"
+      >
+        Minha conta
+        <strong>→</strong>
+      </a>
+
+      <a
+        href="minha-conta.html"
+        class="drawer-link"
+      >
+        Meus pedidos
+        <strong>→</strong>
+      </a>
+
+      <a
+        href="carrinho.html"
+        class="drawer-link"
+      >
+        Carrinho
+        <strong>→</strong>
+      </a>
+
+      <a
+        href="https://www.instagram.com/anarka_store/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="drawer-link"
+      >
+        Instagram
+        <strong>↗</strong>
+      </a>
+
+    </div>
+
+    <div class="drawer-separator"></div>
+
+    <p class="drawer-note">
+      Entre na sua conta para acompanhar pedidos,
+      status de pagamento e rastreio.
+    </p>
+
+  </div>
+</aside>
 
 <!-- HERO -->
 
@@ -1317,6 +1593,7 @@ footer{
         <h4>NAVEGAÇÃO</h4>
         <a href="index.html">Início</a>
         <a href="catalogo.html">Coleção</a>
+        <a href="minha-conta.html">Minha conta</a>
         <a href="carrinho.html">Carrinho</a>
       </div>
 
@@ -1392,11 +1669,137 @@ function atualizarCarrinho(){
 
 atualizarCarrinho();
 
+
 window.addEventListener(
   "storage",
   atualizarCarrinho
 );
+
+
+/* =========================
+   MENU LATERAL / CONTA
+========================= */
+
+const accountMenuButton =
+  document.getElementById(
+    "accountMenuButton"
+  );
+
+const accountDrawer =
+  document.getElementById(
+    "accountDrawer"
+  );
+
+const drawerBackdrop =
+  document.getElementById(
+    "drawerBackdrop"
+  );
+
+const drawerClose =
+  document.getElementById(
+    "drawerClose"
+  );
+
+
+function abrirDrawer(){
+
+  accountDrawer
+    .classList.add(
+      "ativo"
+    );
+
+  drawerBackdrop
+    .classList.add(
+      "ativo"
+    );
+
+  document.body
+    .classList.add(
+      "drawer-open"
+    );
+
+  accountDrawer
+    .setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+  accountMenuButton
+    .setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+}
+
+
+function fecharDrawer(){
+
+  accountDrawer
+    .classList.remove(
+      "ativo"
+    );
+
+  drawerBackdrop
+    .classList.remove(
+      "ativo"
+    );
+
+  document.body
+    .classList.remove(
+      "drawer-open"
+    );
+
+  accountDrawer
+    .setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+  accountMenuButton
+    .setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+}
+
+
+accountMenuButton
+  ?.addEventListener(
+    "click",
+    abrirDrawer
+  );
+
+
+drawerClose
+  ?.addEventListener(
+    "click",
+    fecharDrawer
+  );
+
+
+drawerBackdrop
+  ?.addEventListener(
+    "click",
+    fecharDrawer
+  );
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key ===
+      "Escape"
+    ){
+      fecharDrawer();
+    }
+
+  }
+);
 </script>
 
 </body>
-    </html>
+          </html>
