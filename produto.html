@@ -44,7 +44,6 @@ body::before{
   pointer-events:none;
   z-index:9999;
   opacity:.025;
-
   background:
     repeating-linear-gradient(
       0deg,
@@ -65,35 +64,24 @@ input{
   font:inherit;
 }
 
-/* =========================================
-   TOPO
-========================================= */
-
 .topbar{
   background:#d60000;
   text-align:center;
   padding:9px 15px;
-
   font-size:11px;
   font-weight:900;
-
   letter-spacing:2px;
   text-transform:uppercase;
 }
 
 header{
   height:88px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   padding:0 6%;
-
   border-bottom:1px solid #262626;
-
   background:rgba(5,5,5,.97);
-
   position:sticky;
   top:0;
   z-index:1000;
@@ -102,7 +90,6 @@ header{
 .logo{
   width:135px;
   height:70px;
-
   object-fit:contain;
 }
 
@@ -115,7 +102,6 @@ nav{
 nav a{
   font-size:11px;
   font-weight:900;
-
   letter-spacing:2px;
   text-transform:uppercase;
 }
@@ -129,30 +115,18 @@ nav a:hover{
   padding:11px 15px;
 }
 
-
-/* =========================================
-   PRODUTO
-========================================= */
-
 .product-page{
   max-width:1400px;
-
   margin:auto;
-
-  padding:
-    65px 6%
-    110px;
+  padding:65px 6% 110px;
 }
 
 .breadcrumb{
   color:#666;
-
   font-size:10px;
   font-weight:900;
-
   letter-spacing:2px;
   text-transform:uppercase;
-
   margin-bottom:25px;
 }
 
@@ -162,89 +136,57 @@ nav a:hover{
 
 .product-layout{
   display:grid;
-
-  grid-template-columns:
-    1.08fr .92fr;
-
+  grid-template-columns:1.08fr .92fr;
   gap:70px;
-
   align-items:start;
 }
 
-
-/* =========================================
-   IMAGEM
-========================================= */
-
 .image-area{
   position:relative;
-
   background:#0b0b0b;
-
   border:1px solid #292929;
-
   overflow:hidden;
 }
 
 .image-area::before{
   content:"ANARKA";
-
   position:absolute;
-
   right:-15px;
   bottom:-15px;
-
   z-index:0;
-
   color:#111;
-
   font-size:100px;
   font-weight:1000;
-
   letter-spacing:-7px;
 }
 
 .image-area img{
   position:relative;
-
   z-index:1;
-
   width:100%;
-
   aspect-ratio:4/5;
-
   object-fit:cover;
+  filter:grayscale(.15) contrast(1.05);
+  transition:opacity .18s ease, transform .18s ease;
+}
 
-  filter:
-    grayscale(.15)
-    contrast(1.05);
+.image-area img.changing{
+  opacity:0;
+  transform:scale(.985);
 }
 
 .image-tag{
   position:absolute;
-
   z-index:5;
-
   left:15px;
   top:15px;
-
   background:#d60000;
-
   padding:8px 12px;
-
   font-size:9px;
   font-weight:900;
-
   letter-spacing:2px;
-
   text-transform:uppercase;
 }
-
-
-
-/* =========================================
-   GALERIA FRENTE / COSTAS
-========================================= */
 
 .product-gallery{
   width:100%;
@@ -281,134 +223,74 @@ nav a:hover{
   color:#fff;
 }
 
-.image-area img{
-  transition:opacity .18s ease, transform .18s ease;
-}
-
-.image-area img.changing{
-  opacity:0;
-  transform:scale(.985);
-}
-
-/* =========================================
-   INFORMAÇÕES
-========================================= */
-
 .info{
   position:sticky;
-
   top:120px;
 }
 
 .collection{
   color:#d60000;
-
   font-size:10px;
   font-weight:900;
-
   letter-spacing:3px;
-
   text-transform:uppercase;
 }
 
 h1{
   margin-top:13px;
-
-  font-size:
-    clamp(
-      42px,
-      5vw,
-      72px
-    );
-
+  font-size:clamp(42px,5vw,72px);
   line-height:.88;
-
   letter-spacing:-3px;
-
   text-transform:uppercase;
 }
 
 .product-code{
   margin-top:15px;
-
   color:#555;
-
   font-size:10px;
-
   letter-spacing:2px;
 }
 
-
-/* =========================================
-   PREÇO
-========================================= */
-
 .prices{
   margin-top:30px;
-
   display:flex;
-
   align-items:center;
-
   gap:13px;
 }
 
 .old-price{
   display:none;
-
   color:#555;
-
-  text-decoration:
-    line-through;
-
+  text-decoration:line-through;
   font-size:15px;
 }
 
 .price{
   font-size:29px;
-
   font-weight:1000;
 }
 
 .installment{
   display:block;
-
   color:#777;
-
   font-size:12px;
-
   margin-top:7px;
 }
 
 .divider{
   height:1px;
-
   background:#292929;
-
   margin:30px 0;
 }
 
-
-/* =========================================
-   TAMANHOS
-========================================= */
-
 .label{
   display:flex;
-
-  justify-content:
-    space-between;
-
+  justify-content:space-between;
   align-items:center;
-
   font-size:10px;
-
   font-weight:900;
-
   letter-spacing:2px;
-
   text-transform:uppercase;
-
   margin-bottom:13px;
 }
 
@@ -418,28 +300,18 @@ h1{
 
 .sizes{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
 }
 
 .size{
   position:relative;
-
   height:58px;
-
   border:1px solid #333;
-
   background:#080808;
-
   color:#fff;
-
   cursor:pointer;
-
   font-weight:900;
-
   transition:.15s;
 }
 
@@ -449,34 +321,23 @@ h1{
 
 .size.active{
   background:#d60000;
-
   border-color:#d60000;
 }
 
 .size:disabled{
   color:#444;
-
   background:#080808;
-
   border-color:#1c1c1c;
-
   cursor:not-allowed;
-
-  text-decoration:
-    line-through;
+  text-decoration:line-through;
 }
 
 .size-stock{
   display:block;
-
   margin-top:3px;
-
   color:#666;
-
   font-size:7px;
-
   font-weight:900;
-
   letter-spacing:1px;
 }
 
@@ -508,11 +369,8 @@ h1{
 
 .stock-message{
   margin-top:12px;
-
   color:#777;
-
   font-size:10px;
-
   line-height:1.5;
 }
 
@@ -524,33 +382,20 @@ h1{
   color:#d60000;
 }
 
-
-/* =========================================
-   QUANTIDADE
-========================================= */
-
 .quantity-wrap{
   display:flex;
-
   align-items:center;
-
   border:1px solid #333;
-
   width:145px;
 }
 
 .quantity-wrap button{
   width:45px;
   height:48px;
-
   border:0;
-
   background:#0b0b0b;
-
   color:#fff;
-
   cursor:pointer;
-
   font-size:18px;
 }
 
@@ -558,286 +403,159 @@ h1{
   background:#191919;
 }
 
-.quantity-wrap button:disabled{
-  color:#333;
-
-  cursor:not-allowed;
-}
-
 .quantity-wrap input{
   width:55px;
   height:48px;
-
   border:0;
-
-  border-left:
-    1px solid #333;
-
-  border-right:
-    1px solid #333;
-
+  border-left:1px solid #333;
+  border-right:1px solid #333;
   background:#050505;
-
   color:#fff;
-
   text-align:center;
-
   outline:none;
-
   font-weight:900;
 }
 
-
-/* =========================================
-   BOTÃO CARRINHO
-========================================= */
-
 .add{
   width:100%;
-
   min-height:62px;
-
   margin-top:25px;
-
   border:1px solid #fff;
-
   background:#fff;
-
   color:#000;
-
   cursor:pointer;
-
   font-size:12px;
   font-weight:1000;
-
   letter-spacing:2px;
-
   text-transform:uppercase;
-
   transition:.15s;
 }
 
 .add:hover:not(:disabled){
   background:#d60000;
-
   color:#fff;
-
   border-color:#d60000;
-
-  transform:
-    translate(-3px,-3px);
-
-  box-shadow:
-    6px 6px 0 #fff;
+  transform:translate(-3px,-3px);
+  box-shadow:6px 6px 0 #fff;
 }
 
 .add:disabled{
   opacity:.4;
-
   cursor:not-allowed;
 }
 
-
-/* =========================================
-   DETALHES
-========================================= */
-
 .details{
   margin-top:30px;
-
-  border-top:
-    1px solid #292929;
+  border-top:1px solid #292929;
 }
 
 .detail{
   padding:18px 0;
-
-  border-bottom:
-    1px solid #292929;
-
+  border-bottom:1px solid #292929;
   display:flex;
-
   gap:15px;
 }
 
 .detail-number{
   color:#d60000;
-
   font-size:10px;
-
   font-weight:900;
 }
 
 .detail h3{
   font-size:11px;
-
   letter-spacing:1px;
-
   text-transform:uppercase;
 }
 
 .detail p{
   margin-top:5px;
-
   color:#777;
-
   font-size:12px;
-
   line-height:1.5;
 }
 
-
-/* =========================================
-   MANIFESTO
-========================================= */
-
 .manifesto{
   margin-top:90px;
-
-  border-top:
-    1px solid #292929;
-
-  border-bottom:
-    1px solid #292929;
-
+  border-top:1px solid #292929;
+  border-bottom:1px solid #292929;
   padding:65px 0;
 }
 
 .manifesto small{
   color:#d60000;
-
   font-weight:900;
-
   letter-spacing:3px;
 }
 
 .manifesto h2{
   margin-top:15px;
-
   max-width:950px;
-
-  font-size:
-    clamp(
-      40px,
-      6vw,
-      80px
-    );
-
+  font-size:clamp(40px,6vw,80px);
   line-height:.85;
-
   letter-spacing:-4px;
-
   text-transform:uppercase;
 }
 
 .manifesto h2 span{
   color:transparent;
-
-  -webkit-text-stroke:
-    1px #fff;
+  -webkit-text-stroke:1px #fff;
 }
-
-
-/* =========================================
-   CARRINHO FLUTUANTE
-========================================= */
 
 .floating-cart{
   position:fixed;
-
   right:22px;
   bottom:22px;
-
   width:60px;
   height:60px;
-
   background:#d60000;
-
   border:2px solid #fff;
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   z-index:900;
-
-  box-shadow:
-    6px 6px 0 #000;
-
+  box-shadow:6px 6px 0 #000;
   font-size:21px;
 }
 
 .cart-count{
   position:absolute;
-
   right:-8px;
   top:-8px;
-
   min-width:23px;
-
   height:23px;
-
   padding:0 5px;
-
   background:#fff;
-
   color:#000;
-
   border-radius:50%;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   font-size:10px;
-
   font-weight:900;
 }
 
-
-/* =========================================
-   FOOTER
-========================================= */
-
 footer{
-  border-top:
-    1px solid #222;
-
+  border-top:1px solid #222;
   padding:45px 6%;
-
   text-align:center;
-
   color:#555;
-
   font-size:10px;
-
   letter-spacing:2px;
 }
 
 footer img{
   display:block;
-
   width:120px;
   height:75px;
-
   object-fit:contain;
-
-  margin:
-    0 auto 10px;
+  margin:0 auto 10px;
 }
-
-
-/* =========================================
-   MOBILE
-========================================= */
 
 @media(max-width:850px){
 
   .product-layout{
     grid-template-columns:1fr;
-
     gap:35px;
   }
 
@@ -851,13 +569,11 @@ footer img{
 
   header{
     height:72px;
-
     padding:0 4%;
   }
 
   .logo{
     width:100px;
-
     height:58px;
   }
 
@@ -866,9 +582,7 @@ footer img{
   }
 
   .product-page{
-    padding:
-      30px 4%
-      70px;
+    padding:30px 4% 70px;
   }
 
   .product-layout{
@@ -877,7 +591,6 @@ footer img{
 
   h1{
     font-size:43px;
-
     letter-spacing:-2px;
   }
 
@@ -895,29 +608,21 @@ footer img{
 
 </head>
 
-
 <body>
 
-
 <div class="topbar">
-
   ANARKA — DROP 001 / 9 PEÇAS
-
 </div>
-
 
 <header>
 
   <a href="index.html">
-
     <img
       src="/anarka-logo.png"
       class="logo"
       alt="ANARKA"
     >
-
   </a>
-
 
   <nav>
 
@@ -940,21 +645,15 @@ footer img{
 
 </header>
 
-
 <main class="product-page">
-
 
   <div class="breadcrumb">
 
-    <a href="index.html">
-      ANARKA
-    </a>
+    <a href="index.html">ANARKA</a>
 
     /
 
-    <a href="catalogo.html">
-      DROP 001
-    </a>
+    <a href="catalogo.html">DROP 001</a>
 
     /
 
@@ -964,11 +663,7 @@ footer img{
 
   </div>
 
-
   <div class="product-layout">
-
-
-    <!-- IMAGEM -->
 
     <div class="product-gallery">
 
@@ -1011,25 +706,15 @@ footer img{
 
     </div>
 
-
-    <!-- INFORMAÇÕES -->
-
     <div class="info">
 
-
       <div class="collection">
-
         ANARKA / DROP 001
-
       </div>
 
-
       <h1 id="productName">
-
         CARREGANDO...
-
       </h1>
-
 
       <div
         class="product-code"
@@ -1037,7 +722,6 @@ footer img{
       >
         ANK-001
       </div>
-
 
       <div class="prices">
 
@@ -1053,17 +737,12 @@ footer img{
 
       </div>
 
-
       <span
         class="installment"
         id="installment"
       ></span>
 
-
       <div class="divider"></div>
-
-
-      <!-- TAMANHO -->
 
       <div class="label">
 
@@ -1075,7 +754,6 @@ footer img{
 
       </div>
 
-
       <div class="sizes">
 
         <button
@@ -1083,62 +761,38 @@ footer img{
           data-size="P"
           disabled
         >
-
           P
-
-          <span class="size-stock">
-            ...
-          </span>
-
+          <span class="size-stock">...</span>
         </button>
-
 
         <button
           class="size"
           data-size="M"
           disabled
         >
-
           M
-
-          <span class="size-stock">
-            ...
-          </span>
-
+          <span class="size-stock">...</span>
         </button>
-
 
         <button
           class="size"
           data-size="G"
           disabled
         >
-
           G
-
-          <span class="size-stock">
-            ...
-          </span>
-
+          <span class="size-stock">...</span>
         </button>
 
       </div>
-
 
       <div
         class="stock-message"
         id="stockMessage"
       >
-
         Consultando disponibilidade...
-
       </div>
 
-
       <div class="divider"></div>
-
-
-      <!-- QUANTIDADE -->
 
       <div class="label">
 
@@ -1149,7 +803,6 @@ footer img{
         </span>
 
       </div>
-
 
       <div class="quantity-wrap">
 
@@ -1178,22 +831,15 @@ footer img{
 
       </div>
 
-
       <button
         class="add"
         id="addCart"
         disabled
       >
-
         SELECIONE UM TAMANHO
-
       </button>
 
-
-      <!-- DETALHES -->
-
       <div class="details">
-
 
         <div class="detail">
 
@@ -1216,7 +862,6 @@ footer img{
 
         </div>
 
-
         <div class="detail">
 
           <span class="detail-number">
@@ -1238,7 +883,6 @@ footer img{
           </div>
 
         </div>
-
 
         <div class="detail">
 
@@ -1263,22 +907,17 @@ footer img{
 
         </div>
 
-
       </div>
 
     </div>
 
   </div>
 
-
   <section class="manifesto">
 
     <small>
-
       ANARKA / MANIFESTO
-
     </small>
-
 
     <h2>
 
@@ -1292,9 +931,7 @@ footer img{
 
   </section>
 
-
 </main>
-
 
 <a
   href="carrinho.html"
@@ -1313,7 +950,6 @@ footer img{
 
 </a>
 
-
 <footer>
 
   <img
@@ -1325,27 +961,18 @@ footer img{
 
 </footer>
 
-
 <script type="module">
-
 
 import {
   createClient
 } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
-/* ==========================================================
-   SUPABASE
-========================================================== */
-
-
 const SUPABASE_URL =
   "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
-
 
 const supabase =
   createClient(
@@ -1355,42 +982,47 @@ const supabase =
 
 
 /* ==========================================================
-   PRAZO TEMPORÁRIO DA ENCOMENDA
-   Em 01/10/2026 qualquer menção ao dia 01 some automaticamente.
+   PRAZO DESTA ENCOMENDA
 ========================================================== */
 
 const PRAZO_ENCOMENDA_LIMITE =
-  new Date("2026-10-01T00:00:00-03:00");
+  new Date(
+    "2026-10-01T00:00:00-03:00"
+  );
 
 const mostrarPrazoDia01 =
   new Date() <
   PRAZO_ENCOMENDA_LIMITE;
 
+
 function textoPrazoEncomenda(){
+
   return mostrarPrazoDia01
+
     ? ' Previsão: <strong>01/10/2026</strong>.'
+
     : '';
+
 }
 
+
 function textoPrazoEncomendaCompleto(){
+
   return mostrarPrazoDia01
+
     ? ' A previsão é ficar pronta até <strong>01/10/2026</strong> e a ANARKA entra em contato pelo WhatsApp para combinar o pagamento.'
+
     : ' A ANARKA entra em contato pelo WhatsApp quando a peça estiver pronta para combinar o pagamento.';
+
 }
 
 
 /* ==========================================================
    PRODUTOS
 
-   IMPORTANTE:
-   O catalogo.html atual lê este objeto diretamente
-   do produto.html.
-
-   Por isso ele continua existindo aqui.
-
-   SÓ EXISTEM ESTES 3 PRODUTOS NO DROP 001.
+   NÃO REMOVER:
+   O catálogo utiliza este objeto.
 ========================================================== */
-
 
 const produtos = {
 
@@ -1414,7 +1046,6 @@ const produtos = {
 
   },
 
-
   "ainda-aqui":{
 
     slug:"ainda-aqui",
@@ -1434,7 +1065,6 @@ const produtos = {
     codigo:"ANK-002"
 
   },
-
 
   "mundo-em-ruinas":{
 
@@ -1463,27 +1093,36 @@ const produtos = {
    PRODUTO ATUAL
 ========================================================== */
 
-
 const params =
   new URLSearchParams(
     window.location.search
   );
 
-
 const id =
-  params.get("id")
-  ||
+  params.get("id") ||
   "caos";
 
-
 const produto =
-  produtos[id]
-  ||
+  produtos[id] ||
   produtos.caos;
 
 
 let tamanhoSelecionado =
   "";
+
+
+/*
+CORREÇÃO IMPORTANTE
+
+A versão anterior usava produtoBancoId
+sem declarar a variável.
+
+Como o script é type="module", isso
+interrompia o carregamento inteiro.
+*/
+
+let produtoBancoId =
+  null;
 
 
 let estoqueAtual = {
@@ -1499,42 +1138,35 @@ let estoqueAtual = {
    ELEMENTOS
 ========================================================== */
 
-
 const quantidadeInput =
   document.getElementById(
     "quantity"
   );
-
 
 const addCart =
   document.getElementById(
     "addCart"
   );
 
-
 const sizeLabel =
   document.getElementById(
     "sizeLabel"
   );
-
 
 const stockMessage =
   document.getElementById(
     "stockMessage"
   );
 
-
 const quantityLimit =
   document.getElementById(
     "quantityLimit"
   );
 
-
 const minus =
   document.getElementById(
     "minus"
   );
-
 
 const plus =
   document.getElementById(
@@ -1546,10 +1178,7 @@ const plus =
    DINHEIRO
 ========================================================== */
 
-
-function dinheiro(
-  valor
-){
+function dinheiro(valor){
 
   return Number(
     valor || 0
@@ -1557,13 +1186,8 @@ function dinheiro(
     .toLocaleString(
       "pt-BR",
       {
-
-        style:
-          "currency",
-
-        currency:
-          "BRL"
-
+        style:"currency",
+        currency:"BRL"
       }
     );
 
@@ -1574,13 +1198,10 @@ function dinheiro(
    PREENCHER PRODUTO
 ========================================================== */
 
-
 function preencherProduto(){
 
-
   document.title =
-    produto.nome
-    +
+    produto.nome +
     " | ANARKA";
 
 
@@ -1608,6 +1229,14 @@ function preencherProduto(){
       produto.tag;
 
 
+  document
+    .getElementById(
+      "productCode"
+    )
+    .textContent =
+      produto.codigo;
+
+
   const imagem =
     document.getElementById(
       "productImage"
@@ -1622,34 +1251,22 @@ function preencherProduto(){
     produto.nome;
 
 
-  /*
-  Caso você ainda não tenha colocado
-  as imagens no GitHub, mostramos
-  um fundo simples em vez do ícone
-  de imagem quebrada.
-  */
-
-
   imagem.onerror =
     function(){
 
       this.onerror =
         null;
 
-
       this.style.display =
         "none";
-
 
       const area =
         document.querySelector(
           ".image-area"
         );
 
-
       area.style.minHeight =
         "600px";
-
 
       area.style.background = `
         radial-gradient(
@@ -1679,19 +1296,15 @@ function preencherProduto(){
     );
 
 
-  if(
-    produto.precoAntigo
-  ){
+  if(produto.precoAntigo){
 
     oldPrice.style.display =
       "inline";
-
 
     oldPrice.textContent =
       dinheiro(
         produto.precoAntigo
       );
-
 
   }else{
 
@@ -1707,62 +1320,71 @@ function preencherProduto(){
     )
     .textContent =
 
-      "3x de "
-
-      +
+      "3x de " +
 
       dinheiro(
         produto.preco / 3
       );
 
-
-  document
-    .getElementById(
-      "productCode"
-    )
-    .textContent =
-      produto.codigo;
-
 }
 
 
-
 /* ==========================================================
-   GALERIA FRENTE / COSTAS
+   GALERIA
 ========================================================== */
 
 const productImage =
-  document.getElementById("productImage");
+  document.getElementById(
+    "productImage"
+  );
 
 const frontBtn =
-  document.getElementById("frontBtn");
+  document.getElementById(
+    "frontBtn"
+  );
 
 const backBtn =
-  document.getElementById("backBtn");
+  document.getElementById(
+    "backBtn"
+  );
 
 
 function trocarImagem(tipo){
 
   const novaImagem =
     tipo === "costas"
+
       ? produto.imagem2
+
       : produto.imagem;
 
-  productImage.classList.add("changing");
+
+  productImage.classList.add(
+    "changing"
+  );
+
 
   setTimeout(()=>{
 
-    productImage.style.display = "block";
-    productImage.src = novaImagem;
+    productImage.style.display =
+      "block";
+
+    productImage.src =
+      novaImagem;
 
     productImage.alt =
       tipo === "costas"
+
         ? `${produto.nome} — Costas`
+
         : `${produto.nome} — Frente`;
 
-    productImage.classList.remove("changing");
+    productImage.classList.remove(
+      "changing"
+    );
 
   },150);
+
 
   frontBtn.classList.toggle(
     "active",
@@ -1790,37 +1412,30 @@ backBtn.addEventListener(
 
 
 /* ==========================================================
-   BUSCAR ESTOQUE NO SUPABASE
+   CARREGAR ESTOQUE
 ========================================================== */
 
-
 async function carregarEstoque(){
-
 
   sizeLabel.textContent =
     "CARREGANDO...";
 
+  stockMessage.textContent =
+    "Consultando disponibilidade...";
 
   addCart.disabled =
     true;
+
+  addCart.textContent =
+    "CARREGANDO...";
 
 
   try{
 
 
-    /*
-    Primeiro encontramos o ID real
-    do produto no banco pelo slug.
-    */
-
-
     const {
-      data:
-        produtoBanco,
-
-      error:
-        produtoErro
-
+      data:produtoBanco,
+      error:produtoErro
     } =
       await supabase
 
@@ -1829,7 +1444,7 @@ async function carregarEstoque(){
         )
 
         .select(
-          "id, slug, nome, preco, imagem, ativo"
+          "id,slug,nome,preco,imagem,ativo"
         )
 
         .eq(
@@ -1846,18 +1461,17 @@ async function carregarEstoque(){
 
 
     if(
-      produtoErro
-      ||
+      produtoErro ||
       !produtoBanco
     ){
 
-
-      throw (
+      console.error(
+        "Erro ao localizar produto:",
         produtoErro
-        ||
-        new Error(
-          "Produto não encontrado."
-        )
+      );
+
+      throw new Error(
+        "Produto não encontrado."
       );
 
     }
@@ -1867,18 +1481,9 @@ async function carregarEstoque(){
       produtoBanco.id;
 
 
-    /*
-    Agora carregamos P / M / G.
-    */
-
-
     const {
-      data:
-        estoqueBanco,
-
-      error:
-        estoqueErro
-
+      data:estoqueBanco,
+      error:estoqueErro
     } =
       await supabase
 
@@ -1887,18 +1492,21 @@ async function carregarEstoque(){
         )
 
         .select(
-          "tamanho, quantidade"
+          "tamanho,quantidade"
         )
 
         .eq(
           "produto_id",
-          produtoBanco.id
+          produtoBancoId
         );
 
 
-    if(
-      estoqueErro
-    ){
+    if(estoqueErro){
+
+      console.error(
+        "Erro do estoque:",
+        estoqueErro
+      );
 
       throw estoqueErro;
 
@@ -1914,38 +1522,38 @@ async function carregarEstoque(){
     };
 
 
-    (
-      estoqueBanco
-      ||
-      []
-    )
-      .forEach(
-        item=>{
+    for(
+      const item
+      of estoqueBanco || []
+    ){
+
+      const tamanho =
+        String(
+          item.tamanho || ""
+        )
+          .trim()
+          .toUpperCase();
 
 
-          if(
-            ["P","M","G"]
-              .includes(
-                item.tamanho
-              )
-          ){
+      if(
+        ["P","M","G"]
+          .includes(
+            tamanho
+          )
+      ){
 
-            estoqueAtual[
-              item.tamanho
-            ] =
-              Math.max(
-                0,
-                Number(
-                  item.quantidade
-                )
-                ||
-                0
-              );
+        estoqueAtual[tamanho] =
 
-          }
+          Math.max(
+            0,
+            Number(
+              item.quantidade
+            ) || 0
+          );
 
-        }
-      );
+      }
+
+    }
 
 
     atualizarBotoesEstoque();
@@ -1960,12 +1568,16 @@ async function carregarEstoque(){
     );
 
 
+    tamanhoSelecionado =
+      "";
+
+
     sizeLabel.textContent =
       "INDISPONÍVEL";
 
 
     stockMessage.textContent =
-      "Não foi possível consultar o estoque agora.";
+      "Não foi possível consultar o estoque agora. Atualize a página e tente novamente.";
 
 
     stockMessage.classList.add(
@@ -1982,6 +1594,10 @@ async function carregarEstoque(){
 
           botao.disabled =
             true;
+
+          botao.classList.remove(
+            "active"
+          );
 
         }
       );
@@ -2003,9 +1619,7 @@ async function carregarEstoque(){
    ATUALIZAR TAMANHOS
 ========================================================== */
 
-
 function atualizarBotoesEstoque(){
-
 
   let totalDisponivel =
     0;
@@ -2024,10 +1638,7 @@ function atualizarBotoesEstoque(){
 
 
         const quantidade =
-          estoqueAtual[
-            tamanho
-          ]
-          ||
+          estoqueAtual[tamanho] ||
           0;
 
 
@@ -2040,6 +1651,12 @@ function atualizarBotoesEstoque(){
             ".size-stock"
           );
 
+
+        /*
+        Mesmo com quantidade 0, o botão
+        permanece habilitado para permitir
+        a encomenda.
+        */
 
         botao.disabled =
           false;
@@ -2058,19 +1675,17 @@ function atualizarBotoesEstoque(){
           texto.textContent =
             "ENCOMENDA";
 
+        }else if(
+          quantidade === 1
+        ){
+
+          texto.textContent =
+            "ÚLTIMA PEÇA";
+
         }else{
 
           texto.textContent =
-
-            quantidade === 1
-
-              ?
-
-              "ÚLTIMA PEÇA"
-
-              :
-
-              `${quantidade} DISP.`;
+            `${quantidade} DISP.`;
 
         }
 
@@ -2082,62 +1697,55 @@ function atualizarBotoesEstoque(){
     "SELECIONE";
 
 
+  addCart.disabled =
+    true;
+
+
+  addCart.textContent =
+    "SELECIONE UM TAMANHO";
+
+
   if(
     totalDisponivel <= 0
   ){
 
     stockMessage.innerHTML =
-      "Sem pronta entrega. <strong>Você pode encomendar</strong> e pagar somente quando a peça estiver pronta." + textoPrazoEncomenda();
+
+      "Sem pronta entrega. " +
+
+      "<strong>Você pode encomendar</strong> " +
+
+      "e pagar somente quando a peça estiver pronta." +
+
+      textoPrazoEncomenda();
+
 
     stockMessage.classList.add(
       "low"
     );
 
-    addCart.disabled =
-      true;
-
-    addCart.textContent =
-      "SELECIONE UM TAMANHO";
 
   }else{
 
+
     stockMessage.innerHTML =
 
-      `<strong>${totalDisponivel}</strong> peça`
-
-      +
+      `<strong>${totalDisponivel}</strong> ` +
 
       (
         totalDisponivel === 1
-          ?
-          ""
-          :
-          "s"
+          ? "peça disponível"
+          : "peças disponíveis"
       )
 
       +
 
-      " disponível"
+      " neste modelo. Tamanhos esgotados podem ser encomendados.";
 
-      +
-
-      (
-        totalDisponivel === 1
-          ?
-          ". Tamanhos esgotados podem ser encomendados."
-          :
-          "is neste modelo. Tamanhos esgotados podem ser encomendados."
-      );
 
     stockMessage.classList.remove(
       "low"
     );
-
-    addCart.disabled =
-      true;
-
-    addCart.textContent =
-      "SELECIONE UM TAMANHO";
 
   }
 
@@ -2147,7 +1755,6 @@ function atualizarBotoesEstoque(){
 /* ==========================================================
    SELECIONAR TAMANHO
 ========================================================== */
-
 
 document
   .querySelectorAll(
@@ -2162,12 +1769,8 @@ document
         ()=>{
 
 
-          if(
-            botao.disabled
-          ){
-
+          if(botao.disabled){
             return;
-
           }
 
 
@@ -2176,13 +1779,12 @@ document
               ".size"
             )
             .forEach(
-              item=>{
+              item=>
 
                 item.classList.remove(
                   "active"
-                );
+                )
 
-              }
             );
 
 
@@ -2202,9 +1804,7 @@ document
           const disponivel =
             estoqueAtual[
               tamanhoSelecionado
-            ]
-            ||
-            0;
+            ] || 0;
 
 
           const ehEncomenda =
@@ -2219,72 +1819,66 @@ document
 
           sizeLabel.textContent =
             ehEncomenda
+
               ? `TAMANHO ${tamanhoSelecionado} / ENCOMENDA`
+
               : `TAMANHO ${tamanhoSelecionado}`;
 
 
           quantityLimit.textContent =
-
             ehEncomenda
-              ?
-              "SOB ENCOMENDA"
+
+              ? "SOB ENCOMENDA"
+
               : disponivel === 1
-                ?
-                "ÚLTIMA UNIDADE"
-                :
-                `MÁX. ${disponivel}`;
+
+                ? "ÚLTIMA UNIDADE"
+
+                : `MÁX. ${disponivel}`;
 
 
           if(ehEncomenda){
 
+
             stockMessage.innerHTML =
+
               `Tamanho <strong>${tamanhoSelecionado}</strong> sem pronta entrega. ` +
+
               `Encomende agora <strong>sem pagar</strong>.` +
+
               textoPrazoEncomendaCompleto();
+
 
             stockMessage.classList.add(
               "low"
             );
 
+
             addCart.textContent =
               "ENCOMENDAR — PAGAR DEPOIS →";
 
+
           }else{
+
 
             stockMessage.innerHTML =
 
-              `Tamanho <strong>${tamanhoSelecionado}</strong>: `
-
-              +
+              `Tamanho <strong>${tamanhoSelecionado}</strong>: ` +
 
               (
                 disponivel === 1
 
-                  ?
+                  ? "última peça disponível."
 
-                  "última peça disponível."
-
-                  :
-
-                  `${disponivel} peças disponíveis.`
+                  : `${disponivel} peças disponíveis.`
               );
 
 
-            if(
+            stockMessage.classList.toggle(
+              "low",
               disponivel === 1
-            ){
+            );
 
-              stockMessage.classList.add(
-                "low"
-              );
-
-            }else{
-
-              stockMessage.classList.remove(
-                "low"
-              );
-
-            }
 
             addCart.textContent =
               "ADICIONAR AO CARRINHO →";
@@ -2306,18 +1900,14 @@ document
    QUANTIDADE
 ========================================================== */
 
-
 minus.addEventListener(
   "click",
   ()=>{
 
-
     let quantidade =
       Number(
         quantidadeInput.value
-      )
-      ||
-      1;
+      ) || 1;
 
 
     quantidade--;
@@ -2357,23 +1947,21 @@ plus.addEventListener(
     const estoqueDoTamanho =
       estoqueAtual[
         tamanhoSelecionado
-      ]
-      ||
-      0;
+      ] || 0;
 
 
     const limite =
       estoqueDoTamanho > 0
+
         ? estoqueDoTamanho
+
         : 20;
 
 
     let quantidade =
       Number(
         quantidadeInput.value
-      )
-      ||
-      1;
+      ) || 1;
 
 
     quantidade++;
@@ -2400,21 +1988,16 @@ plus.addEventListener(
    CARRINHO
 ========================================================== */
 
-
 function pegarCarrinho(){
 
-
   try{
-
 
     let carrinho =
       JSON.parse(
         localStorage.getItem(
           "vantaCarrinho"
         )
-      )
-      ||
-      [];
+      ) || [];
 
 
     if(
@@ -2423,13 +2006,10 @@ function pegarCarrinho(){
       )
     ){
 
-
       carrinho =
         carrinho
-          ?
-          [carrinho]
-          :
-          [];
+          ? [carrinho]
+          : [];
 
     }
 
@@ -2439,7 +2019,6 @@ function pegarCarrinho(){
 
   }catch{
 
-
     return [];
 
   }
@@ -2447,18 +2026,13 @@ function pegarCarrinho(){
 }
 
 
-/* ==========================================================
-   QUANTIDADE JÁ NO CARRINHO
-========================================================== */
-
-
 function quantidadeNoCarrinho(
   produtoId,
   tamanho
 ){
 
-
   return pegarCarrinho()
+
     .filter(
       item=>
 
@@ -2469,22 +2043,19 @@ function quantidadeNoCarrinho(
         item.tamanho === tamanho
 
     )
+
     .reduce(
       (
         total,
         item
       )=>
 
-        total
-
-        +
+        total +
 
         (
           Number(
             item.quantidade
-          )
-          ||
-          0
+          ) || 0
         ),
 
       0
@@ -2493,13 +2064,7 @@ function quantidadeNoCarrinho(
 }
 
 
-/* ==========================================================
-   CONTADOR DO CARRINHO
-========================================================== */
-
-
 function atualizarCarrinho(){
-
 
   const carrinho =
     pegarCarrinho();
@@ -2512,16 +2077,12 @@ function atualizarCarrinho(){
         item
       )=>
 
-        soma
-
-        +
+        soma +
 
         (
           Number(
             item.quantidade
-          )
-          ||
-          1
+          ) || 1
         ),
 
       0
@@ -2544,22 +2105,15 @@ function atualizarCarrinho(){
     .display =
 
       total > 0
-
-        ?
-
-        "flex"
-
-        :
-
-        "none";
+        ? "flex"
+        : "none";
 
 }
 
 
 /* ==========================================================
-   ADICIONAR AO CARRINHO
+   ADICIONAR / ENCOMENDAR
 ========================================================== */
-
 
 addCart.addEventListener(
   "click",
@@ -2570,24 +2124,13 @@ addCart.addEventListener(
       !tamanhoSelecionado
     ){
 
-
       alert(
         "Selecione um tamanho."
       );
 
-
       return;
 
     }
-
-
-    /*
-    CONSULTA NOVAMENTE O ESTOQUE
-    antes de adicionar.
-
-    Isso evita usar uma informação
-    antiga da página.
-    */
 
 
     addCart.disabled =
@@ -2602,12 +2145,8 @@ addCart.addEventListener(
 
 
       const {
-        data:
-          produtoBanco,
-
-        error:
-          produtoErro
-
+        data:produtoBanco,
+        error:produtoErro
       } =
         await supabase
 
@@ -2633,15 +2172,12 @@ addCart.addEventListener(
 
 
       if(
-        produtoErro
-        ||
+        produtoErro ||
         !produtoBanco
       ){
 
-
         throw (
-          produtoErro
-          ||
+          produtoErro ||
           new Error(
             "Produto não encontrado."
           )
@@ -2651,12 +2187,8 @@ addCart.addEventListener(
 
 
       const {
-        data:
-          estoqueBanco,
-
-        error:
-          estoqueErro
-
+        data:estoqueBanco,
+        error:estoqueErro
       } =
         await supabase
 
@@ -2681,9 +2213,7 @@ addCart.addEventListener(
           .single();
 
 
-      if(
-        estoqueErro
-      ){
+      if(estoqueErro){
 
         throw estoqueErro;
 
@@ -2691,21 +2221,115 @@ addCart.addEventListener(
 
 
       const estoqueDisponivel =
-        Number(
-          estoqueBanco
-            ?.quantidade
-        )
-        ||
-        0;
+        Math.max(
+          0,
+          Number(
+            estoqueBanco
+              ?.quantidade
+          ) || 0
+        );
 
 
       const quantidade =
-        Number(
-          quantidadeInput.value
-        )
-        ||
-        1;
+        Math.max(
+          1,
 
+          Math.min(
+            20,
+            Number(
+              quantidadeInput.value
+            ) || 1
+          )
+        );
+
+
+      /*
+      SEM ESTOQUE = ENCOMENDA
+
+      Não adiciona ao carrinho e não exige
+      pagamento neste momento.
+      */
+
+      if(
+        estoqueDisponivel <= 0
+      ){
+
+
+        const rascunho = {
+
+          produto_id:
+            produtoBanco.id,
+
+          slug:
+            produto.slug,
+
+          nome:
+            produto.nome,
+
+          preco:
+            Number(
+              produto.preco
+            ),
+
+          tamanho:
+            tamanhoSelecionado,
+
+          quantidade:
+            quantidade,
+
+          imagem:
+            produto.imagem,
+
+          previsao_pronto:
+            mostrarPrazoDia01
+              ? "2026-10-01"
+              : null
+
+        };
+
+
+        localStorage.setItem(
+
+          "anarkaEncomendaRascunho",
+
+          JSON.stringify(
+            rascunho
+          )
+
+        );
+
+
+        const paramsEncomenda =
+          new URLSearchParams({
+
+            produto_id:
+              String(
+                produtoBanco.id
+              ),
+
+            tamanho:
+              tamanhoSelecionado,
+
+            quantidade:
+              String(
+                quantidade
+              )
+
+          });
+
+
+        window.location.href =
+          `encomenda.html?${paramsEncomenda.toString()}`;
+
+
+        return;
+
+      }
+
+
+      /*
+      COM ESTOQUE = COMPRA NORMAL
+      */
 
       const jaNoCarrinho =
         quantidadeNoCarrinho(
@@ -2714,84 +2338,14 @@ addCart.addEventListener(
         );
 
 
-      /*
-      Exemplo:
-
-      estoque = 1
-      já existe 1 no carrinho
-
-      então não pode adicionar outra.
-      */
-
-
       if(
-        estoqueDisponivel <= 0
-      ){
-
-
-        localStorage.setItem(
-          "anarkaEncomendaRascunho",
-          JSON.stringify({
-            produto_id:
-              produtoBanco.id,
-
-            slug:
-              produto.slug,
-
-            nome:
-              produto.nome,
-
-            preco:
-              Number(produto.preco),
-
-            tamanho:
-              tamanhoSelecionado,
-
-            quantidade:
-              quantidade,
-
-            imagem:
-              produto.imagem,
-
-            previsao_pronto:
-              mostrarPrazoDia01
-                ? "2026-10-01"
-                : null
-          })
-        );
-
-
-        const destinoEncomenda =
-          "encomenda.html"
-          + "?produto_id="
-          + encodeURIComponent(produtoBanco.id)
-          + "&tamanho="
-          + encodeURIComponent(tamanhoSelecionado)
-          + "&quantidade="
-          + encodeURIComponent(quantidade);
-
-        window.location.href =
-          destinoEncomenda;
-
-
-        return;
-
-      }
-
-
-      if(
-        jaNoCarrinho
-        +
-        quantidade
-        >
+        jaNoCarrinho +
+        quantidade >
         estoqueDisponivel
       ){
 
-
         alert(
-
           "Você já colocou no carrinho a quantidade máxima disponível deste tamanho."
-
         );
 
 
@@ -2825,9 +2379,7 @@ addCart.addEventListener(
         );
 
 
-      if(
-        itemExistente
-      ){
+      if(itemExistente){
 
 
         itemExistente.quantidade =
@@ -2835,9 +2387,7 @@ addCart.addEventListener(
           (
             Number(
               itemExistente.quantidade
-            )
-            ||
-            0
+            ) || 0
           )
 
           +
@@ -2848,37 +2398,27 @@ addCart.addEventListener(
       }else{
 
 
-        /*
-        Mantemos o formato que seu
-        checkout atual já utiliza.
-        */
+        carrinho.push({
 
+          id,
 
-        carrinho.push(
-          {
+          nome:
+            produto.nome,
 
-            id:
-              id,
+          preco:
+            Number(
+              produto.preco
+            ),
 
-            nome:
-              produto.nome,
+          quantidade,
 
-            preco:
-              Number(
-                produto.preco
-              ),
+          tamanho:
+            tamanhoSelecionado,
 
-            quantidade:
-              quantidade,
+          imagem:
+            produto.imagem
 
-            tamanho:
-              tamanhoSelecionado,
-
-            imagem:
-              produto.imagem
-
-          }
-        );
+        });
 
       }
 
@@ -2897,12 +2437,6 @@ addCart.addEventListener(
       atualizarCarrinho();
 
 
-      /*
-      Mantemos o comportamento atual:
-      adicionou -> volta ao catálogo.
-      */
-
-
       window.location.href =
         "catalogo.html";
 
@@ -2911,7 +2445,7 @@ addCart.addEventListener(
 
 
       console.error(
-        "Erro ao adicionar produto:",
+        "Erro ao verificar produto:",
         erro
       );
 
@@ -2925,15 +2459,19 @@ addCart.addEventListener(
         false;
 
 
-      addCart.textContent =
+      const ehEncomenda =
         (
           estoqueAtual[
             tamanhoSelecionado
-          ]
-          ||
-          0
-        ) <= 0
+          ] || 0
+        ) <= 0;
+
+
+      addCart.textContent =
+        ehEncomenda
+
           ? "ENCOMENDAR — PAGAR DEPOIS →"
+
           : "ADICIONAR AO CARRINHO →";
 
     }
@@ -2946,12 +2484,9 @@ addCart.addEventListener(
    INICIAR
 ========================================================== */
 
-
 preencherProduto();
 
-
 atualizarCarrinho();
-
 
 await carregarEstoque();
 
@@ -2961,10 +2496,8 @@ window.addEventListener(
   atualizarCarrinho
 );
 
-
 </script>
-
 
 </body>
 
-  </html>
+</html>
