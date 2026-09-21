@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Encomendas | ANARKA Admin</title>
+
+<link rel="icon" href="/anarka-favicon.png">
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#050505;
+  color:#fff;
+  min-height:100vh;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+select,
+input{
+  font:inherit;
+}
+
+.topbar{
+  background:#d60000;
+  padding:9px 15px;
+  text-align:center;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+header{
+  height:82px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #242424;
+}
+
+.logo{
+  width:125px;
+  height:65px;
+  object-fit:contain;
+}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+}
+
+.header-actions a,
+.header-actions button{
+  border:1px solid #333;
+  background:#080808;
+  color:#fff;
+  padding:11px 13px;
+  cursor:pointer;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.header-actions a:hover,
+.header-actions button:hover{
+  border-color:#d60000;
+  color:#d60000;
+}
+
+main{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
+  padding:60px 0 100px;
+}
+
+.label{
+  color:#d60000;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+h1{
+  margin-top:10px;
+  font-size:clamp(50px,8vw,90px);
+  line-height:.84;
+  letter-spacing:-4px;
+  text-transform:uppercase;
+}
+
+h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+}
+
+.sub{
+  margin-top:20px;
+  color:#777;
+  line-height:1.7;
+  font-size:12px;
+}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+  margin-top:32px;
+}
+
+.sum{
+  border:1px solid #292929;
+  background:#090909;
+  padding:19px;
+}
+
+.sum small{
+  color:#666;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+.sum strong{
+  display:block;
+  margin-top:12px;
+  font-size:27px;
+}
+
+.tools{
+  display:flex;
+  gap:8px;
+  margin:28px 0;
+}
+
+.tools input{
+  flex:1;
+  border:1px solid #303030;
+  background:#090909;
+  color:#fff;
+  padding:14px;
+  outline:0;
+}
+
+.tools input:focus{
+  border-color:#d60000;
+}
+
+.minimizar-todas{
+  min-height:46px;
+  padding:0 16px;
+  border:1px solid #333;
+  background:#090909;
+  color:#aaa;
+  cursor:pointer;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.minimizar-todas:hover{
+  border-color:#d60000;
+  color:#fff;
+}
+
+.list{
+  display:grid;
+  gap:12px;
+}
+
+.card{
+  border:1px solid #292929;
+  background:#090909;
+  transition:.2s;
+}
+
+.card.minimizada{
+  background:#070707;
+}
+
+.card-head{
+  padding:18px 20px;
+  border-bottom:1px solid #222;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+
+.card.minimizada .card-head{
+  border-bottom:0;
+}
+
+.card-head-info{
+  flex:1;
+}
+
+.card-head small{
+  display:block;
+  color:#666;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.4px;
+}
+
+.card-head h2{
+  margin-top:6px;
+  font-size:20px;
+  text-transform:uppercase;
+}
+
+.card-head-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.badge{
+  padding:8px 10px;
+  border:1px solid #6d1717;
+  background:#130707;
+  color:#ff7b7b;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.minimizar-btn{
+  min-width:38px;
+  height:34px;
+  border:1px solid #333;
+  background:#080808;
+  color:#aaa;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:900;
+}
+
+.minimizar-btn:hover{
+  border-color:#d60000;
+  color:#fff;
+}
+
+.card-conteudo{
+  display:block;
+}
+
+.card.minimizada .card-conteudo{
+  display:none;
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding:0 20px;
+}
+
+.block{
+  padding:20px 0;
+}
+
+.block + .block{
+  padding-left:20px;
+  border-left:1px solid #222;
+}
+
+.dado{
+  margin-bottom:13px;
+}
+
+.dado small{
+  display:block;
+  color:#666;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.3px;
+  margin-bottom:4px;
+}
+
+.dado div{
+  font-size:12px;
+  line-height:1.6;
+}
+
+.pix-info{
+  margin-top:10px;
+  padding:12px;
+  border:1px solid #30280d;
+  background:#0e0c05;
+  color:#d8c46b;
+  font-size:9px;
+  line-height:1.6;
+  word-break:break-word;
+}
+
+.controls{
+  border-top:1px solid #222;
+  padding:18px 20px;
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:8px;
+}
+
+.controls select{
+  border:1px solid #333;
+  background:#050505;
+  color:#fff;
+  padding:12px;
+  outline:0;
+}
+
+.btn{
+  border:1px solid #fff;
+  background:#fff;
+  color:#000;
+  padding:0 15px;
+  min-height:44px;
+  cursor:pointer;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.btn:hover{
+  background:#d60000;
+  border-color:#d60000;
+  color:#fff;
+}
+
+.btn.whats{
+  background:#0b0b0b;
+  color:#fff;
+  border-color:#444;
+}
+
+.btn.whats:hover{
+  border-color:#d60000;
+}
+
+.btn.cobrar{
+  background:#d60000;
+  color:#fff;
+  border-color:#d60000;
+}
+
+.btn.cobrar:hover{
+  background:#fff;
+  border-color:#fff;
+  color:#000;
+}
+
+.btn.excluir{
+  background:#180808;
+  color:#ff7777;
+  border-color:#6d1717;
+}
+
+.btn.excluir:hover{
+  background:#d60000;
+  border-color:#d60000;
+  color:#fff;
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.feedback{
+  grid-column:1/-1;
+  color:#777;
+  font-size:9px;
+  min-height:14px;
+}
+
+.feedback.ok{
+  color:#8ddf8d;
+}
+
+.feedback.error{
+  color:#ff8585;
+}
+
+.empty{
+  border:1px solid #292929;
+  padding:35px;
+  color:#777;
+  text-align:center;
+}
+
+.loading,
+.denied{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.denied{
+  display:none;
+}
+
+.panel{
+  display:none;
+}
+
+@media(max-width:760px){
+
+  header{
+    height:72px;
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+  }
+
+  .summary{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .card-grid{
+    grid-template-columns:1fr;
+  }
+
+  .block + .block{
+    padding-left:0;
+    border-left:0;
+    border-top:1px solid #222;
+  }
+
+  .controls{
+    grid-template-columns:1fr;
+  }
+
+  .tools{
+    flex-direction:column;
+  }
+
+  main{
+    width:92%;
+    padding-top:45px;
+  }
+
+  .card-head{
+    flex-direction:column;
+  }
+
+  .card-head-actions{
+    width:100%;
+    justify-content:space-between;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loading" class="loading">
+  VERIFICANDO ADMINISTRADOR...
+</div>
+
+<div id="denied" class="denied">
+  <div>
+    ACESSO NEGADO.
+    <br><br>
+    <a href="index.html">← VOLTAR À LOJA</a>
+  </div>
+</div>
+
+<div id="panel" class="panel">
+
+  <div class="topbar">
+    ANARKA — ENCOMENDAS / SEM PAGAMENTO ANTECIPADO
+  </div>
+
+  <header>
+
+    <a href="index.html">
+      <img src="/anarka-logo.png" class="logo" alt="ANARKA">
+    </a>
+
+    <div class="header-actions">
+      <a href="admin.html">← PAINEL</a>
+      <button id="sair">SAIR</button>
+    </div>
+
+  </header>
+
+  <main>
+
+    <div class="label">ANARKA / ADMIN</div>
+
+    <h1>ENCO<span>MENDAS.</span></h1>
+
+    <p class="sub">
+      Pedidos sem pagamento antecipado. Quando a peça ficar pronta,
+      marque como “Pronta para pagamento”. O botão de cobrança envia
+      o PIX Copia e Cola com o valor exato da encomenda pelo WhatsApp.
+    </p>
+
+    <section class="summary">
+
+      <div class="sum">
+        <small>TOTAL</small>
+        <strong id="sumTotal">0</strong>
+      </div>
+
+      <div class="sum">
+        <small>AGUARDANDO</small>
+        <strong id="sumAguardando">0</strong>
+      </div>
+
+      <div class="sum">
+        <small>EM PRODUÇÃO</small>
+        <strong id="sumProducao">0</strong>
+      </div>
+
+      <div class="sum">
+        <small>PRONTAS</small>
+        <strong id="sumProntas">0</strong>
+      </div>
+
+    </section>
+
+    <div class="tools">
+
+      <input
+        id="busca"
+        type="search"
+        placeholder="Buscar por nome, WhatsApp, peça, tamanho ou número..."
+      >
+
+      <button
+        type="button"
+        class="minimizar-todas"
+        id="minimizarTodas"
+      >
+        MINIMIZAR TODAS
+      </button>
+
+    </div>
+
+    <div id="lista" class="list"></div>
+
+  </main>
+
+</div>
+
+<script type="module">
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase =
+  createClient(
+    "https://pzqgsbxuhsesfxhmgfbi.supabase.co",
+    "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh"
+  );
+
+const PIX_CHAVE =
+  "ad22cc96-ded7-4657-932f-797b16ca5078";
+
+const PIX_NOME =
+  "RYAN DO NASCIMENTO SANTOS";
+
+const PIX_CIDADE =
+  "SAO PAULO";
+
+const loading =
+  document.getElementById("loading");
+
+const denied =
+  document.getElementById("denied");
+
+const panel =
+  document.getElementById("panel");
+
+const lista =
+  document.getElementById("lista");
+
+const busca =
+  document.getElementById("busca");
+
+const minimizarTodas =
+  document.getElementById("minimizarTodas");
+
+let encomendas = [];
+
+const minimizadas =
+  new Set();
+
+let todasMinimizadas =
+  false;
+
+const statusOpcoes = [
+  "Aguardando produção",
+  "Em produção",
+  "Pronta para pagamento",
+  "Finalizada",
+  "Cancelada"
+];
+
+function esc(v){
+
+  const d =
+    document.createElement("div");
+
+  d.textContent =
+    v ?? "";
+
+  return d.innerHTML;
+
+}
+
+function dataBR(v){
+
+  if(!v){
+    return "—";
+  }
+
+  return new Date(v)
+    .toLocaleString(
+      "pt-BR",
+      {
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric",
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+}
+
+function dinheiro(valor){
+
+  return Number(valor || 0)
+    .toLocaleString(
+      "pt-BR",
+      {
+        style:"currency",
+        currency:"BRL"
+      }
+    );
+
+}
+
+function valorEncomenda(e){
+
+  return (
+    Number(e.preco_unitario || 0)
+    *
+    Number(e.quantidade || 1)
+  );
+
+}
+
+/* ==========================
+   PIX BR CODE / EMV
+========================== */
+
+function limparTextoPix(texto){
+
+  return String(texto || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^A-Za-z0-9 .\-]/g, "")
+    .toUpperCase()
+    .trim();
+
+}
+
+function tlvPix(id, valor){
+
+  const texto =
+    String(valor ?? "");
+
+  return (
+    id +
+    String(texto.length)
+      .padStart(2,"0") +
+    texto
+  );
+
+}
+
+function crc16Pix(texto){
+
+  let crc =
+    0xFFFF;
+
+  for(
+    let i = 0;
+    i < texto.length;
+    i++
+  ){
+
+    crc ^=
+      texto.charCodeAt(i) << 8;
+
+    for(
+      let j = 0;
+      j < 8;
+      j++
+    ){
+
+      if(
+        crc & 0x8000
+      ){
+
+        crc =
+          ((crc << 1) ^ 0x1021) & 0xFFFF;
+
+      }else{
+
+        crc =
+          (crc << 1) & 0xFFFF;
+
+      }
+
+    }
+
+  }
+
+  return crc
+    .toString(16)
+    .toUpperCase()
+    .padStart(4,"0");
+
+}
+
+function gerarPixCopiaCola(
+  valor,
+  pedidoId
+){
+
+  const valorNumerico =
+    Math.max(
+      0,
+      Number(valor || 0)
+    );
+
+  const valorFormatado =
+    valorNumerico
+      .toFixed(2);
+
+  const nome =
+    limparTextoPix(PIX_NOME)
+      .slice(0,25);
+
+  const cidade =
+    limparTextoPix(PIX_CIDADE)
+      .slice(0,15);
+
+  const txid =
+    limparTextoPix(
+      `ANKA${pedidoId}`
+    )
+      .replace(/[^A-Z0-9]/g, "")
+      .slice(0,25)
+      ||
+      "***";
+
+  const merchantAccount =
+    tlvPix(
+      "00",
+      "BR.GOV.BCB.PIX"
+    )
+    +
+    tlvPix(
+      "01",
+      PIX_CHAVE
+    );
+
+  const adicionais =
+    tlvPix(
+      "05",
+      txid
+    );
+
+  let payload =
+    tlvPix("00","01") +
+    tlvPix("01","11") +
+    tlvPix("26",merchantAccount) +
+    tlvPix("52","0000") +
+    tlvPix("53","986") +
+    tlvPix("54",valorFormatado) +
+    tlvPix("58","BR") +
+    tlvPix("59",nome) +
+    tlvPix("60",cidade) +
+    tlvPix("62",adicionais) +
+    "6304";
+
+  payload +=
+    crc16Pix(payload);
+
+  return payload;
+
+}
+
+/* ==========================
+   WHATSAPP
+========================== */
+
+function whatsLink(
+  numero,
+  nome,
+  pedido,
+  cobranca=false
+){
+
+  const d =
+    String(numero || "")
+      .replace(/\D/g, "");
+
+  const n =
+    d.startsWith("55")
+      ? d
+      : `55${d}`;
+
+  const valorNumerico =
+    valorEncomenda(pedido);
+
+  const total =
+    dinheiro(valorNumerico);
+
+  const pix =
+    gerarPixCopiaCola(
+      valorNumerico,
+      pedido.id
+    );
+
+  const msg =
+    cobranca
+      ?
+`Oi ${nome}! Aqui é da ANARKA 🖤
+
+Sua encomenda #${pedido.id} já está pronta.
+
+Peça: ${pedido.produto_nome}
+Tamanho: ${pedido.tamanho}
+Quantidade: ${pedido.quantidade}
+Valor: ${total}
+
+Como combinado, o pagamento é feito agora que a peça ficou pronta.
+
+PIX Copia e Cola:
+${pix}
+
+Recebedor: ${PIX_NOME}
+Valor: ${total}
+
+Depois do pagamento, me manda o comprovante por aqui para eu confirmar e combinar a entrega.`
+      :
+`Oi ${nome}! Aqui é da ANARKA.
+
+Estou entrando em contato sobre sua encomenda #${pedido.id} (${pedido.produto_nome}, tamanho ${pedido.tamanho}).`;
+
+  return (
+    `https://wa.me/${n}?text=${encodeURIComponent(msg)}`
+  );
+
+}
+
+function resumo(){
+
+  document
+    .getElementById("sumTotal")
+    .textContent =
+      encomendas
+        .filter(
+          e =>
+            e.status !== "Cancelada"
+        )
+        .length;
+
+  document
+    .getElementById("sumAguardando")
+    .textContent =
+      encomendas
+        .filter(
+          e =>
+            e.status === "Aguardando produção"
+        )
+        .length;
+
+  document
+    .getElementById("sumProducao")
+    .textContent =
+      encomendas
+        .filter(
+          e =>
+            e.status === "Em produção"
+        )
+        .length;
+
+  document
+    .getElementById("sumProntas")
+    .textContent =
+      encomendas
+        .filter(
+          e =>
+            e.status === "Pronta para pagamento"
+        )
+        .length;
+
+}
+
+function render(listaDados){
+
+  if(!listaDados.length){
+
+    lista.innerHTML = `
+      <div class="empty">
+        NENHUMA ENCOMENDA ENCONTRADA.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  lista.innerHTML =
+    listaDados
+      .map(
+        e=>{
+
+          const estaMinimizada =
+            minimizadas.has(
+              String(e.id)
+            );
+
+          const botaoAcao =
+            e.status === "Cancelada"
+              ?
+              `
+                <button
+                  class="btn excluir excluir-encomenda"
+                  type="button"
+                >
+                  EXCLUIR DEFINITIVAMENTE
+                </button>
+              `
+              :
+              e.status === "Pronta para pagamento"
+                ?
+                `
+                  <a
+                    class="btn whats cobrar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="${whatsLink(
+                      e.whatsapp,
+                      e.nome_cliente,
+                      e,
+                      true
+                    )}"
+                  >
+                    COBRAR NO WHATSAPP —
+                    ${dinheiro(
+                      valorEncomenda(e)
+                    )}
+                    ↗
+                  </a>
+                `
+                :
+                `
+                  <a
+                    class="btn whats"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="${whatsLink(
+                      e.whatsapp,
+                      e.nome_cliente,
+                      e,
+                      false
+                    )}"
+                  >
+                    FALAR NO WHATSAPP ↗
+                  </a>
+                `;
+
+          let previsao =
+            "Sem previsão fixa";
+
+          if(e.previsao_pronto){
+
+            const partes =
+              String(e.previsao_pronto)
+                .split("-");
+
+            if(partes.length === 3){
+              previsao =
+                `${partes[2]}/${partes[1]}/${partes[0]}`;
+            }
+
+          }
+
+          const pixPreview =
+            e.status === "Pronta para pagamento"
+              ? gerarPixCopiaCola(
+                  valorEncomenda(e),
+                  e.id
+                )
+              : "";
+
+          return `
+
+            <article
+              class="card ${
+                estaMinimizada
+                  ? "minimizada"
+                  : ""
+              }"
+              data-id="${esc(e.id)}"
+            >
+
+              <div class="card-head">
+
+                <div class="card-head-info">
+
+                  <small>
+                    ENCOMENDA #${esc(e.id)}
+                    /
+                    ${dataBR(e.criado_em)}
+                  </small>
+
+                  <h2>
+                    ${esc(e.produto_nome)}
+                    —
+                    ${esc(e.tamanho)}
+                  </h2>
+
+                </div>
+
+                <div class="card-head-actions">
+
+                  <span class="badge">
+                    ${esc(e.status)}
+                  </span>
+
+                  <button
+                    type="button"
+                    class="minimizar-btn"
+                    data-minimizar="${esc(e.id)}"
+                    title="${
+                      estaMinimizada
+                        ? "Expandir"
+                        : "Minimizar"
+                    }"
+                  >
+                    ${
+                      estaMinimizada
+                        ? "＋"
+                        : "−"
+                    }
+                  </button>
+
+                </div>
+
+              </div>
+
+              <div class="card-conteudo">
+
+                <div class="card-grid">
+
+                  <div class="block">
+
+                    <div class="dado">
+                      <small>CLIENTE</small>
+                      <div>${esc(e.nome_cliente)}</div>
+                    </div>
+
+                    <div class="dado">
+                      <small>WHATSAPP</small>
+                      <div>${esc(e.whatsapp)}</div>
+                    </div>
+
+                    <div class="dado">
+                      <small>E-MAIL</small>
+                      <div>${esc(e.email_cliente || "—")}</div>
+                    </div>
+
+                  </div>
+
+                  <div class="block">
+
+                    <div class="dado">
+
+                      <small>PEÇA</small>
+
+                      <div>
+                        ${esc(e.produto_nome)}
+                        <br>
+                        Tamanho ${esc(e.tamanho)}
+                        /
+                        Quantidade ${esc(e.quantidade)}
+                      </div>
+
+                    </div>
+
+                    <div class="dado">
+
+                      <small>VALOR DA ENCOMENDA</small>
+
+                      <div>
+                        ${dinheiro(e.preco_unitario)} cada
+                        <br>
+                        <strong>
+                          ${dinheiro(valorEncomenda(e))} no total
+                        </strong>
+                        <br>
+                        <span style="color:#777">
+                          ${
+                            e.status === "Pronta para pagamento"
+                              ? "Pronta para cobrança"
+                              :
+                              e.status === "Finalizada"
+                                ? "Pagamento concluído"
+                                :
+                                e.status === "Cancelada"
+                                  ? "Encomenda cancelada"
+                                  : "Pagamento ainda não cobrado"
+                          }
+                        </span>
+
+                        ${
+                          pixPreview
+                            ? `
+                              <div class="pix-info">
+                                PIX será enviado automaticamente no WhatsApp.<br>
+                                Recebedor: ${esc(PIX_NOME)}<br>
+                                Valor: ${dinheiro(valorEncomenda(e))}<br>
+                                TXID: ANKA${esc(e.id)}
+                              </div>
+                            `
+                            : ""
+                        }
+
+                      </div>
+
+                    </div>
+
+                    <div class="dado">
+                      <small>PREVISÃO</small>
+                      <div>${esc(previsao)}</div>
+                    </div>
+
+                    ${
+                      e.observacao
+                        ?
+                        `
+                          <div class="dado">
+                            <small>OBSERVAÇÃO</small>
+                            <div>${esc(e.observacao)}</div>
+                          </div>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+                </div>
+
+                <div class="controls">
+
+                  <select class="status">
+                    ${
+                      statusOpcoes
+                        .map(
+                          s =>
+                            `
+                              <option
+                                ${
+                                  s === e.status
+                                    ? "selected"
+                                    : ""
+                                }
+                              >
+                                ${esc(s)}
+                              </option>
+                            `
+                        )
+                        .join("")
+                    }
+                  </select>
+
+                  <button
+                    class="btn salvar"
+                    type="button"
+                  >
+                    SALVAR
+                  </button>
+
+                  ${botaoAcao}
+
+                  <div class="feedback"></div>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+  ativarEventosCards();
+
+}
+
+function ativarEventosCards(){
+
+  document
+    .querySelectorAll(".salvar")
+    .forEach(
+      botao =>
+        botao.addEventListener(
+          "click",
+          ()=>salvar(botao)
+        )
+    );
+
+  document
+    .querySelectorAll(".excluir-encomenda")
+    .forEach(
+      botao =>
+        botao.addEventListener(
+          "click",
+          ()=>excluirEncomenda(botao)
+        )
+    );
+
+  document
+    .querySelectorAll("[data-minimizar]")
+    .forEach(
+      botao => {
+
+        botao.addEventListener(
+          "click",
+          ()=>{
+
+            const id =
+              String(botao.dataset.minimizar);
+
+            if(minimizadas.has(id)){
+              minimizadas.delete(id);
+            }else{
+              minimizadas.add(id);
+            }
+
+            aplicarBusca();
+
+          }
+        );
+
+      }
+    );
+
+}
+
+minimizarTodas.addEventListener(
+  "click",
+  ()=>{
+
+    todasMinimizadas =
+      !todasMinimizadas;
+
+    if(todasMinimizadas){
+
+      encomendas
+        .forEach(
+          e =>
+            minimizadas.add(
+              String(e.id)
+            )
+        );
+
+      minimizarTodas.textContent =
+        "EXPANDIR TODAS";
+
+    }else{
+
+      minimizadas.clear();
+
+      minimizarTodas.textContent =
+        "MINIMIZAR TODAS";
+
+    }
+
+    aplicarBusca();
+
+  }
+);
+
+async function salvar(btn){
+
+  const card =
+    btn.closest(".card");
+
+  const id =
+    card.dataset.id;
+
+  const status =
+    card
+      .querySelector(".status")
+      .value;
+
+  const feed =
+    card.querySelector(".feedback");
+
+  btn.disabled =
+    true;
+
+  btn.textContent =
+    "SALVANDO...";
+
+  const pagamentoStatus =
+    status === "Pronta para pagamento"
+      ? "aguardando"
+      :
+      status === "Finalizada"
+        ? "pago"
+        :
+        status === "Cancelada"
+          ? "cancelado"
+          : "nao_cobrado";
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("encomendas")
+      .update({
+        status,
+        pagamento_status:
+          pagamentoStatus
+      })
+      .eq("id",id)
+      .select("id,status,pagamento_status")
+      .single();
+
+  btn.disabled =
+    false;
+
+  btn.textContent =
+    "SALVAR";
+
+  if(error){
+
+    console.error(error);
+
+    feed.className =
+      "feedback error";
+
+    feed.textContent =
+      "ERRO AO SALVAR.";
+
+    return;
+
+  }
+
+  const index =
+    encomendas.findIndex(
+      e =>
+        String(e.id) === String(id)
+    );
+
+  if(index >= 0){
+
+    encomendas[index].status =
+      data.status;
+
+    encomendas[index].pagamento_status =
+      data.pagamento_status;
+
+  }
+
+  resumo();
+  aplicarBusca();
+
+}
+
+async function excluirEncomenda(btn){
+
+  const card =
+    btn.closest(".card");
+
+  const id =
+    card.dataset.id;
+
+  const encomenda =
+    encomendas.find(
+      e =>
+        String(e.id) === String(id)
+    );
+
+  if(
+    !encomenda ||
+    encomenda.status !== "Cancelada"
+  ){
+
+    alert(
+      "Só é possível excluir encomendas canceladas."
+    );
+
+    return;
+
+  }
+
+  const confirmar =
+    window.confirm(
+      `Excluir definitivamente a encomenda #${id}?\n\nEssa ação não pode ser desfeita.`
+    );
+
+  if(!confirmar){
+    return;
+  }
+
+  btn.disabled =
+    true;
+
+  btn.textContent =
+    "EXCLUINDO...";
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("encomendas")
+      .delete()
+      .eq("id",id)
+      .eq("status","Cancelada")
+      .select("id")
+      .single();
+
+  if(error){
+
+    console.error(
+      "Erro ao excluir encomenda:",
+      error
+    );
+
+    btn.disabled =
+      false;
+
+    btn.textContent =
+      "EXCLUIR DEFINITIVAMENTE";
+
+    alert(
+      "Não foi possível excluir a encomenda."
+    );
+
+    return;
+
+  }
+
+  encomendas =
+    encomendas.filter(
+      e =>
+        String(e.id) !== String(data.id)
+    );
+
+  minimizadas.delete(
+    String(data.id)
+  );
+
+  resumo();
+  aplicarBusca();
+
+}
+
+function aplicarBusca(){
+
+  const q =
+    busca.value
+      .trim()
+      .toLowerCase();
+
+  if(!q){
+    render(encomendas);
+    return;
+  }
+
+  const filtradas =
+    encomendas.filter(
+      e =>
+        [
+          e.id,
+          e.nome_cliente,
+          e.whatsapp,
+          e.email_cliente,
+          e.produto_nome,
+          e.tamanho,
+          e.status
+        ]
+          .join(" ")
+          .toLowerCase()
+          .includes(q)
+    );
+
+  render(filtradas);
+
+}
+
+busca.addEventListener(
+  "input",
+  aplicarBusca
+);
+
+async function iniciar(){
+
+  const {
+    data:{user},
+    error
+  } =
+    await supabase
+      .auth
+      .getUser();
+
+  if(error || !user){
+
+    loading.style.display =
+      "none";
+
+    denied.style.display =
+      "flex";
+
+    return;
+
+  }
+
+  const {
+    data:admin,
+    error:adminErro
+  } =
+    await supabase
+      .from("admins")
+      .select("user_id")
+      .eq("user_id",user.id)
+      .maybeSingle();
+
+  if(adminErro || !admin){
+
+    loading.style.display =
+      "none";
+
+    denied.style.display =
+      "flex";
+
+    return;
+
+  }
+
+  const {
+    data,
+    error:err
+  } =
+    await supabase
+      .from("encomendas")
+      .select("*")
+      .order(
+        "criado_em",
+        {
+          ascending:false
+        }
+      );
+
+  if(err){
+
+    console.error(err);
+
+    lista.innerHTML = `
+      <div class="empty">
+        ERRO AO CARREGAR ENCOMENDAS.
+      </div>
+    `;
+
+  }else{
+
+    encomendas =
+      data || [];
+
+    resumo();
+    render(encomendas);
+
+  }
+
+  loading.style.display =
+    "none";
+
+  panel.style.display =
+    "block";
+
+}
+
+document
+  .getElementById("sair")
+  .addEventListener(
+    "click",
+    async ()=>{
+
+      await supabase
+        .auth
+        .signOut();
+
+      location.replace(
+        "login.html"
+      );
+
+    }
+  );
+
+await iniciar();
+
+</script>
+
+</body>
+</html>
