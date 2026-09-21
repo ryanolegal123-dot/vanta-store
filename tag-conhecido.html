@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tag de conhecido | ANARKA</title>
+
+<link rel="icon" href="/favicon.png">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:#050505;
+  color:#fff;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.topbar{
+  padding:9px 15px;
+  background:#d60000;
+  text-align:center;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+header{
+  height:82px;
+  padding:0 6%;
+  border-bottom:1px solid #242424;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  width:125px;
+  height:65px;
+  object-fit:contain;
+}
+
+.voltar{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.voltar:hover{
+  color:#d60000;
+}
+
+main{
+  width:88%;
+  max-width:900px;
+  margin:auto;
+  padding:70px 0 100px;
+}
+
+.label{
+  color:#d60000;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:3px;
+}
+
+h1{
+  margin-top:12px;
+  font-size:clamp(52px,9vw,100px);
+  line-height:.82;
+  letter-spacing:-5px;
+  text-transform:uppercase;
+}
+
+h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+}
+
+.sub{
+  max-width:610px;
+  margin-top:24px;
+  color:#858585;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.card{
+  margin-top:45px;
+  border:1px solid #292929;
+  background:#090909;
+}
+
+.card-head{
+  padding:17px 20px;
+  border-bottom:1px solid #292929;
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.card-body{
+  padding:25px 20px;
+}
+
+label{
+  display:block;
+  margin:17px 0 7px;
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+}
+
+input,
+textarea{
+  width:100%;
+  border:1px solid #303030;
+  background:#050505;
+  color:#fff;
+  padding:14px;
+  outline:none;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+input:focus,
+textarea:focus{
+  border-color:#d60000;
+}
+
+button{
+  width:100%;
+  min-height:54px;
+  margin-top:22px;
+  border:1px solid #d60000;
+  background:#d60000;
+  color:#fff;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+}
+
+button:hover{
+  background:#fff;
+  border-color:#fff;
+  color:#000;
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.status{
+  padding:22px;
+  border:1px solid #292929;
+  background:#080808;
+}
+
+.status-tag{
+  display:inline-block;
+  padding:6px 9px;
+  background:#151515;
+  color:#aaa;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.status-tag.aprovado{
+  background:#0e2514;
+  color:#6fe88b;
+}
+
+.status-tag.rejeitado{
+  background:#2b0b0b;
+  color:#ff7171;
+}
+
+.status h2{
+  margin-top:18px;
+  font-size:27px;
+  text-transform:uppercase;
+}
+
+.status p{
+  margin-top:10px;
+  color:#888;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.codigo{
+  margin-top:18px;
+  padding:16px;
+  border:1px dashed #d60000;
+  color:#fff;
+  font-size:23px;
+  font-weight:1000;
+  letter-spacing:3px;
+  text-align:center;
+}
+
+.aviso{
+  margin-top:18px;
+  padding:14px;
+  border-left:3px solid #d60000;
+  background:#100707;
+  color:#aaa;
+  font-size:11px;
+  line-height:1.7;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.feedback{
+  margin-top:13px;
+  min-height:16px;
+  color:#888;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.feedback.erro{
+  color:#ff6e6e;
+}
+
+.feedback.sucesso{
+  color:#66dc82;
+}
+
+footer{
+  border-top:1px solid #222;
+  padding:28px;
+  color:#555;
+  text-align:center;
+  font-size:9px;
+  letter-spacing:1.5px;
+}
+
+@media(max-width:550px){
+  header{
+    height:72px;
+    padding:0 4%;
+  }
+
+  .logo{
+    width:100px;
+  }
+
+  main{
+    width:92%;
+    padding:48px 0 80px;
+  }
+
+  h1{
+    letter-spacing:-3px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  ANARKA — ENTREGA PESSOAL PARA CONHECIDOS
+</div>
+
+<header>
+  <a href="index.html">
+    <img src="/anarka-logo.png" class="logo" alt="ANARKA">
+  </a>
+
+  <a href="minha-conta.html" class="voltar">
+    ← MINHA CONTA
+  </a>
+</header>
+
+<main>
+
+  <div class="label">
+    ANARKA / TAG DE CONHECIDO
+  </div>
+
+  <h1>
+    PEDIR TAG<br>
+    <span>DE CONHECIDO.</span>
+  </h1>
+
+  <p class="sub">
+    Se você conhece a ANARKA pessoalmente, pode pedir uma tag.
+    Depois de aprovada, sua conta ganha a opção
+    <strong>ENTREGA PESSOAL — R$ 0,00</strong> no checkout.
+  </p>
+
+  <section class="card" id="carregando">
+    <div class="card-body">
+      CARREGANDO SUA TAG...
+    </div>
+  </section>
+
+  <section class="card hidden" id="formCard">
+    <div class="card-head">
+      SOLICITAÇÃO
+    </div>
+
+    <div class="card-body">
+
+      <label for="nome">Seu nome</label>
+      <input id="nome" type="text" autocomplete="name">
+
+      <label for="whatsapp">WhatsApp</label>
+      <input
+        id="whatsapp"
+        type="tel"
+        autocomplete="tel"
+        placeholder="(11) 99999-9999"
+      >
+
+      <label for="mensagem">
+        Como você conhece a ANARKA?
+      </label>
+
+      <textarea
+        id="mensagem"
+        maxlength="400"
+        placeholder="Ex.: sou amigo do Ryan da escola / trabalho / bairro..."
+      ></textarea>
+
+      <div class="aviso">
+        A tag não é aprovada automaticamente. A ANARKA confere
+        a solicitação antes de liberar a entrega pessoal.
+      </div>
+
+      <button id="solicitar" type="button">
+        ENVIAR SOLICITAÇÃO →
+      </button>
+
+      <div id="feedback" class="feedback"></div>
+
+    </div>
+  </section>
+
+  <section class="card hidden" id="statusCard">
+    <div class="card-head">
+      SUA TAG
+    </div>
+
+    <div class="card-body">
+      <div class="status">
+
+        <span class="status-tag" id="statusTag">
+          PENDENTE
+        </span>
+
+        <h2 id="statusTitulo">
+          Solicitação enviada.
+        </h2>
+
+        <p id="statusTexto"></p>
+
+        <div id="codigo" class="codigo hidden"></div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 ANARKA — STREETWEAR / SÃO PAULO
+</footer>
+
+<script type="module">
+
+import {
+  createClient
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL =
+  "https://pzqgsbxuhsesfxhmgfbi.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+const carregando =
+  document.getElementById("carregando");
+
+const formCard =
+  document.getElementById("formCard");
+
+const statusCard =
+  document.getElementById("statusCard");
+
+const nome =
+  document.getElementById("nome");
+
+const whatsapp =
+  document.getElementById("whatsapp");
+
+const mensagem =
+  document.getElementById("mensagem");
+
+const solicitar =
+  document.getElementById("solicitar");
+
+const feedback =
+  document.getElementById("feedback");
+
+const statusTag =
+  document.getElementById("statusTag");
+
+const statusTitulo =
+  document.getElementById("statusTitulo");
+
+const statusTexto =
+  document.getElementById("statusTexto");
+
+const codigo =
+  document.getElementById("codigo");
+
+
+const {
+  data:{
+    user
+  },
+  error:userError
+} =
+  await supabase.auth
+    .getUser();
+
+
+if(
+  userError ||
+  !user
+){
+
+  window.location.replace(
+    "login.html?redirect=tag-conhecido.html"
+  );
+
+}else{
+
+  nome.value =
+    user.user_metadata?.nome ||
+    "";
+
+  await carregar();
+
+}
+
+
+async function carregar(){
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("tags_conhecido")
+      .select(
+        "id,nome,whatsapp,mensagem,status,codigo,criado_em,aprovado_em"
+      )
+      .eq(
+        "user_id",
+        user.id
+      )
+      .maybeSingle();
+
+
+  carregando.classList.add(
+    "hidden"
+  );
+
+
+  if(error){
+
+    console.error(
+      "Tag:",
+      error
+    );
+
+    formCard.classList.remove(
+      "hidden"
+    );
+
+    feedback.className =
+      "feedback erro";
+
+    feedback.textContent =
+      "Não foi possível consultar sua tag.";
+
+    return;
+  }
+
+
+  if(!data){
+
+    formCard.classList.remove(
+      "hidden"
+    );
+
+    return;
+  }
+
+
+  mostrarStatus(
+    data
+  );
+
+}
+
+
+function mostrarStatus(tag){
+
+  formCard.classList.add(
+    "hidden"
+  );
+
+  statusCard.classList.remove(
+    "hidden"
+  );
+
+
+  const status =
+    String(
+      tag.status ||
+      "pendente"
+    )
+      .toLowerCase();
+
+
+  statusTag.className =
+    "status-tag " +
+    status;
+
+  statusTag.textContent =
+    status.toUpperCase();
+
+
+  if(
+    status ===
+    "aprovado"
+  ){
+
+    statusTitulo.textContent =
+      "TAG APROVADA.";
+
+    statusTexto.textContent =
+      "Sua conta já pode escolher entrega pessoal por R$ 0,00 no checkout.";
+
+    codigo.textContent =
+      tag.codigo ||
+      "TAG ATIVA";
+
+    codigo.classList.remove(
+      "hidden"
+    );
+
+    return;
+  }
+
+
+  codigo.classList.add(
+    "hidden"
+  );
+
+
+  if(
+    status ===
+    "rejeitado"
+  ){
+
+    statusTitulo.textContent =
+      "SOLICITAÇÃO NÃO APROVADA.";
+
+    statusTexto.textContent =
+      "A entrega pessoal não foi liberada para esta conta.";
+
+    return;
+  }
+
+
+  statusTitulo.textContent =
+    "SOLICITAÇÃO EM ANÁLISE.";
+
+  statusTexto.textContent =
+    "A ANARKA ainda precisa confirmar que você é conhecido antes de liberar a entrega pessoal.";
+
+}
+
+
+solicitar.addEventListener(
+  "click",
+  async ()=>{
+
+    feedback.textContent =
+      "";
+
+    const nomeValor =
+      nome.value.trim();
+
+    const whatsappValor =
+      whatsapp.value.trim();
+
+    const mensagemValor =
+      mensagem.value.trim();
+
+    const whatsappNumeros =
+      whatsappValor.replace(
+        /\D/g,
+        ""
+      );
+
+
+    if(
+      !nomeValor ||
+      whatsappNumeros.length < 10 ||
+      whatsappNumeros.length > 11
+    ){
+
+      feedback.className =
+        "feedback erro";
+
+      feedback.textContent =
+        "Preencha nome e WhatsApp corretamente.";
+
+      return;
+    }
+
+
+    solicitar.disabled =
+      true;
+
+    solicitar.textContent =
+      "ENVIANDO...";
+
+
+    const {
+      error
+    } =
+      await supabase
+        .from("tags_conhecido")
+        .insert({
+
+          user_id:
+            user.id,
+
+          nome:
+            nomeValor,
+
+          whatsapp:
+            whatsappValor,
+
+          mensagem:
+            mensagemValor ||
+            null
+
+        });
+
+
+    solicitar.disabled =
+      false;
+
+    solicitar.textContent =
+      "ENVIAR SOLICITAÇÃO →";
+
+
+    if(error){
+
+      console.error(
+        "Solicitação:",
+        error
+      );
+
+      feedback.className =
+        "feedback erro";
+
+      feedback.textContent =
+        "Não foi possível enviar. Talvez esta conta já tenha uma solicitação.";
+
+      return;
+    }
+
+
+    feedback.className =
+      "feedback sucesso";
+
+    feedback.textContent =
+      "✓ SOLICITAÇÃO ENVIADA";
+
+    await carregar();
+
+  }
+);
+
+</script>
+
+</body>
+</html>
