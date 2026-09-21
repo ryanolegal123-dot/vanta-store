@@ -226,7 +226,6 @@ h1 span{
   font-size:11px;
 }
 
-
 /* =========================
    ADMIN
 ========================= */
@@ -270,9 +269,6 @@ h1 span{
   color:#000;
 }
 
-
-
-
 .tag-conhecido-link{
   width:100%;
   min-height:48px;
@@ -302,7 +298,7 @@ h1 span{
 }
 
 /* =========================
-   NAVEGAÇÃO / SESSÃO
+   SESSÃO
 ========================= */
 
 .voltar-loja{
@@ -363,28 +359,8 @@ h1 span{
   color:#fff;
 }
 
-@media(max-width:550px){
-
-  .header-links{
-    gap:8px;
-  }
-
-  .header-links a{
-    display:none;
-  }
-
-  .header-links .voltar-loja{
-    display:inline-flex;
-    min-height:36px;
-    padding:0 10px;
-    font-size:8px;
-    letter-spacing:1px;
-  }
-
-}
-
 /* =========================
-   PEDIDOS FINALIZADOS / MENU
+   MENU PEDIDO
 ========================= */
 
 .pedido-acoes{
@@ -403,7 +379,6 @@ h1 span{
   color:#aaa;
   cursor:pointer;
   font-size:20px;
-  line-height:1;
 }
 
 .pedido-menu-botao:hover{
@@ -459,10 +434,9 @@ h1 span{
   opacity:.82;
 }
 
-.pedido-finalizado .pedido-body{
-  padding-top:14px;
-  padding-bottom:14px;
-}
+/* =========================
+   ARQUIVADOS
+========================= */
 
 .arquivados-wrap{
   margin-top:18px;
@@ -485,10 +459,6 @@ h1 span{
   text-transform:uppercase;
 }
 
-.arquivados-toggle:hover{
-  color:#888;
-}
-
 .arquivados-lista{
   display:none;
   padding-top:10px;
@@ -500,14 +470,6 @@ h1 span{
 
 .arquivados-lista .pedido{
   opacity:.58;
-}
-
-.arquivados-vazio{
-  padding:18px 4px 8px;
-  color:#444;
-  font-size:9px;
-  letter-spacing:1px;
-  text-transform:uppercase;
 }
 
 /* =========================
@@ -564,10 +526,6 @@ h1 span{
   color:#fff;
 }
 
-/* =========================
-   PEDIDO
-========================= */
-
 .pedido{
   margin-bottom:16px;
   border:1px solid #292929;
@@ -610,11 +568,8 @@ h1 span{
   text-transform:uppercase;
 }
 
-/* CORPO DO PEDIDO */
-
 .pedido-body{
   padding:18px;
-  display:block;
 }
 
 .pedido-info{
@@ -641,64 +596,87 @@ h1 span{
 }
 
 /* =========================
-   BOTÃO ACOMPANHAR
+   ENCOMENDA
+========================= */
+
+.encomenda-tag{
+  margin-bottom:12px;
+  color:#d60000;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.encomenda-produto{
+  margin-bottom:10px;
+  font-size:15px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.encomenda-detalhes{
+  margin-bottom:20px;
+  color:#777;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.encomenda-detalhes strong{
+  color:#fff;
+}
+
+.encomenda-aviso{
+  margin-top:15px;
+  padding:14px;
+  border:1px solid #451818;
+  background:#110707;
+  color:#999;
+  font-size:10px;
+  line-height:1.7;
+}
+
+.encomenda-aviso strong{
+  color:#fff;
+}
+
+.encomenda-pendente{
+  border-color:#5c1b1b;
+}
+
+/* =========================
+   ACOMPANHAR
 ========================= */
 
 .acompanhar{
   width:100%;
   min-height:58px;
-
   margin-top:20px;
   padding:0 22px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   background:#d60000;
   border:2px solid #d60000;
-
   color:#fff;
-
   font-size:11px;
   font-weight:900;
   letter-spacing:2px;
   text-transform:uppercase;
-
-  cursor:pointer;
-
-  transition:
-    background .2s,
-    color .2s,
-    border-color .2s,
-    transform .15s,
-    box-shadow .2s;
+  transition:.2s;
 }
 
 .acompanhar:hover{
   background:#fff;
   border-color:#fff;
   color:#000;
-
   transform:translateY(-2px);
-
-  box-shadow:
-    5px 5px 0 #d60000;
-}
-
-.acompanhar:active{
-  transform:scale(.98);
-  box-shadow:none;
+  box-shadow:5px 5px 0 #d60000;
 }
 
 .acompanhar .seta{
   margin-left:12px;
   font-size:17px;
-  transition:transform .2s;
-}
-
-.acompanhar:hover .seta{
-  transform:translateX(5px);
 }
 
 /* =========================
@@ -758,8 +736,19 @@ footer{
     height:58px;
   }
 
+  .header-links{
+    gap:8px;
+  }
+
   .header-links a{
     display:none;
+  }
+
+  .header-links .voltar-loja{
+    display:inline-flex;
+    min-height:36px;
+    padding:0 10px;
+    font-size:8px;
   }
 
   main{
@@ -780,26 +769,9 @@ footer{
     flex-direction:column;
   }
 
-  .pedido-body{
-    padding:17px;
-  }
-
   .pedido-resumo{
     width:100%;
     align-items:center;
-  }
-
-  .total{
-    font-size:21px;
-  }
-
-  .acompanhar{
-    min-height:60px;
-    margin-top:18px;
-    padding:0 14px;
-
-    font-size:10px;
-    letter-spacing:1.6px;
   }
 
 }
@@ -823,11 +795,13 @@ footer{
   <header>
 
     <a href="index.html">
+
       <img
         src="/anarka-logo.png"
         alt="ANARKA"
         class="logo"
       >
+
     </a>
 
     <div class="header-links">
@@ -859,13 +833,11 @@ footer{
     </h1>
 
     <p class="subtitulo">
-      Acompanhe seus pedidos e veja cada etapa
-      da sua compra na ANARKA.
+      Acompanhe suas compras e encomendas
+      e veja cada etapa na ANARKA.
     </p>
 
     <div class="grid">
-
-      <!-- PERFIL -->
 
       <aside class="card">
 
@@ -919,6 +891,7 @@ footer{
             class="admin-area"
             id="adminArea"
           >
+
             <div class="admin-label">
               ADMINISTRAÇÃO
             </div>
@@ -929,6 +902,7 @@ footer{
             >
               ABRIR PAINEL ADMIN →
             </a>
+
           </div>
 
           <div class="sessao-area">
@@ -952,67 +926,44 @@ footer{
 
       </aside>
 
-
-      <!-- PEDIDOS -->
-
       <section class="card">
 
         <div class="card-title">
-          MEUS PEDIDOS
+          MEUS PEDIDOS E ENCOMENDAS
         </div>
 
         <div class="pedidos-container">
 
-          <div id="pedidos">
-
-            <div class="vazio">
-
-              <div class="vazio-symbol">
-                Ⓐ
-              </div>
-
-              <h2>
-                Nenhum pedido ainda.
-              </h2>
-
-              <p>
-                Seus pedidos vinculados à sua conta
-                aparecerão aqui.
-              </p>
-
-              <a
-                href="catalogo.html"
-                class="botao"
-              >
-                VER COLEÇÃO →
-              </a>
-
-            </div>
-
-          </div>
+          <div id="pedidos"></div>
 
           <div
             class="arquivados-wrap"
             id="arquivadosWrap"
             style="display:none"
           >
+
             <button
               type="button"
               class="arquivados-toggle"
               id="arquivadosToggle"
             >
+
               <span>
                 PEDIDOS ARQUIVADOS
                 (<span id="arquivadosQtd">0</span>)
               </span>
 
-              <span id="arquivadosSeta">＋</span>
+              <span id="arquivadosSeta">
+                ＋
+              </span>
+
             </button>
 
             <div
               class="arquivados-lista"
               id="arquivadosLista"
             ></div>
+
           </div>
 
         </div>
@@ -1028,7 +979,6 @@ footer{
   </footer>
 
 </div>
-
 
 <script type="module">
 
@@ -1057,52 +1007,73 @@ const supabase =
 ========================== */
 
 const loading =
-  document.getElementById("loading");
-
+  document.getElementById(
+    "loading"
+  );
 
 const pagina =
-  document.getElementById("pagina");
-
+  document.getElementById(
+    "pagina"
+  );
 
 const nomeEl =
-  document.getElementById("nome");
-
+  document.getElementById(
+    "nome"
+  );
 
 const emailEl =
-  document.getElementById("email");
-
+  document.getElementById(
+    "email"
+  );
 
 const avatarEl =
-  document.getElementById("avatar");
-
+  document.getElementById(
+    "avatar"
+  );
 
 const pedidosEl =
-  document.getElementById("pedidos");
+  document.getElementById(
+    "pedidos"
+  );
 
 const arquivadosWrap =
-  document.getElementById("arquivadosWrap");
+  document.getElementById(
+    "arquivadosWrap"
+  );
 
 const arquivadosToggle =
-  document.getElementById("arquivadosToggle");
+  document.getElementById(
+    "arquivadosToggle"
+  );
 
 const arquivadosLista =
-  document.getElementById("arquivadosLista");
+  document.getElementById(
+    "arquivadosLista"
+  );
 
 const arquivadosQtd =
-  document.getElementById("arquivadosQtd");
+  document.getElementById(
+    "arquivadosQtd"
+  );
 
 const arquivadosSeta =
-  document.getElementById("arquivadosSeta");
-
-let usuarioAtual = null;
-
+  document.getElementById(
+    "arquivadosSeta"
+  );
 
 const adminArea =
-  document.getElementById("adminArea");
-
+  document.getElementById(
+    "adminArea"
+  );
 
 const tipoConta =
-  document.getElementById("tipoConta");
+  document.getElementById(
+    "tipoConta"
+  );
+
+
+let usuarioAtual =
+  null;
 
 
 /* ==========================
@@ -1115,10 +1086,15 @@ const {
   },
   error
 } =
-  await supabase.auth.getUser();
+  await supabase
+    .auth
+    .getUser();
 
 
-if(error || !user){
+if(
+  error ||
+  !user
+){
 
   window.location.replace(
     "login.html"
@@ -1126,11 +1102,23 @@ if(error || !user){
 
 }else{
 
-  usuarioAtual = user;
+  usuarioAtual =
+    user;
+
 
   const nome =
-    user.user_metadata?.nome ||
-    user.email?.split("@")[0] ||
+    user
+      .user_metadata
+      ?.nome
+
+      ||
+
+    user
+      .email
+      ?.split("@")[0]
+
+      ||
+
     "Cliente";
 
 
@@ -1168,24 +1156,33 @@ if(error || !user){
 }
 
 
-
 /* ==========================
    ADMIN
 ========================== */
 
-async function verificarAdmin(userId){
+async function verificarAdmin(
+  userId
+){
 
   const {
     data,
     error
   } =
     await supabase
-      .from("admins")
-      .select("user_id")
+
+      .from(
+        "admins"
+      )
+
+      .select(
+        "user_id"
+      )
+
       .eq(
         "user_id",
         userId
       )
+
       .maybeSingle();
 
 
@@ -1197,6 +1194,7 @@ async function verificarAdmin(userId){
     );
 
     return;
+
   }
 
 
@@ -1204,6 +1202,7 @@ async function verificarAdmin(userId){
 
     tipoConta.textContent =
       "Administrador ANARKA";
+
 
     adminArea.style.display =
       "block";
@@ -1214,17 +1213,29 @@ async function verificarAdmin(userId){
 
 
 /* ==========================
-   PEDIDOS
+   PEDIDOS + ENCOMENDAS
 ========================== */
 
-async function carregarPedidos(userId){
+async function carregarPedidos(
+  userId
+){
+
+  /*
+  ==========================
+  PEDIDOS NORMAIS
+  ==========================
+  */
 
   const {
-    data,
-    error
+    data:pedidosNormais,
+    error:pedidosErro
   } =
     await supabase
-      .from("pedidos")
+
+      .from(
+        "pedidos"
+      )
+
       .select(`
         id,
         numero_pedido,
@@ -1235,10 +1246,12 @@ async function carregarPedidos(userId){
         arquivado_cliente,
         oculto_cliente
       `)
+
       .eq(
         "user_id",
         userId
       )
+
       .order(
         "criado_em",
         {
@@ -1247,75 +1260,219 @@ async function carregarPedidos(userId){
       );
 
 
-  if(error){
+  if(pedidosErro){
 
     console.error(
       "Erro ao carregar pedidos:",
-      error
+      pedidosErro
     );
 
-    mostrarVazio();
+  }
 
-    return;
+
+  /*
+  ==========================
+  ENCOMENDAS
+  ==========================
+  */
+
+  const {
+    data:encomendas,
+    error:encomendasErro
+  } =
+    await supabase
+
+      .from(
+        "encomendas"
+      )
+
+      .select(`
+        id,
+        produto_nome,
+        produto_slug,
+        tamanho,
+        quantidade,
+        preco_unitario,
+        status,
+        pagamento_status,
+        previsao_pronto,
+        criado_em
+      `)
+
+      .eq(
+        "user_id",
+        userId
+      )
+
+      .neq(
+        "status",
+        "Cancelada"
+      )
+
+      .order(
+        "criado_em",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(encomendasErro){
+
+    console.error(
+      "Erro ao carregar encomendas:",
+      encomendasErro
+    );
+
   }
 
 
   const visiveis =
-    (data || []).filter(
-      pedido => !pedido.oculto_cliente
-    );
+    (
+      pedidosNormais ||
+      []
+    )
+      .filter(
+        pedido =>
+          !pedido.oculto_cliente
+      );
 
 
   const ativos =
     visiveis.filter(
-      pedido => !pedido.arquivado_cliente
+      pedido =>
+        !pedido.arquivado_cliente
     );
 
 
   const arquivados =
     visiveis.filter(
-      pedido => pedido.arquivado_cliente
+      pedido =>
+        pedido.arquivado_cliente
     );
 
 
-  if(ativos.length === 0){
-    mostrarVazio();
-  }else{
-    pedidosEl.innerHTML =
-      ativos
-        .map(pedido =>
+  /*
+  ==========================
+  JUNTA TUDO
+  ==========================
+  */
+
+  const listaPrincipal = [
+
+    ...ativos.map(
+      pedido => ({
+
+        criado_em:
+          pedido.criado_em,
+
+        html:
           renderizarPedido(
             pedido,
             false
           )
+
+      })
+    ),
+
+    ...(encomendas || [])
+      .map(
+        encomenda => ({
+
+          criado_em:
+            encomenda.criado_em,
+
+          html:
+            renderizarEncomenda(
+              encomenda
+            )
+
+        })
+      )
+
+  ];
+
+
+  /*
+  Mais recente primeiro.
+  */
+
+  listaPrincipal.sort(
+    (a,b)=>
+
+      new Date(
+        b.criado_em
+      )
+
+      -
+
+      new Date(
+        a.criado_em
+      )
+  );
+
+
+  if(
+    listaPrincipal.length === 0
+  ){
+
+    mostrarVazio();
+
+  }else{
+
+    pedidosEl.innerHTML =
+
+      listaPrincipal
+
+        .map(
+          item =>
+            item.html
         )
+
         .join("");
+
   }
 
+
+  /*
+  ==========================
+  ARQUIVADOS
+  ==========================
+  */
 
   arquivadosQtd.textContent =
     arquivados.length;
 
 
-  if(arquivados.length > 0){
+  if(
+    arquivados.length > 0
+  ){
 
     arquivadosWrap.style.display =
       "block";
 
+
     arquivadosLista.innerHTML =
+
       arquivados
-        .map(pedido =>
-          renderizarPedido(
-            pedido,
-            true
-          )
+
+        .map(
+          pedido =>
+
+            renderizarPedido(
+              pedido,
+              true
+            )
+
         )
+
         .join("");
 
   }else{
 
     arquivadosWrap.style.display =
       "none";
+
 
     arquivadosLista.innerHTML =
       "";
@@ -1324,27 +1481,57 @@ async function carregarPedidos(userId){
 
 
   ativarMenusPedidos();
+
 }
 
 
-function pedidoFinalizado(status){
+/* ==========================
+   PEDIDO FINALIZADO
+========================== */
+
+function pedidoFinalizado(
+  status
+){
 
   const normalizado =
-    String(status || "")
+    String(
+      status || ""
+    )
+
       .trim()
+
       .toLowerCase()
-      .normalize("NFD")
+
+      .normalize(
+        "NFD"
+      )
+
       .replace(
         /[\u0300-\u036f]/g,
         ""
       );
 
+
   return (
-    normalizado.includes("cancel") ||
-    normalizado.includes("entreg")
+
+    normalizado.includes(
+      "cancel"
+    )
+
+    ||
+
+    normalizado.includes(
+      "entreg"
+    )
+
   );
+
 }
 
+
+/* ==========================
+   RENDER PEDIDO NORMAL
+========================== */
 
 function renderizarPedido(
   pedido,
@@ -1355,15 +1542,28 @@ function renderizarPedido(
     Array.isArray(
       pedido.itens
     )
-      ? pedido.itens.reduce(
-          (total,item) =>
-            total +
-            Number(
-              item.quantidade || 1
-            ),
-          0
-        )
-      : 0;
+
+      ?
+
+      pedido.itens.reduce(
+        (
+          total,
+          item
+        ) =>
+
+          total +
+
+          Number(
+            item.quantidade ||
+            1
+          ),
+
+        0
+      )
+
+      :
+
+      0;
 
 
   const finalizado =
@@ -1374,7 +1574,11 @@ function renderizarPedido(
 
   const menu =
     finalizado
-      ? `
+
+      ?
+
+      `
+
         <div class="pedido-acoes">
 
           <button
@@ -1383,7 +1587,6 @@ function renderizarPedido(
             data-menu-pedido="${escapar(
               pedido.id
             )}"
-            aria-label="Opções do pedido"
           >
             ⋯
           </button>
@@ -1406,11 +1609,13 @@ function renderizarPedido(
                   : "true"
               }"
             >
+
               ${
                 arquivado
                   ? "DESARQUIVAR"
                   : "ARQUIVAR"
               }
+
             </button>
 
             <button
@@ -1426,25 +1631,40 @@ function renderizarPedido(
           </div>
 
         </div>
+
       `
-      : "";
+
+      :
+
+      "";
 
 
   const acompanhar =
     finalizado
-      ? ""
-      : `
+
+      ?
+
+      ""
+
+      :
+
+      `
+
         <a
           href="pedido.html?id=${encodeURIComponent(
             pedido.id
           )}"
           class="acompanhar"
         >
+
           ACOMPANHAR PEDIDO
+
           <span class="seta">
             →
           </span>
+
         </a>
+
       `;
 
 
@@ -1461,25 +1681,31 @@ function renderizarPedido(
         <div>
 
           <div class="numero">
+
             PEDIDO #${escapar(
               pedido.numero_pedido ||
               pedido.id
             )}
+
           </div>
 
           <div class="data">
+
             ${formatarData(
               pedido.criado_em
             )}
+
           </div>
 
         </div>
 
         <div class="status">
+
           ${escapar(
             pedido.status ||
             "Pagamento em análise"
           )}
+
         </div>
 
         ${menu}
@@ -1505,9 +1731,11 @@ function renderizarPedido(
             </div>
 
             <div class="total">
+
               ${dinheiro(
                 pedido.total
               )}
+
             </div>
 
           </div>
@@ -1521,8 +1749,254 @@ function renderizarPedido(
     </article>
 
   `;
+
 }
 
+
+/* ==========================
+   RENDER ENCOMENDA
+========================== */
+
+function renderizarEncomenda(
+  encomenda
+){
+
+  const quantidade =
+    Math.max(
+      1,
+      Number(
+        encomenda.quantidade
+      ) || 1
+    );
+
+
+  const precoUnitario =
+    Number(
+      encomenda.preco_unitario
+    ) || 0;
+
+
+  const total =
+    precoUnitario *
+    quantidade;
+
+
+  let pagamentoTitulo =
+    "SEM PAGAMENTO AGORA";
+
+
+  let pagamentoTexto =
+    "Você não precisa pagar agora. A ANARKA entrará em contato pelo WhatsApp quando sua peça estiver pronta.";
+
+
+  if(
+    encomenda.pagamento_status ===
+    "aguardando"
+  ){
+
+    pagamentoTitulo =
+      "AGUARDANDO PAGAMENTO";
+
+
+    pagamentoTexto =
+      "Sua peça está pronta. A ANARKA entrará em contato pelo WhatsApp para combinar o pagamento.";
+
+  }
+
+
+  if(
+    encomenda.pagamento_status ===
+    "pago"
+  ){
+
+    pagamentoTitulo =
+      "PAGAMENTO CONFIRMADO";
+
+
+    pagamentoTexto =
+      "Seu pagamento já foi confirmado.";
+
+  }
+
+
+  let previsao =
+    "";
+
+
+  if(
+    encomenda.previsao_pronto
+  ){
+
+    const partes =
+      String(
+        encomenda.previsao_pronto
+      )
+        .split("-");
+
+
+    if(
+      partes.length === 3
+    ){
+
+      previsao =
+        `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+    }
+
+  }
+
+
+  return `
+
+    <article class="pedido encomenda-pendente">
+
+      <div class="pedido-top">
+
+        <div>
+
+          <div class="numero">
+
+            ENCOMENDA #${escapar(
+              encomenda.id
+            )}
+
+          </div>
+
+          <div class="data">
+
+            ${formatarData(
+              encomenda.criado_em
+            )}
+
+          </div>
+
+        </div>
+
+        <div class="status">
+
+          ${escapar(
+            encomenda.status ||
+            "Aguardando produção"
+          )}
+
+        </div>
+
+      </div>
+
+      <div class="pedido-body">
+
+        <div class="pedido-info">
+
+          <div class="encomenda-tag">
+            ENCOMENDA / PAGAMENTO POSTERIOR
+          </div>
+
+          <div class="encomenda-produto">
+
+            ${escapar(
+              encomenda.produto_nome ||
+              "Peça ANARKA"
+            )}
+
+          </div>
+
+          <div class="encomenda-detalhes">
+
+            TAMANHO:
+
+            <strong>
+              ${escapar(
+                encomenda.tamanho ||
+                "-"
+              )}
+            </strong>
+
+            <br>
+
+            QUANTIDADE:
+
+            <strong>
+              ${quantidade}
+            </strong>
+
+            ${
+              previsao
+
+                ?
+
+                `
+
+                  <br>
+
+                  PREVISÃO:
+
+                  <strong>
+                    ${previsao}
+                  </strong>
+
+                `
+
+                :
+
+                ""
+            }
+
+          </div>
+
+          <div class="pedido-resumo">
+
+            <div class="quantidade">
+
+              ${quantidade}
+
+              ${
+                quantidade === 1
+                  ? "ITEM"
+                  : "ITENS"
+              }
+
+            </div>
+
+            <div class="total">
+
+              ${dinheiro(
+                total
+              )}
+
+            </div>
+
+          </div>
+
+          <div class="encomenda-aviso">
+
+            <strong>
+              ${escapar(
+                pagamentoTitulo
+              )}
+            </strong>
+
+            <br>
+
+            ${escapar(
+              pagamentoTexto
+            )}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* ==========================
+   MENUS DOS PEDIDOS
+========================== */
 
 function ativarMenusPedidos(){
 
@@ -1530,105 +2004,133 @@ function ativarMenusPedidos(){
     .querySelectorAll(
       "[data-menu-pedido]"
     )
-    .forEach(botao => {
+    .forEach(
+      botao => {
 
-      botao.addEventListener(
-        "click",
-        event => {
+        botao.addEventListener(
+          "click",
+          event => {
 
-          event.stopPropagation();
+            event.stopPropagation();
 
-          const id =
-            botao.dataset.menuPedido;
 
-          document
-            .querySelectorAll(
-              ".pedido-menu"
-            )
-            .forEach(menu => {
+            const id =
+              botao.dataset.menuPedido;
 
-              if(
-                menu.dataset.menu !== id
-              ){
-                menu.classList.remove(
-                  "aberto"
-                );
-              }
 
-            });
+            document
+              .querySelectorAll(
+                ".pedido-menu"
+              )
+              .forEach(
+                menu => {
 
-          const menu =
-            document.querySelector(
-              `[data-menu="${CSS.escape(id)}"]`
-            );
+                  if(
+                    menu.dataset.menu !==
+                    id
+                  ){
 
-          menu?.classList.toggle(
-            "aberto"
-          );
+                    menu
+                      .classList
+                      .remove(
+                        "aberto"
+                      );
 
-        }
-      );
+                  }
 
-    });
+                }
+              );
+
+
+            const menu =
+              document.querySelector(
+                `[data-menu="${CSS.escape(id)}"]`
+              );
+
+
+            menu
+              ?.classList
+              .toggle(
+                "aberto"
+              );
+
+          }
+        );
+
+      }
+    );
 
 
   document
     .querySelectorAll(
       "[data-arquivar]"
     )
-    .forEach(botao => {
+    .forEach(
+      botao => {
 
-      botao.addEventListener(
-        "click",
-        async () => {
+        botao.addEventListener(
+          "click",
+          async ()=>{
 
-          await alterarPedidoCliente(
-            botao.dataset.arquivar,
-            {
-              arquivado_cliente:
-                botao.dataset.valor ===
-                "true"
-            }
-          );
+            await alterarPedidoCliente(
+              botao.dataset.arquivar,
+              {
+                arquivado_cliente:
+                  botao.dataset.valor ===
+                  "true"
+              }
+            );
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
 
 
   document
     .querySelectorAll(
       "[data-excluir]"
     )
-    .forEach(botao => {
+    .forEach(
+      botao => {
 
-      botao.addEventListener(
-        "click",
-        async () => {
+        botao.addEventListener(
+          "click",
+          async ()=>{
 
-          const confirmar =
-            window.confirm(
-              "Excluir este pedido da sua conta? Ele deixará de aparecer para você."
+            const confirmar =
+              window.confirm(
+                "Excluir este pedido da sua conta? Ele deixará de aparecer para você."
+              );
+
+
+            if(!confirmar){
+
+              return;
+
+            }
+
+
+            await alterarPedidoCliente(
+              botao.dataset.excluir,
+              {
+                oculto_cliente:true
+              }
             );
 
-          if(!confirmar){
-            return;
           }
+        );
 
-          await alterarPedidoCliente(
-            botao.dataset.excluir,
-            {
-              oculto_cliente:true
-            }
-          );
+      }
+    );
 
-        }
-      );
-
-    });
 }
 
+
+/* ==========================
+   ALTERAR PEDIDO
+========================== */
 
 async function alterarPedidoCliente(
   pedidoId,
@@ -1636,19 +2138,30 @@ async function alterarPedidoCliente(
 ){
 
   if(!usuarioAtual){
+
     return;
+
   }
+
 
   const {
     error
   } =
     await supabase
-      .from("pedidos")
-      .update(alteracoes)
+
+      .from(
+        "pedidos"
+      )
+
+      .update(
+        alteracoes
+      )
+
       .eq(
         "id",
         pedidoId
       )
+
       .eq(
         "user_id",
         usuarioAtual.id
@@ -1662,54 +2175,75 @@ async function alterarPedidoCliente(
       error
     );
 
+
     alert(
       "Não foi possível atualizar o pedido."
     );
 
+
     return;
+
   }
 
 
   await carregarPedidos(
     usuarioAtual.id
   );
+
 }
 
 
+/* ==========================
+   FECHAR MENUS
+========================== */
+
 document.addEventListener(
   "click",
-  () => {
+  ()=>{
 
     document
       .querySelectorAll(
         ".pedido-menu.aberto"
       )
-      .forEach(menu =>
-        menu.classList.remove(
-          "aberto"
-        )
+      .forEach(
+        menu =>
+
+          menu
+            .classList
+            .remove(
+              "aberto"
+            )
+
       );
 
   }
 );
 
 
-arquivadosToggle.addEventListener(
-  "click",
-  () => {
+/* ==========================
+   ARQUIVADOS
+========================== */
 
-    const abriu =
-      arquivadosLista.classList.toggle(
-        "aberta"
-      );
+arquivadosToggle
+  .addEventListener(
+    "click",
+    ()=>{
 
-    arquivadosSeta.textContent =
-      abriu
-        ? "−"
-        : "＋";
+      const abriu =
+        arquivadosLista
+          .classList
+          .toggle(
+            "aberta"
+          );
 
-  }
-);
+
+      arquivadosSeta.textContent =
+        abriu
+          ? "−"
+          : "＋";
+
+    }
+  );
 
 
 /* ==========================
@@ -1731,8 +2265,8 @@ function mostrarVazio(){
       </h2>
 
       <p>
-        Seus pedidos vinculados à sua conta
-        aparecerão aqui.
+        Suas compras e encomendas vinculadas
+        à sua conta aparecerão aqui.
       </p>
 
       <a
@@ -1754,32 +2288,45 @@ function mostrarVazio(){
 ========================== */
 
 document
-  .getElementById("sair")
+  .getElementById(
+    "sair"
+  )
   .addEventListener(
     "click",
     async ()=>{
+
 
       const confirmar =
         window.confirm(
           "Deseja realmente encerrar sua sessão na ANARKA?"
         );
 
+
       if(!confirmar){
+
         return;
+
       }
+
 
       const botao =
         document.getElementById(
           "sair"
         );
 
+
       botao.disabled =
         true;
+
 
       botao.textContent =
         "ENCERRANDO...";
 
-      await supabase.auth.signOut();
+
+      await supabase
+        .auth
+        .signOut();
+
 
       window.location.replace(
         "login.html"
@@ -1793,7 +2340,9 @@ document
    UTILIDADES
 ========================== */
 
-function dinheiro(valor){
+function dinheiro(
+  valor
+){
 
   return Number(
     valor || 0
@@ -1809,15 +2358,21 @@ function dinheiro(valor){
 }
 
 
-function formatarData(data){
+function formatarData(
+  data
+){
 
   if(!data){
+
     return "";
+
   }
 
 
   const objeto =
-    new Date(data);
+    new Date(
+      data
+    );
 
 
   if(
@@ -1831,21 +2386,24 @@ function formatarData(data){
   }
 
 
-  return objeto.toLocaleString(
-    "pt-BR",
-    {
-      day:"2-digit",
-      month:"2-digit",
-      year:"numeric",
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
+  return objeto
+    .toLocaleString(
+      "pt-BR",
+      {
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric",
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
 
 }
 
 
-function escapar(texto){
+function escapar(
+  texto
+){
 
   const div =
     document.createElement(
