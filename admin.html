@@ -931,6 +931,15 @@ async function carregarPedidos(){
         itens,
         total,
         forma_pagamento,
+        frete_servico_id,
+        frete_transportadora,
+        frete_servico,
+        frete_valor,
+        frete_prazo_dias,
+        frete_dados,
+        melhor_envio_order_id,
+        melhor_envio_status,
+        etiqueta_url,
         status,
         codigo_rastreio,
         criado_em,
@@ -1628,6 +1637,60 @@ function renderizarPedidos(lista){
 
               <div class="dado">
 
+                <small>FRETE</small>
+
+                <div>
+                  ${
+                    pedido.frete_transportadora
+                      ? `
+                        <strong>
+                          ${escapar(
+                            pedido.frete_transportadora
+                          )}
+                          ${
+                            pedido.frete_servico
+                              ? " — " +
+                                escapar(
+                                  pedido.frete_servico
+                                )
+                              : ""
+                          }
+                        </strong>
+
+                        <br>
+
+                        ${
+                          pedido.frete_prazo_dias
+                            ? "Prazo estimado: " +
+                              escapar(
+                                pedido.frete_prazo_dias
+                              ) +
+                              " dia(s)"
+                            : ""
+                        }
+
+                        ${
+                          pedido.frete_valor !== null &&
+                          pedido.frete_valor !== undefined
+                            ? "<br>Valor: " +
+                              dinheiro(
+                                pedido.frete_valor
+                              )
+                            : ""
+                        }
+                      `
+                      : `
+                        <span style="color:#666">
+                          Frete não registrado neste pedido.
+                        </span>
+                      `
+                  }
+                </div>
+
+              </div>
+
+              <div class="dado">
+
                 <small>TOTAL</small>
 
                 <div class="total">
@@ -1720,6 +1783,68 @@ function renderizarPedidos(lista){
               >
                 SALVAR
               </button>
+
+              <div
+                style="
+                  grid-column:1/-1;
+                  padding:16px;
+                  border:1px solid #292929;
+                  background:#080808;
+                "
+              >
+                <label>
+                  MELHOR ENVIO / ETIQUETA
+                </label>
+
+                <div
+                  style="
+                    margin-top:8px;
+                    color:#888;
+                    font-size:10px;
+                    line-height:1.7;
+                  "
+                >
+                  ${
+                    pedido.etiqueta_url
+                      ? `
+                        <a
+                          href="${escaparAtributo(
+                            pedido.etiqueta_url
+                          )}"
+                          target="_blank"
+                          rel="noopener"
+                          style="
+                            display:inline-flex;
+                            min-height:44px;
+                            align-items:center;
+                            justify-content:center;
+                            padding:0 18px;
+                            background:#fff;
+                            color:#000;
+                            font-weight:900;
+                            letter-spacing:1px;
+                          "
+                        >
+                          IMPRIMIR ETIQUETA →
+                        </a>
+                      `
+                      : pedido.melhor_envio_order_id
+                        ? `
+                          ENVIO CRIADO NO MELHOR ENVIO.<br>
+                          ID: ${escapar(
+                            pedido.melhor_envio_order_id
+                          )}<br>
+                          Status: ${escapar(
+                            pedido.melhor_envio_status ||
+                            "Aguardando geração"
+                          )}
+                        `
+                        : `
+                          A etiqueta ainda não foi criada.
+                        `
+                  }
+                </div>
+              </div>
 
             </div>
 
