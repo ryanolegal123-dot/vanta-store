@@ -271,6 +271,89 @@ h1 span{
 }
 
 
+
+/* =========================
+   NAVEGAÇÃO / SESSÃO
+========================= */
+
+.voltar-loja{
+  display:inline-flex;
+  align-items:center;
+  min-height:38px;
+  padding:0 13px;
+  border:1px solid #333 !important;
+  color:#fff !important;
+}
+
+.voltar-loja:hover{
+  border-color:#fff !important;
+  background:#fff !important;
+  color:#000 !important;
+}
+
+.sessao-area{
+  margin-top:24px;
+  padding-top:22px;
+  border-top:1px solid #222;
+}
+
+.sessao-label{
+  margin-bottom:10px;
+  color:#555;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.sair-conta{
+  width:100%;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 14px;
+  border:1px solid #3a2020;
+  background:#100909;
+  color:#c97575;
+  cursor:pointer;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  transition:.15s;
+}
+
+.sair-conta span{
+  font-size:15px;
+}
+
+.sair-conta:hover{
+  border-color:#d60000;
+  background:#d60000;
+  color:#fff;
+}
+
+@media(max-width:550px){
+
+  .header-links{
+    gap:8px;
+  }
+
+  .header-links a{
+    display:none;
+  }
+
+  .header-links .voltar-loja{
+    display:inline-flex;
+    min-height:36px;
+    padding:0 10px;
+    font-size:8px;
+    letter-spacing:1px;
+  }
+
+}
+
 /* =========================
    PEDIDOS FINALIZADOS / MENU
 ========================= */
@@ -720,13 +803,16 @@ footer{
 
     <div class="header-links">
 
+      <a
+        href="index.html"
+        class="voltar-loja"
+      >
+        ← VOLTAR À LOJA
+      </a>
+
       <a href="catalogo.html">
         COLEÇÃO
       </a>
-
-      <button id="sair">
-        SAIR
-      </button>
 
     </div>
 
@@ -806,6 +892,23 @@ footer{
             >
               ABRIR PAINEL ADMIN →
             </a>
+          </div>
+
+          <div class="sessao-area">
+
+            <div class="sessao-label">
+              SESSÃO
+            </div>
+
+            <button
+              type="button"
+              id="sair"
+              class="sair-conta"
+            >
+              ENCERRAR SESSÃO
+              <span>↗</span>
+            </button>
+
           </div>
 
         </div>
@@ -1619,8 +1722,27 @@ document
     "click",
     async ()=>{
 
-      await supabase.auth.signOut();
+      const confirmar =
+        window.confirm(
+          "Deseja realmente encerrar sua sessão na ANARKA?"
+        );
 
+      if(!confirmar){
+        return;
+      }
+
+      const botao =
+        document.getElementById(
+          "sair"
+        );
+
+      botao.disabled =
+        true;
+
+      botao.textContent =
+        "ENCERRANDO...";
+
+      await supabase.auth.signOut();
 
       window.location.replace(
         "login.html"
@@ -1705,4 +1827,4 @@ function escapar(texto){
 </script>
 
 </body>
-</html>
+  </html>
