@@ -683,6 +683,168 @@ footer img{
 
 }
 
+
+/* =========================
+   FRETE — VISUAL ANARKA
+========================= */
+
+.frete-box{
+  margin-top:22px;
+  padding-top:20px;
+  border-top:1px solid #292929;
+}
+
+.frete-titulo{
+  margin-bottom:8px;
+  color:#d60000;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.frete-status{
+  margin-bottom:12px;
+  color:#777;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.frete-opcoes{
+  display:grid;
+  gap:10px;
+}
+
+.frete-opcao{
+  position:relative;
+  width:100%;
+  min-height:76px;
+  margin:0;
+  display:grid;
+  grid-template-columns:18px 1fr auto;
+  align-items:center;
+  gap:12px;
+  padding:14px 15px;
+  border:1px solid #2d2d2d;
+  border-radius:0;
+  background:#0b0b0b;
+  color:#fff;
+  cursor:pointer;
+  text-align:left;
+  transition:
+    border-color .15s,
+    background .15s,
+    transform .15s;
+}
+
+.frete-opcao::before{
+  content:"";
+  width:14px;
+  height:14px;
+  border:1px solid #666;
+  border-radius:50%;
+  background:#050505;
+  box-shadow:inset 0 0 0 3px #050505;
+}
+
+.frete-opcao:hover{
+  border-color:#666;
+  background:#101010;
+  transform:translateY(-1px);
+}
+
+.frete-opcao.ativo{
+  border-color:#d60000;
+  background:#120707;
+}
+
+.frete-opcao.ativo::before{
+  border-color:#d60000;
+  background:#d60000;
+}
+
+.frete-opcao-conteudo{
+  min-width:0;
+}
+
+.frete-opcao-topo{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+}
+
+.frete-opcao-transportadora{
+  color:#fff;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+}
+
+.frete-opcao-servico{
+  color:#777;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+}
+
+.frete-opcao-prazo{
+  display:block;
+  margin-top:6px;
+  color:#6f6f6f;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.4px;
+}
+
+.frete-opcao-preco{
+  color:#fff;
+  white-space:nowrap;
+  font-size:15px;
+  font-weight:1000;
+}
+
+.frete-opcao.ativo .frete-opcao-preco{
+  color:#d60000;
+}
+
+.frete-opcao.mais-barato::after{
+  content:"MENOR PREÇO";
+  position:absolute;
+  top:-1px;
+  right:-1px;
+  padding:5px 7px;
+  background:#d60000;
+  color:#fff;
+  font-size:6px;
+  font-weight:1000;
+  letter-spacing:1px;
+}
+
+@media(max-width:550px){
+  .frete-opcao{
+    grid-template-columns:16px 1fr auto;
+    gap:9px;
+    min-height:72px;
+    padding:13px 11px;
+  }
+
+  .frete-opcao-preco{
+    font-size:13px;
+  }
+
+  .frete-opcao-transportadora{
+    font-size:10px;
+  }
+
+  .frete-opcao-servico{
+    display:block;
+    width:100%;
+  }
+}
+
 </style>
 
 </head>
@@ -1305,38 +1467,117 @@ function selecionarFrete(id){
 }
 
 function renderizarFretes(){
+
   freteOpcoes.innerHTML = "";
 
   if(!fretesDisponiveis.length){
+
     freteStatus.textContent =
       "Nenhuma opção de frete disponível para este CEP.";
+
     return;
   }
 
-  freteStatus.textContent = "Escolha uma opção de entrega:";
 
-  fretesDisponiveis.forEach(opcao=>{
-    const el = document.createElement("button");
-    el.type = "button";
-    el.className = "frete-opcao";
-    el.dataset.id = opcao.id;
+  freteStatus.textContent =
+    "Escolha uma opção de entrega:";
 
-    el.innerHTML = `
-      <span>
-        <span class="frete-opcao-nome">
-          ${escaparHTML(opcao.transportadora)} — ${escaparHTML(opcao.nome)}
+
+  const menorPreco =
+    Math.min(
+      ...fretesDisponiveis.map(
+        opcao =>
+          Number(opcao.preco) || 0
+      )
+    );
+
+
+  fretesDisponiveis.forEach(
+    opcao=>{
+
+      const el =
+        document.createElement(
+          "button"
+        );
+
+      el.type =
+        "button";
+
+      el.className =
+        "frete-opcao";
+
+      if(
+        Number(opcao.preco) ===
+        menorPreco
+      ){
+        el.classList.add(
+          "mais-barato"
+        );
+      }
+
+      el.dataset.id =
+        opcao.id;
+
+
+      el.innerHTML = `
+
+        <span></span>
+
+        <span class="frete-opcao-conteudo">
+
+          <span class="frete-opcao-topo">
+
+            <span class="frete-opcao-transportadora">
+              ${escaparHTML(
+                opcao.transportadora
+              )}
+            </span>
+
+            <span class="frete-opcao-servico">
+              ${escaparHTML(
+                opcao.nome
+              )}
+            </span>
+
+          </span>
+
+          <span class="frete-opcao-prazo">
+            Entrega estimada em
+            ${Number(
+              opcao.prazo_dias
+            ) || 0}
+            dia(s)
+          </span>
+
         </span>
-        <span class="frete-opcao-prazo">
-          Prazo estimado: ${Number(opcao.prazo_dias) || 0} dia(s)
-        </span>
-      </span>
-      <span class="frete-opcao-preco">${dinheiro(opcao.preco)}</span>
-    `;
 
-    el.addEventListener("click", ()=>selecionarFrete(opcao.id));
-    freteOpcoes.appendChild(el);
-  });
+        <span class="frete-opcao-preco">
+          ${dinheiro(
+            opcao.preco
+          )}
+        </span>
+
+      `;
+
+
+      el.addEventListener(
+        "click",
+        ()=>
+          selecionarFrete(
+            opcao.id
+          )
+      );
+
+
+      freteOpcoes.appendChild(
+        el
+      );
+
+    }
+  );
+
 }
+
 
 async function calcularFrete(cep){
   const cepLimpo = String(cep || "").replace(/\D/g,"");
