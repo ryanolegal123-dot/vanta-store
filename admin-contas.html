@@ -20,6 +20,13 @@ h1{margin-top:10px;font-size:clamp(50px,8vw,90px);line-height:.84;letter-spacing
 .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:32px}.sum{border:1px solid #292929;background:#090909;padding:19px}.sum small{color:#666;font-size:8px;font-weight:900;letter-spacing:1.5px}.sum strong{display:block;margin-top:12px;font-size:27px}
 .tools{display:flex;gap:8px;margin:28px 0}.tools input{flex:1;border:1px solid #303030;background:#090909;color:#fff;padding:14px;outline:0}.tools input:focus{border-color:#d60000}.atualizar{min-height:46px;padding:0 16px;border:1px solid #333;background:#090909;color:#aaa;cursor:pointer;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase}.atualizar:hover{border-color:#d60000;color:#fff}
 .list{display:grid;gap:12px}.card{border:1px solid #292929;background:#090909}.card.admin{border-color:#5d1b1b;background:#0d0707}.card-head{padding:18px 20px;border-bottom:1px solid #222;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.card-head small{display:block;color:#666;font-size:8px;font-weight:900;letter-spacing:1.4px}.card-head h2{margin-top:6px;font-size:20px;text-transform:uppercase;word-break:break-word}.badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}.badge{padding:8px 10px;border:1px solid #333;background:#080808;color:#aaa;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}.badge.ok{border-color:#245b2a;background:#071008;color:#8ddd95}.badge.admin{border-color:#6d1717;background:#130707;color:#ff7b7b}.grid{display:grid;grid-template-columns:repeat(2,1fr);padding:0 20px}.block{padding:20px 0}.block+.block{padding-left:20px;border-left:1px solid #222}.dado{margin-bottom:14px}.dado:last-child{margin-bottom:0}.dado small{display:block;color:#666;font-size:8px;font-weight:900;letter-spacing:1.3px;margin-bottom:4px}.dado div{font-size:12px;line-height:1.6;word-break:break-word}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.stat{border:1px solid #222;background:#060606;padding:14px}.stat small{color:#555;font-size:8px;font-weight:900;letter-spacing:1px}.stat strong{display:block;margin-top:8px;font-size:20px}.empty{border:1px solid #292929;padding:35px;color:#777;text-align:center}.loading,.denied{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#777;font-size:11px;letter-spacing:2px}.denied{display:none}.panel{display:none}.rodape-info{margin-top:18px;color:#444;font-size:9px;letter-spacing:1px;text-align:right}
+.acoes-conta{padding:18px 20px;border-top:1px solid #222;display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.btn-perigo{min-height:44px;padding:0 16px;border:1px solid #6d1717;background:#160707;color:#ff7b7b;cursor:pointer;font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.btn-perigo:hover{background:#d60000;border-color:#d60000;color:#fff}
+.btn-perigo:disabled{opacity:.45;cursor:not-allowed}
+.feedback-conta{width:100%;min-height:15px;color:#777;font-size:9px;text-align:right}
+.feedback-conta.ok{color:#8ddd95}
+.feedback-conta.erro{color:#ff7b7b}
 @media(max-width:760px){header{height:72px;padding:0 4%}.logo{width:100px}.summary{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.block+.block{padding-left:0;border-left:0;border-top:1px solid #222}.tools{flex-direction:column}main{width:92%;padding-top:45px}.card-head{flex-direction:column}.badges{justify-content:flex-start}}
 </style>
 </head>
@@ -143,9 +150,128 @@ function render(dados){
             </div>
           </div>
         </div>
+
+        <div class="acoes-conta">
+          ${
+            totalPedidos > 0
+              ? `
+                <button
+                  type="button"
+                  class="btn-perigo"
+                  data-excluir-pedidos="${esc(c.id)}"
+                  data-nome="${esc(c.nome||"Cliente")}"
+                  data-email="${esc(c.email||"")}"
+                  data-total="${totalPedidos}"
+                >
+                  EXCLUIR TODOS OS PEDIDOS (${totalPedidos})
+                </button>
+              `
+              : `
+                <button
+                  type="button"
+                  class="btn-perigo"
+                  disabled
+                >
+                  NENHUM PEDIDO PARA EXCLUIR
+                </button>
+              `
+          }
+
+          <div
+            class="feedback-conta"
+            data-feedback="${esc(c.id)}"
+          ></div>
+        </div>
       </article>
     `;
   }).join("");
+
+  document
+    .querySelectorAll("[data-excluir-pedidos]")
+    .forEach(botao=>{
+      botao.addEventListener("click",()=>excluirPedidosConta(botao));
+    });
+}
+
+
+async function excluirPedidosConta(botao){
+
+  const userId=botao.dataset.excluirPedidos;
+  const nome=botao.dataset.nome||"Cliente";
+  const email=botao.dataset.email||"";
+  const total=Number(botao.dataset.total||0);
+
+  if(!userId || total<=0){
+    return;
+  }
+
+  const confirmar=window.confirm(
+    `ATENÇÃO!\n\nVocê está prestes a excluir TODOS os ${total} pedido(s) de:\n\n${nome}\n${email}\n\nA conta continuará existindo e as encomendas não serão apagadas.\n\nDeseja continuar?`
+  );
+
+  if(!confirmar){
+    return;
+  }
+
+  const codigo=window.prompt(
+    `Para confirmar a exclusão definitiva dos pedidos de ${nome}, digite:\n\nEXCLUIR`
+  );
+
+  if(codigo!=="EXCLUIR"){
+    if(codigo!==null){
+      alert("Confirmação incorreta. Nenhum pedido foi apagado.");
+    }
+    return;
+  }
+
+  const feedback=document.querySelector(
+    `[data-feedback="${CSS.escape(String(userId))}"]`
+  );
+
+  botao.disabled=true;
+  botao.textContent="EXCLUINDO PEDIDOS...";
+
+  if(feedback){
+    feedback.className="feedback-conta";
+    feedback.textContent="APAGANDO PEDIDOS...";
+  }
+
+  const {
+    data,
+    error
+  }=await supabase
+    .from("pedidos")
+    .delete()
+    .eq("user_id",userId)
+    .select("id");
+
+  if(error){
+
+    console.error("Erro ao excluir pedidos da conta:",error);
+
+    botao.disabled=false;
+    botao.textContent=`EXCLUIR TODOS OS PEDIDOS (${total})`;
+
+    if(feedback){
+      feedback.className="feedback-conta erro";
+      feedback.textContent="ERRO AO EXCLUIR PEDIDOS.";
+    }
+
+    return;
+  }
+
+  const apagados=Array.isArray(data)?data.length:0;
+
+  if(feedback){
+    feedback.className="feedback-conta ok";
+    feedback.textContent=`✓ ${apagados} PEDIDO(S) EXCLUÍDO(S)`;
+  }
+
+  await carregarContas(true);
+
+  alert(
+    `${apagados} pedido(s) de ${nome} foram excluídos definitivamente.\n\nA conta e as encomendas foram mantidas.`
+  );
 }
 
 function aplicarBusca(){
