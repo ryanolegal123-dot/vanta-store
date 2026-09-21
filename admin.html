@@ -653,117 +653,6 @@ footer{
 
 }
 
-
-/* =====================================
-   MELHOR ENVIO / ETIQUETA
-===================================== */
-
-.envio-box{
-  grid-column:1/-1;
-  margin-top:6px;
-  padding:18px;
-  border:1px solid #292929;
-  background:#080808;
-}
-
-.envio-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:12px;
-}
-
-.envio-status{
-  margin-top:10px;
-  color:#777;
-  font-size:10px;
-  line-height:1.7;
-}
-
-.envio-acoes{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:14px;
-}
-
-.envio-btn{
-  min-height:46px;
-  padding:0 16px;
-  border:1px solid #fff;
-  background:#fff;
-  color:#000;
-  cursor:pointer;
-  font-size:9px;
-  font-weight:1000;
-  letter-spacing:1.4px;
-  text-transform:uppercase;
-}
-
-.envio-btn:hover{
-  background:#d60000;
-  border-color:#d60000;
-  color:#fff;
-}
-
-.envio-btn.perigo{
-  background:#d60000;
-  border-color:#d60000;
-  color:#fff;
-}
-
-.envio-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-.envio-link{
-  display:inline-flex;
-  min-height:46px;
-  align-items:center;
-  justify-content:center;
-  padding:0 17px;
-  border:1px solid #d60000;
-  background:#d60000;
-  color:#fff;
-  font-size:9px;
-  font-weight:1000;
-  letter-spacing:1.4px;
-  text-transform:uppercase;
-}
-
-.envio-feedback{
-  margin-top:10px;
-  min-height:16px;
-  color:#777;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.7px;
-}
-
-.envio-feedback.sucesso{
-  color:#5ed47b;
-}
-
-.envio-feedback.erro{
-  color:#ff6262;
-}
-
-@media(max-width:650px){
-  .envio-grid{
-    grid-template-columns:1fr;
-  }
-
-  .envio-acoes{
-    display:grid;
-  }
-
-  .envio-btn,
-  .envio-link{
-    width:100%;
-  }
-}
-
 </style>
 </head>
 
@@ -917,10 +806,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
 
-
-const MELHOR_ENVIO_ADMIN_URL =
-  "https://pzqgsbxuhsesfxhmgfbi.supabase.co/functions/v1/melhor-envio-admin";
-
 const supabase =
   createClient(
     SUPABASE_URL,
@@ -1053,11 +938,8 @@ async function carregarPedidos(){
         frete_prazo_dias,
         frete_dados,
         melhor_envio_order_id,
-        melhor_envio_order_ids,
         melhor_envio_status,
         etiqueta_url,
-        etiqueta_urls,
-        nota_fiscal_chave,
         status,
         codigo_rastreio,
         criado_em,
@@ -1902,126 +1784,31 @@ function renderizarPedidos(lista){
                 SALVAR
               </button>
 
-              <div class="envio-box">
-
+              
+              <div
+                style="
+                  grid-column:1/-1;
+                  padding:16px;
+                  border:1px solid #292929;
+                  background:#080808;
+                "
+              >
                 <label>
                   MELHOR ENVIO / ETIQUETA
                 </label>
 
-                <div class="envio-grid">
-
-                  <div class="campo">
-                    <label>
-                      CHAVE DA NF-e
-                    </label>
-
-                    <input
-                      class="nfe-input"
-                      type="text"
-                      inputmode="numeric"
-                      maxlength="44"
-                      value="${escaparAtributo(
-                        pedido.nota_fiscal_chave ||
-                        ""
-                      )}"
-                      placeholder="44 dígitos da chave da NF-e"
-                      autocomplete="off"
-                    >
-                  </div>
-
-                  <div>
-                    <label>
-                      STATUS DA ETIQUETA
-                    </label>
-
-                    <div class="envio-status">
-                      ${escapar(
-                        pedido.melhor_envio_status ||
-                        "Ainda não preparada"
-                      )}
-                    </div>
-                  </div>
-
+                <div
+                  style="
+                    margin-top:8px;
+                    color:#888;
+                    font-size:10px;
+                    line-height:1.7;
+                  "
+                >
+                  Cotação de frete ativa normalmente.<br>
+                  A compra automática de etiqueta está desativada nesta conta por enquanto.
                 </div>
-
-                <div class="envio-acoes">
-
-                  ${
-                    !pedido.melhor_envio_order_id
-                      ? `
-                        <button
-                          type="button"
-                          class="envio-btn"
-                          data-envio-acao="prepare"
-                        >
-                          PREPARAR ENVIO
-                        </button>
-                      `
-                      : ""
-                  }
-
-                  ${
-                    pedido.melhor_envio_order_id &&
-                    normalizar(
-                      pedido.melhor_envio_status
-                    ) === "no carrinho"
-                      ? `
-                        <button
-                          type="button"
-                          class="envio-btn perigo"
-                          data-envio-acao="buy"
-                        >
-                          COMPRAR ETIQUETA
-                        </button>
-                      `
-                      : ""
-                  }
-
-                  ${
-                    pedido.melhor_envio_order_id &&
-                    (
-                      normalizar(
-                        pedido.melhor_envio_status
-                      ) === "comprada" ||
-                      normalizar(
-                        pedido.melhor_envio_status
-                      ) === "gerada"
-                    ) &&
-                    !pedido.etiqueta_url
-                      ? `
-                        <button
-                          type="button"
-                          class="envio-btn"
-                          data-envio-acao="generate_print"
-                        >
-                          GERAR + IMPRIMIR
-                        </button>
-                      `
-                      : ""
-                  }
-
-                  ${
-                    pedido.etiqueta_url
-                      ? `
-                        <a
-                          href="${escaparAtributo(
-                            pedido.etiqueta_url
-                          )}"
-                          target="_blank"
-                          rel="noopener"
-                          class="envio-link"
-                        >
-                          IMPRIMIR ETIQUETA →
-                        </a>
-                      `
-                      : ""
-                  }
-
-                </div>
-
-                <div class="envio-feedback"></div>
-
-              </div>              </div>
+              </div>
 
             </div>
 
@@ -2049,272 +1836,7 @@ function renderizarPedidos(lista){
       );
 
     });
-
-
-  document
-    .querySelectorAll(
-      "[data-envio-acao]"
-    )
-    .forEach(botao => {
-
-      botao.addEventListener(
-        "click",
-        () =>
-          executarAcaoMelhorEnvio(
-            botao
-          )
-      );
-
-    });
-
 }
-
-/* =====================================
-   MELHOR ENVIO
-===================================== */
-
-async function executarAcaoMelhorEnvio(
-  botao
-){
-
-  const card =
-    botao.closest(
-      ".pedido"
-    );
-
-  const pedidoId =
-    card.dataset.id;
-
-  const action =
-    botao.dataset.envioAcao;
-
-  const nfeInput =
-    card.querySelector(
-      ".nfe-input"
-    );
-
-  const feedback =
-    card.querySelector(
-      ".envio-feedback"
-    );
-
-  const nfe =
-    String(
-      nfeInput?.value ||
-      ""
-    )
-      .replace(
-        /\D/g,
-        ""
-      );
-
-
-  if(
-    action === "prepare" &&
-    nfe.length !== 44
-  ){
-
-    feedback.className =
-      "envio-feedback erro";
-
-    feedback.textContent =
-      "INFORME UMA CHAVE DE NF-e VÁLIDA COM 44 DÍGITOS.";
-
-    nfeInput?.focus();
-
-    return;
-  }
-
-
-  if(
-    action === "buy"
-  ){
-
-    const confirmar =
-      window.confirm(
-        "Comprar esta etiqueta no Melhor Envio?\n\nO valor do frete será debitado do saldo da sua carteira do Melhor Envio."
-      );
-
-    if(!confirmar){
-      return;
-    }
-
-  }
-
-
-  if(
-    action ===
-    "generate_print"
-  ){
-
-    const confirmar =
-      window.confirm(
-        "Gerar a etiqueta agora?\n\nApós a geração, a transportadora pode ser comunicada sobre o envio."
-      );
-
-    if(!confirmar){
-      return;
-    }
-
-  }
-
-
-  botao.disabled =
-    true;
-
-  const textoOriginal =
-    botao.textContent;
-
-  botao.textContent =
-    "PROCESSANDO...";
-
-  feedback.className =
-    "envio-feedback";
-
-  feedback.textContent =
-    "COMUNICANDO COM O MELHOR ENVIO...";
-
-
-  try{
-
-    const {
-      data:{
-        session
-      }
-    } =
-      await supabase.auth
-        .getSession();
-
-
-    if(
-      !session
-    ){
-
-      throw new Error(
-        "Sessão expirada."
-      );
-
-    }
-
-
-    const resposta =
-      await fetch(
-        MELHOR_ENVIO_ADMIN_URL,
-        {
-
-          method:
-            "POST",
-
-          headers:{
-
-            "Content-Type":
-              "application/json",
-
-            "Authorization":
-              `Bearer ${session.access_token}`
-
-          },
-
-          body:
-            JSON.stringify(
-              {
-
-                action,
-                pedido_id:
-                  pedidoId,
-
-                nota_fiscal_chave:
-                  nfe
-
-              }
-            )
-
-        }
-      );
-
-
-    const dados =
-      await resposta
-        .json()
-        .catch(
-          () => ({})
-        );
-
-
-    if(
-      !resposta.ok
-    ){
-
-      console.error(
-        "Melhor Envio:",
-        dados
-      );
-
-      throw new Error(
-        dados?.error ||
-        dados?.message ||
-        "Falha no Melhor Envio."
-      );
-
-    }
-
-
-    feedback.className =
-      "envio-feedback sucesso";
-
-    feedback.textContent =
-      "✓ " +
-      (
-        dados?.message ||
-        "AÇÃO CONCLUÍDA."
-      );
-
-
-    if(
-      dados?.url
-    ){
-
-      window.open(
-        dados.url,
-        "_blank",
-        "noopener"
-      );
-
-    }
-
-
-    await carregarPedidos();
-
-
-  }catch(error){
-
-    console.error(
-      "Erro Melhor Envio:",
-      error
-    );
-
-    feedback.className =
-      "envio-feedback erro";
-
-    feedback.textContent =
-      String(
-        error?.message ||
-        "ERRO AO PROCESSAR ETIQUETA."
-      )
-        .toUpperCase();
-
-  }finally{
-
-    botao.disabled =
-      false;
-
-    botao.textContent =
-      textoOriginal;
-
-  }
-
-}
-
 
 /* =====================================
    SALVAR ALTERAÇÃO
