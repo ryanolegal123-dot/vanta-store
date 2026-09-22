@@ -118,6 +118,25 @@ h1 span{
   padding:35px;
 }
 
+.redirect-info{
+  display:none;
+  margin-bottom:20px;
+  padding:13px;
+  border:1px solid #5f1818;
+  background:#120707;
+  color:#ccc;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.redirect-info.show{
+  display:block;
+}
+
+.redirect-info strong{
+  color:#fff;
+}
+
 .tabs{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -247,7 +266,10 @@ input:focus{
 
 .esqueci{
   display:block;
+  width:100%;
   margin-top:17px;
+  border:0;
+  background:none;
   color:#777;
   text-align:center;
   font-size:9px;
@@ -269,7 +291,6 @@ footer{
 }
 
 @media(max-width:850px){
-
   main{
     grid-template-columns:1fr;
     gap:45px;
@@ -286,7 +307,6 @@ footer{
 }
 
 @media(max-width:550px){
-
   header{
     height:72px;
     padding:0 4%;
@@ -356,6 +376,15 @@ footer{
 
   <section class="box">
 
+    <div
+      id="redirectInfo"
+      class="redirect-info"
+    >
+      <strong>Conta necessária.</strong>
+      Entre ou crie sua conta para continuar com a encomenda.
+      Depois você volta automaticamente para a peça selecionada.
+    </div>
+
     <div class="tabs">
 
       <button
@@ -378,8 +407,6 @@ footer{
       id="mensagem"
       class="mensagem"
     ></div>
-
-    <!-- LOGIN -->
 
     <form
       id="login"
@@ -446,8 +473,6 @@ footer{
       </button>
 
     </form>
-
-    <!-- CADASTRO -->
 
     <form
       id="cadastro"
@@ -543,7 +568,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_bLqHB2EcCBMkhw4JLtH71A_xGOK0Pxh";
 
-
 const supabase =
   createClient(
     SUPABASE_URL,
@@ -553,14 +577,6 @@ const supabase =
 
 /* ==============================
    REDIRECIONAMENTO
-
-   Se veio do checkout:
-   login.html?redirect=checkout.html
-
-   Depois do login volta ao checkout.
-
-   Se entrou normalmente:
-   vai para minha-conta.html.
 ============================== */
 
 const parametros =
@@ -568,19 +584,17 @@ const parametros =
     window.location.search
   );
 
-
 const redirectSolicitado =
   parametros.get(
     "redirect"
   );
 
-
 const destinosPermitidos = [
   "checkout.html",
+  "encomenda.html",
   "minha-conta.html",
   "tag-conhecido.html"
 ];
-
 
 const destinoDepoisLogin =
   destinosPermitidos.includes(
@@ -588,6 +602,22 @@ const destinoDepoisLogin =
   )
     ? redirectSolicitado
     : "minha-conta.html";
+
+const redirectInfo =
+  document.getElementById(
+    "redirectInfo"
+  );
+
+if(
+  destinoDepoisLogin ===
+  "encomenda.html"
+){
+
+  redirectInfo.classList.add(
+    "show"
+  );
+
+}
 
 
 /* ==============================
@@ -599,18 +629,15 @@ const mensagem =
     "mensagem"
   );
 
-
 const btnLogin =
   document.getElementById(
     "btnLogin"
   );
 
-
 const btnCadastro =
   document.getElementById(
     "btnCadastro"
   );
-
 
 function mostrarMensagem(
   texto,
@@ -624,7 +651,6 @@ function mostrarMensagem(
     "mensagem " + tipo;
 
 }
-
 
 function limparMensagem(){
 
@@ -663,7 +689,6 @@ document
             )
           );
 
-
         document
           .querySelectorAll(
             ".form"
@@ -674,11 +699,9 @@ document
             )
           );
 
-
         tab.classList.add(
           "ativo"
         );
-
 
         document
           .getElementById(
@@ -713,17 +736,14 @@ document
             botao.dataset.input
           );
 
-
         const mostrar =
           input.type ===
           "password";
-
 
         input.type =
           mostrar
             ? "text"
             : "password";
-
 
         botao.textContent =
           mostrar
@@ -752,7 +772,6 @@ document
 
       limparMensagem();
 
-
       const nome =
         document
           .getElementById(
@@ -760,7 +779,6 @@ document
           )
           .value
           .trim();
-
 
       const email =
         document
@@ -770,7 +788,6 @@ document
           .value
           .trim();
 
-
       const senha =
         document
           .getElementById(
@@ -778,13 +795,17 @@ document
           )
           .value;
 
-
       btnCadastro.disabled =
         true;
 
       btnCadastro.textContent =
         "CRIANDO CONTA...";
 
+      const confirmacaoUrl =
+        "https://anarka-store-henna.vercel.app/login.html?redirect=" +
+        encodeURIComponent(
+          destinoDepoisLogin
+        );
 
       const {
         data,
@@ -805,19 +826,17 @@ document
               },
 
               emailRedirectTo:
-                "https://anarka-store-henna.vercel.app/minha-conta.html"
+                confirmacaoUrl
 
             }
 
           });
-
 
       btnCadastro.disabled =
         false;
 
       btnCadastro.textContent =
         "CRIAR CONTA →";
-
 
       if(error){
 
@@ -832,15 +851,6 @@ document
 
       }
 
-
-      /*
-      Se confirmação de e-mail estiver
-      desativada, o Supabase cria uma
-      sessão imediatamente.
-
-      Nesse caso, respeitamos o redirect.
-      */
-
       if(data.session){
 
         window.location.href =
@@ -850,9 +860,10 @@ document
 
       }
 
-
       mostrarMensagem(
-        "Conta criada! Verifique seu e-mail para confirmar o cadastro.",
+        destinoDepoisLogin === "encomenda.html"
+          ? "Conta criada! Confirme seu e-mail. Depois da confirmação, você volta para continuar a encomenda."
+          : "Conta criada! Verifique seu e-mail para confirmar o cadastro.",
         "sucesso"
       );
 
@@ -876,7 +887,6 @@ document
 
       limparMensagem();
 
-
       const email =
         document
           .getElementById(
@@ -885,7 +895,6 @@ document
           .value
           .trim();
 
-
       const senha =
         document
           .getElementById(
@@ -893,13 +902,11 @@ document
           )
           .value;
 
-
       btnLogin.disabled =
         true;
 
       btnLogin.textContent =
         "ENTRANDO...";
-
 
       const {
         error
@@ -914,13 +921,11 @@ document
 
           });
 
-
       btnLogin.disabled =
         false;
 
       btnLogin.textContent =
         "ENTRAR →";
-
 
       if(error){
 
@@ -934,17 +939,6 @@ document
         return;
 
       }
-
-
-      /*
-      LOGIN FEITO.
-
-      Se veio do checkout,
-      volta para checkout.html.
-
-      Caso contrário,
-      vai para Minha Conta.
-      */
 
       window.location.href =
         destinoDepoisLogin;
@@ -967,7 +961,6 @@ document
 
       limparMensagem();
 
-
       const email =
         document
           .getElementById(
@@ -975,7 +968,6 @@ document
           )
           .value
           .trim();
-
 
       if(!email){
 
@@ -987,7 +979,6 @@ document
         return;
 
       }
-
 
       const {
         error
@@ -1003,7 +994,6 @@ document
             }
           );
 
-
       if(error){
 
         mostrarMensagem(
@@ -1016,7 +1006,6 @@ document
         return;
 
       }
-
 
       mostrarMensagem(
         "Enviamos um link de recuperação para seu e-mail.",
@@ -1040,7 +1029,6 @@ function traduzirErro(
       erro
     ).toLowerCase();
 
-
   if(
     texto.includes(
       "invalid login credentials"
@@ -1050,7 +1038,6 @@ function traduzirErro(
     return "E-mail ou senha incorretos.";
 
   }
-
 
   if(
     texto.includes(
@@ -1062,7 +1049,6 @@ function traduzirErro(
 
   }
 
-
   if(
     texto.includes(
       "user already registered"
@@ -1072,7 +1058,6 @@ function traduzirErro(
     return "Já existe uma conta com este e-mail.";
 
   }
-
 
   if(
     texto.includes(
@@ -1084,7 +1069,6 @@ function traduzirErro(
 
   }
 
-
   return erro;
 
 }
@@ -1092,8 +1076,6 @@ function traduzirErro(
 
 /* ==============================
    USUÁRIO JÁ LOGADO
-
-   Também respeita o redirect.
 ============================== */
 
 const {
@@ -1103,7 +1085,6 @@ const {
 } =
   await supabase.auth
     .getSession();
-
 
 if(session){
 
